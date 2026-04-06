@@ -69,3 +69,43 @@ body {
 html {
     scroll-behavior: smooth;
 }
+
+/* Better responsive spacing */
+section {
+    margin-bottom: 5rem;
+}
+
+/* Fix header alignment on mobile */
+header {
+    align-items: center;
+}
+
+/* Improve image scaling */
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Fix card positioning issue */
+.bento-card {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Better button alignment */
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fix grid responsiveness */
+@media (max-width: 768px) {
+    .grid {
+        gap: 1rem;
+    }
+
+    .bento-card {
+        padding: 1.2rem;
+    }
+}
