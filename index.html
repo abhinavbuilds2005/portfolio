@@ -31,6 +31,9 @@
 </head>
 <body class="bg-bg text-gray-100 antialiased selection:bg-accent selection:text-white relative">
 
+    <!-- Trailing Custom Mouse Glow -->
+    <div id="cursor-glow"></div>
+
     <!-- Premium subtle background lighting -->
     <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-indigo-500/10 rounded-full blur-[120px] mix-blend-screen"></div>
@@ -40,12 +43,24 @@
     <!-- Floating Navigation -->
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-lg transition-all duration-300" id="navbar">
         <div class="flex items-center justify-between bg-card/60 backdrop-blur-xl border border-white/10 px-6 py-3 rounded-full shadow-lg">
-            <a href="#home" class="text-sm font-medium hover:text-white transition-colors text-gray-300">Home</a>
-            <a href="#expertise" class="text-sm font-medium hover:text-white transition-colors text-gray-300">Expertise</a>
-            <a href="#work" class="text-sm font-medium hover:text-white transition-colors text-gray-300">Work</a>
+            <a href="#home" class="nav-link text-sm font-medium hover:text-white transition-colors text-gray-300 active-tab">Home</a>
+            <a href="#expertise" class="nav-link text-sm font-medium hover:text-white transition-colors text-gray-300">Expertise</a>
+            <a href="#work" class="nav-link text-sm font-medium hover:text-white transition-colors text-gray-300">Work</a>
             <a href="#contact" class="px-4 py-1.5 rounded-full bg-white text-black font-semibold transition-all hover:scale-105 text-sm ml-2">Hire Me</a>
         </div>
     </nav>
+
+    <!-- Floating Dynamic Theme Accent Switcher -->
+    <div class="fixed right-4 md:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-3 bg-card/60 backdrop-blur-xl border border-white/10 px-2.5 py-4 rounded-full shadow-2xl transition-all duration-300 hover:border-white/20">
+        <div class="text-xs text-gray-500 hover:text-white transition-colors mb-1" title="Change Theme Accent">
+            <i class="fas fa-palette text-sm text-accent-dynamic"></i>
+        </div>
+        <div class="accent-dot bg-indigo-500 active" data-theme="indigo" title="Indigo Theme"></div>
+        <div class="accent-dot bg-cyan-500" data-theme="cyan" title="Cyan Theme"></div>
+        <div class="accent-dot bg-emerald-500" data-theme="emerald" title="Emerald Theme"></div>
+        <div class="accent-dot bg-amber-500" data-theme="amber" title="Amber Theme"></div>
+        <div class="accent-dot bg-rose-500" data-theme="rose" title="Rose Theme"></div>
+    </div>
 
     <main class="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 pt-32 pb-20">
         
@@ -59,9 +74,9 @@
                     </span>
                     Available for new opportunities
                 </div>
-                <h1 class="text-5xl md:text-7xl font-bold font-display tracking-tight leading-tight mb-6">
+                <h1 class="text-5xl md:text-7xl font-bold font-display tracking-tight leading-tight mb-6 min-h-[140px] md:min-h-[180px]">
                     Building Intelligent <br class="hidden md:block">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-400">Digital Experiences.</span>
+                    <span id="typewriter-text" class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-400 typing-cursor">Digital Experiences.</span>
                 </h1>
                 <p class="text-muted text-lg md:text-xl leading-relaxed max-w-2xl mx-auto md:mx-0 font-light mb-10">
                     I'm <strong class="text-white font-medium">Abhinav Anand</strong>, an AI Engineer & Full Stack Developer. I fuse machine learning algorithms with modern web architectures to build scalable, high-performance applications.
@@ -80,12 +95,12 @@
             </div>
             
             <div class="relative shrink-0 hero-image-container">
-                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-indigo-500/20 relative z-10 hero-image-wrapper p-2 shadow-[0_0_40px_rgba(99,102,241,0.2)]">
+                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-accent-glow-dynamic relative z-10 hero-image-wrapper p-2 shadow-accent-glow-dynamic">
                     <img src="abhinav.jpg" alt="Abhinav Anand" class="w-full h-full object-cover rounded-full">
                 </div>
-                <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/30 to-violet-500/30 rounded-full blur-3xl -z-10 translate-x-2 translate-y-2"></div>
+                <div class="absolute inset-0 bg-accent-glow-dynamic rounded-full blur-3xl -z-10 translate-x-2 translate-y-2"></div>
                 <!-- Status indicator dot -->
-                <div class="absolute bottom-6 right-6 md:bottom-8 md:right-8 w-6 h-6 md:w-8 md:h-8 bg-black rounded-full flex items-center justify-center border-2 border-indigo-500/30 z-20">
+                <div class="absolute bottom-6 right-6 md:bottom-8 md:right-8 w-6 h-6 md:w-8 md:h-8 bg-black rounded-full flex items-center justify-center border-2 border-accent-glow-dynamic z-20">
                     <div class="w-3 h-3 md:w-4 md:h-4 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.8)]"></div>
                 </div>
             </div>
@@ -94,7 +109,7 @@
         <!-- EXPERTISE / SKILLS SECTION -->
         <section id="expertise" class="py-24 fade-in-section">
             <h2 class="text-3xl font-bold font-display text-white mb-8 flex items-center gap-4">
-                <span class="w-8 h-[2px] bg-indigo-500 block"></span> 
+                <span class="w-8 h-[2px] bg-accent-dynamic block"></span> 
                 Core Expertise
             </h2>
             
@@ -102,7 +117,7 @@
                 A dynamic stack combining advanced machine learning, structural databases, and modern web frameworks to deliver robust, scalable intelligence.
             </p>
 
-            <div class="premium-card p-0 overflow-hidden relative h-32 flex items-center border-l-4 border-l-indigo-500">
+            <div class="premium-card p-0 overflow-hidden relative h-32 flex items-center border-l-4 border-l-accent-dynamic">
                 <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#18181b] to-transparent z-10 pointer-events-none rounded-l-2xl"></div>
                 <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#18181b] to-transparent z-10 pointer-events-none rounded-r-2xl"></div>
                 
@@ -146,146 +161,170 @@
 
         <!-- SELECTED WORK SECTION -->
         <section id="work" class="py-24 fade-in-section">
-            <h2 class="text-3xl font-bold font-display text-white mb-12 flex items-center gap-4">
-                <span class="w-8 h-[2px] bg-indigo-500 block"></span> 
-                Selected Work
-            </h2>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+                <h2 class="text-3xl font-bold font-display text-white flex items-center gap-4">
+                    <span class="w-8 h-[2px] bg-accent-dynamic block"></span> 
+                    Selected Work
+                </h2>
+                
+                <!-- Category Filter Tabs -->
+                <div class="flex flex-wrap gap-2.5 bg-card/40 backdrop-blur-md border border-white/5 p-1.5 rounded-2xl">
+                    <button class="filter-btn active px-4 py-1.5 rounded-xl text-xs font-semibold bg-white text-black transition-all duration-300" data-filter="all">All Projects</button>
+                    <button class="filter-btn px-4 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-white transition-all duration-300" data-filter="ai-ml">AI & ML</button>
+                    <button class="filter-btn px-4 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-white transition-all duration-300" data-filter="web-dev">Web Dev</button>
+                    <button class="filter-btn px-4 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-white transition-all duration-300" data-filter="upcoming">Upcoming</button>
+                </div>
+            </div>
 
-            <div class="flex flex-col gap-12">
+            <div class="flex flex-col gap-12 relative" id="projects-grid">
                 <!-- Project 1: CreditWise -->
-                <div class="project-card group">
-                    <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
-                        <div class="flex-1 order-2 md:order-1">
-                            <div class="flex items-center gap-3 mb-4">
-                                <h3 class="text-2xl md:text-3xl font-bold text-white font-display">CreditWise: AI Loan Risk</h3>
-                                <span class="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">Live</span>
+                <div class="project-card-container transition-all duration-500" data-category="ai-ml">
+                    <div class="project-card group">
+                        <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
+                            <div class="flex-1 order-2 md:order-1">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">CreditWise: AI Loan Risk</h3>
+                                    <span class="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">Live</span>
+                                </div>
+                                <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
+                                    An end-to-end machine learning system for loan approval prediction. Built with engineered financial features, risk scoring, and real-time inference, offering robust analytics for decision making, deployed seamlessly via Streamlit.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-8">
+                                    <span class="tech-pill-subtle">Python</span>
+                                    <span class="tech-pill-subtle">Machine Learning</span>
+                                    <span class="tech-pill-subtle">Streamlit</span>
+                                    <span class="tech-pill-subtle">Logistic Regression</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <button class="open-modal-btn px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2" data-project="creditwise">
+                                        Read Case Study <i class="fas fa-book-open text-xs"></i>
+                                    </button>
+                                    <a href="https://credit-wise-loan-system.streamlit.app" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="View Live App">
+                                        <i class="fas fa-external-link-alt text-sm"></i>
+                                    </a>
+                                    <a href="https://github.com/abhinavbuilds2005/credit-wise-loan-system" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="Source Code">
+                                        <i class="fab fa-github text-lg"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
-                                An end-to-end machine learning system for loan approval prediction. Built with engineered financial features, risk scoring, and real-time inference, offering robust analytics for decision making. deployed seamlessly via Streamlit.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-8">
-                                <span class="tech-pill-subtle">Python</span>
-                                <span class="tech-pill-subtle">Machine Learning</span>
-                                <span class="tech-pill-subtle">Streamlit</span>
-                                <span class="tech-pill-subtle">Logistic Regression</span>
+                            <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 order-1 md:order-2 flex items-center justify-center group-hover:border-indigo-500/30 transition-colors relative">
+                                 <!-- Abstract Placeholder for Project Image to keep it looking premium -->
+                                <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/40 to-card z-0"></div>
+                                <img src="project_creditwise_1775755763976.png" alt="CreditWise Project Preview" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
                             </div>
-                            <div class="flex gap-4">
-                                <a href="https://credit-wise-loan-system.streamlit.app" target="_blank" class="px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-2">
-                                    View Live App <i class="fas fa-arrow-right"></i>
-                                </a>
-                                <a href="https://github.com/abhinavbuilds2005/credit-wise-loan-system" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-colors text-white" title="Source Code">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 order-1 md:order-2 flex items-center justify-center group-hover:border-indigo-500/30 transition-colors relative">
-                             <!-- Abstract Placeholder for Project Image to keep it looking premium -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/40 to-card z-0"></div>
-                            <img src="project_creditwise_1775755763976.png" alt="CreditWise Project Preview" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 2: Customer Intelligence -->
-                <div class="project-card group">
-                    <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
-                        <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 flex items-center justify-center group-hover:border-violet-500/30 transition-colors relative">
-                            <!-- Abstract Placeholder -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-violet-900/40 to-card z-0"></div>
-                            <img src="project_customer_ai_1775755777519.png" alt="Customer Intelligence Project Preview" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-3 mb-4">
-                                <h3 class="text-2xl md:text-3xl font-bold text-white font-display">Customer Intelligence AI</h3>
-                                <span class="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">Live</span>
+                <div class="project-card-container transition-all duration-500" data-category="ai-ml">
+                    <div class="project-card group">
+                        <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
+                            <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 flex items-center justify-center group-hover:border-violet-500/30 transition-colors relative">
+                                <!-- Abstract Placeholder -->
+                                <div class="absolute inset-0 bg-gradient-to-br from-violet-900/40 to-card z-0"></div>
+                                <img src="project_customer_ai_1775755777519.png" alt="Customer Intelligence Project Preview" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
                             </div>
-                            <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
-                                An AI-powered customer segmentation system utilizing K-Means clustering. It analyzes shopping behavior to generate personalized product recommendations, targeted marketing strategies, and a decision-friendly insight layer for campaign planning.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-8">
-                                <span class="tech-pill-subtle">Python</span>
-                                <span class="tech-pill-subtle">Scikit-learn</span>
-                                <span class="tech-pill-subtle">K-Means</span>
-                                <span class="tech-pill-subtle">Streamlit</span>
-                                <span class="tech-pill-subtle">Insight Dashboard</span>
-                            </div>
-                            <div class="flex gap-4">
-                                <a href="https://smartcart-recommendation-system.streamlit.app/" target="_blank" class="px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-2">
-                                    View Live App <i class="fas fa-arrow-right"></i>
-                                </a>
-                                <a href="https://github.com/abhinavbuilds2005/Smartcart-Recommendation-system" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-colors text-white" title="Source Code">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">Customer Intelligence AI</h3>
+                                    <span class="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">Live</span>
+                                </div>
+                                <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
+                                    An AI-powered customer segmentation system utilizing K-Means clustering. It analyzes shopping behavior to generate personalized product recommendations, targeted marketing strategies, and a decision-friendly insight layer.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-8">
+                                    <span class="tech-pill-subtle">Python</span>
+                                    <span class="tech-pill-subtle">Scikit-learn</span>
+                                    <span class="tech-pill-subtle">K-Means</span>
+                                    <span class="tech-pill-subtle">Streamlit</span>
+                                    <span class="tech-pill-subtle">Insight Dashboard</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <button class="open-modal-btn px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2" data-project="customer-ai">
+                                        Read Case Study <i class="fas fa-book-open text-xs"></i>
+                                    </button>
+                                    <a href="https://smartcart-recommendation-system.streamlit.app/" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="View Live App">
+                                        <i class="fas fa-external-link-alt text-sm"></i>
+                                    </a>
+                                    <a href="https://github.com/abhinavbuilds2005/Smartcart-Recommendation-system" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="Source Code">
+                                        <i class="fab fa-github text-lg"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                  <!-- Project 3: Portfolio -->
-                <div class="project-card group">
-                    <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
-                        <div class="flex-1 order-2 md:order-1">
-                            <div class="flex items-center gap-3 mb-4">
-                                <h3 class="text-2xl md:text-3xl font-bold text-white font-display">Personal Portfolio v2</h3>
-                                <span class="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">Live</span>
+                <div class="project-card-container transition-all duration-500" data-category="web-dev">
+                    <div class="project-card group">
+                        <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
+                            <div class="flex-1 order-2 md:order-1">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">Personal Portfolio v2</h3>
+                                    <span class="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">Live</span>
+                                </div>
+                                <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
+                                    A highly optimized, beautifully structured web portfolio designed entirely from scratch. Leveraging modern design principles, fluid typography, and premium micro-interactions to deliver a top-tier user experience.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-8">
+                                    <span class="tech-pill-subtle">HTML5</span>
+                                    <span class="tech-pill-subtle">Tailwind CSS</span>
+                                    <span class="tech-pill-subtle">JavaScript</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <button class="open-modal-btn px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2" data-project="portfolio">
+                                        Read Case Study <i class="fas fa-book-open text-xs"></i>
+                                    </button>
+                                    <a href="https://github.com/abhinavbuilds2005/portfolio" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="Source Code">
+                                        <i class="fab fa-github text-lg"></i>
+                                    </a>
+                                </div>
                             </div>
-                            <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
-                                A highly optimized, beautifully structured web portfolio designed entirely from scratch. Leveraging modern design principles, fluid typography, and premium micro-interactions to deliver a top-tier user experience.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-8">
-                                <span class="tech-pill-subtle">HTML5</span>
-                                <span class="tech-pill-subtle">Tailwind CSS</span>
-                                <span class="tech-pill-subtle">JavaScript</span>
+                            <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 order-1 md:order-2 flex items-center justify-center group-hover:border-blue-500/30 transition-colors relative">
+                                <!-- Abstract Placeholder -->
+                                <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-card z-0"></div>
+                                <img src="project_portfolio_1775755792684.png" alt="Portfolio Project Preview" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
                             </div>
-                            <div class="flex gap-4">
-                                <a href="#" class="px-5 py-2.5 bg-white/10 text-white border border-white/20 text-sm font-semibold rounded-full hover:bg-white hover:text-black transition-colors flex items-center gap-2">
-                                    Current Site
-                                </a>
-                                <a href="https://github.com/abhinavbuilds2005/portfolio" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-colors text-white" title="Source Code">
-                                    <i class="fab fa-github text-xl"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 order-1 md:order-2 flex items-center justify-center group-hover:border-blue-500/30 transition-colors relative">
-                            <!-- Abstract Placeholder -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-card z-0"></div>
-                            <img src="project_portfolio_1775755792684.png" alt="Portfolio Project Preview" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 4: Upcoming Voice Assistant -->
-                <div class="project-card group">
-                    <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
-                        <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 flex items-center justify-center group-hover:border-cyan-500/30 transition-colors relative">
-                            <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/40 via-slate-900 to-card z-0"></div>
-                            <div class="absolute inset-0 opacity-70 bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.18),transparent_32%),radial-gradient(circle_at_80%_30%,rgba(99,102,241,0.16),transparent_30%),radial-gradient(circle_at_50%_80%,rgba(16,185,129,0.12),transparent_28%)] z-0"></div>
-                            <div class="relative z-10 flex flex-col items-center justify-center text-center px-8">
-                                <div class="w-20 h-20 rounded-3xl border border-cyan-400/30 bg-cyan-400/10 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.18)] mb-5">
-                                    <i class="fas fa-microphone-lines text-3xl text-cyan-300"></i>
+                <div class="project-card-container transition-all duration-500" data-category="upcoming">
+                    <div class="project-card group">
+                        <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
+                            <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 flex items-center justify-center group-hover:border-cyan-500/30 transition-colors relative">
+                                <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/40 via-slate-900 to-card z-0"></div>
+                                <div class="absolute inset-0 opacity-70 bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.18),transparent_32%),radial-gradient(circle_at_80%_30%,rgba(99,102,241,0.16),transparent_30%),radial-gradient(circle_at_50%_80%,rgba(16,185,129,0.12),transparent_28%)] z-0"></div>
+                                <div class="relative z-10 flex flex-col items-center justify-center text-center px-8">
+                                    <div class="w-20 h-20 rounded-3xl border border-cyan-400/30 bg-cyan-400/10 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.18)] mb-5">
+                                        <i class="fas fa-microphone-lines text-3xl text-cyan-300"></i>
+                                    </div>
+                                    <h4 class="text-white font-display text-2xl font-bold mb-2">AI Voice Assistant</h4>
+                                    <p class="text-sm text-gray-300 leading-relaxed">Conversational voice workflows, real-time responses, and smart task execution.</p>
                                 </div>
-                                <h4 class="text-white font-display text-2xl font-bold mb-2">AI Voice Assistant</h4>
-                                <p class="text-sm text-gray-300 leading-relaxed">Conversational voice workflows, real-time responses, and smart task execution.</p>
                             </div>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-3 mb-4">
-                                <h3 class="text-2xl md:text-3xl font-bold text-white font-display">AI Voice Assistant</h3>
-                                <span class="px-3 py-1 text-xs font-medium bg-amber-500/10 text-amber-300 border border-amber-500/20 rounded-full">Upcoming</span>
-                            </div>
-                            <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
-                                A next-generation assistant built for natural voice conversations, instant query resolution, and action-based workflows. The system is planned to combine speech recognition, LLM reasoning, and task automation into a smooth hands-free experience.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-8">
-                                <span class="tech-pill-subtle">Python</span>
-                                <span class="tech-pill-subtle">Speech-to-Text</span>
-                                <span class="tech-pill-subtle">LLM Integration</span>
-                                <span class="tech-pill-subtle">Automation</span>
-                            </div>
-                            <div class="flex gap-4">
-                                <span class="px-5 py-2.5 bg-white/5 text-gray-300 border border-white/10 text-sm font-semibold rounded-full flex items-center gap-2">
-                                    In Development <i class="fas fa-wand-magic-sparkles"></i>
-                                </span>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">AI Voice Assistant</h3>
+                                    <span class="px-3 py-1 text-xs font-medium bg-amber-500/10 text-amber-300 border border-amber-500/20 rounded-full">Upcoming</span>
+                                </div>
+                                <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
+                                    A next-generation assistant built for natural voice conversations, instant query resolution, and action-based workflows. The system is planned to combine speech recognition, LLM reasoning, and task automation.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-8">
+                                    <span class="tech-pill-subtle">Python</span>
+                                    <span class="tech-pill-subtle">Speech-to-Text</span>
+                                    <span class="tech-pill-subtle">LLM Integration</span>
+                                    <span class="tech-pill-subtle">Automation</span>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <button class="open-modal-btn px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2" data-project="voice-assistant">
+                                        Read Case Study <i class="fas fa-book-open text-xs"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -298,14 +337,14 @@
             <!-- Timeline -->
             <div>
                 <h2 class="text-2xl font-bold font-display text-white mb-10 flex items-center gap-3">
-                    <span class="w-1.5 h-6 bg-indigo-500 rounded-full"></span> 
+                    <span class="w-1.5 h-6 bg-accent-dynamic rounded-full"></span> 
                     Professional Journey
                 </h2>
-                <div class="space-y-8 relative before:absolute before:inset-0 before:ml-2 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-indigo-500 before:via-white/10 before:to-transparent">
+                <div class="space-y-8 relative before:absolute before:inset-0 before:ml-2 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-accent-dynamic before:via-white/10 before:to-transparent">
                     <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gap-6">
-                        <div class="flex items-center justify-center w-5 h-5 rounded-full bg-bg border-[3px] border-indigo-500 z-10 shrink-0 md:order-1 md:-translate-x-1/2 absolute left-0 md:left-1/2 translate-x-[-9px] shadow-[0_0_15px_rgba(99,102,241,0.5)]"></div>
+                        <div class="flex items-center justify-center w-5 h-5 rounded-full bg-bg border-[3px] border-accent-dynamic z-10 shrink-0 md:order-1 md:-translate-x-1/2 absolute left-0 md:left-1/2 translate-x-[-9px] shadow-accent-glow-dynamic"></div>
                         <div class="pl-10 md:pl-0 md:w-[calc(50%-2rem)] md:text-right md:group-odd:text-left">
-                            <span class="font-mono text-xs text-indigo-400 mb-1 block">2025 - Present</span>
+                            <span class="font-mono text-xs text-accent-dynamic mb-1 block">2025 - Present</span>
                             <h4 class="text-lg font-bold text-white mb-1">Deep Dive into AI & Web</h4>
                             <p class="text-sm text-gray-400">Combining AI/ML fundamentals with modern web architectures to build interactive applications.</p>
                         </div>
@@ -424,11 +463,36 @@
         <footer class="mt-10 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-sm mb-6 text-gray-500 gap-4 fade-in-section">
             <p>© 2026 Abhinav Anand. All rights reserved.</p>
             <div class="flex gap-2">
-                Designed & Built with <i class="fas fa-heart text-indigo-500 mx-1 mt-0.5"></i> intentionally.
+                Designed & Built with <i class="fas fa-heart text-accent-dynamic mx-1 mt-0.5"></i> intentionally.
             </div>
         </footer>
 
     </main>
+
+    <!-- Case Study Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 invisible opacity-0 transition-all duration-300">
+        <div class="absolute inset-0 cursor-pointer bg-black/40 backdrop-blur-[4px]" id="modal-overlay"></div>
+        <div id="project-modal-content" class="relative w-full max-w-3xl bg-[#121214] border border-white/10 rounded-3xl overflow-hidden shadow-2xl max-h-[85vh] flex flex-col transform scale-90 transition-transform duration-300">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-6 border-b border-white/10 bg-black/25">
+                <h3 class="text-2xl font-bold font-display text-white" id="modal-title">Project Case Study</h3>
+                <button id="close-modal" class="p-2 rounded-full border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-8 overflow-y-auto space-y-6 flex-1 text-gray-300" id="modal-body">
+                <!-- Case study content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 z-40 bg-white text-black p-3.5 rounded-full shadow-2xl translate-y-24 opacity-0 transition-all duration-300 hover:scale-110 active:scale-95 border border-white/10 flex items-center justify-center" title="Back to Top">
+        <i class="fas fa-arrow-up text-lg"></i>
+    </button>
+
     <script src="script.js"></script>
 </body>
 </html>
