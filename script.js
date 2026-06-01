@@ -197,9 +197,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const filterValue = button.getAttribute('data-filter');
 
             projectContainers.forEach(container => {
-                const category = container.getAttribute('data-category');
+                const categories = (container.getAttribute('data-category') || '').split(' ');
                 
-                if (filterValue === 'all' || category === filterValue) {
+                if (filterValue === 'all' || categories.includes(filterValue)) {
                     container.classList.remove('hidden-filter');
                 } else {
                     container.classList.add('hidden-filter');
@@ -262,6 +262,58 @@ document.addEventListener("DOMContentLoaded", () => {
             challenge: "Ensuring low-latency conversation rounds without leaking user transcripts to external commercial APIs.",
             solution: "Configuring tiny, instruction-tuned edge LLMs quantized to 4-bits alongside accelerated local Whisper engines to run fully localized inference.",
             tech: ["Python", "OpenAI Whisper STT", "Local Quantized LLMs", "Custom Audio Buffers", "JSON Task Parser"]
+        },
+        'attendance-system': {
+            title: "Multimodal AI Attendance System (Upcoming)",
+            tagline: "High-security biometric verification merging face recognition and voice print matching for automated log-in logging.",
+            overview: "A contactless, automated attendance framework engineered to address institutional spoofing and verification lag. The system validates identity by merging computer vision face detection with deep acoustic speaker identification. By verifying both face and voice in real-time, the system offers high security and a seamless logging flow.",
+            features: [
+                "<strong>Multimodal Verification:</strong> Concurrently processes live camera feeds and mic audio inputs, extracting face embeddings alongside acoustic voice prints to achieve high authentication confidence.",
+                "<strong>Acoustic Voice Biometrics:</strong> Leverages deep neural network models to create unique speaker voice prints, cross-referencing acoustic frequencies to prevent play-back spoofing.",
+                "<strong>Liveness & Anti-Spoofing:</strong> Combines micro-expression movement checks with voice pitch variation algorithms to distinguish actual human interaction from photos, videos, or audio recordings."
+            ],
+            challenge: "Biometric authentication accuracy drops significantly under high ambient noise (for voice matching) or poor lighting conditions (for face recognition).",
+            solution: "Implementing a multi-sensor fusion model that dynamically weights confidence scores—relying more heavily on acoustic prints when illumination is poor and relying on facial vectors when acoustic noise is high.",
+            tech: ["Python", "OpenCV", "FaceNet", "Speaker Verification", "PyTorch", "FastAPI"]
+        },
+        'resume-analyser': {
+            title: "ATS Resume Analyser (Upcoming)",
+            tagline: "LLM-powered Application Tracking System designed to score resume alignment and provide action-oriented optimizations.",
+            overview: "Job applications frequently get lost in automatic tracking system screens. This ATS Resume Analyser acts as an AI coach, extracting text from complex PDF layouts, comparing resume structure and content against specific job descriptions using advanced semantic similarity, and offering deep generative feedback to increase interview conversion rates.",
+            features: [
+                "<strong>Multi-Format Semantic Parser:</strong> Extracts and standardizes structural content from arbitrary document hierarchies, nested tables, and styling templates.",
+                "<strong>Keyword Alignment Scoring:</strong> Calculates term frequency-inverse document frequency (TF-IDF) alongside dense vector similarity to measure semantic alignment with job specifications.",
+                "<strong>Generative Skill Gap Analysis:</strong> Employs structured LLM prompts to analyze missing keywords, structural imbalances, and draft custom bullet-point rewrites."
+            ],
+            challenge: "Parsing resumes with highly complex double-column layouts or graphic tables often damages raw text reading flow, corrupting parsing accuracy.",
+            solution: "Integrating high-performance PDF extraction modules (like PDFPlumber) alongside custom column-sorting heuristics that rebuild readable, consecutive text streams before processing.",
+            tech: ["Python", "FastAPI", "OpenAI / Gemini API", "LangChain", "NLTK & SpaCy", "React"]
+        },
+        'style-transfer': {
+            title: "Neural Style Transfer (Upcoming)",
+            tagline: "Deep learning-driven artistic style rendering that synthesizes content and style features onto arbitrary input images.",
+            overview: "Blending the boundaries between AI technology and fine art. This project leverages convolutional neural networks (CNNs) to analyze the texture, color palette, and brushstroke characteristics of iconic artworks, seamlessly transferring those stylistic qualities onto custom photographs while retaining structural details.",
+            features: [
+                "<strong>Dual-Loss Optimization:</strong> Computes content loss from deep feature maps and style loss via Gram matrices of intermediate convolutional layers to guarantee a balanced artistic synthesis.",
+                "<strong>Real-Time Feed-Forward Model:</strong> Deploys a pre-trained generative style network that processes arbitrary images instantly without requiring expensive iterative optimization cycles.",
+                "<strong>Interactive Canvas Playground:</strong> An elegant, responsive web canvas interface permitting users to upload media, adjust style blends, and download synthetic artworks."
+            ],
+            challenge: "Iterative style transfer models can take minutes per image, which is impractical for live, interactive web usage.",
+            solution: "Training an ultra-fast feed-forward generative network using a perceptual loss function, enabling high-quality real-time inference within milliseconds on standard hardware.",
+            tech: ["Python", "PyTorch / TensorFlow", "CNNs (VGG-19)", "FastAPI", "React & Canvas", "AWS S3"]
+        },
+        'gym-trainer': {
+            title: "AI Real-Time Gym Trainer (Upcoming)",
+            tagline: "Computer vision-powered physical activity tracker that performs real-time pose estimation and counts exercise repetitions.",
+            overview: "Form errors during exercise are the leading cause of fitness injuries. The AI Real-Time Gym Trainer uses your device camera and computer vision models to track body posture, verify alignment with standard exercise protocols, and count repetitions in real-time, providing immediate visual and audio corrections.",
+            features: [
+                "<strong>Real-Time Pose Estimation:</strong> Leverages high-performance pose pipelines to identify 3D skeletal landmarks from standard RGB webcams at 30+ frames per second.",
+                "<strong>Dynamic Joint Angle Analysis:</strong> Computes mathematical vector angles across joints (e.g. elbow, knee, hip) to check form parameters dynamically.",
+                "<strong>State-Machine Repetition Counter:</strong> Implements a robust state-transition algorithm to identify clean workout repetitions (e.g., squatted vs. standing states) while filtering out false movements."
+            ],
+            challenge: "Slight angle deviations of the camera or cluttered backgrounds can introduce high skeletal tracking noise and cause false repetition counts.",
+            solution: "Using moving average noise filters on landmark coordinates and enforcing geometric threshold tolerances calibrated to varying body dimensions.",
+            tech: ["Python", "MediaPipe Pose", "OpenCV", "NumPy", "JavaScript / WebRTC", "FastAPI"]
         }
     };
 
