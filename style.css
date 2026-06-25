@@ -146,12 +146,20 @@ body {
     background-color: var(--color-accent) !important;
 }
 
+.bg-accent-subtle {
+    background-color: rgba(var(--color-accent-rgb), 0.1) !important;
+}
+
 .bg-accent-glow-dynamic {
     background-color: var(--color-accent-glow) !important;
 }
 
 .border-accent-dynamic {
     border-color: var(--color-accent) !important;
+}
+
+.border-accent-subtle {
+    border-color: rgba(var(--color-accent-rgb), 0.2) !important;
 }
 
 .border-accent-glow-dynamic {
@@ -344,3 +352,41 @@ textarea:-webkit-autofill:focus {
     color: var(--color-accent) !important;
     font-weight: 600;
 }
+
+/* LeetCode Dashboard Custom Styles */
+.leetcode-ring-circle {
+    transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+}
+
+.shimmer-bg {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.02) 25%,
+        rgba(255, 255, 255, 0.08) 50%,
+        rgba(255, 255, 255, 0.02) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer-anim 1.5s infinite linear;
+}
+
+@keyframes shimmer-anim {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.submission-item {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.submission-item:hover {
+    transform: translateX(4px);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+

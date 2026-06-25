@@ -430,7 +430,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             result.classList.remove('hidden');
             result.innerHTML = "Sending...";
-            result.className = "text-sm text-center mt-3 font-medium py-2 rounded-lg bg-accent-dynamic/10 text-accent-dynamic border border-accent-dynamic/20";
+            result.className = "text-sm text-center mt-3 font-medium py-2 rounded-lg bg-accent-subtle text-accent-dynamic border border-accent-subtle";
             
             button.disabled = true;
             button.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin ml-1"></i>';
@@ -468,4 +468,314 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+
+
+    // --- 12. LEETCODE DASHBOARD SYNC ---
+    const leetcodeUsername = 'cseabhinav2005';
+    const primaryApiUrl = `https://leetcode-api-faisalshohag.vercel.app/${leetcodeUsername}`;
+    const secondaryApiUrl = `https://alfa-leetcode-api.onrender.com/${leetcodeUsername}`;
+
+    const leetcodeLoading = document.getElementById('leetcode-loading');
+    const leetcodeContent = document.getElementById('leetcode-content');
+    const leetcodeError = document.getElementById('leetcode-error');
+    const leetcodeSolved = document.getElementById('leetcode-solved');
+    const leetcodeRing = document.getElementById('leetcode-ring');
+    const easyText = document.getElementById('leetcode-easy-text');
+    const easyBar = document.getElementById('leetcode-easy-bar');
+    const mediumText = document.getElementById('leetcode-medium-text');
+    const mediumBar = document.getElementById('leetcode-medium-bar');
+    const hardText = document.getElementById('leetcode-hard-text');
+    const hardBar = document.getElementById('leetcode-hard-bar');
+    const leetcodeRank = document.getElementById('leetcode-rank');
+    const leetcodePoints = document.getElementById('leetcode-points');
+    const leetcodeReputation = document.getElementById('leetcode-reputation');
+    const leetcodeSubmissions = document.getElementById('leetcode-submissions');
+    const refreshBtn = document.getElementById('leetcode-refresh');
+    const refreshIcon = document.getElementById('leetcode-refresh-icon');
+    const retryBtn = document.getElementById('leetcode-retry');
+
+    let isSyncing = false;
+
+    // Helper: format relative time
+    function timeAgo(timestamp) {
+        if (!timestamp) return 'Recently';
+        const seconds = Math.floor(new Date().getTime() / 1000 - parseInt(timestamp));
+        if (seconds < 0) return 'Just now';
+        
+        const intervals = {
+            year: 31536000,
+            month: 2592000,
+            week: 604800,
+            day: 86400,
+            hour: 3600,
+            minute: 60
+        };
+        
+        for (const [unit, val] of Object.entries(intervals)) {
+            const count = Math.floor(seconds / val);
+            if (count >= 1) {
+                return `${count} ${unit}${count > 1 ? 's' : ''} ago`;
+            }
+        }
+        return 'Just now';
+    }
+
+    // Helper: Animate numeric counters
+    function animateValue(element, target, duration = 1200) {
+        if (!element) return;
+        const start = 0;
+        const targetVal = parseInt(target);
+        if (isNaN(targetVal)) {
+            element.textContent = target;
+            return;
+        }
+        if (targetVal === 0) {
+            element.textContent = '0';
+            return;
+        }
+        
+        const startTime = performance.now();
+        
+        function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+            const current = Math.floor(start + ease * (targetVal - start));
+            
+            element.textContent = current.toLocaleString();
+            
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = targetVal.toLocaleString();
+            }
+        }
+        requestAnimationFrame(update);
+    }
+
+    // Helper: Update Difficulty Bars and SVG Rings
+    function updateProgress(solved, total, ringElement, barElement, textElement) {
+        if (textElement) {
+            textElement.textContent = `${solved}/${total}`;
+        }
+        
+        const percentage = total > 0 ? (solved / total) * 100 : 0;
+        
+        if (barElement) {
+            barElement.style.width = '0%';
+            setTimeout(() => {
+                barElement.style.width = `${percentage}%`;
+            }, 100);
+        }
+        
+        if (ringElement) {
+            const circumference = 314.16; // 2 * PI * 50
+            const offset = circumference - (Math.min(percentage, 100) / 100) * circumference;
+            ringElement.style.strokeDashoffset = circumference;
+            setTimeout(() => {
+                ringElement.style.strokeDashoffset = offset;
+            }, 100);
+        }
+    }
+
+    // Main render function
+    function renderLeetCodeData(data) {
+        // Toggle view visibility
+        if (leetcodeLoading) leetcodeLoading.classList.add('hidden');
+        if (leetcodeError) leetcodeError.classList.add('hidden');
+        if (leetcodeContent) leetcodeContent.classList.remove('hidden');
+
+        // Animate total solved
+        animateValue(leetcodeSolved, data.totalSolved);
+
+        // Update progress indicators
+        updateProgress(data.easySolved, data.totalEasy, leetcodeRing, easyBar, easyText);
+        updateProgress(data.mediumSolved, data.totalMedium, null, mediumBar, mediumText);
+        updateProgress(data.hardSolved, data.totalHard, null, hardBar, hardText);
+
+        // Stats card
+        animateValue(leetcodeRank, data.ranking);
+        animateValue(leetcodePoints, data.contributionPoints);
+        animateValue(leetcodeReputation, data.reputation);
+
+        // Submissions
+        if (leetcodeSubmissions) {
+            leetcodeSubmissions.innerHTML = '';
+            if (data.recentSubmissions && data.recentSubmissions.length > 0) {
+                // Take up to 4 submissions
+                const subs = data.recentSubmissions.slice(0, 4);
+                subs.forEach(sub => {
+                    const title = sub.title || sub.titleName || 'LeetCode Problem';
+                    const titleSlug = sub.titleSlug || title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+                    const language = sub.lang || sub.langName || 'Code';
+                    const submittedAt = sub.timestamp || sub.time || sub.submitTime;
+                    const status = sub.statusDisplay || sub.status || 'Submitted';
+                    const isAccepted = status === 'Accepted';
+                    const statusClass = isAccepted 
+                        ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 shadow-[0_0_8px_rgba(16,185,129,0.15)]' 
+                        : 'bg-red-500/10 text-red-400 border-red-500/20';
+                    
+                    const itemHtml = `
+                        <a href="https://leetcode.com/problems/${titleSlug}/" target="_blank" class="flex items-center justify-between p-3.5 bg-white/5 border border-white/5 rounded-2xl submission-item hover:border-accent-dynamic transition-all">
+                            <div class="flex flex-col gap-1 min-w-0 pr-2">
+                                <span class="font-bold text-sm text-white truncate font-display">${title}</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="px-2 py-0.5 text-[10px] font-semibold bg-white/5 border border-white/10 text-gray-400 rounded-md uppercase">${language}</span>
+                                    <span class="text-[10px] text-gray-500">${timeAgo(submittedAt)}</span>
+                                </div>
+                            </div>
+                            <span class="px-2.5 py-1 text-[10px] font-bold border rounded-full shrink-0 ${statusClass}">${status}</span>
+                        </a>
+                    `;
+                    leetcodeSubmissions.insertAdjacentHTML('beforeend', itemHtml);
+                });
+            } else {
+                leetcodeSubmissions.innerHTML = `
+                    <div class="text-center py-8 text-gray-500 text-sm">
+                        <i class="fas fa-code-branch text-2xl mb-2 text-gray-600 block"></i>
+                        No recent submissions found
+                    </div>
+                `;
+            }
+        }
+    }
+
+    // Fetch from primary API, fallback to secondary, and then fallback to cache
+    async function syncLeetCodeData(force = false) {
+        if (isSyncing) return;
+        isSyncing = true;
+
+        if (refreshIcon) refreshIcon.classList.add('fa-spin', 'text-accent-dynamic');
+
+        // Check cache first (skip if forced refresh)
+        if (!force) {
+            const cached = localStorage.getItem('leetcode-portfolio-data');
+            if (cached) {
+                try {
+                    const parsed = JSON.parse(cached);
+                    // Render cached data immediately
+                    renderLeetCodeData(parsed);
+                    
+                    // If cached data is fresh (less than 15 minutes old), don't trigger background fetch
+                    const cacheTime = localStorage.getItem('leetcode-portfolio-time');
+                    if (cacheTime && (new Date().getTime() - parseInt(cacheTime) < 15 * 60 * 1000)) {
+                        if (refreshIcon) refreshIcon.classList.remove('fa-spin', 'text-accent-dynamic');
+                        isSyncing = false;
+                        return;
+                    }
+                } catch (e) {
+                    console.error('Failed to parse cached data', e);
+                }
+            }
+        }
+
+        try {
+            // Attempt fetching from primary API
+            const response = await fetch(primaryApiUrl);
+            if (!response.ok) throw new Error(`Primary API failed with status ${response.status}`);
+            
+            const rawData = await response.json();
+            
+            // Map Primary API properties
+            const data = {
+                totalSolved: rawData.totalSolved || 0,
+                totalQuestions: rawData.totalQuestions || 3973,
+                easySolved: rawData.easySolved || 0,
+                totalEasy: rawData.totalEasy || 951,
+                mediumSolved: rawData.mediumSolved || 0,
+                totalMedium: rawData.totalMedium || 2074,
+                hardSolved: rawData.hardSolved || 0,
+                totalHard: rawData.totalHard || 948,
+                ranking: rawData.ranking || '--',
+                contributionPoints: rawData.contributionPoint || 0,
+                reputation: rawData.reputation || 0,
+                recentSubmissions: rawData.recentSubmissions || []
+            };
+
+            // Cache and Render
+            localStorage.setItem('leetcode-portfolio-data', JSON.stringify(data));
+            localStorage.setItem('leetcode-portfolio-time', new Date().getTime().toString());
+            renderLeetCodeData(data);
+        } catch (primaryErr) {
+            console.warn('Primary LeetCode API failed. Trying fallback API...', primaryErr);
+            
+            try {
+                // Secondary API (solved counts)
+                const solvedRes = await fetch(`${secondaryApiUrl}/solved`);
+                const infoRes = await fetch(secondaryApiUrl);
+                
+                if (!solvedRes.ok || !infoRes.ok) throw new Error('Secondary API endpoints failed');
+                
+                const solvedData = await solvedRes.json();
+                const infoData = await infoRes.json();
+                
+                // Secondary API submissions (optional fetch)
+                let recentSubs = [];
+                try {
+                    const subsRes = await fetch(`${secondaryApiUrl}/submission?limit=5`);
+                    if (subsRes.ok) {
+                        const subsData = await subsRes.json();
+                        recentSubs = subsData.submission || [];
+                    }
+                } catch (subErr) {
+                    console.warn('Could not fetch submissions from secondary API', subErr);
+                }
+
+                const data = {
+                    totalSolved: solvedData.solvedProblem || 0,
+                    totalQuestions: 3973,
+                    easySolved: solvedData.easySolved || 0,
+                    totalEasy: 951,
+                    mediumSolved: solvedData.mediumSolved || 0,
+                    totalMedium: 2074,
+                    hardSolved: solvedData.hardSolved || 0,
+                    totalHard: 948,
+                    ranking: infoData.ranking || '--',
+                    contributionPoints: infoData.contributionPoint || 0,
+                    reputation: infoData.reputation || 0,
+                    recentSubmissions: recentSubs
+                };
+
+                // Cache and Render
+                localStorage.setItem('leetcode-portfolio-data', JSON.stringify(data));
+                localStorage.setItem('leetcode-portfolio-time', new Date().getTime().toString());
+                renderLeetCodeData(data);
+            } catch (fallbackErr) {
+                console.error('All LeetCode APIs failed.', fallbackErr);
+                
+                // If we have cached data, keep displaying it (even if old)
+                const cached = localStorage.getItem('leetcode-portfolio-data');
+                if (cached) {
+                    try {
+                        const parsed = JSON.parse(cached);
+                        renderLeetCodeData(parsed);
+                        return;
+                    } catch (e) {}
+                }
+
+                // If no cache, show graceful error fallback UI
+                if (leetcodeLoading) leetcodeLoading.classList.add('hidden');
+                if (leetcodeContent) leetcodeContent.classList.add('hidden');
+                if (leetcodeError) leetcodeError.classList.remove('hidden');
+            }
+        } finally {
+            if (refreshIcon) refreshIcon.classList.remove('fa-spin', 'text-accent-dynamic');
+            isSyncing = false;
+        }
+    }
+
+    // Attach sync event listeners
+    if (refreshBtn) {
+        refreshBtn.addEventListener('click', () => syncLeetCodeData(true));
+    }
+    if (retryBtn) {
+        retryBtn.addEventListener('click', () => {
+            if (leetcodeError) leetcodeError.classList.add('hidden');
+            if (leetcodeLoading) leetcodeLoading.classList.remove('hidden');
+            syncLeetCodeData(true);
+        });
+    }
+
+    // Initial Trigger
+    syncLeetCodeData(false);
 });
