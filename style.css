@@ -214,18 +214,38 @@ body {
 }
 
 .tech-pill-subtle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
     font-size: 0.8rem;
     color: #a1a1aa;
     background: rgba(0,0,0,0.2);
-    padding: 4px 10px;
-    border-radius: 6px;
+    padding: 5px 12px;
+    border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.05);
     transition: all 0.3s ease;
+}
+
+.tech-pill-subtle i {
+    font-size: 0.75rem;
+    flex-shrink: 0;
 }
 
 .project-card:hover .tech-pill-subtle {
     border-color: rgba(var(--color-accent-rgb), 0.2);
     color: #f4f4f5;
+}
+
+/* Universal premium button transitions */
+.premium-btn-hover {
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.premium-btn-hover:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.4);
+}
+.premium-btn-hover:active {
+    transform: translateY(0) scale(0.98);
 }
 
 /* Form Styles */
