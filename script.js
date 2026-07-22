@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 5. HERO TYPEWRITER EFFECT ---
     const typewriterElement = document.getElementById('typewriter-text');
     if (typewriterElement) {
-        const phrases = ["Digital Experiences.", "AI-Powered Systems.", "Predictive ML Solutions.", "Scalable Architectures."];
+        const phrases = ["Agentic AI Systems.", "AI-Powered Solutions.", "Predictive ML Models.", "Gen AI Applications."];
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ],
             challenge: "Parsing resumes with highly complex double-column layouts or graphic tables often damages raw text reading flow, corrupting parsing accuracy.",
             solution: "Integrating high-performance PDF extraction modules (like PDFPlumber) alongside custom column-sorting heuristics that rebuild readable, consecutive text streams before processing.",
-            tech: ["Python", "FastAPI", "OpenAI / Gemini API", "LangChain", "NLTK & SpaCy", "React"]
+            tech: ["Python", "FastAPI", "OpenAI / Gemini API", "LangChain", "NLTK & SpaCy", "Pydantic"]
         },
         'style-transfer': {
             title: "Neural Style Transfer (Upcoming)",
@@ -300,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ],
             challenge: "Iterative style transfer models can take minutes per image, which is impractical for live, interactive web usage.",
             solution: "Training an ultra-fast feed-forward generative network using a perceptual loss function, enabling high-quality real-time inference within milliseconds on standard hardware.",
-            tech: ["Python", "PyTorch / TensorFlow", "CNNs (VGG-19)", "FastAPI", "React & Canvas", "AWS S3"]
+            tech: ["Python", "PyTorch / TensorFlow", "CNNs (VGG-19)", "FastAPI", "Streamlit Canvas", "AWS S3"]
         },
         'gym-trainer': {
             title: "AI Real-Time Gym Trainer (Upcoming)",

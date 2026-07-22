@@ -102,6 +102,10 @@
 
 ## 🛠️ Tech Stack
 
+## 🛠️ Tech Stack
+
+## 🛠️ Tech Stack
+
 ### 💻 Programming Languages & Backend
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
@@ -183,9 +187,9 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/abhinavbuilds2005/portfolio/output/github-snake-dark.svg" />
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/abhinavbuilds2005/portfolio/output/github-snake.svg" />
-    <img alt="github-snake" src="https://raw.githubusercontent.com/abhinavbuilds2005/portfolio/output/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/abhinavbuilds2005/abhinavbuilds2005/output/github-snake-dark.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/abhinavbuilds2005/abhinavbuilds2005/output/github-snake.svg" />
+    <img alt="github-snake" src="https://raw.githubusercontent.com/abhinavbuilds2005/abhinavbuilds2005/output/github-snake-dark.svg" />
   </picture>
 </p>
 
