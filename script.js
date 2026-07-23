@@ -1,6 +1,20 @@
 // Interactivity and Premium Visual Behaviors for Abhinav Anand's Portfolio
 
+// --- 0. FORCE SCROLL TO TOP ON PAGE LOAD ---
+// Prevent the browser from restoring a previous scroll position
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+// Clear any URL hash that could trigger an auto-scroll
+if (window.location.hash) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+}
+// Force scroll to the very top immediately
+window.scrollTo(0, 0);
+
 document.addEventListener("DOMContentLoaded", () => {
+    // Also scroll to top after DOM is ready (catches deferred layout shifts)
+    window.scrollTo(0, 0);
     
     // --- 1. SCROLL FADE-IN ANIMATIONS ---
     const observerOptions = {
