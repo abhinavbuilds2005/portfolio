@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://readme-typing-svg.demolab.com">
-    <img src="https://readme-typing-svg.demolab.com?font=Poppins&size=22&duration=3000&pause=1000&color=00C9FF&center=true&vCenter=true&width=750&lines=AI%2FML+Engineer+in+Progress+%F0%9F%A4%96;2+Deployed+ML+Apps+%E2%80%94+CreditWise+%26+SmartCart;Machine+Learning+%7C+Deep+Learning+%7C+Data+Science;Actively+Seeking+Remote+ML+%2F+Data+Intern+Roles+%F0%9F%9A%80;Building+Intelligent+Systems+That+Actually+Work" />
+    <img src="https://readme-typing-svg.demolab.com?font=Poppins&size=22&duration=3000&pause=1000&color=00C9FF&center=true&vCenter=true&width=750&lines=AI%2FML+Engineer+in+Progress+%F0%9F%A4%96;3+Deployed+ML+Apps+%E2%80%94+CreditWise%2C+SmartCart+%26+AI+Attendance;Machine+Learning+%7C+Deep+Learning+%7C+Data+Science;Actively+Seeking+Remote+ML+%2F+Data+Intern+Roles+%F0%9F%9A%80;Building+Intelligent+Systems+That+Actually+Work" />
   </a>
 </p>
 
@@ -94,6 +94,20 @@
         not just list bullet points.
       </p>
       <a href="https://coderabhinavanand.netlify.app/"><img src="https://img.shields.io/badge/Visit Site-Live-00C9FF?style=for-the-badge&logo=netlify&logoColor=white"/></a>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h3>👤 AI Attendance System</h3>
+      <p><strong>Python · OpenCV · FaceNet · Voice Biometrics · PostgreSQL</strong></p>
+      <p>
+        A multimodal, contact-free attendance tracking framework that validates identity using both real-time facial recognition and deep acoustic speaker verification to record attendance securely.
+      </p>
+      <a href="https://ai-powered-attendance-platform.streamlit.app/"><img src="https://img.shields.io/badge/Live App-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/></a>
+      <a href="https://github.com/abhinavbuilds2005/AI-Powered-Attendance-Platform"><img src="https://img.shields.io/badge/Source-GitHub-181717?style=for-the-badge&logo=github"/></a>
+    </td>
+    <td width="50%" valign="top">
+      <!-- Future Project Placeholder -->
     </td>
   </tr>
 </table>

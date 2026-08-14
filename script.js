@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tech: ["Python", "OpenAI Whisper STT", "Local Quantized LLMs", "Custom Audio Buffers", "JSON Task Parser"]
         },
         'attendance-system': {
-            title: "Multimodal AI Attendance System (Upcoming)",
+            title: "Multimodal AI Attendance System",
             tagline: "High-security biometric verification merging face recognition and voice print matching for automated log-in logging.",
             overview: "A contactless, automated attendance framework engineered to address institutional spoofing and verification lag. The system validates identity by merging computer vision face detection with deep acoustic speaker identification. By verifying both face and voice in real-time, the system offers high security and a seamless logging flow.",
             features: [
@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ],
             challenge: "Biometric authentication accuracy drops significantly under high ambient noise (for voice matching) or poor lighting conditions (for face recognition).",
             solution: "Implementing a multi-sensor fusion model that dynamically weights confidence scores—relying more heavily on acoustic prints when illumination is poor and relying on facial vectors when acoustic noise is high.",
-            tech: ["Python", "OpenCV", "FaceNet", "Speaker Verification", "PyTorch", "FastAPI"]
+            tech: ["Python", "OpenCV", "FaceNet", "Voice Biometrics", "PostgreSQL"]
         },
         'resume-analyser': {
             title: "ATS Resume Analyser (Upcoming)",
@@ -811,4 +811,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initial Trigger
     syncLeetCodeData(false);
+
 });
