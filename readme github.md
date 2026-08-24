@@ -52,12 +52,12 @@
         <strong>Highlights:</strong> Custom feature engineering pipeline · Real-time risk scoring · 
         Model metrics in the UI (not the terminal) · SHAP-based explainability
       </p>
-      <a href="https://github.com/abhinavbuilds2005"><img src="https://img.shields.io/badge/Live App-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/></a>
-      <a href="https://github.com/abhinavbuilds2005"><img src="https://img.shields.io/badge/Source-GitHub-181717?style=for-the-badge&logo=github"/></a>
+      <a href="https://credit-wise-loan-system.streamlit.app"><img src="https://img.shields.io/badge/Live App-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/></a>
+      <a href="https://github.com/abhinavbuilds2005/CreditWise-Loan-Risk-Prediction-System"><img src="https://img.shields.io/badge/Source-GitHub-181717?style=for-the-badge&logo=github"/></a>
     </td>
     <td width="50%" valign="top">
       <h3>🛒 SmartCart — Customer Intelligence Platform</h3>
-      <p><strong>K-Means Clustering · PCA · Churn Prediction · Streamlit</strong></p>
+      <p><strong>K-Means Clustering · PCA · Churn Prediction · Netlify & Chart.js</strong></p>
       <p>
         Segments customers by purchase behavior and predicts churn — giving e-commerce teams
         a data-driven lens into <em>who to retain and why</em>. Features PCA-based dimensionality 
@@ -67,8 +67,8 @@
         <strong>Highlights:</strong> PCA variance ratio surfaced in UI · K-Means with elbow method · 
         Churn probability per segment · Personalized recommendation engine
       </p>
-      <a href="https://github.com/abhinavbuilds2005"><img src="https://img.shields.io/badge/Live App-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/></a>
-      <a href="https://github.com/abhinavbuilds2005"><img src="https://img.shields.io/badge/Source-GitHub-181717?style=for-the-badge&logo=github"/></a>
+      <a href="https://smartcart-recommendation-system.netlify.app/"><img src="https://img.shields.io/badge/Live App-Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white"/></a>
+      <a href="https://github.com/abhinavbuilds2005/Smartcart-Recommendation-system"><img src="https://img.shields.io/badge/Source-GitHub-181717?style=for-the-badge&logo=github"/></a>
     </td>
   </tr>
   <tr>
@@ -98,12 +98,12 @@
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>👤 AI Attendance System</h3>
+      <h3>👤 PresentAI - Multimodal Biometric Attendance</h3>
       <p><strong>Python · OpenCV · FaceNet · Voice Biometrics · PostgreSQL</strong></p>
       <p>
         A multimodal, contact-free attendance tracking framework that validates identity using both real-time facial recognition and deep acoustic speaker verification to record attendance securely.
       </p>
-      <a href="https://ai-powered-attendance-platform.streamlit.app/"><img src="https://img.shields.io/badge/Live App-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/></a>
+      <a href="https://presentai-attendance.onrender.com"><img src="https://img.shields.io/badge/Live App-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white"/></a>
       <a href="https://github.com/abhinavbuilds2005/AI-Powered-Attendance-Platform"><img src="https://img.shields.io/badge/Source-GitHub-181717?style=for-the-badge&logo=github"/></a>
     </td>
     <td width="50%" valign="top">

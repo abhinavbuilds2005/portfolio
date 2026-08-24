@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tech: ["Python", "Scikit-Learn", "Pandas & NumPy", "Streamlit", "Matplotlib"]
         },
         'customer-ai': {
-            title: "Customer Intelligence AI",
+            title: "SmartCart AI: Customer Segmentation & Intelligence",
             tagline: "Data-driven customer segmentation utilizing unsupervised machine learning to optimize recommendation cycles.",
             overview: "Modern marketing is pivoting from broad campaigns to micro-behavioral targeting. Customer Intelligence AI uses clustering models to discover organic transaction behaviors and profile consumer archetypes automatically.",
             features: [
@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tech: ["Python", "OpenAI Whisper STT", "Local Quantized LLMs", "Custom Audio Buffers", "JSON Task Parser"]
         },
         'attendance-system': {
-            title: "Multimodal AI Attendance System",
+            title: "PresentAI - Multimodal Biometric Attendance System",
             tagline: "High-security biometric verification merging face recognition and voice print matching for automated log-in logging.",
             overview: "A contactless, automated attendance framework engineered to address institutional spoofing and verification lag. The system validates identity by merging computer vision face detection with deep acoustic speaker identification. By verifying both face and voice in real-time, the system offers high security and a seamless logging flow.",
             features: [
