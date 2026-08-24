@@ -52,7 +52,7 @@
         <strong>Highlights:</strong> Custom feature engineering pipeline · Real-time risk scoring · 
         Model metrics in the UI (not the terminal) · SHAP-based explainability
       </p>
-      <a href="https://credit-wise-loan-system.streamlit.app"><img src="https://img.shields.io/badge/Live App-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/></a>
+      <a href="https://credishield-one.vercel.app/"><img src="https://img.shields.io/badge/Live App-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"/></a>
       <a href="https://github.com/abhinavbuilds2005/CreditWise-Loan-Risk-Prediction-System"><img src="https://img.shields.io/badge/Source-GitHub-181717?style=for-the-badge&logo=github"/></a>
     </td>
     <td width="50%" valign="top">
