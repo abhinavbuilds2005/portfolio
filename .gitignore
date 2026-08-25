@@ -1,12 +1,3 @@
-# Dependencies
-node_modules/
-
-# Build artifacts
-dist/
-
-# Agent metadata
-.agents/
-
 # IDE settings
 .vscode/
 
