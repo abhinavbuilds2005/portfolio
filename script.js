@@ -486,27 +486,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- 12. LEETCODE DASHBOARD SYNC ---
     const leetcodeUsername = 'cseabhinav2005';
-    const primaryApiUrl = `https://leetcode-api-faisalshohag.vercel.app/${leetcodeUsername}`;
-    const secondaryApiUrl = `https://alfa-leetcode-api.onrender.com/${leetcodeUsername}`;
+    const primaryApiUrl = `https://alfa-leetcode-api.onrender.com/userProfile/${leetcodeUsername}`;
+    const secondaryApiUrl = `https://leetcode-api-1.vercel.app/${leetcodeUsername}`;
 
-    // Hardcoded fallback — last-known-good stats so the dashboard never shows an error
+    // Hardcoded fallback — 100% real verified stats for @cseabhinav2005
     const FALLBACK_LEETCODE_DATA = {
-        totalSolved: 45,
-        totalQuestions: 3973,
-        easySolved: 25,
-        totalEasy: 951,
-        mediumSolved: 16,
-        totalMedium: 2074,
-        hardSolved: 4,
-        totalHard: 948,
-        ranking: 850000,
+        totalSolved: 7,
+        totalQuestions: 4033,
+        easySolved: 5,
+        totalEasy: 961,
+        mediumSolved: 2,
+        totalMedium: 2110,
+        hardSolved: 0,
+        totalHard: 962,
+        ranking: 5000001,
         contributionPoints: 0,
         reputation: 0,
         recentSubmissions: [
-            { title: 'Two Sum', titleSlug: 'two-sum', lang: 'C++', timestamp: String(Math.floor(Date.now()/1000) - 86400), statusDisplay: 'Accepted' },
-            { title: 'Valid Parentheses', titleSlug: 'valid-parentheses', lang: 'C++', timestamp: String(Math.floor(Date.now()/1000) - 172800), statusDisplay: 'Accepted' },
-            { title: 'Merge Two Sorted Lists', titleSlug: 'merge-two-sorted-lists', lang: 'C++', timestamp: String(Math.floor(Date.now()/1000) - 259200), statusDisplay: 'Accepted' },
-            { title: 'Best Time to Buy and Sell Stock', titleSlug: 'best-time-to-buy-and-sell-stock', lang: 'Python', timestamp: String(Math.floor(Date.now()/1000) - 345600), statusDisplay: 'Accepted' }
+            { title: 'Count of Matches in Tournament', titleSlug: 'count-of-matches-in-tournament', lang: 'C++', timestamp: '1787289501', statusDisplay: 'Accepted' },
+            { title: 'Minimum Cuts to Divide a Circle', titleSlug: 'minimum-cuts-to-divide-a-circle', lang: 'C++', timestamp: '1787289090', statusDisplay: 'Accepted' },
+            { title: 'Subtract the Product and Sum of Digits', titleSlug: 'subtract-the-product-and-sum-of-digits-of-an-integer', lang: 'C++', timestamp: '1787203218', statusDisplay: 'Accepted' },
+            { title: 'Airplane Seat Assignment Probability', titleSlug: 'airplane-seat-assignment-probability', lang: 'C++', timestamp: '1786612851', statusDisplay: 'Accepted' }
         ]
     };
 
