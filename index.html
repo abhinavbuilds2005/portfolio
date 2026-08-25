@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abhinav Anand | AI/ML Engineer</title>
     <meta name="description" content="Portfolio of Abhinav Anand, an AI/ML Engineer based in India, specializing in Generative AI, Agentic AI, and scalable intelligent systems.">
+    <meta name="theme-color" content="#09090b">
+    <link rel="icon" href="abhinav.jpg" type="image/jpeg">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,7 +23,7 @@
                         bg: '#09090b',  /* Deep rich zinc */
                         card: '#18181b', 
                         border: '#27272a',
-                        accent: '#6366f1', /* Indigo 500 */
+                        accent: '#10b981', /* Emerald 500 */
                         muted: '#a1a1aa' /* Zinc 400 */
                     }
                 }
@@ -29,7 +31,7 @@
         }
     </script>
 </head>
-<body class="bg-bg text-gray-100 antialiased selection:bg-accent selection:text-white relative">
+<body class="theme-emerald bg-bg text-gray-100 antialiased selection:bg-accent selection:text-white relative">
 
     <!-- Trailing Custom Mouse Glow -->
     <div id="cursor-glow"></div>
@@ -37,13 +39,13 @@
 
     <!-- Premium subtle background lighting -->
     <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-indigo-500/10 rounded-full blur-[120px] mix-blend-screen"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-violet-600/10 rounded-full blur-[120px] mix-blend-screen"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-emerald-500/10 rounded-full blur-[120px] mix-blend-screen"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-cyan-600/10 rounded-full blur-[120px] mix-blend-screen"></div>
     </div>
 
     <!-- Floating Navigation -->
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[94%] sm:w-[90%] max-w-xl transition-all duration-300" id="navbar">
-        <div class="flex items-center justify-between bg-card/60 backdrop-blur-xl border border-white/10 px-3 py-2 sm:px-6 sm:py-3 rounded-full shadow-lg">
+        <div class="nav-shell flex items-center justify-between bg-card/60 backdrop-blur-xl border border-white/10 px-3 py-2 sm:px-6 sm:py-3 rounded-full shadow-lg">
             <a href="#home" class="nav-link whitespace-nowrap text-[11px] sm:text-xs md:text-sm font-medium hover:text-white transition-colors text-gray-300 active-tab">Home</a>
             <a href="#expertise" class="nav-link whitespace-nowrap text-[11px] sm:text-xs md:text-sm font-medium hover:text-white transition-colors text-gray-300">Expertise</a>
             <a href="#work" class="nav-link whitespace-nowrap text-[11px] sm:text-xs md:text-sm font-medium hover:text-white transition-colors text-gray-300">Work</a>
@@ -54,15 +56,15 @@
     </nav>
 
     <!-- Floating Dynamic Theme Accent Switcher -->
-    <div class="fixed right-2 md:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-2 md:gap-3 bg-card/60 backdrop-blur-xl border border-white/10 px-1.5 py-3 md:px-2.5 md:py-4 rounded-full shadow-2xl transition-all duration-300 hover:border-white/20">
-        <div class="text-xs text-gray-500 hover:text-white transition-colors mb-1" title="Change Theme Accent">
+    <div id="accent-switcher" class="fixed right-2 md:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-2 md:gap-3 bg-card/60 backdrop-blur-xl border border-white/10 px-1.5 py-3 md:px-2.5 md:py-4 rounded-full shadow-2xl transition-all duration-300 hover:border-white/20">
+        <div class="text-xs text-gray-500 hover:text-white transition-colors mb-1" title="Change theme accent" aria-hidden="true">
             <i class="fas fa-palette text-[10px] md:text-sm text-accent-dynamic"></i>
         </div>
-        <div class="accent-dot bg-indigo-500 active" data-theme="indigo" title="Indigo Theme"></div>
-        <div class="accent-dot bg-cyan-500" data-theme="cyan" title="Cyan Theme"></div>
-        <div class="accent-dot bg-emerald-500" data-theme="emerald" title="Emerald Theme"></div>
-        <div class="accent-dot bg-amber-500" data-theme="amber" title="Amber Theme"></div>
-        <div class="accent-dot bg-rose-500" data-theme="rose" title="Rose Theme"></div>
+        <button type="button" class="accent-dot bg-indigo-500" data-theme="indigo" aria-label="Use indigo theme"></button>
+        <button type="button" class="accent-dot bg-cyan-500" data-theme="cyan" aria-label="Use cyan theme"></button>
+        <button type="button" class="accent-dot bg-emerald-500 active" data-theme="emerald" aria-label="Use emerald theme"></button>
+        <button type="button" class="accent-dot bg-amber-500" data-theme="amber" aria-label="Use amber theme"></button>
+        <button type="button" class="accent-dot bg-rose-500" data-theme="rose" aria-label="Use rose theme"></button>
     </div>
 
     <main class="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 pt-32 pb-20">
@@ -79,7 +81,7 @@
                 </div>
                 <h1 class="text-5xl md:text-7xl font-bold font-display tracking-tight leading-tight mb-6 min-h-[140px] md:min-h-[180px]">
                     Building Intelligent <br class="hidden md:block">
-                    <span id="typewriter-text" class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-400 typing-cursor">Digital Experiences.</span>
+                    <span id="typewriter-text" class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-emerald-400 typing-cursor">Digital Experiences.</span>
                 </h1>
                 <p class="text-muted text-lg md:text-xl leading-relaxed max-w-2xl mx-auto md:mx-0 font-light mb-10">
                     I'm <strong class="text-white font-medium">Abhinav Anand</strong>, an AI/ML Engineer. I build intelligent systems powered by Generative AI, Agentic AI, and modern machine learning to deliver scalable, high-impact solutions.
@@ -228,7 +230,7 @@
                             <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 order-1 md:order-2 flex items-center justify-center group-hover:border-indigo-500/30 transition-colors relative">
                                  <!-- Abstract Placeholder for Project Image to keep it looking premium -->
                                 <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/40 to-card z-0"></div>
-                                <img src="project_creditwise_1775755763976.png" alt="CreditWise Project Preview" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
+                                <img src="project_creditwise_1775755763976.png" alt="CreditWise Project Preview" loading="lazy" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
                             </div>
                         </div>
                     </div>
@@ -241,7 +243,7 @@
                             <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 flex items-center justify-center group-hover:border-violet-500/30 transition-colors relative">
                                 <!-- Abstract Placeholder -->
                                 <div class="absolute inset-0 bg-gradient-to-br from-violet-900/40 to-card z-0"></div>
-                                <img src="project_customer_ai_1775755777519.png" alt="Customer Intelligence Project Preview" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
+                                <img src="project_customer_ai_1775755777519.png" alt="Customer Intelligence Project Preview" loading="lazy" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
                             </div>
                             <div class="flex-1">
                                 <div class="flex items-center gap-3 mb-4">
@@ -303,7 +305,7 @@
                             <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 order-1 md:order-2 flex items-center justify-center group-hover:border-blue-500/30 transition-colors relative">
                                 <!-- Abstract Placeholder -->
                                 <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-card z-0"></div>
-                                <img src="project_portfolio_1775755792684.png" alt="Portfolio Project Preview" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
+                                <img src="project_portfolio_1775755792684.png" alt="Portfolio Project Preview" loading="lazy" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
                             </div>
                         </div>
                     </div>
@@ -381,7 +383,7 @@
                             </div>
                             <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 order-1 md:order-2 flex items-center justify-center group-hover:border-emerald-500/30 transition-colors relative">
                                 <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/40 to-card z-0"></div>
-                                <img src="project_attendance_system.jpg" alt="AI Attendance System Preview" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
+                                <img src="project_attendance_system.jpg" alt="AI Attendance System Preview" loading="lazy" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
                             </div>
                         </div>
                     </div>
@@ -804,7 +806,7 @@
 
                     <!-- Image Cards -->
                     <div class="premium-card group p-0 relative overflow-hidden h-48 block border-white/10 hover:border-yellow-500/50 transition-colors">
-                        <img src="python.png" alt="Python Cert" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
+                        <img src="python.png" alt="Python certificate" loading="lazy" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 w-full p-6">
                             <div class="flex items-center gap-3">
@@ -817,7 +819,7 @@
                     </div>
 
                     <div class="premium-card group p-0 relative overflow-hidden h-48 block border-white/10 hover:border-blue-500/50 transition-colors">
-                        <img src="sql.png" alt="SQL Cert" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 bg-black">
+                        <img src="sql.png" alt="SQL certificate" loading="lazy" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 bg-black">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
                         <div class="absolute bottom-0 left-0 w-full p-6">
                             <div class="flex items-center gap-3">
@@ -878,7 +880,7 @@
                         <button type="submit" id="formButton" class="w-full bg-white text-black font-semibold py-4 rounded-xl hover:bg-gray-200 transition-all hover:scale-[1.02] active:scale-[0.98] mt-2 flex justify-center items-center gap-2">
                             Send Message <i class="fas fa-paper-plane text-sm"></i>
                         </button>
-                        <div id="formStatus" class="text-sm text-center mt-3 hidden font-medium py-2 rounded-lg bg-white/5"></div>
+                        <div id="formStatus" class="text-sm text-center mt-3 hidden font-medium py-2 rounded-lg bg-white/5" role="status" aria-live="polite"></div>
                     </div>
                 </form>
             </div>
@@ -897,11 +899,11 @@
     <!-- Case Study Modal -->
     <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 invisible opacity-0 transition-all duration-300">
         <div class="absolute inset-0 cursor-pointer bg-black/40 backdrop-blur-[4px]" id="modal-overlay"></div>
-        <div id="project-modal-content" class="relative w-full max-w-3xl bg-[#121214] border border-white/10 rounded-3xl overflow-hidden shadow-2xl max-h-[85vh] flex flex-col transform scale-90 transition-transform duration-300">
+        <div id="project-modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title" class="relative w-full max-w-3xl bg-[#121214] border border-white/10 rounded-3xl overflow-hidden shadow-2xl max-h-[85vh] flex flex-col transform scale-90 transition-transform duration-300">
             <!-- Modal Header -->
             <div class="flex items-center justify-between p-6 border-b border-white/10 bg-black/25">
                 <h3 class="text-2xl font-bold font-display text-white" id="modal-title">Project Case Study</h3>
-                <button id="close-modal" class="p-2 rounded-full border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
+                <button id="close-modal" aria-label="Close case study" class="p-2 rounded-full border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
                     <i class="fas fa-times text-lg"></i>
                 </button>
             </div>
@@ -914,7 +916,7 @@
     </div>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 z-40 bg-white text-black p-3.5 rounded-full shadow-2xl translate-y-24 opacity-0 transition-all duration-300 hover:scale-110 active:scale-95 border border-white/10 flex items-center justify-center" title="Back to Top">
+    <button id="back-to-top" aria-label="Back to top" class="fixed bottom-6 right-6 z-40 bg-white text-black p-3.5 rounded-full shadow-2xl translate-y-24 opacity-0 transition-all duration-300 hover:scale-110 active:scale-95 border border-white/10 flex items-center justify-center" title="Back to top">
         <i class="fas fa-arrow-up text-lg"></i>
     </button>
 

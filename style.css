@@ -1,8 +1,8 @@
 /* Theme System */
 :root {
-    --color-accent: #6366f1; /* Indigo default */
-    --color-accent-rgb: 99, 102, 241;
-    --color-accent-glow: rgba(99, 102, 241, 0.15);
+    --color-accent: #10b981; /* Emerald default */
+    --color-accent-rgb: 16, 185, 129;
+    --color-accent-glow: rgba(16, 185, 129, 0.15);
 }
 
 .theme-indigo {
@@ -45,6 +45,29 @@ body {
     background-color: #09090b; /* Zinc 950 */
     color: #f4f4f5;
     overflow-x: hidden;
+}
+
+#navbar {
+    max-width: min(94vw, 68rem);
+}
+
+.nav-shell {
+    gap: 1.25rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.nav-shell::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-shell > * {
+    flex: 0 0 auto;
+}
+
+:where(a, button, input, textarea):focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
 }
 
 /* Selection color dynamically styled with CSS variables */
@@ -414,6 +437,58 @@ textarea:-webkit-autofill:focus {
 .submission-item:hover {
     transform: translateX(4px);
     background: rgba(255, 255, 255, 0.03);
+}
+
+@media (max-width: 640px) {
+    .nav-shell {
+        gap: 0.65rem;
+        justify-content: flex-start;
+        overflow: hidden;
+    }
+
+    #navbar .nav-link:nth-of-type(2),
+    #navbar .nav-link:nth-of-type(4) {
+        display: none;
+    }
+
+    #home h1 {
+        font-size: 2.75rem;
+        line-height: 1.08;
+        min-height: 0;
+    }
+
+    #accent-switcher {
+        top: 5.5rem;
+        right: 0.75rem;
+        transform: none;
+        flex-direction: row;
+        padding: 0.5rem 0.75rem;
+        gap: 0.5rem;
+    }
+
+    #accent-switcher > div {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .fade-in-section {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 

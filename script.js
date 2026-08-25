@@ -1,21 +1,6 @@
 // Interactivity and Premium Visual Behaviors for Abhinav Anand's Portfolio
 
-// --- 0. FORCE SCROLL TO TOP ON PAGE LOAD ---
-// Prevent the browser from restoring a previous scroll position
-if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-}
-// Clear any URL hash that could trigger an auto-scroll
-if (window.location.hash) {
-    history.replaceState(null, '', window.location.pathname + window.location.search);
-}
-// Force scroll to the very top immediately
-window.scrollTo(0, 0);
-
 document.addEventListener("DOMContentLoaded", () => {
-    // Also scroll to top after DOM is ready (catches deferred layout shifts)
-    window.scrollTo(0, 0);
-    
     // --- 1. SCROLL FADE-IN ANIMATIONS ---
     const observerOptions = {
         root: null,
@@ -52,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 3. ACCENT THEME SWITCHER ---
     const accentDots = document.querySelectorAll('.accent-dot');
     const themeClasses = ['theme-indigo', 'theme-cyan', 'theme-emerald', 'theme-amber', 'theme-rose'];
+    const themeStorageKey = 'portfolio-accent-theme-v2';
 
     function applyTheme(themeName) {
         // Remove current theme classes from body
@@ -69,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Save theme selection to localStorage
-        localStorage.setItem('portfolio-accent-theme', themeName);
+        localStorage.setItem(themeStorageKey, themeName);
     }
 
     accentDots.forEach(dot => {
@@ -80,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Check for saved theme preference in localStorage
-    const savedTheme = localStorage.getItem('portfolio-accent-theme');
+    const savedTheme = localStorage.getItem(themeStorageKey);
     if (savedTheme && themeClasses.includes(`theme-${savedTheme}`)) {
         applyTheme(savedTheme);
     }
@@ -637,6 +623,13 @@ document.addEventListener("DOMContentLoaded", () => {
         if (leetcodeSubmissions) {
             leetcodeSubmissions.innerHTML = '';
             if (data.recentSubmissions && data.recentSubmissions.length > 0) {
+                const escapeHtml = (value) => String(value)
+                    .replaceAll('&', '&amp;')
+                    .replaceAll('<', '&lt;')
+                    .replaceAll('>', '&gt;')
+                    .replaceAll('"', '&quot;')
+                    .replaceAll("'", '&#039;');
+
                 // Take up to 4 submissions
                 const subs = data.recentSubmissions.slice(0, 4);
                 subs.forEach(sub => {
@@ -646,20 +639,24 @@ document.addEventListener("DOMContentLoaded", () => {
                     const submittedAt = sub.timestamp || sub.time || sub.submitTime;
                     const status = sub.statusDisplay || sub.status || 'Submitted';
                     const isAccepted = status === 'Accepted';
+                    const safeTitle = escapeHtml(title);
+                    const safeLanguage = escapeHtml(language);
+                    const safeStatus = escapeHtml(status);
+                    const safeSlug = encodeURIComponent(String(titleSlug).replace(/[^a-zA-Z0-9-]/g, ''));
                     const statusClass = isAccepted 
                         ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20 shadow-[0_0_8px_rgba(16,185,129,0.15)]' 
                         : 'bg-red-500/10 text-red-400 border-red-500/20';
                     
                     const itemHtml = `
-                        <a href="https://leetcode.com/problems/${titleSlug}/" target="_blank" class="flex items-center justify-between p-3.5 bg-white/5 border border-white/5 rounded-2xl submission-item hover:border-accent-dynamic transition-all">
+                        <a href="https://leetcode.com/problems/${safeSlug}/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 bg-white/5 border border-white/5 rounded-2xl submission-item hover:border-accent-dynamic transition-all">
                             <div class="flex flex-col gap-1 min-w-0 pr-2">
-                                <span class="font-bold text-sm text-white truncate font-display">${title}</span>
+                                <span class="font-bold text-sm text-white truncate font-display">${safeTitle}</span>
                                 <div class="flex items-center gap-2">
-                                    <span class="px-2 py-0.5 text-[10px] font-semibold bg-white/5 border border-white/10 text-gray-400 rounded-md uppercase">${language}</span>
+                                    <span class="px-2 py-0.5 text-[10px] font-semibold bg-white/5 border border-white/10 text-gray-400 rounded-md uppercase">${safeLanguage}</span>
                                     <span class="text-[10px] text-gray-500">${timeAgo(submittedAt)}</span>
                                 </div>
                             </div>
-                            <span class="px-2.5 py-1 text-[10px] font-bold border rounded-full shrink-0 ${statusClass}">${status}</span>
+                            <span class="px-2.5 py-1 text-[10px] font-bold border rounded-full shrink-0 ${statusClass}">${safeStatus}</span>
                         </a>
                     `;
                     leetcodeSubmissions.insertAdjacentHTML('beforeend', itemHtml);
