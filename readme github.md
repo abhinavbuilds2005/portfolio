@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://readme-typing-svg.demolab.com">
-    <img src="https://readme-typing-svg.demolab.com?font=Poppins&size=22&duration=3000&pause=1000&color=00C9FF&center=true&vCenter=true&width=750&lines=AI%2FML+Engineer+in+Progress+%F0%9F%A4%96;3+Deployed+ML+Apps+%E2%80%94+CreditWise%2C+SmartCart+%26+AI+Attendance;Machine+Learning+%7C+Deep+Learning+%7C+Data+Science;Actively+Seeking+Remote+ML+%2F+Data+Intern+Roles+%F0%9F%9A%80;Building+Intelligent+Systems+That+Actually+Work" />
+    <img src="https://readme-typing-svg.demolab.com?font=Poppins&size=22&duration=3000&pause=1000&color=00C9FF&center=true&vCenter=true&width=750&lines=AI%2FML+Engineer+in+Progress+%F0%9F%A4%96;4+Deployed+ML+Apps+%E2%80%94+CreditWise%2C+SmartCart%2C+ElevateCV+%26+PresentAI;Machine+Learning+%7C+Deep+Learning+%7C+Data+Science;Actively+Seeking+Remote+ML+%2F+Data+Intern+Roles+%F0%9F%9A%80;Building+Intelligent+Systems+That+Actually+Work" />
   </a>
 </p>
 
@@ -26,7 +26,7 @@
 
 - 🎓 **BTech CSE (AIML)** at Lovely Professional University, Jalandhar *(2025–2029)*
 - 🤖 Passionate about **Machine Learning, Deep Learning & Generative AI**
-- 🚀 **2 deployed ML apps** — end-to-end, from raw data to live Streamlit apps
+- 🚀 **4 deployed AI/ML apps** — end-to-end, from raw data to live web applications
 - 🔍 Actively exploring **LLMs, NLP, and Computer Vision**
 - 💼 **Open to remote paid internships** — ML Intern / Data Analyst roles
 - 📬 Reach me at **abhinavanand9996@gmail.com**
@@ -73,17 +73,17 @@
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>🤖 ATS Resume Analyser <em>(In Progress)</em></h3>
-      <p><strong>NLP · Generative AI · LLMs · Streamlit</strong></p>
+      <h3>🤖 ElevateCV — ATS Resume Analyser</h3>
+      <p><strong>Google Gemini AI · NLP · Semantic Analysis · Streamlit</strong></p>
       <p>
-        An AI-powered resume scorer that compares a candidate's resume against a job description
-        and returns a match score, skill gap analysis, and rewrite suggestions — like having 
-        a recruiter review your resume before you submit it.
+        An AI-powered resume scorer that evaluates resumes against job descriptions,
+        calculating match scores, identifying missing keywords, and generating actionable rewrite recommendations to boost interview conversion.
       </p>
       <p>
-        <strong>Stack:</strong> LLM-based text analysis · Keyword extraction · Semantic similarity scoring
+        <strong>Stack:</strong> Python · Streamlit · Gemini API · NLP · PyPDF2
       </p>
-      <a href="https://github.com/abhinavbuilds2005"><img src="https://img.shields.io/badge/Status-Building Now-F59E0B?style=for-the-badge"/></a>
+      <a href="https://elevatecv-ai.streamlit.app/"><img src="https://img.shields.io/badge/Live App-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/></a>
+      <a href="https://github.com/abhinavbuilds2005/ATS-RESUME-ANALYZER"><img src="https://img.shields.io/badge/Source-GitHub-181717?style=for-the-badge&logo=github"/></a>
     </td>
     <td width="50%" valign="top">
       <h3>🌐 Personal Portfolio Website</h3>

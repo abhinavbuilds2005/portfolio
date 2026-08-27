@@ -277,17 +277,17 @@ document.addEventListener("DOMContentLoaded", () => {
             tech: ["Python", "OpenCV", "FaceNet", "Voice Biometrics", "PostgreSQL"]
         },
         'resume-analyser': {
-            title: "ATS Resume Analyser (Upcoming)",
+            title: "ElevateCV: AI ATS Resume Analyser",
             tagline: "LLM-powered Application Tracking System designed to score resume alignment and provide action-oriented optimizations.",
-            overview: "Job applications frequently get lost in automatic tracking system screens. This ATS Resume Analyser acts as an AI coach, extracting text from complex PDF layouts, comparing resume structure and content against specific job descriptions using advanced semantic similarity, and offering deep generative feedback to increase interview conversion rates.",
+            overview: "Job applications frequently get lost in automatic tracking system screens. ElevateCV acts as an AI coach, extracting text from complex PDF layouts, comparing resume structure and content against specific job descriptions using advanced semantic similarity, and offering deep generative feedback to maximize interview conversion rates.",
             features: [
                 "<strong>Multi-Format Semantic Parser:</strong> Extracts and standardizes structural content from arbitrary document hierarchies, nested tables, and styling templates.",
-                "<strong>Keyword Alignment Scoring:</strong> Calculates term frequency-inverse document frequency (TF-IDF) alongside dense vector similarity to measure semantic alignment with job specifications.",
-                "<strong>Generative Skill Gap Analysis:</strong> Employs structured LLM prompts to analyze missing keywords, structural imbalances, and draft custom bullet-point rewrites."
+                "<strong>Keyword & Gap Assessment:</strong> Identifies missing competencies, hard skills, and measures semantic match percentage against live job descriptions.",
+                "<strong>Generative Profile Optimization:</strong> Employs structured Gemini/LLM prompts to generate tailored resume bullet points and actionable rewrite recommendations."
             ],
-            challenge: "Parsing resumes with highly complex double-column layouts or graphic tables often damages raw text reading flow, corrupting parsing accuracy.",
-            solution: "Integrating high-performance PDF extraction modules (like PDFPlumber) alongside custom column-sorting heuristics that rebuild readable, consecutive text streams before processing.",
-            tech: ["Python", "FastAPI", "OpenAI / Gemini API", "LangChain", "NLTK & SpaCy", "Pydantic"]
+            challenge: "Parsing resumes with complex formatting and double-column layouts often damages raw text reading flow, corrupting parsing accuracy.",
+            solution: "Integrated robust PDF extraction modules alongside custom text stream heuristics and prompt-engineered Gemini LLM workflows for structured evaluation.",
+            tech: ["Python", "Streamlit", "Gemini API", "NLP", "PyPDF2 / PDFPlumber"]
         },
         'style-transfer': {
             title: "Neural Style Transfer (Upcoming)",
