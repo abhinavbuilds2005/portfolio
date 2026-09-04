@@ -1,931 +1,809 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhinav Anand | AI/ML Engineer</title>
-    <meta name="description" content="Portfolio of Abhinav Anand, an AI/ML Engineer based in India, specializing in Generative AI, Agentic AI, and scalable intelligent systems.">
-    <meta name="theme-color" content="#09090b">
-    <link rel="icon" href="abhinav.jpeg" type="image/jpeg">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { 
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Plus Jakarta Sans', 'sans-serif']
-                    },
-                    colors: { 
-                        bg: '#09090b',  /* Deep rich zinc */
-                        card: '#18181b', 
-                        border: '#27272a',
-                        accent: '#10b981', /* Emerald 500 */
-                        muted: '#a1a1aa' /* Zinc 400 */
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhinav Anand | AI/ML Engineer</title>
+  <meta name="description" content="Engineering log and portfolio of Abhinav Anand, an AI/ML Engineer specializing in predictive models, biometric verification, and scalable intelligent systems.">
+  <meta name="theme-color" content="#08080a">
+  <link rel="icon" href="abhinav.jpeg" type="image/jpeg">
+
+  <!-- Canonical & Social Graph Metadata -->
+  <link rel="canonical" href="https://coderabhinavanand.netlify.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://coderabhinavanand.netlify.app/">
+  <meta property="og:title" content="Abhinav Anand | AI/ML Engineer">
+  <meta property="og:description" content="Engineering log and portfolio of Abhinav Anand. Predictive machine learning pipelines, multimodal biometric systems, and scalable agentic architectures.">
+  <meta property="og:image" content="https://coderabhinavanand.netlify.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Abhinav Anand | AI/ML Engineer">
+  <meta name="twitter:description" content="Engineering log and portfolio of Abhinav Anand. Predictive machine learning pipelines, multimodal biometric systems, and scalable agentic architectures.">
+  <meta name="twitter:image" content="https://coderabhinavanand.netlify.app/og-image.png">
+
+  <!-- JSON-LD Person Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Abhinav Anand",
+    "jobTitle": "AI/ML Engineer",
+    "url": "https://coderabhinavanand.netlify.app/",
+    "image": "https://coderabhinavanand.netlify.app/abhinav.jpeg",
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Lovely Professional University"
+    },
+    "sameAs": [
+      "https://github.com/abhinavbuilds2005",
+      "https://www.linkedin.com/in/abhinav-anand-865926300",
+      "https://leetcode.com/u/cseabhinav2005/"
+    ],
+    "knowsAbout": [
+      "Machine Learning",
+      "Deep Learning",
+      "Generative AI",
+      "Computer Vision",
+      "Python",
+      "C++",
+      "PyTorch",
+      "Scikit-Learn",
+      "FastAPI"
+    ]
+  }
+  </script>
+
+  <!-- Google Fonts: JetBrains Mono & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for technical icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="theme-emerald bg-bg text-gray-100 antialiased selection:bg-accent selection:text-white relative">
+<body>
 
-    <!-- Trailing Custom Mouse Glow -->
-    <div id="cursor-glow"></div>
+  <div class="app-shell">
+    
+    <!-- Mobile Top Header Bar (collapses to top bar on small screens) -->
+    <header class="mobile-topbar" id="mobile-topbar">
+      <div class="mobile-brand">
+        <span class="text-low">[AA]</span>
+        <span class="font-mono font-bold">ABHINAV.ANAND</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.6rem;">
+        <button type="button" class="mobile-cmd-btn" id="mobile-cmd-btn" aria-label="Open Command Palette (Cmd+K)" title="Command Palette (Cmd+K)">
+          <kbd class="kbd-shortcut">⌘K</kbd>
+        </button>
+        <span class="status-dot" title="Available for opportunities"></span>
+        <button type="button" class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
 
-
-    <!-- Premium subtle background lighting -->
-    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-emerald-500/10 rounded-full blur-[120px] mix-blend-screen"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-cyan-600/10 rounded-full blur-[120px] mix-blend-screen"></div>
-    </div>
-
-    <!-- Floating Navigation -->
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[94%] sm:w-[90%] max-w-xl transition-all duration-300" id="navbar">
-        <div class="nav-shell flex items-center justify-between bg-card/60 backdrop-blur-xl border border-white/10 px-3 py-2 sm:px-6 sm:py-3 rounded-full shadow-lg">
-            <a href="#home" class="nav-link whitespace-nowrap text-[11px] sm:text-xs md:text-sm font-medium hover:text-white transition-colors text-gray-300 active-tab">Home</a>
-            <a href="#expertise" class="nav-link whitespace-nowrap text-[11px] sm:text-xs md:text-sm font-medium hover:text-white transition-colors text-gray-300">Expertise</a>
-            <a href="#work" class="nav-link whitespace-nowrap text-[11px] sm:text-xs md:text-sm font-medium hover:text-white transition-colors text-gray-300">Work</a>
-            <a href="#leetcode" class="nav-link whitespace-nowrap text-[11px] sm:text-xs md:text-sm font-medium hover:text-white transition-colors text-gray-300">LeetCode</a>
-            <a href="Abhinav_Anand_Resume_AIML_Specialized.pdf" target="_blank" class="whitespace-nowrap px-2.5 py-1 sm:px-3 sm:py-1 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-gray-200 hover:text-white text-[11px] sm:text-xs md:text-sm transition-all flex items-center gap-1.5"><i class="fas fa-file-pdf text-accent-dynamic"></i> Resume</a>
-            <a href="#contact" class="whitespace-nowrap px-2.5 py-1.5 sm:px-4 sm:py-1.5 rounded-full bg-white text-black font-semibold transition-all hover:scale-105 text-[11px] sm:text-xs md:text-sm ml-1 sm:ml-2">Hire Me</a>
+    <!-- Persistent Fixed Sidebar (IDE Activity Bar / TOC) -->
+    <aside id="sidebar" class="app-sidebar">
+      <div class="sidebar-header">
+        <div class="console-brand">
+          <span class="sys-prefix">[SYS]</span>
+          <span>ABHINAV ANAND</span>
         </div>
-    </nav>
-
-    <!-- Floating Dynamic Theme Accent Switcher -->
-    <div id="accent-switcher" class="fixed right-2 md:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col items-center gap-2 md:gap-3 bg-card/60 backdrop-blur-xl border border-white/10 px-1.5 py-3 md:px-2.5 md:py-4 rounded-full shadow-2xl transition-all duration-300 hover:border-white/20">
-        <div class="text-xs text-gray-500 hover:text-white transition-colors mb-1" title="Change theme accent" aria-hidden="true">
-            <i class="fas fa-palette text-[10px] md:text-sm text-accent-dynamic"></i>
+        <div class="sidebar-role">
+          AI/ML ENGINEER // LPU B.TECH
         </div>
-        <button type="button" class="accent-dot bg-indigo-500" data-theme="indigo" aria-label="Use indigo theme"></button>
-        <button type="button" class="accent-dot bg-cyan-500" data-theme="cyan" aria-label="Use cyan theme"></button>
-        <button type="button" class="accent-dot bg-emerald-500 active" data-theme="emerald" aria-label="Use emerald theme"></button>
-        <button type="button" class="accent-dot bg-amber-500" data-theme="amber" aria-label="Use amber theme"></button>
-        <button type="button" class="accent-dot bg-rose-500" data-theme="rose" aria-label="Use rose theme"></button>
-    </div>
-
-    <main class="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 pt-32 pb-20">
         
-        <!-- HERO SECTION -->
-        <section id="home" class="flex flex-col md:flex-row items-center justify-between gap-12 min-h-[70vh] fade-in-section">
-            <div class="flex-1 text-center md:text-left">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-gray-300 mb-6">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                    </span>
-                    Available for new opportunities
-                </div>
-                <h1 class="text-5xl md:text-7xl font-bold font-display tracking-tight leading-tight mb-6 min-h-[140px] md:min-h-[180px]">
-                    Building Intelligent <br class="hidden md:block">
-                    <span id="typewriter-text" class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-emerald-400 typing-cursor">Digital Experiences.</span>
-                </h1>
-                <p class="text-muted text-lg md:text-xl leading-relaxed max-w-2xl mx-auto md:mx-0 font-light mb-10">
-                    I'm <strong class="text-white font-medium">Abhinav Anand</strong>, an AI/ML Engineer. I build intelligent systems powered by Generative AI, Agentic AI, and modern machine learning to deliver scalable, high-impact solutions.
-                </p>
-                <div class="flex flex-wrap justify-center md:justify-start gap-4">
-                    <a href="#work" class="px-8 py-3.5 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition-all hover:-translate-y-0.5">Explore My Work</a>
-                    <a href="Abhinav_Anand_Resume_AIML_Specialized.pdf" target="_blank" rel="noopener noreferrer" class="px-8 py-3.5 border border-white/10 bg-white/5 text-white font-semibold rounded-full hover:bg-white/10 transition-all hover:-translate-y-0.5 flex items-center gap-2"><i class="fas fa-file-pdf text-accent-dynamic"></i> View CV</a>
-                    <a href="#contact" class="px-8 py-3.5 border border-white/10 bg-white/5 text-white font-semibold rounded-full hover:bg-white/10 transition-all hover:-translate-y-0.5">Contact Me</a>
-                </div>
-                
-                <div class="flex items-center justify-center md:justify-start gap-6 mt-12 text-gray-400">
-                    <a href="https://github.com/abhinavbuilds2005" target="_blank" class="hover:text-white transition-colors" title="GitHub"><i class="fab fa-github text-2xl"></i></a>
-                    <a href="https://www.linkedin.com/in/abhinav-anand-865926300" target="_blank" class="hover:text-white transition-colors" title="LinkedIn"><i class="fab fa-linkedin text-2xl"></i></a>
-                    <a href="https://www.instagram.com/cse.abhinav?igsh=MTcxdDR6N2VyMmIwMQ==" target="_blank" class="hover:text-white transition-colors" title="Instagram"><i class="fab fa-instagram text-2xl"></i></a>
-                    <a href="mailto:abhinavanand9996@gmail.com" class="hover:text-white transition-colors" title="Email"><i class="fas fa-envelope text-2xl"></i></a>
-                </div>
-            </div>
-            
-            <div class="relative shrink-0 hero-image-container">
-                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-accent-glow-dynamic relative z-10 hero-image-wrapper p-2 shadow-accent-glow-dynamic">
-                    <img src="abhinav.jpeg" alt="Abhinav Anand" class="w-full h-full object-cover rounded-full">
-                </div>
-                <div class="absolute inset-0 bg-accent-glow-dynamic rounded-full blur-3xl -z-10 translate-x-2 translate-y-2"></div>
-                <!-- Status indicator dot -->
-                <div class="absolute bottom-6 right-6 md:bottom-8 md:right-8 w-6 h-6 md:w-8 md:h-8 bg-black rounded-full flex items-center justify-center border-2 border-accent-glow-dynamic z-20">
-                    <div class="w-3 h-3 md:w-4 md:h-4 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.8)]"></div>
-                </div>
-            </div>
-        </section>
+        <!-- Status Indicator (The ONLY colored signal dot) -->
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span>AVAILABLE FOR HIRE</span>
+        </div>
 
-        <!-- EXPERTISE / SKILLS SECTION -->
-        <section id="expertise" class="py-24 fade-in-section">
-            <h2 class="text-3xl font-bold font-display text-white mb-8 flex items-center gap-4">
-                <span class="w-8 h-[2px] bg-accent-dynamic block"></span> 
-                Core Expertise
-            </h2>
-            
-            <p class="text-gray-400 text-lg mb-12 max-w-2xl">
-                A dynamic stack combining advanced machine learning, structural databases, and modern web frameworks to deliver robust, scalable intelligence.
-            </p>
+        <!-- Command Palette Trigger Hint -->
+        <button type="button" class="cmd-palette-trigger" id="cmd-palette-btn" aria-label="Open Command Palette (Cmd+K)" title="Command Palette (Cmd+K)">
+          <i class="fas fa-terminal"></i>
+          <span>COMMANDS</span>
+          <kbd class="kbd-shortcut">⌘K</kbd>
+        </button>
+      </div>
 
-            <div class="premium-card p-0 overflow-hidden relative h-32 flex items-center border-l-4 border-l-accent-dynamic">
-                <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#18181b] to-transparent z-10 pointer-events-none rounded-l-2xl"></div>
-                <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#18181b] to-transparent z-10 pointer-events-none rounded-r-2xl"></div>
-                
-                <div class="flex gap-4 animate-scroll whitespace-nowrap px-4 py-4 w-[200%]">
-                    <!-- Skills -->
-                    <span class="tech-item"><i class="fab fa-python text-yellow-500 text-lg"></i> Python</span>
-                    <span class="tech-item"><i class="fas fa-database text-blue-300 text-lg"></i> SQL</span>
-                    <span class="tech-item"><i class="fas fa-server text-sky-400 text-lg"></i> PostgreSQL</span>
-                    <span class="tech-item"><i class="fas fa-brain text-indigo-400 text-lg"></i> Machine Learning</span>
-                    <span class="tech-item"><i class="fas fa-fire text-orange-500 text-lg"></i> PyTorch</span>
-                    <span class="tech-item"><i class="fas fa-network-wired text-orange-400 text-lg"></i> Scikit-Learn</span>
-                    <span class="tech-item"><i class="fas fa-cube text-blue-400 text-lg"></i> NumPy/Pandas</span>
-                    <span class="tech-item"><i class="fas fa-chart-area text-sky-400 text-lg"></i> Matplotlib</span>
-                    <span class="tech-item"><i class="fas fa-chart-pie text-pink-400 text-lg"></i> Seaborn</span>
-                    <span class="tech-item"><i class="fas fa-bolt text-emerald-400 text-lg"></i> FastAPI</span>
-                    <span class="tech-item"><i class="fas fa-check-double text-teal-400 text-lg"></i> Pydantic</span>
-                    <span class="tech-item"><i class="fas fa-wand-magic-sparkles text-violet-400 text-lg"></i> Gen AI</span>
-                    <span class="tech-item"><i class="fas fa-robot text-rose-400 text-lg"></i> Agentic AI</span>
-                    <span class="tech-item"><i class="fas fa-link text-blue-400 text-lg"></i> LangChain</span>
-                    <span class="tech-item"><i class="fas fa-diagram-project text-amber-400 text-lg"></i> LangGraph</span>
-                    <span class="tech-item"><i class="fas fa-code text-violet-400 text-lg"></i> JavaScript</span>
-                    <span class="tech-item"><i class="fas fa-code text-blue-400 text-lg"></i> C++</span>
-                    <span class="tech-item"><i class="fab fa-html5 text-orange-500 text-lg"></i> HTML5</span>
-                    <span class="tech-item"><i class="fab fa-css3-alt text-blue-500 text-lg"></i> CSS3</span>
-                    <span class="tech-item"><i class="fas fa-wind text-cyan-500 text-lg"></i> Tailwind CSS</span>
-                    <span class="tech-item"><i class="fab fa-github text-white text-lg"></i> GitHub</span>
-                    <span class="tech-item"><i class="fab fa-git-alt text-orange-500 text-lg"></i> Git</span>
-                    
-                    <!-- Duplicated for seamless scrolling -->
-                    <span class="tech-item"><i class="fab fa-python text-yellow-500 text-lg"></i> Python</span>
-                    <span class="tech-item"><i class="fas fa-database text-blue-300 text-lg"></i> SQL</span>
-                    <span class="tech-item"><i class="fas fa-server text-sky-400 text-lg"></i> PostgreSQL</span>
-                    <span class="tech-item"><i class="fas fa-brain text-indigo-400 text-lg"></i> Machine Learning</span>
-                    <span class="tech-item"><i class="fas fa-fire text-orange-500 text-lg"></i> PyTorch</span>
-                    <span class="tech-item"><i class="fas fa-network-wired text-orange-400 text-lg"></i> Scikit-Learn</span>
-                    <span class="tech-item"><i class="fas fa-cube text-blue-400 text-lg"></i> NumPy/Pandas</span>
-                    <span class="tech-item"><i class="fas fa-chart-area text-sky-400 text-lg"></i> Matplotlib</span>
-                    <span class="tech-item"><i class="fas fa-chart-pie text-pink-400 text-lg"></i> Seaborn</span>
-                    <span class="tech-item"><i class="fas fa-bolt text-emerald-400 text-lg"></i> FastAPI</span>
-                    <span class="tech-item"><i class="fas fa-check-double text-teal-400 text-lg"></i> Pydantic</span>
-                    <span class="tech-item"><i class="fas fa-wand-magic-sparkles text-violet-400 text-lg"></i> Gen AI</span>
-                    <span class="tech-item"><i class="fas fa-robot text-rose-400 text-lg"></i> Agentic AI</span>
-                    <span class="tech-item"><i class="fas fa-link text-blue-400 text-lg"></i> LangChain</span>
-                    <span class="tech-item"><i class="fas fa-diagram-project text-amber-400 text-lg"></i> LangGraph</span>
-                    <span class="tech-item"><i class="fas fa-code text-violet-400 text-lg"></i> JavaScript</span>
-                    <span class="tech-item"><i class="fas fa-code text-blue-400 text-lg"></i> C++</span>
-                    <span class="tech-item"><i class="fab fa-html5 text-orange-500 text-lg"></i> HTML5</span>
-                    <span class="tech-item"><i class="fab fa-css3-alt text-blue-500 text-lg"></i> CSS3</span>
-                    <span class="tech-item"><i class="fas fa-wind text-cyan-500 text-lg"></i> Tailwind CSS</span>
-                    <span class="tech-item"><i class="fab fa-github text-white text-lg"></i> GitHub</span>
-                    <span class="tech-item"><i class="fab fa-git-alt text-orange-500 text-lg"></i> Git</span>
-                </div>
-            </div>
-        </section>
+      <!-- Section Navigation TOC (Hairline Active Indicator) -->
+      <nav class="sidebar-nav" aria-label="System navigation">
+        <a href="#home" class="nav-item active">
+          <span class="nav-idx">01</span>
+          <span>SYSTEM.OVERVIEW</span>
+        </a>
+        <a href="#expertise" class="nav-item">
+          <span class="nav-idx">02</span>
+          <span>TECH.EXPERTISE</span>
+        </a>
+        <a href="#work" class="nav-item">
+          <span class="nav-idx">03</span>
+          <span>WORK.INDEX</span>
+        </a>
+        <a href="#leetcode" class="nav-item">
+          <span class="nav-idx">04</span>
+          <span>METRICS.LEETCODE</span>
+        </a>
+        <a href="#certifications" class="nav-item">
+          <span class="nav-idx">05</span>
+          <span>LOG.JOURNEY_CERTS</span>
+        </a>
+        <a href="#contact" class="nav-item">
+          <span class="nav-idx">06</span>
+          <span>COMMS.CONTACT</span>
+        </a>
+      </nav>
 
-        <!-- SELECTED WORK SECTION -->
-        <section id="work" class="py-24 fade-in-section">
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
-                <h2 class="text-3xl font-bold font-display text-white flex items-center gap-4">
-                    <span class="w-8 h-[2px] bg-accent-dynamic block"></span> 
-                    Selected Work
-                </h2>
-                
-                <!-- Category Filter Tabs -->
-                <div class="flex flex-wrap gap-2.5 bg-card/40 backdrop-blur-md border border-white/5 p-1.5 rounded-2xl">
-                    <button class="filter-btn active px-4 py-1.5 rounded-xl text-xs font-semibold bg-white text-black transition-all duration-300" data-filter="all">All Projects</button>
-                    <button class="filter-btn px-4 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-white transition-all duration-300" data-filter="ai-ml">AI & ML</button>
-                    <button class="filter-btn px-4 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-white transition-all duration-300" data-filter="web-dev">Web Dev</button>
-                    <button class="filter-btn px-4 py-1.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-white transition-all duration-300" data-filter="upcoming">Upcoming</button>
-                </div>
-            </div>
+      <!-- Sidebar Footer / Direct Channels & Meta -->
+      <div class="sidebar-footer">
+        <div class="sidebar-links">
+          <a href="https://github.com/abhinavbuilds2005" target="_blank" rel="noopener noreferrer" class="sidebar-icon-link" title="GitHub Profile" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/abhinav-anand-865926300" target="_blank" rel="noopener noreferrer" class="sidebar-icon-link" title="LinkedIn Profile" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="https://www.instagram.com/cse.abhinav?igsh=MTcxdDR6N2VyMmIwMQ==" target="_blank" rel="noopener noreferrer" class="sidebar-icon-link" title="Instagram" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="mailto:abhinavanand9996@gmail.com" class="sidebar-icon-link" title="Direct Email" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="Abhinav_Anand_Resume_AIML_Specialized.pdf" target="_blank" rel="noopener noreferrer" class="sidebar-icon-link" title="Resume PDF" aria-label="Resume PDF">
+            <i class="fas fa-file-pdf"></i>
+          </a>
+        </div>
 
-            <div class="flex flex-col gap-12 relative" id="projects-grid">
-                <!-- Project 1: CreditWise -->
-                <div class="project-card-container transition-all duration-500" data-category="ai-ml">
-                    <div class="project-card group">
-                        <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
-                            <div class="flex-1 order-2 md:order-1">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">CreditWise: AI Loan Risk</h3>
-                                    <span class="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">Live</span>
-                                </div>
-                                <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
-                                    An end-to-end machine learning system for loan approval prediction. Built with engineered financial features, risk scoring, and real-time inference, offering robust analytics for decision making, deployed seamlessly via Streamlit.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-8">
-                                    <span class="tech-pill-subtle"><i class="fab fa-python text-yellow-500"></i> Python</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-brain text-indigo-400"></i> Machine Learning</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-chart-line text-sky-400"></i> Streamlit</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-chart-bar text-emerald-400"></i> Logistic Regression</span>
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <button class="open-modal-btn px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2" data-project="creditwise">
-                                        Read Case Study <i class="fas fa-book-open text-xs"></i>
-                                    </button>
-                                    <a href="https://credishield-one.vercel.app/" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="View Live App">
-                                        <i class="fas fa-external-link-alt text-sm"></i>
-                                    </a>
-                                    <a href="https://github.com/abhinavbuilds2005/credit-wise-loan-system" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="Source Code">
-                                        <i class="fab fa-github text-lg"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 order-1 md:order-2 flex items-center justify-center group-hover:border-indigo-500/30 transition-colors relative">
-                                 <!-- Abstract Placeholder for Project Image to keep it looking premium -->
-                                <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/40 to-card z-0"></div>
-                                <img src="project_creditwise_1775755763976.png" alt="CreditWise Project Preview" loading="lazy" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="sidebar-meta-build">
+          <span>LOC: INDIA (UTC+5:30)</span>
+          <span>SYS: v2.6.0</span>
+        </div>
+      </div>
+    </aside>
 
-                <!-- Project 2: Customer Intelligence -->
-                <div class="project-card-container transition-all duration-500" data-category="ai-ml">
-                    <div class="project-card group">
-                        <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
-                            <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 flex items-center justify-center group-hover:border-violet-500/30 transition-colors relative">
-                                <!-- Abstract Placeholder -->
-                                <div class="absolute inset-0 bg-gradient-to-br from-violet-900/40 to-card z-0"></div>
-                                <img src="project_customer_ai_1775755777519.png" alt="Customer Intelligence Project Preview" loading="lazy" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">SmartCart AI</h3>
-                                    <span class="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">Live</span>
-                                </div>
-                                <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
-                                    An AI-powered customer segmentation and churn intelligence platform utilizing K-Means clustering & PCA. It analyzes shopping behavior to generate personalized product recommendations, churn risk scores, and targeted marketing strategies.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-8">
-                                    <span class="tech-pill-subtle"><i class="fab fa-python text-yellow-500"></i> Python</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-cogs text-orange-400"></i> Scikit-learn</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-project-diagram text-violet-400"></i> K-Means & PCA</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-chart-pie text-sky-400"></i> Chart.js</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-tachometer-alt text-emerald-400"></i> Analytics Dashboard</span>
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <button class="open-modal-btn px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2" data-project="customer-ai">
-                                        Read Case Study <i class="fas fa-book-open text-xs"></i>
-                                    </button>
-                                    <a href="https://smartcart-recommendation-system.netlify.app/" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="View Live App">
-                                        <i class="fas fa-external-link-alt text-sm"></i>
-                                    </a>
-                                    <a href="https://github.com/abhinavbuilds2005/Smartcart-Recommendation-system" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="Source Code">
-                                        <i class="fab fa-github text-lg"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Main Content Pane -->
+    <main class="app-main">
+      
+      <!-- ====================================================================
+           01 // SYSTEM OVERVIEW (HERO)
+           ==================================================================== -->
+      <section id="home" class="console-section reveal-on-scroll">
+        <div class="section-meta-header">
+          <div class="section-meta-tag">
+            <span class="tag-prefix">SECTION</span>
+            <span class="section-meta-id">[01] // SYSTEM.OVERVIEW</span>
+          </div>
+          <div class="section-meta-status">
+            <span>STATUS: NOMINAL</span>
+            <span class="text-low">|</span>
+            <span>LOG.ID: AA-8659</span>
+          </div>
+        </div>
 
-                 <!-- Project 3: Portfolio -->
-                <div class="project-card-container transition-all duration-500" data-category="web-dev">
-                    <div class="project-card group">
-                        <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
-                            <div class="flex-1 order-2 md:order-1">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">Personal Portfolio v2</h3>
-                                    <span class="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">Live</span>
-                                </div>
-                                <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
-                                    A highly optimized, beautifully structured web portfolio designed entirely from scratch. Leveraging modern design principles, fluid typography, and premium micro-interactions to deliver a top-tier user experience.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-8">
-                                    <span class="tech-pill-subtle"><i class="fab fa-html5 text-orange-500"></i> HTML5</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-wind text-cyan-500"></i> Tailwind CSS</span>
-                                    <span class="tech-pill-subtle"><i class="fab fa-js text-yellow-400"></i> JavaScript</span>
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <button class="open-modal-btn px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2" data-project="portfolio">
-                                        Read Case Study <i class="fas fa-book-open text-xs"></i>
-                                    </button>
-                                    <a href="https://github.com/abhinavbuilds2005/portfolio" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="Source Code">
-                                        <i class="fab fa-github text-lg"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 order-1 md:order-2 flex items-center justify-center group-hover:border-blue-500/30 transition-colors relative">
-                                <!-- Abstract Placeholder -->
-                                <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-card z-0"></div>
-                                <img src="project_portfolio_1775755792684.png" alt="Portfolio Project Preview" loading="lazy" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4: Upcoming Voice Assistant -->
-                <div class="project-card-container transition-all duration-500" data-category="ai-ml upcoming">
-                    <div class="project-card group">
-                        <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
-                            <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 flex items-center justify-center group-hover:border-cyan-500/30 transition-colors relative">
-                                <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/40 via-slate-900 to-card z-0"></div>
-                                <div class="absolute inset-0 opacity-70 bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.18),transparent_32%),radial-gradient(circle_at_80%_30%,rgba(99,102,241,0.16),transparent_30%),radial-gradient(circle_at_50%_80%,rgba(16,185,129,0.12),transparent_28%)] z-0"></div>
-                                <div class="relative z-10 flex flex-col items-center justify-center text-center px-8">
-                                    <div class="w-20 h-20 rounded-3xl border border-cyan-400/30 bg-cyan-400/10 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.18)] mb-5">
-                                        <i class="fas fa-microphone-lines text-3xl text-cyan-300"></i>
-                                    </div>
-                                    <h4 class="text-white font-display text-2xl font-bold mb-2">AI Voice Assistant</h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Conversational voice workflows, real-time responses, and smart task execution.</p>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">AI Voice Assistant</h3>
-                                    <span class="px-3 py-1 text-xs font-medium bg-amber-500/10 text-amber-300 border border-amber-500/20 rounded-full">Upcoming</span>
-                                </div>
-                                <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
-                                    A next-generation assistant built for natural voice conversations, instant query resolution, and action-based workflows. The system is planned to combine speech recognition, LLM reasoning, and task automation.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-8">
-                                    <span class="tech-pill-subtle"><i class="fab fa-python text-yellow-500"></i> Python</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-microphone text-cyan-400"></i> Speech-to-Text</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-robot text-pink-400"></i> LLM Integration</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-cog text-gray-400"></i> Automation</span>
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <button class="open-modal-btn px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2" data-project="voice-assistant">
-                                        Read Case Study <i class="fas fa-book-open text-xs"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5: AI Attendance System -->
-                <div class="project-card-container transition-all duration-500" data-category="ai-ml">
-                    <div class="project-card group">
-                        <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
-                            <div class="flex-1 order-2 md:order-1">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">PresentAI</h3>
-                                    <span class="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">Live</span>
-                                </div>
-                                <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
-                                    A multimodal, contact-free attendance tracking framework designed for modern institutions. It authenticates identity using both real-time facial recognition and deep acoustic speaker verification to record attendance securely.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-8">
-                                    <span class="tech-pill-subtle"><i class="fab fa-python text-yellow-500"></i> Python</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-eye text-blue-400"></i> OpenCV</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-id-badge text-indigo-400"></i> FaceNet</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-wave-square text-pink-400"></i> Voice Biometrics</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-server text-sky-400"></i> PostgreSQL</span>
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <button class="open-modal-btn px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2" data-project="attendance-system">
-                                        Read Case Study <i class="fas fa-book-open text-xs"></i>
-                                    </button>
-                                    <a href="https://presentai-attendance.onrender.com" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="View Live App">
-                                        <i class="fas fa-external-link-alt text-sm"></i>
-                                    </a>
-                                    <a href="https://github.com/abhinavbuilds2005/AI-Powered-Attendance-Platform" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="Source Code">
-                                        <i class="fab fa-github text-lg"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 order-1 md:order-2 flex items-center justify-center group-hover:border-emerald-500/30 transition-colors relative">
-                                <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/40 to-card z-0"></div>
-                                <img src="project_attendance_system.jpg" alt="AI Attendance System Preview" loading="lazy" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 z-10">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Project 6: ATS Resume Analyser -->
-                <div class="project-card-container transition-all duration-500" data-category="ai-ml">
-                    <div class="project-card group">
-                        <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
-                            <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 flex items-center justify-center group-hover:border-amber-500/30 transition-colors relative">
-                                <div class="absolute inset-0 bg-gradient-to-br from-amber-900/40 via-slate-900 to-card z-0"></div>
-                                <div class="absolute inset-0 opacity-70 bg-[radial-gradient(circle_at_20%_20%,rgba(245,158,11,0.18),transparent_32%),radial-gradient(circle_at_80%_30%,rgba(99,102,241,0.16),transparent_30%),radial-gradient(circle_at_50%_80%,rgba(245,158,11,0.12),transparent_28%)] z-0"></div>
-                                <div class="relative z-10 flex flex-col items-center justify-center text-center px-8">
-                                    <div class="w-20 h-20 rounded-3xl border border-amber-400/30 bg-amber-400/10 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(245,158,11,0.18)] mb-5">
-                                        <i class="fas fa-file-invoice text-3xl text-amber-300"></i>
-                                    </div>
-                                    <h4 class="text-white font-display text-2xl font-bold mb-2">ElevateCV AI</h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Semantic layout parsing, keyword gap assessment, and generative optimizations.</p>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">ElevateCV: ATS Resume Analyser</h3>
-                                    <span class="px-3 py-1 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full">Live</span>
-                                </div>
-                                <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
-                                    An AI resume scoring system that extracts structured text from multi-column PDFs, measures semantic alignment with custom job descriptions, and offers generative feedback to bypass ATS filters.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-8">
-                                    <span class="tech-pill-subtle"><i class="fab fa-python text-yellow-500"></i> Python</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-chart-line text-sky-400"></i> Streamlit</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-robot text-purple-400"></i> Gemini API</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-file-alt text-amber-400"></i> PyPDF2 / NLP</span>
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <button class="open-modal-btn px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2" data-project="resume-analyser">
-                                        Read Case Study <i class="fas fa-book-open text-xs"></i>
-                                    </button>
-                                    <a href="https://elevatecv-ai.streamlit.app/" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="View Live App">
-                                        <i class="fas fa-external-link-alt text-sm"></i>
-                                    </a>
-                                    <a href="https://github.com/abhinavbuilds2005/ATS-RESUME-ANALYZER" target="_blank" class="p-2.5 rounded-full border border-white/10 hover:bg-white/5 transition-all hover:scale-105 text-white flex items-center justify-center" title="Source Code">
-                                        <i class="fab fa-github text-lg"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 7: Neural Style Transfer -->
-                <div class="project-card-container transition-all duration-500" data-category="ai-ml upcoming">
-                    <div class="project-card group">
-                        <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
-                            <div class="flex-1 order-2 md:order-1">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">Neural Style Transfer</h3>
-                                    <span class="px-3 py-1 text-xs font-medium bg-rose-500/10 text-rose-300 border border-rose-500/20 rounded-full">Upcoming</span>
-                                </div>
-                                <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
-                                    An artistic image rendering playground using convolutional neural networks (CNNs) to extract features from classical artwork masterpieces and blend them stylistically onto digital photographs.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-8">
-                                    <span class="tech-pill-subtle"><i class="fab fa-python text-yellow-500"></i> Python</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-fire text-orange-500"></i> PyTorch</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-network-wired text-rose-400"></i> VGG-19 CNN</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-chart-line text-sky-400"></i> Streamlit Canvas</span>
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <button class="open-modal-btn px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2" data-project="style-transfer">
-                                        Read Case Study <i class="fas fa-book-open text-xs"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 order-1 md:order-2 flex items-center justify-center group-hover:border-rose-500/30 transition-colors relative">
-                                <div class="absolute inset-0 bg-gradient-to-br from-rose-900/40 via-slate-900 to-card z-0"></div>
-                                <div class="absolute inset-0 opacity-70 bg-[radial-gradient(circle_at_20%_20%,rgba(244,63,94,0.18),transparent_32%),radial-gradient(circle_at_80%_30%,rgba(99,102,241,0.16),transparent_30%),radial-gradient(circle_at_50%_80%,rgba(244,63,94,0.12),transparent_28%)] z-0"></div>
-                                <div class="relative z-10 flex flex-col items-center justify-center text-center px-8">
-                                    <div class="w-20 h-20 rounded-3xl border border-rose-400/30 bg-rose-400/10 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(244,63,94,0.18)] mb-5">
-                                        <i class="fas fa-paint-brush text-3xl text-rose-300"></i>
-                                    </div>
-                                    <h4 class="text-white font-display text-2xl font-bold mb-2">Neural Style Transfer</h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Synthesis of content and artistic textures using deep optimization algorithms.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 8: AI Real-Time Gym Trainer -->
-                <div class="project-card-container transition-all duration-500" data-category="ai-ml upcoming">
-                    <div class="project-card group">
-                        <div class="p-8 md:p-12 flex flex-col md:flex-row gap-10 items-center">
-                            <div class="w-full md:w-2/5 aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden bg-card border border-white/5 flex items-center justify-center group-hover:border-indigo-500/30 transition-colors relative">
-                                <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/40 via-slate-900 to-card z-0"></div>
-                                <div class="absolute inset-0 opacity-70 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.18),transparent_32%),radial-gradient(circle_at_80%_30%,rgba(99,102,241,0.16),transparent_30%),radial-gradient(circle_at_50%_80%,rgba(99,102,241,0.12),transparent_28%)] z-0"></div>
-                                <div class="relative z-10 flex flex-col items-center justify-center text-center px-8">
-                                    <div class="w-20 h-20 rounded-3xl border border-indigo-400/30 bg-indigo-400/10 backdrop-blur-md flex items-center justify-center shadow-[0_0_30px_rgba(99,102,241,0.18)] mb-5">
-                                        <i class="fas fa-dumbbell text-3xl text-indigo-300"></i>
-                                    </div>
-                                    <h4 class="text-white font-display text-2xl font-bold mb-2">AI Gym Trainer</h4>
-                                    <p class="text-sm text-gray-300 leading-relaxed">Real-time pose skeleton estimation, joint angle assessment, and repetition tracking.</p>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <h3 class="text-2xl md:text-3xl font-bold text-white font-display">AI Real-Time Gym Trainer</h3>
-                                    <span class="px-3 py-1 text-xs font-medium bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 rounded-full">Upcoming</span>
-                                </div>
-                                <p class="text-gray-400 text-base leading-relaxed mb-8 max-w-xl">
-                                    A real-time computer vision system that tracks physical exercises using standard device webcams, calculating joint angles to guarantee perfect form and automatically count repetitions.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-8">
-                                    <span class="tech-pill-subtle"><i class="fab fa-python text-yellow-500"></i> Python</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-walking text-emerald-400"></i> MediaPipe Pose</span>
-                                    <span class="tech-pill-subtle"><i class="fas fa-eye text-blue-400"></i> OpenCV</span>
-                                    <span class="tech-pill-subtle"><i class="fab fa-js text-yellow-400"></i> JavaScript</span>
-                                </div>
-                                <div class="flex items-center gap-4">
-                                    <button class="open-modal-btn px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all hover:scale-105 active:scale-95 flex items-center gap-2" data-project="gym-trainer">
-                                        Read Case Study <i class="fas fa-book-open text-xs"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- LEETCODE ACTIVITY DASHBOARD -->
-        <section id="leetcode" class="py-24 fade-in-section">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12">
-                <h2 class="text-3xl font-bold font-display text-white flex items-center gap-4">
-                    <span class="w-8 h-[2px] bg-accent-dynamic block"></span> 
-                    LeetCode Analytics
-                </h2>
-                
-                <div class="flex items-center gap-4 self-end sm:self-auto">
-                    <span class="text-xs font-semibold text-gray-400 bg-white/5 border border-white/5 px-3 py-1.5 rounded-full flex items-center gap-2">
-                        <span class="relative flex h-1.5 w-1.5">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-                        </span>
-                        <span>Live Syncing</span>
-                    </span>
-                    <button id="leetcode-refresh" class="p-2.5 rounded-full border border-white/10 bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 hover:border-accent-dynamic transition-all hover:scale-105 flex items-center justify-center" title="Force Sync Data">
-                        <i class="fas fa-sync-alt text-sm transition-transform duration-500" id="leetcode-refresh-icon"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Loading State -->
-            <div id="leetcode-loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="premium-card p-8 h-[400px] flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="h-6 w-1/3 shimmer-bg rounded-lg opacity-40"></div>
-                        <div class="w-32 h-32 mx-auto rounded-full shimmer-bg opacity-30 mt-8"></div>
-                    </div>
-                    <div class="space-y-3 mt-4">
-                        <div class="h-3 w-full shimmer-bg rounded-lg opacity-25"></div>
-                        <div class="h-3 w-5/6 shimmer-bg rounded-lg opacity-25"></div>
-                        <div class="h-3 w-4/5 shimmer-bg rounded-lg opacity-25"></div>
-                    </div>
-                </div>
-                <div class="premium-card p-8 h-[400px] flex flex-col justify-between">
-                    <div class="space-y-6">
-                        <div class="h-6 w-1/2 shimmer-bg rounded-lg opacity-40"></div>
-                        <div class="space-y-4 mt-8">
-                            <div class="flex justify-between items-center">
-                                <div class="h-4 w-1/4 shimmer-bg rounded opacity-30"></div>
-                                <div class="h-4 w-1/3 shimmer-bg rounded opacity-30"></div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <div class="h-4 w-1/4 shimmer-bg rounded opacity-30"></div>
-                                <div class="h-4 w-1/3 shimmer-bg rounded opacity-30"></div>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <div class="h-4 w-1/4 shimmer-bg rounded opacity-30"></div>
-                                <div class="h-4 w-1/3 shimmer-bg rounded opacity-30"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="h-12 w-full shimmer-bg rounded-xl opacity-35 mt-6"></div>
-                </div>
-                <div class="premium-card p-8 h-[400px] flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="h-6 w-1/2 shimmer-bg rounded-lg opacity-40"></div>
-                        <div class="space-y-6 mt-8">
-                            <div class="h-10 w-full shimmer-bg rounded-xl opacity-20"></div>
-                            <div class="h-10 w-full shimmer-bg rounded-xl opacity-20"></div>
-                            <div class="h-10 w-full shimmer-bg rounded-xl opacity-20"></div>
-                        </div>
-                    </div>
-                    <div class="h-4 w-1/2 mx-auto shimmer-bg rounded opacity-25 mt-4"></div>
-                </div>
-            </div>
-
-            <!-- Content State (Initially Hidden) -->
-            <div id="leetcode-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 hidden">
-                <!-- Solved Progress Ring Card -->
-                <div class="premium-card p-8 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold text-white font-display mb-6 flex items-center gap-2">
-                            <i class="fas fa-check-circle text-accent-dynamic"></i> Solved Problems
-                        </h3>
-                        
-                        <!-- Circular SVG Progress Ring -->
-                        <div class="relative w-36 h-36 mx-auto flex items-center justify-center mb-8">
-                            <svg class="w-full h-full" viewBox="0 0 120 120">
-                                <circle cx="60" cy="60" r="50" class="stroke-white/5 fill-transparent" stroke-width="8"></circle>
-                                <circle id="leetcode-ring" cx="60" cy="60" r="50" class="stroke-accent-dynamic leetcode-ring-circle fill-transparent" stroke-width="8" stroke-dasharray="314.16" stroke-dashoffset="314.16" stroke-linecap="round"></circle>
-                            </svg>
-                            <div class="absolute text-center">
-                                <span id="leetcode-solved" class="text-3xl font-bold font-display text-white">0</span>
-                                <span class="text-[10px] text-muted block uppercase tracking-widest font-semibold mt-0.5">Solved</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Difficulties details -->
-                    <div class="space-y-3">
-                        <!-- Easy -->
-                        <div>
-                            <div class="flex justify-between text-xs mb-1 font-medium">
-                                <span class="text-emerald-400">Easy</span>
-                                <span class="text-gray-300" id="leetcode-easy-text">0/0</span>
-                            </div>
-                            <div class="bg-white/5 h-2 rounded-full overflow-hidden">
-                                <div id="leetcode-easy-bar" class="bg-emerald-500 h-full rounded-full transition-all duration-1000" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Medium -->
-                        <div>
-                            <div class="flex justify-between text-xs mb-1 font-medium">
-                                <span class="text-amber-400">Medium</span>
-                                <span class="text-gray-300" id="leetcode-medium-text">0/0</span>
-                            </div>
-                            <div class="bg-white/5 h-2 rounded-full overflow-hidden">
-                                <div id="leetcode-medium-bar" class="bg-amber-500 h-full rounded-full transition-all duration-1000" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Hard -->
-                        <div>
-                            <div class="flex justify-between text-xs mb-1 font-medium">
-                                <span class="text-rose-400">Hard</span>
-                                <span class="text-gray-300" id="leetcode-hard-text">0/0</span>
-                            </div>
-                            <div class="bg-white/5 h-2 rounded-full overflow-hidden">
-                                <div id="leetcode-hard-bar" class="bg-rose-500 h-full rounded-full transition-all duration-1000" style="width: 0%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Profile Statistics Card -->
-                <div class="premium-card p-8 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold text-white font-display mb-6 flex items-center gap-2">
-                            <i class="fas fa-user text-accent-dynamic"></i> Profile Statistics
-                        </h3>
-                        
-                        <div class="space-y-4">
-                            <!-- Ranking -->
-                            <div class="flex items-center justify-between p-4 bg-white/5 border border-white/5 rounded-2xl">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-500">
-                                        <i class="fas fa-trophy text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <span class="text-xs text-gray-500 uppercase tracking-wider block">Global Rank</span>
-                                        <span id="leetcode-rank" class="font-bold text-white font-display">--</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Contribution Points -->
-                            <div class="flex items-center justify-between p-4 bg-white/5 border border-white/5 rounded-2xl">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-500">
-                                        <i class="fas fa-fire text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <span class="text-xs text-gray-500 uppercase tracking-wider block">Contribution Points</span>
-                                        <span id="leetcode-points" class="font-bold text-white font-display">--</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Reputation -->
-                            <div class="flex items-center justify-between p-4 bg-white/5 border border-white/5 rounded-2xl">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400">
-                                        <i class="fas fa-star text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <span class="text-xs text-gray-500 uppercase tracking-wider block">Reputation Score</span>
-                                        <span id="leetcode-reputation" class="font-bold text-white font-display">--</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <a href="https://leetcode.com/u/cseabhinav2005/" target="_blank" class="w-full py-3.5 bg-white text-black font-semibold rounded-xl transition-all hover:bg-gray-200 flex items-center justify-center gap-2 text-sm mt-6 hover:scale-[1.02] active:scale-[0.98]">
-                        Visit LeetCode Profile <i class="fas fa-external-link-alt text-xs"></i>
-                    </a>
-                </div>
-
-                <!-- Recent Activity Card -->
-                <div class="premium-card p-8 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold text-white font-display mb-6 flex items-center gap-2">
-                            <i class="fas fa-history text-accent-dynamic"></i> Recent Activity
-                        </h3>
-                        
-                        <div id="leetcode-submissions" class="space-y-3">
-                            <!-- Filled dynamically by JavaScript -->
-                        </div>
-                    </div>
-                    
-                    <div class="text-xs text-center text-gray-500 mt-6 select-none">
-                        Real-time updates pulled from public LeetCode APIs
-                    </div>
-                </div>
-            </div>
-
-            <!-- Error fallback state (Initially Hidden) -->
-            <div id="leetcode-error" class="hidden premium-card p-8 text-center max-w-xl mx-auto border-red-500/20">
-                <div class="w-16 h-16 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-exclamation-circle text-2xl text-red-500"></i>
-                </div>
-                <h3 class="text-xl font-bold text-white mb-2 font-display">Failed to Sync Stats</h3>
-                <p class="text-sm text-gray-400 leading-relaxed mb-6">We couldn't retrieve your live LeetCode statistics at this moment. You can view my practice tracker directly on my LeetCode profile.</p>
-                <div class="flex justify-center gap-4">
-                    <button id="leetcode-retry" class="px-5 py-2.5 bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-200 transition-all flex items-center gap-2 hover:scale-105">
-                        Try Again <i class="fas fa-sync-alt text-xs"></i>
-                    </button>
-                    <a href="https://leetcode.com/u/cseabhinav2005/" target="_blank" class="px-5 py-2.5 border border-white/10 bg-white/5 text-white text-sm font-semibold rounded-full hover:bg-white/10 transition-all hover:scale-105">
-                        Go to LeetCode
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- JOURNEY & CERTIFICATIONS -->
-        <section class="py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 fade-in-section">
-            <!-- Timeline -->
+        <div class="section-body">
+          <div class="hero-grid">
             <div>
-                <h2 class="text-3xl font-bold font-display text-white mb-10 flex items-center gap-4">
-                    <span class="w-8 h-[2px] bg-accent-dynamic block"></span> 
-                    Professional Journey
-                </h2>
-                <div class="space-y-8 relative before:absolute before:inset-0 before:ml-2 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-accent-dynamic before:via-white/10 before:to-transparent">
-                    <!-- June 2026: DSA in C++ -->
-                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gap-6">
-                        <div class="flex items-center justify-center w-5 h-5 rounded-full bg-bg border-[3px] border-accent-dynamic z-10 shrink-0 md:order-1 md:-translate-x-1/2 absolute left-0 md:left-1/2 translate-x-[-9px] shadow-accent-glow-dynamic"></div>
-                        <div class="pl-10 md:pl-0 md:w-[calc(50%-2rem)] md:text-right md:group-odd:text-left">
-                            <span class="font-mono text-xs text-accent-dynamic mb-1 block">June 2026 - Present</span>
-                            <h4 class="text-lg font-bold text-white mb-1">DSA Mastery in C++</h4>
-                            <p class="text-sm text-gray-400">Initiated systematic implementation and optimization of Data Structures & Algorithms in C++, focusing on complexity reduction, memory management, and scaling performance.</p>
-                        </div>
-                    </div>
+              <div class="hero-intro-label">LOG ENTRY // IDENTITY & FOCUS</div>
+              <h1 class="hero-headline">
+                Engineering Intelligent Systems & Scalable ML Pipelines.
+              </h1>
+              <p class="hero-bio">
+                I'm <strong>Abhinav Anand</strong>, an AI/ML Engineer and 2nd-year B.Tech CSE (AI/ML) student at Lovely Professional University. I architect and implement predictive machine learning models, multimodal biometric verification systems, and agentic workflows built for reliability, scalability, and measurable impact.
+              </p>
 
-                    <!-- 2025: AI & Web -->
-                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gap-6">
-                        <div class="flex items-center justify-center w-5 h-5 rounded-full bg-bg border-[3px] border-emerald-500 z-10 shrink-0 md:order-1 md:-translate-x-1/2 absolute left-0 md:left-1/2 translate-x-[-9px]"></div>
-                        <div class="pl-10 md:pl-0 md:w-[calc(50%-2rem)] md:text-right md:group-odd:text-left">
-                            <span class="font-mono text-xs text-emerald-400 mb-1 block">2025 - Present</span>
-                            <h4 class="text-lg font-bold text-white mb-1">Deep Dive into AI & Web</h4>
-                            <p class="text-sm text-gray-400">Combining AI/ML fundamentals with modern web architectures to build interactive applications.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Skill Mastery -->
-                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gap-6">
-                        <div class="flex items-center justify-center w-5 h-5 rounded-full bg-bg border-[3px] border-violet-500 z-10 shrink-0 md:order-1 md:-translate-x-1/2 absolute left-0 md:left-1/2 translate-x-[-9px]"></div>
-                        <div class="pl-10 md:pl-0 md:w-[calc(50%-2rem)] md:text-right md:group-odd:text-left">
-                            <span class="font-mono text-xs text-violet-400 mb-1 block">Skill Mastery</span>
-                            <h4 class="text-lg font-bold text-white mb-1">Data Science Core</h4>
-                            <p class="text-sm text-gray-400">Mastered visualization, complex structured ML models, and robust database architectures.</p>
-                        </div>
-                    </div>
+              <!-- Recruiter Quick-Scan Strip (3-second skimmable) -->
+              <div class="recruiter-quick-scan" aria-label="Recruiter Quick Scan">
+                <div class="quick-scan-item">
+                  <span class="scan-label">TARGET ROLE</span>
+                  <span class="scan-val">AI/ML Engineer · Systems & Models</span>
+                </div>
+                <div class="quick-scan-item">
+                  <span class="scan-label">AVAILABILITY</span>
+                  <span class="scan-val"><span class="status-dot"></span> Immediate · Remote / On-Site</span>
+                </div>
+                <div class="quick-scan-item">
+                  <span class="scan-label">PRIMARY STACK</span>
+                  <span class="scan-val">Python · PyTorch · Scikit-Learn · C++</span>
+                </div>
+              </div>
 
-                    <!-- Algorithmic Scaling -->
-                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group gap-6">
-                        <div class="flex items-center justify-center w-5 h-5 rounded-full bg-bg border-[3px] border-white/20 z-10 shrink-0 md:order-1 md:-translate-x-1/2 absolute left-0 md:left-1/2 translate-x-[-9px] group-hover:border-white transition-colors"></div>
-                        <div class="pl-10 md:pl-0 md:w-[calc(50%-2rem)] md:text-right md:group-odd:text-left">
-                            <span class="font-mono text-xs text-gray-500 mb-1 block">Continuous</span>
-                            <h4 class="text-lg font-bold text-white mb-1">Algorithmic Scaling</h4>
-                            <p class="text-sm text-gray-400">Regular complex problem solving focusing on system performance and optimization logic.</p>
-                        </div>
-                    </div>
+              <div class="hero-actions">
+                <a href="#work" class="btn btn-primary">
+                  Inspect Work Index [03] <i class="fas fa-arrow-down text-xs"></i>
+                </a>
+                <a href="Abhinav_Anand_Resume_AIML_Specialized.pdf" target="_blank" rel="noopener noreferrer" class="btn">
+                  <i class="fas fa-file-pdf"></i> Curriculum Vitae
+                </a>
+                <a href="#contact" class="btn">
+                  Open Comms [06] <i class="fas fa-terminal text-xs"></i>
+                </a>
+              </div>
+
+              <!-- Telemetry Mini Readout Strip -->
+              <div class="telemetry-strip">
+                <div class="telemetry-cell">
+                  <span class="cell-label">PRIMARY DOMAIN</span>
+                  <span class="cell-val">AI & Machine Learning</span>
+                </div>
+                <div class="telemetry-cell">
+                  <span class="cell-label">CORE TOOLCHAIN</span>
+                  <span class="cell-val">Python / PyTorch / C++</span>
+                </div>
+                <div class="telemetry-cell">
+                  <span class="cell-label">GITHUB VERIFIED REPOS</span>
+                  <span class="cell-val" id="gh-stat-repos">
+                    <span id="gh-repo-count">7</span> Public Repos
+                    <span class="text-low" style="font-size: 0.68rem; font-weight: normal;" id="gh-repo-sync">● Live</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Technical Portrait Frame with Viewfinder Reticle -->
+            <div class="hero-visual">
+              <div class="viewfinder-frame">
+                <div class="viewfinder-corner corner-tl"></div>
+                <div class="viewfinder-corner corner-tr"></div>
+                <div class="viewfinder-corner corner-bl"></div>
+                <div class="viewfinder-corner corner-br"></div>
+                <img src="abhinav.jpeg" alt="Abhinav Anand - Engineering Portrait" class="viewfinder-img" width="340" height="340" loading="eager" decoding="async">
+              </div>
+              <div class="avatar-caption">
+                <span>RECON // ID: AA-2005</span>
+                <span>VERIFIED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           02 // TECH.EXPERTISE (SKILLS CATEGORY MATRIX)
+           ==================================================================== -->
+      <section id="expertise" class="console-section reveal-on-scroll">
+        <div class="section-meta-header">
+          <div class="section-meta-tag">
+            <span class="tag-prefix">SECTION</span>
+            <span class="section-meta-id">[02] // TECH.EXPERTISE</span>
+          </div>
+          <div class="section-meta-status">
+            <span>DOMAIN: AI / ML / DATA / SYSTEMS</span>
+          </div>
+        </div>
+
+        <div class="section-body">
+          <h2 class="section-title">Technical Competencies & Toolchain</h2>
+          <p class="section-subtitle">
+            A structured category matrix spanning low-level algorithms, predictive machine learning pipelines, agentic orchestration, and modern data architectures.
+          </p>
+
+          <!-- Structured Matrix of Categories with Hairline Dividers -->
+          <div class="skills-matrix">
+            
+            <!-- Row 1: Languages -->
+            <div class="skill-category-row">
+              <div class="skill-category-label">
+                <span class="cat-title">01 Languages</span>
+                <span class="cat-sub">Foundations & Runtimes</span>
+              </div>
+              <div class="skill-items-container">
+                <span class="skill-badge"><i class="fab fa-python"></i> Python</span>
+                <span class="skill-badge"><i class="fas fa-code"></i> C++</span>
+                <span class="skill-badge"><i class="fas fa-database"></i> SQL</span>
+                <span class="skill-badge"><i class="fab fa-js"></i> JavaScript</span>
+                <span class="skill-badge"><i class="fab fa-html5"></i> HTML5</span>
+                <span class="skill-badge"><i class="fab fa-css3-alt"></i> CSS3</span>
+              </div>
+            </div>
+
+            <!-- Row 2: AI & Machine Learning -->
+            <div class="skill-category-row">
+              <div class="skill-category-label">
+                <span class="cat-title">02 Machine Learning</span>
+                <span class="cat-sub">Modeling & Neural Networks</span>
+              </div>
+              <div class="skill-items-container">
+                <span class="skill-badge"><i class="fas fa-brain"></i> Machine Learning</span>
+                <span class="skill-badge"><i class="fas fa-fire"></i> PyTorch</span>
+                <span class="skill-badge"><i class="fas fa-network-wired"></i> Scikit-Learn</span>
+                <span class="skill-badge"><i class="fas fa-wand-magic-sparkles"></i> Gen AI</span>
+                <span class="skill-badge"><i class="fas fa-robot"></i> Agentic AI</span>
+                <span class="skill-badge"><i class="fas fa-link"></i> LangChain</span>
+                <span class="skill-badge"><i class="fas fa-diagram-project"></i> LangGraph</span>
+                <span class="skill-badge"><i class="fas fa-eye"></i> OpenCV</span>
+                <span class="skill-badge"><i class="fas fa-id-badge"></i> FaceNet</span>
+              </div>
+            </div>
+
+            <!-- Row 3: Data & Mathematics -->
+            <div class="skill-category-row">
+              <div class="skill-category-label">
+                <span class="cat-title">03 Data & Analytics</span>
+                <span class="cat-sub">Processing & Geometry</span>
+              </div>
+              <div class="skill-items-container">
+                <span class="skill-badge"><i class="fas fa-cube"></i> NumPy</span>
+                <span class="skill-badge"><i class="fas fa-table"></i> Pandas</span>
+                <span class="skill-badge"><i class="fas fa-chart-area"></i> Matplotlib</span>
+                <span class="skill-badge"><i class="fas fa-chart-pie"></i> Seaborn</span>
+                <span class="skill-badge"><i class="fas fa-project-diagram"></i> PCA (Dimensional Reduction)</span>
+                <span class="skill-badge"><i class="fas fa-balance-scale"></i> SMOTE (Sampling)</span>
+                <span class="skill-badge"><i class="fas fa-circle-nodes"></i> K-Means Clustering</span>
+              </div>
+            </div>
+
+            <!-- Row 4: Backend & Architecture -->
+            <div class="skill-category-row">
+              <div class="skill-category-label">
+                <span class="cat-title">04 Backend & Storage</span>
+                <span class="cat-sub">APIs & Relational Stores</span>
+              </div>
+              <div class="skill-items-container">
+                <span class="skill-badge"><i class="fas fa-bolt"></i> FastAPI</span>
+                <span class="skill-badge"><i class="fas fa-check-double"></i> Pydantic</span>
+                <span class="skill-badge"><i class="fas fa-server"></i> PostgreSQL</span>
+                <span class="skill-badge"><i class="fas fa-chart-line"></i> Streamlit</span>
+                <span class="skill-badge"><i class="fas fa-network-wired"></i> RESTful Architecture</span>
+              </div>
+            </div>
+
+            <!-- Row 5: Developer Tooling -->
+            <div class="skill-category-row">
+              <div class="skill-category-label">
+                <span class="cat-title">05 Developer Tools</span>
+                <span class="cat-sub">Version Control & Systems</span>
+              </div>
+              <div class="skill-items-container">
+                <span class="skill-badge"><i class="fab fa-git-alt"></i> Git</span>
+                <span class="skill-badge"><i class="fab fa-github"></i> GitHub</span>
+                <span class="skill-badge"><i class="fas fa-terminal"></i> Linux / CLI</span>
+                <span class="skill-badge"><i class="fas fa-running"></i> MediaPipe Pose</span>
+                <span class="skill-badge"><i class="fas fa-wind"></i> Tailwind CSS</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           03 // WORK.INDEX (MASTER-DETAIL PROJECT CONSOLE)
+           ==================================================================== -->
+      <section id="work" class="console-section reveal-on-scroll">
+        <div class="section-meta-header">
+          <div class="section-meta-tag">
+            <span class="tag-prefix">SECTION</span>
+            <span class="section-meta-id">[03] // WORK.INDEX</span>
+          </div>
+          <div class="section-meta-status">
+            <span>REGISTRY: 8 SYSTEMS CATALOGED</span>
+          </div>
+        </div>
+
+        <div class="section-body">
+          <h2 class="section-title">Selected Engineering Work</h2>
+          <p class="section-subtitle">
+            An engineering index of predictive models, computer vision systems, and applied machine learning platforms. Select any project from the left registry to inspect architecture specs, challenges, and code repositories.
+          </p>
+
+          <!-- Master-Detail Two-Column Console -->
+          <div class="project-console-layout">
+            <!-- Left Master Project List -->
+            <div id="project-master-list" class="project-master-list">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+
+            <!-- Right Detail Viewport -->
+            <div id="project-detail-panel" class="project-detail-panel">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           04 // METRICS.LEETCODE (LEETCODE TELEMETRY READOUT)
+           ==================================================================== -->
+      <section id="leetcode" class="console-section reveal-on-scroll">
+        <div class="section-meta-header">
+          <div class="section-meta-tag">
+            <span class="tag-prefix">SECTION</span>
+            <span class="section-meta-id">[04] // METRICS.LEETCODE</span>
+          </div>
+          <div class="section-meta-status">
+            <span id="leetcode-sync-status">INITIALIZING...</span>
+            <span class="text-low">|</span>
+            <span id="leetcode-last-synced" class="text-low" style="font-size: 0.68rem;">LAST SYNCED: --</span>
+            <span class="text-low">|</span>
+            <button type="button" id="leetcode-sync-btn" class="btn btn-sm" style="padding: 0.2rem 0.5rem; font-size: 0.65rem;" title="Force re-sync">
+              <i class="fas fa-sync-alt"></i> REFRESH
+            </button>
+          </div>
+        </div>
+
+        <div class="section-body">
+          <h2 class="section-title">Algorithmic Practice & Telemetry</h2>
+          <p class="section-subtitle">
+            Real-time metric telemetry tracking Data Structures & Algorithms problem solving in C++. Data synchronizes directly via serverless proxy from LeetCode for profile <code>@cseabhinav2005</code>.
+          </p>
+
+          <div class="leetcode-console">
+            <!-- 4-Stat Strip -->
+            <div class="stats-readout-grid">
+              <div class="stat-readout-cell">
+                <span class="stat-readout-label">TOTAL PROBLEMS SOLVED</span>
+                <span class="stat-readout-val" id="leetcode-stat-solved">10</span>
+              </div>
+              <div class="stat-readout-cell">
+                <span class="stat-readout-label">GLOBAL RANK</span>
+                <span class="stat-readout-val" id="leetcode-stat-rank">5,000,001+</span>
+              </div>
+              <div class="stat-readout-cell">
+                <span class="stat-readout-label">CONTRIBUTION POINTS</span>
+                <span class="stat-readout-val" id="leetcode-stat-points">0</span>
+              </div>
+              <div class="stat-readout-cell">
+                <span class="stat-readout-label">REPUTATION SCORE</span>
+                <span class="stat-readout-val" id="leetcode-stat-rep">0</span>
+              </div>
+            </div>
+
+            <!-- Difficulty Breakdown -->
+            <div class="diff-breakdown-card">
+              <div class="diff-header">
+                <span>DIFFICULTY DISTRIBUTION</span>
+                <span>RATIO</span>
+              </div>
+              <div class="diff-bars-stack">
+                <div class="diff-bar-item">
+                  <div class="diff-bar-meta">
+                    <span class="diff-label font-mono">Easy</span>
+                    <span class="diff-score font-mono" id="diff-score-easy">7 / 962</span>
+                  </div>
+                  <div class="diff-track">
+                    <div id="diff-bar-easy" class="diff-fill easy" style="width: 3%;"></div>
+                  </div>
+                </div>
+                <div class="diff-bar-item">
+                  <div class="diff-bar-meta">
+                    <span class="diff-label font-mono">Medium</span>
+                    <span class="diff-score font-mono" id="diff-score-medium">3 / 2109</span>
+                  </div>
+                  <div class="diff-track">
+                    <div id="diff-bar-medium" class="diff-fill medium" style="width: 1.5%;"></div>
+                  </div>
+                </div>
+                <div class="diff-bar-item">
+                  <div class="diff-bar-meta">
+                    <span class="diff-label font-mono">Hard</span>
+                    <span class="diff-score font-mono" id="diff-score-hard">0 / 971</span>
+                  </div>
+                  <div class="diff-track">
+                    <div id="diff-bar-hard" class="diff-fill hard" style="width: 0%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Submissions Ledger Table -->
+            <div class="submissions-ledger">
+              <div class="ledger-header">
+                <span>RECENT VERIFIED SUBMISSIONS</span>
+                <span>LANG: C++</span>
+              </div>
+              <table class="ledger-table">
+                <thead>
+                  <tr>
+                    <th>Problem Name</th>
+                    <th>Runtime / Lang</th>
+                    <th>Status</th>
+                    <th>Timestamp</th>
+                  </tr>
+                </thead>
+                <tbody id="submissions-table-body">
+                  <!-- Populated by script.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Direct LeetCode Link -->
+            <div style="display: flex; justify-content: flex-end; margin-top: 0.5rem;">
+              <a href="https://leetcode.com/u/cseabhinav2005/" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
+                Open Full LeetCode Profile <i class="fas fa-external-link-alt text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           05 // LOG.JOURNEY_CERTS (TIMELINE & CERTIFICATIONS)
+           ==================================================================== -->
+      <section id="certifications" class="console-section reveal-on-scroll">
+        <div class="section-meta-header">
+          <div class="section-meta-tag">
+            <span class="tag-prefix">SECTION</span>
+            <span class="section-meta-id">[05] // LOG.JOURNEY_CERTS</span>
+          </div>
+          <div class="section-meta-status">
+            <span>VERIFIED CREDENTIALS & MILESTONES</span>
+          </div>
+        </div>
+
+        <div class="section-body">
+          <h2 class="section-title">Engineering Milestones & Certifications</h2>
+          <p class="section-subtitle">
+            A chronological ledger of architectural growth alongside verified academic certifications in low-level programming, machine learning foundations, and database systems.
+          </p>
+
+          <div class="certs-journey-grid">
+            
+            <!-- Left: Timeline Ledger -->
+            <div>
+              <h3 class="font-mono text-mid" style="font-size: 0.8rem; text-transform: uppercase; margin-bottom: 1.25rem; letter-spacing: 0.04em;">
+                // Chronological Milestones
+              </h3>
+              
+              <div class="timeline-ledger">
+                <div class="timeline-entry active">
+                  <div class="timeline-mark"></div>
+                  <div class="timeline-info">
+                    <span class="timeline-date">JUNE 2026 — PRESENT</span>
+                    <h4 class="timeline-heading">DSA Mastery & Complexity Reduction (C++)</h4>
+                    <p class="timeline-desc">Systematic implementation and memory-conscious optimization of data structures and algorithms in C++, focusing on asymptotic complexity reduction.</p>
+                  </div>
                 </div>
 
-            </div>
-
-            <!-- Certs -->
-            <div class="flex flex-col h-full">
-                 <h2 class="text-3xl font-bold font-display text-white mb-10 flex items-center gap-4">
-                    <span class="w-8 h-[2px] bg-accent-dynamic block"></span> 
-                    Certifications
-                </h2>
-                <div class="flex flex-col gap-6 h-full justify-start">
-                    <!-- C Programming Certificate -->
-                    <a href="c_programming_certificate.pdf" target="_blank" class="premium-card group p-6 relative overflow-hidden block border-white/10 hover:border-cyan-500/50 transition-colors bg-gradient-to-br from-card to-cyan-900/10 hover:from-card hover:to-cyan-900/20">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                                    <i class="fas fa-code text-xl text-cyan-400"></i>
-                                </div>
-                                <div>
-                                    <span class="text-[10px] font-mono text-cyan-400 px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 uppercase font-semibold">CSE101 Verified</span>
-                                    <h3 class="font-bold font-display text-white text-lg mt-0.5">C Programming & Foundations</h3>
-                                    <p class="text-xs text-gray-400">Pointers, memory management & low-level fundamentals.</p>
-                                </div>
-                            </div>
-                            <span class="text-xs font-mono text-cyan-400 flex items-center gap-1">
-                                PDF <i class="fas fa-external-link-alt text-[10px]"></i>
-                            </span>
-                        </div>
-                    </a>
-
-                    <!-- Image Cards -->
-                    <div class="premium-card group p-0 relative overflow-hidden h-48 block border-white/10 hover:border-yellow-500/50 transition-colors">
-                        <img src="python.png" alt="Python certificate" loading="lazy" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 w-full p-6">
-                            <div class="flex items-center gap-3">
-                                <div class="bg-yellow-500/20 w-8 h-8 rounded-lg flex items-center justify-center backdrop-blur-md border border-yellow-500/30">
-                                    <i class="fab fa-python text-lg text-yellow-400"></i>
-                                </div>
-                                <h3 class="font-bold font-display text-white text-xl">Python Programming</h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="premium-card group p-0 relative overflow-hidden h-48 block border-white/10 hover:border-blue-500/50 transition-colors">
-                        <img src="sql.png" alt="SQL certificate" loading="lazy" class="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 bg-black">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 w-full p-6">
-                            <div class="flex items-center gap-3">
-                                <div class="bg-blue-500/20 w-8 h-8 rounded-lg flex items-center justify-center backdrop-blur-md border border-blue-500/30">
-                                    <i class="fas fa-database text-lg text-blue-400"></i>
-                                </div>
-                                <h3 class="font-bold font-display text-white text-xl">SQL & Data Science</h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Resume Card -->
-                    <a href="Abhinav_Anand_Resume_AIML_Specialized.pdf" target="_blank" class="premium-card group p-8 relative overflow-hidden block border-white/10 hover:border-emerald-500/50 transition-colors mt-2 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-br from-card to-emerald-900/10 hover:from-card hover:to-emerald-900/20">
-                        <div class="flex items-center gap-5">
-                            <div class="w-14 h-14 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(16,185,129,0.15)]">
-                                <i class="fas fa-file-pdf text-2xl text-emerald-400"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-white text-xl font-display mb-1">Curriculum Vitae</h3>
-                                <p class="text-sm text-gray-400">Download my detailed professional resume.</p>
-                            </div>
-                        </div>
-                        <span class="px-6 py-3 bg-white text-black font-semibold rounded-full group-hover:bg-gray-200 transition-colors whitespace-nowrap flex items-center gap-2 text-sm">
-                            View Resume <i class="fas fa-download"></i>
-                        </span>
-                    </a>
+                <div class="timeline-entry">
+                  <div class="timeline-mark"></div>
+                  <div class="timeline-info">
+                    <span class="timeline-date">2025 — PRESENT</span>
+                    <h4 class="timeline-heading">Deep Dive into AI & Scalable Web Architectures</h4>
+                    <p class="timeline-desc">Coupling machine learning pipelines with high-throughput backend runtimes and clean web interfaces to build practical, production-ready AI applications.</p>
+                  </div>
                 </div>
+
+                <div class="timeline-entry">
+                  <div class="timeline-mark"></div>
+                  <div class="timeline-info">
+                    <span class="timeline-date">FOUNDATIONAL</span>
+                    <h4 class="timeline-heading">Data Science & Statistical Modeling Core</h4>
+                    <p class="timeline-desc">Mastered multivariate exploratory data analysis, statistical model tuning (PCA, SMOTE, logistic regression), and relational schema engineering.</p>
+                  </div>
+                </div>
+
+                <div class="timeline-entry">
+                  <div class="timeline-mark"></div>
+                  <div class="timeline-info">
+                    <span class="timeline-date">CONTINUOUS</span>
+                    <h4 class="timeline-heading">Algorithmic Optimization & Systems Engineering</h4>
+                    <p class="timeline-desc">Regular competitive problem solving and architecture design focused on low latency, predictable resource footprints, and robust test coverage.</p>
+                  </div>
+                </div>
+              </div>
             </div>
-        </section>
 
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="py-24 fade-in-section">
-            <div class="premium-card p-10 md:p-16 relative overflow-hidden text-center max-w-4xl mx-auto">
-                <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[2px] bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent"></div>
-                
-                <h2 class="text-3xl md:text-5xl font-bold font-display text-white mb-4">Let's start a <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-violet-400">conversation</span>.</h2>
-                <p class="text-gray-400 text-lg mb-10 max-w-xl mx-auto">Whether you're looking for an engineer to join your team or have a project in mind. My inbox is always open.</p>
+            <!-- Right: Certifications Ledger -->
+            <div>
+              <h3 class="font-mono text-mid" style="font-size: 0.8rem; text-transform: uppercase; margin-bottom: 1.25rem; letter-spacing: 0.04em;">
+                // Verified Credentials
+              </h3>
 
-                <form id="contactForm" class="max-w-md mx-auto text-left relative z-10">
-                    <input type="hidden" name="access_key" value="d95cbc2e-a628-4836-b956-a1b038407133">
-                    <input type="hidden" name="subject" value="New Inquiry from Portfolio">
-                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-
-                    <div class="space-y-4">
-                        <div>
-                            <label for="name" class="block text-xs font-medium text-gray-400 mb-1 ml-1 uppercase tracking-wide">Your Name</label>
-                            <input type="text" id="name" name="name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:border-indigo-500 focus:bg-white/10 focus:outline-none transition-all placeholder-gray-600 shadow-inner" placeholder="John Doe">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-xs font-medium text-gray-400 mb-1 ml-1 uppercase tracking-wide">Your Email</label>
-                            <input type="email" id="email" name="email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:border-indigo-500 focus:bg-white/10 focus:outline-none transition-all placeholder-gray-600 shadow-inner" placeholder="john@company.com">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-xs font-medium text-gray-400 mb-1 ml-1 uppercase tracking-wide">Message</label>
-                            <textarea id="message" name="message" rows="4" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:border-indigo-500 focus:bg-white/10 focus:outline-none transition-all placeholder-gray-600 resize-none shadow-inner" placeholder="How can I help you?"></textarea>
-                        </div>
-                        
-                        <button type="submit" id="formButton" class="w-full bg-white text-black font-semibold py-4 rounded-xl hover:bg-gray-200 transition-all hover:scale-[1.02] active:scale-[0.98] mt-2 flex justify-center items-center gap-2">
-                            Send Message <i class="fas fa-paper-plane text-sm"></i>
-                        </button>
-                        <div id="formStatus" class="text-sm text-center mt-3 hidden font-medium py-2 rounded-lg bg-white/5" role="status" aria-live="polite"></div>
+              <div class="certs-ledger">
+                <!-- Cert 1: C Programming -->
+                <a href="c_programming_certificate.pdf" target="_blank" rel="noopener noreferrer" class="cert-row">
+                  <div class="cert-left">
+                    <span class="cert-code">CSE101</span>
+                    <div>
+                      <div class="cert-name">C Programming & Foundations</div>
+                      <div class="cert-inst">Lovely Professional University // Pointers & Low-Level Memory</div>
                     </div>
-                </form>
-            </div>
-        </section>
+                  </div>
+                  <div class="cert-action">
+                    <span>PDF</span>
+                    <i class="fas fa-external-link-alt text-[10px]"></i>
+                  </div>
+                </a>
 
-        <!-- FOOTER -->
-        <footer class="mt-10 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-sm mb-6 text-gray-500 gap-4 fade-in-section">
-            <p>© 2026 Abhinav Anand. All rights reserved.</p>
-            <div class="flex gap-2">
-                Designed & Built with <i class="fas fa-heart text-accent-dynamic mx-1 mt-0.5"></i> intentionally.
+                <!-- Cert 2: Python -->
+                <a href="python.png" target="_blank" rel="noopener noreferrer" class="cert-row">
+                  <div class="cert-left">
+                    <span class="cert-code">PY-CORE</span>
+                    <div>
+                      <div class="cert-name">Python Programming Masterclass</div>
+                      <div class="cert-inst">Data Structures, OOP & Scientific Python Computing</div>
+                    </div>
+                  </div>
+                  <div class="cert-action">
+                    <span>IMAGE</span>
+                    <i class="fas fa-external-link-alt text-[10px]"></i>
+                  </div>
+                </a>
+
+                <!-- Cert 3: SQL -->
+                <a href="sql.png" target="_blank" rel="noopener noreferrer" class="cert-row">
+                  <div class="cert-left">
+                    <span class="cert-code">SQL-DS</span>
+                    <div>
+                      <div class="cert-name">SQL & Relational Database Systems</div>
+                      <div class="cert-inst">Schema Modeling, Complex Queries & Analytics</div>
+                    </div>
+                  </div>
+                  <div class="cert-action">
+                    <span>IMAGE</span>
+                    <i class="fas fa-external-link-alt text-[10px]"></i>
+                  </div>
+                </a>
+
+                <!-- Resume Download Box -->
+                <div class="resume-action-box">
+                  <div>
+                    <div class="cert-name">Curriculum Vitae (PDF)</div>
+                    <div class="cert-inst">Specialized in AI/ML Engineering & Systems Development</div>
+                  </div>
+                  <div style="display: flex; gap: 0.5rem;">
+                    <a href="Abhinav_Anand_Resume_AIML_Specialized.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                      <i class="fas fa-download"></i> AI/ML CV
+                    </a>
+                    <a href="Abhinav_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
+                      General CV
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
-        </footer>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           06 // COMMS.CONTACT (CONTACT CONSOLE)
+           ==================================================================== -->
+      <section id="contact" class="console-section reveal-on-scroll">
+        <div class="section-meta-header">
+          <div class="section-meta-tag">
+            <span class="tag-prefix">SECTION</span>
+            <span class="section-meta-id">[06] // COMMS.CONTACT</span>
+          </div>
+          <div class="section-meta-status">
+            <span>STATUS: READY FOR TRANSMISSION</span>
+          </div>
+        </div>
+
+        <div class="section-body">
+          <div class="contact-layout">
+            
+            <!-- Terminal Info & Direct Channels -->
+            <div class="contact-terminal-info">
+              <div>
+                <h2 class="section-title">Initiate Transmission</h2>
+                <p class="section-subtitle" style="margin-bottom: 1.5rem;">
+                  Whether you're exploring engineering candidates for AI/ML roles, research collaborations, or discussing scalable machine learning architecture — my transmission channels are open.
+                </p>
+
+                <div class="contact-channel-list">
+                  <a href="mailto:abhinavanand9996@gmail.com" class="channel-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>abhinavanand9996@gmail.com</span>
+                  </a>
+                  <a href="https://github.com/abhinavbuilds2005" target="_blank" rel="noopener noreferrer" class="channel-item">
+                    <i class="fab fa-github"></i>
+                    <span>github.com/abhinavbuilds2005</span>
+                  </a>
+                  <a href="https://www.linkedin.com/in/abhinav-anand-865926300" target="_blank" rel="noopener noreferrer" class="channel-item">
+                    <i class="fab fa-linkedin"></i>
+                    <span>linkedin.com/in/abhinav-anand-865926300</span>
+                  </a>
+                  <a href="https://www.instagram.com/cse.abhinav?igsh=MTcxdDR6N2VyMmIwMQ==" target="_blank" rel="noopener noreferrer" class="channel-item">
+                    <i class="fab fa-instagram"></i>
+                    <span>instagram.com/cse.abhinav</span>
+                  </a>
+                </div>
+              </div>
+
+              <div style="margin-top: 2rem; padding: 1rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-2);">
+                <span class="font-mono text-low" style="font-size: 0.675rem; text-transform: uppercase; display: block; margin-bottom: 0.35rem;">AVAILABILITY NOTICE</span>
+                <p class="font-mono text-mid" style="font-size: 0.775rem;">
+                  Targeting AI/ML Engineering & Software Engineering internships and full-time opportunities.
+                </p>
+              </div>
+            </div>
+
+            <!-- Functional Web3Forms Console Form (Sharp 4px corners, monospace labels) -->
+            <form id="contactForm" class="contact-form">
+              <!-- Exact Web3Forms Access Key & Config -->
+              <input type="hidden" name="access_key" value="d95cbc2e-a628-4836-b956-a1b038407133">
+              <input type="hidden" name="subject" value="New Transmission from Portfolio Console">
+              <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+              <div class="form-group">
+                <label for="name" class="form-label">SENDER NAME [REQUIRED]:</label>
+                <input type="text" id="name" name="name" required class="form-control" placeholder="e.g. Sarah Connor / Anthropic" autocomplete="name">
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label">TRANSMISSION EMAIL [REQUIRED]:</label>
+                <input type="email" id="email" name="email" required class="form-control" placeholder="e.g. sarah@organization.ai" autocomplete="email">
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label">COMMUNICATION PAYLOAD [REQUIRED]:</label>
+                <textarea id="message" name="message" rows="5" required class="form-control" placeholder="Brief project scope, engineering role specifics, or inquiry..."></textarea>
+              </div>
+
+              <button type="submit" id="formButton" class="btn btn-primary" style="width: 100%; padding: 0.85rem;">
+                Transmit Message <i class="fas fa-paper-plane text-xs"></i>
+              </button>
+
+              <div id="formStatus" class="form-status hidden" role="status" aria-live="polite"></div>
+            </form>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           CONSOLE FOOTER
+           ==================================================================== -->
+      <footer class="console-footer">
+        <div>
+          <span>© 2026 ABHINAV ANAND. BUILT WITH INTENTIONAL DISCIPLINE.</span>
+        </div>
+        <div class="footer-sys-meta">
+          <span>UTC: <span id="sys-clock">--</span></span>
+          <span class="text-low">|</span>
+          <button type="button" id="back-to-top" class="back-to-top-btn">
+            [TOP] <i class="fas fa-arrow-up text-[10px]"></i>
+          </button>
+        </div>
+      </footer>
 
     </main>
 
-    <!-- Case Study Modal -->
-    <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 invisible opacity-0 transition-all duration-300">
-        <div class="absolute inset-0 cursor-pointer bg-black/40 backdrop-blur-[4px]" id="modal-overlay"></div>
-        <div id="project-modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title" class="relative w-full max-w-3xl bg-[#121214] border border-white/10 rounded-3xl overflow-hidden shadow-2xl max-h-[85vh] flex flex-col transform scale-90 transition-transform duration-300">
-            <!-- Modal Header -->
-            <div class="flex items-center justify-between p-6 border-b border-white/10 bg-black/25">
-                <h3 class="text-2xl font-bold font-display text-white" id="modal-title">Project Case Study</h3>
-                <button id="close-modal" aria-label="Close case study" class="p-2 rounded-full border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
-                    <i class="fas fa-times text-lg"></i>
-                </button>
-            </div>
-            
-            <!-- Modal Body (Scrollable) -->
-            <div class="p-8 overflow-y-auto space-y-6 flex-1 text-gray-300" id="modal-body">
-                <!-- Case study content loaded dynamically -->
-            </div>
-        </div>
+  </div>
+
+  <!-- Technical Spec Modal / Case Study Drawer -->
+  <div id="spec-modal" class="spec-modal" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
+    <div id="spec-modal-backdrop" class="spec-modal-backdrop"></div>
+    <div class="spec-modal-dialog">
+      <div class="modal-header-bar">
+        <span id="spec-modal-title" class="font-mono font-bold">PROJECT SPECIFICATION</span>
+        <button type="button" id="spec-modal-close" class="modal-close-btn" aria-label="Close modal">
+          <i class="fas fa-times text-xs"></i>
+        </button>
+      </div>
+      <div id="spec-modal-body" class="modal-scroll-body">
+        <!-- Content injected dynamically -->
+      </div>
     </div>
+  </div>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" aria-label="Back to top" class="fixed bottom-6 right-6 z-40 bg-white text-black p-3.5 rounded-full shadow-2xl translate-y-24 opacity-0 transition-all duration-300 hover:scale-110 active:scale-95 border border-white/10 flex items-center justify-center" title="Back to top">
-        <i class="fas fa-arrow-up text-lg"></i>
-    </button>
+  <!-- Command Palette (Cmd+K / Ctrl+K) Overlay -->
+  <div id="command-palette" class="cmd-palette-overlay" aria-modal="true" role="dialog" aria-label="Command Palette" hidden>
+    <div class="cmd-palette-backdrop" id="cmd-palette-backdrop"></div>
+    <div class="cmd-palette-dialog">
+      <div class="cmd-palette-search">
+        <span class="cmd-prompt">&gt;</span>
+        <input type="text" id="cmd-palette-input" class="cmd-palette-input" placeholder="Type a section, project, or command..." autocomplete="off" spellcheck="false" aria-autocomplete="list" aria-controls="cmd-palette-list">
+        <kbd class="kbd-shortcut">ESC</kbd>
+      </div>
+      <div class="cmd-palette-list" id="cmd-palette-list" role="listbox">
+        <!-- Dynamically rendered and filtered by script.js -->
+      </div>
+      <div class="cmd-palette-footer">
+        <span class="footer-hint"><kbd>↑</kbd><kbd>↓</kbd> Navigate</span>
+        <span class="footer-hint"><kbd>↵</kbd> Select</span>
+        <span class="footer-hint"><kbd>ESC</kbd> Close</span>
+      </div>
+    </div>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

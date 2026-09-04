@@ -1,0 +1,37 @@
+name: LeetCode Proxy Health Check & Warmup
+
+on:
+  schedule:
+    # Runs every 6 hours to keep serverless function warm and verify schema health
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  ping-proxy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping LeetCode Serverless Proxy
+        run: |
+          ENDPOINT="https://coderabhinavanand.netlify.app/api/leetcode"
+          echo "Pinging $ENDPOINT..."
+
+          HTTP_RESPONSE=$(curl -s -w "\n%{http_code}" "$ENDPOINT")
+          HTTP_BODY=$(echo "$HTTP_RESPONSE" | sed '$d')
+          HTTP_STATUS=$(echo "$HTTP_RESPONSE" | tail -n 1)
+
+          echo "Response HTTP Status: $HTTP_STATUS"
+          echo "Response Body Preview: $(echo "$HTTP_BODY" | head -c 200)"
+
+          if [ "$HTTP_STATUS" -ne 200 ]; then
+            echo "::error::LeetCode proxy returned status $HTTP_STATUS"
+            exit 1
+          fi
+
+          # Verify JSON contains totalSolved field
+          SOLVED=$(echo "$HTTP_BODY" | grep -o '"totalSolved":[0-9]*' | cut -d':' -f2)
+          if [ -z "$SOLVED" ]; then
+            echo "::error::Invalid JSON payload: missing totalSolved"
+            exit 1
+          fi
+
+          echo "Health check passed! Total Solved: $SOLVED"
