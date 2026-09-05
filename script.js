@@ -20,6 +20,13 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Ensure landing at the top of the portfolio on fresh load if no section hash is specified
+  if (!window.location.hash) {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo(0, 0);
+  }
 
   // ==========================================================================
   // 1. DATA DICTIONARY: MASTER-DETAIL PROJECTS & CASE STUDIES
@@ -235,7 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function selectProject(index) {
+  function selectProject(index, shouldScroll = false) {
     activeProjectIndex = index;
     const project = PROJECTS_DATA[index];
     if (!project || !detailPanel) return;
@@ -245,7 +252,10 @@ document.addEventListener("DOMContentLoaded", () => {
     items.forEach((item, idx) => {
       if (idx === index) {
         item.classList.add("active");
-        item.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        if (shouldScroll && masterListContainer && masterListContainer.scrollHeight > masterListContainer.clientHeight) {
+          const itemOffsetTop = item.offsetTop - masterListContainer.offsetTop;
+          masterListContainer.scrollTo({ top: itemOffsetTop, behavior: "smooth" });
+        }
       } else {
         item.classList.remove("active");
       }
@@ -367,21 +377,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Keyboard navigation for project list
-  document.addEventListener("keydown", (e) => {
-    if (!masterListContainer) return;
-    if (document.activeElement && (document.activeElement.tagName === "INPUT" || document.activeElement.tagName === "TEXTAREA")) return;
-
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      const nextIdx = (activeProjectIndex + 1) % PROJECTS_DATA.length;
-      selectProject(nextIdx);
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      const prevIdx = (activeProjectIndex - 1 + PROJECTS_DATA.length) % PROJECTS_DATA.length;
-      selectProject(prevIdx);
-    }
-  });
+  // Keyboard navigation for project list (active when interacting with master list)
+  if (masterListContainer) {
+    masterListContainer.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const nextIdx = (activeProjectIndex + 1) % PROJECTS_DATA.length;
+        selectProject(nextIdx, true);
+        const items = masterListContainer.querySelectorAll(".master-item");
+        if (items[nextIdx]) items[nextIdx].focus();
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        const prevIdx = (activeProjectIndex - 1 + PROJECTS_DATA.length) % PROJECTS_DATA.length;
+        selectProject(prevIdx, true);
+        const items = masterListContainer.querySelectorAll(".master-item");
+        if (items[prevIdx]) items[prevIdx].focus();
+      }
+    });
+  }
 
   // Modal Handling
   function openSpecModal(project) {
@@ -449,7 +462,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initial render of Master-Detail
   renderMasterList();
-  selectProject(0);
+  selectProject(0, false);
 
   // ==========================================================================
   // 3. TOC SCROLL-SPY NAVIGATION
