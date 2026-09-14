@@ -73,28 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
       tech: ["Python", "Scikit-Learn", "PCA Dimension Reduction", "Streamlit", "Chart.js"]
     },
     {
-      id: "portfolio",
-      index: "03",
-      title: "Personal Portfolio v2",
-      category: "WEB DEV",
-      status: "LIVE",
-      tagline: "A high-performance console-inspired engineering hub built with zero bloated frameworks.",
-      image: "project_portfolio_1775755792684.png",
-      liveUrl: null,
-      repoUrl: "https://github.com/abhinavbuilds2005/portfolio",
-      summary: "A bespoke engineering portfolio redesigned from first principles. Features a persistent IDE-style TOC activity sidebar, a master-detail project console, and a strict monochromatic visual language designed for senior-engineer clarity.",
-      challenge: "Eliminating the visual clichés common across contemporary AI/student portfolios (gradient blobs, floating pill bars, glassmorphism) while keeping interaction fast, accessible, and responsive.",
-      solution: "Engineered a persistent two-zone layout with hairline 1px borders, monospace metadata hierarchy, and modular vanilla JavaScript components with zero framework overhead.",
-      features: [
-        "<strong>Persistent Two-Zone Layout:</strong> Fixed TOC navigation sidebar with active section tracking, collapsing to a top drawer on mobile.",
-        "<strong>Master-Detail Project Console:</strong> Instant keyboard-navigable index with real-time inspection view and collapsible case studies.",
-        "<strong>Strict Design System:</strong> Curated grayscale palette with high-contrast typography (JetBrains Mono + Inter)."
-      ],
-      tech: ["HTML5", "Vanilla CSS", "JavaScript (ES6+)", "JetBrains Mono"]
-    },
-    {
       id: "presentai",
-      index: "04",
+      index: "03",
       title: "PresentAI: Biometric Attendance",
       category: "AI/ML",
       status: "LIVE",
@@ -114,23 +94,43 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       id: "elevatecv",
-      index: "05",
-      title: "ElevateCV: ATS Resume Analyser",
+      index: "04",
+      title: "ATS Resume Analyzer: AI Scorer",
       category: "AI/ML",
       status: "LIVE",
-      tagline: "LLM-driven resume evaluation platform measuring semantic alignment against live job descriptions.",
-      image: "",
-      liveUrl: "https://elevatecv-ai.streamlit.app/",
+      tagline: "High-performance ATS scoring engine matching resumes to job descriptions via NLP & semantic embeddings.",
+      image: "project_ats_resume.jpg",
+      liveUrl: "https://ats-resume-analyzer-we86.onrender.com",
       repoUrl: "https://github.com/abhinavbuilds2005/ATS-RESUME-ANALYZER",
-      summary: "An intelligent ATS scoring platform that parses complex PDF resumes, performs semantic gap analysis against target job specifications, and produces tailored generative feedback to optimize applicant match rates.",
-      challenge: "Multi-column resume designs and arbitrary table layouts disrupt standard text extraction, scrambling semantic sentence flow.",
-      solution: "Combined robust PDF extraction streams with spatial text-block reconstruction and prompt-engineered Gemini API workflows for structured JSON analysis.",
+      summary: "A production-grade ATS scoring and resume optimization platform. Built with FastAPI and spaCy for structural NLP parsing, Sentence Transformers for chunked semantic similarity against job descriptions, and Groq (Llama 3) for generative feedback with an automated deterministic fallback pipeline and Supabase JWT authentication.",
+      challenge: "Arbitrary multi-column PDF/DOCX layouts scramble standard text extraction, standard embeddings suffer 5,000-character truncation loss, and cloud LLM rate limits risk service disruptions.",
+      solution: "Engineered a layout-aware document parser, implemented rolling chunk-based embeddings (`all-MiniLM-L6-v2`) to eliminate truncation, and built a fault-tolerant pipeline that automatically falls back to deterministic NLP extraction if external LLM APIs are unreachable.",
       features: [
-        "<strong>Layout-Aware PDF Parser:</strong> Extracts and standardizes structural content from arbitrary multi-column templates.",
-        "<strong>Semantic Match Scoring:</strong> Measures similarity vectors and identifies missing domain competencies.",
-        "<strong>Actionable Generative Rewrite:</strong> Produces tailored bullet points and keyword optimizations aligned with target roles."
+        "<strong>5-Dimension Heuristic Scoring:</strong> Evaluates Formatting (20%), Keywords (25%), Impact (25%), Skill Validation (15%), and ATS Parseability & Privacy (15%).",
+        "<strong>Rolling Chunk Semantic Matching:</strong> Uses Sentence Transformers to vectorize resume segments against job description requirements without truncation.",
+        "<strong>Resilient AI Pipeline & Auth:</strong> Groq Llama 3 generative feedback with automatic deterministic fallback, Supabase JWT user isolation, and WeasyPrint export."
       ],
-      tech: ["Python", "Streamlit", "Gemini API", "PyPDF2 / NLP", "Scikit-Learn"]
+      tech: ["FastAPI", "spaCy NLP", "Sentence Transformers", "Groq Llama 3", "Supabase", "Python"]
+    },
+    {
+      id: "portfolio",
+      index: "05",
+      title: "Personal Portfolio v2",
+      category: "WEB DEV",
+      status: "LIVE",
+      tagline: "A high-performance console-inspired engineering hub built with zero bloated frameworks.",
+      image: "project_portfolio_1775755792684.png",
+      liveUrl: null,
+      repoUrl: "https://github.com/abhinavbuilds2005/portfolio",
+      summary: "A bespoke engineering portfolio redesigned from first principles. Features a persistent IDE-style TOC activity sidebar, a master-detail project console, and a strict monochromatic visual language designed for senior-engineer clarity.",
+      challenge: "Eliminating the visual clichés common across contemporary AI/student portfolios (gradient blobs, floating pill bars, glassmorphism) while keeping interaction fast, accessible, and responsive.",
+      solution: "Engineered a persistent two-zone layout with hairline 1px borders, monospace metadata hierarchy, and modular vanilla JavaScript components with zero framework overhead.",
+      features: [
+        "<strong>Persistent Two-Zone Layout:</strong> Fixed TOC navigation sidebar with active section tracking, collapsing to a top drawer on mobile.",
+        "<strong>Master-Detail Project Console:</strong> Instant keyboard-navigable index with real-time inspection view and collapsible case studies.",
+        "<strong>Strict Design System:</strong> Curated grayscale palette with high-contrast typography (JetBrains Mono + Inter)."
+      ],
+      tech: ["HTML5", "Vanilla CSS", "JavaScript (ES6+)", "JetBrains Mono"]
     },
     {
       id: "voice-assistant",
@@ -937,9 +937,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Projects (Direct select in master-detail console)
     { id: "proj-0", group: "Projects", label: "CreditWise: AI Loan Default Prediction", hint: "AI/ML [01]", action: () => selectProjectDirect(0) },
     { id: "proj-1", group: "Projects", label: "SmartCart AI: Customer Intelligence Platform", hint: "AI/ML [02]", action: () => selectProjectDirect(1) },
-    { id: "proj-2", group: "Projects", label: "Personal Portfolio v2 (Console Engineering Hub)", hint: "WEB [03]", action: () => selectProjectDirect(2) },
-    { id: "proj-3", group: "Projects", label: "PresentAI: Multimodal Biometric Attendance", hint: "AI/ML [04]", action: () => selectProjectDirect(3) },
-    { id: "proj-4", group: "Projects", label: "ElevateCV: ATS Resume Scoring Engine", hint: "AI/ML [05]", action: () => selectProjectDirect(4) },
+    { id: "proj-2", group: "Projects", label: "PresentAI (AttendPro): Multimodal Biometric Attendance", hint: "AI/ML [03]", action: () => selectProjectDirect(2) },
+    { id: "proj-3", group: "Projects", label: "ATS Resume Analyzer (ElevateCV): AI Scorer & JD Matcher", hint: "AI/ML [04]", action: () => selectProjectDirect(3) },
+    { id: "proj-4", group: "Projects", label: "Personal Portfolio v2 (Console Engineering Hub)", hint: "WEB [05]", action: () => selectProjectDirect(4) },
     { id: "proj-5", group: "Projects", label: "Voice Assistant & Operating System Automation", hint: "PYTHON [06]", action: () => selectProjectDirect(5) },
     { id: "proj-6", group: "Projects", label: "Neural Style Transfer (PyTorch VGG-19)", hint: "DL [07]", action: () => selectProjectDirect(6) },
     { id: "proj-7", group: "Projects", label: "AI Fitness Coach & Real-Time Pose Correction", hint: "CV [08]", action: () => selectProjectDirect(7) },

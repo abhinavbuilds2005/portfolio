@@ -73,16 +73,15 @@
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>🤖 ElevateCV — ATS Resume Analyser</h3>
-      <p><strong>Google Gemini AI · NLP · Semantic Analysis · Streamlit</strong></p>
+      <h3>📄 ATS Resume Analyzer — AI Resume Scorer & JD Matcher</h3>
+      <p><strong>FastAPI · spaCy NLP · Sentence Transformers · Groq (Llama 3) · Supabase</strong></p>
       <p>
-        An AI-powered resume scorer that evaluates resumes against job descriptions,
-        calculating match scores, identifying missing keywords, and generating actionable rewrite recommendations to boost interview conversion.
+        A high-performance ATS scoring engine that parses complex resumes, evaluates 5-dimension readiness (Formatting, Keywords, Impact, Skills, Parseability), vectors JD alignment via rolling embeddings, and generates actionable rewrite recommendations.
       </p>
       <p>
-        <strong>Stack:</strong> Python · Streamlit · Gemini API · NLP · PyPDF2
+        <strong>Stack:</strong> Python · FastAPI · spaCy · Sentence Transformers · Groq Llama 3 · Supabase
       </p>
-      <a href="https://elevatecv-ai.streamlit.app/"><img src="https://img.shields.io/badge/Live App-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white"/></a>
+      <a href="https://ats-resume-analyzer-we86.onrender.com"><img src="https://img.shields.io/badge/Live App-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white"/></a>
       <a href="https://github.com/abhinavbuilds2005/ATS-RESUME-ANALYZER"><img src="https://img.shields.io/badge/Source-GitHub-181717?style=for-the-badge&logo=github"/></a>
     </td>
     <td width="50%" valign="top">
