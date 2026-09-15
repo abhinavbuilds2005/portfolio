@@ -1,22 +1,19 @@
 /**
- * CONSOLE / ENGINEERING LOG SCRIPT
+ * AI SYSTEMS LAB // NEURAL ENGINEERING SCRIPT
  * Abhinav Anand — AI/ML Engineer Portfolio
  * 
- * LIVE API INTEGRATIONS & RESILIENCE STRATEGY:
- * 1. LeetCode Telemetry (api/leetcode.js):
- *    - Primary: Self-hosted serverless GraphQL proxy (/api/leetcode -> https://leetcode.com/graphql)
- *    - Secondary Fallback: https://leetcode-api-1.vercel.app/cseabhinav2005
- *    - Cache: localStorage ("lc-console-data", 30m TTL)
- *    - Baseline Archive: Hardcoded verified stats (10 solved: 7 Easy, 3 Medium, 0 Hard)
- *    - UI Status: Explicit indicators for "LIVE SYNCED", "CACHED", "SYNC FAILED", or "OFFLINE ARCHIVE"
- * 
- * 2. GitHub Credibility Signal:
- *    - Endpoint: https://api.github.com/users/abhinavbuilds2005
- *    - Cache: localStorage ("gh-console-data", 1h TTL)
- *    - Baseline Archive: 7 public repositories, verified live push activity
- * 
- * 3. Command Palette (Cmd+K / Ctrl+K):
- *    - Fully keyboard-driven fuzzy search & direct actions across sections and projects
+ * CORE ARCHITECTURAL MODULES:
+ * 1. Data Dictionary: Projects, Skills Ecosystem, Pipeline Stages, Build Log
+ * 2. Hero Interactive AI Systems Pipeline Canvas (Lightweight 2D Canvas)
+ * 3. AI Systems Map (Interactive Skill Explorer & Project Linkage)
+ * 4. Project Matrix (Category Filters, Master-Detail Console, Architecture Pipeline Modal)
+ * 5. Model Pipeline Visualizer ("How I Build Intelligent Systems")
+ * 6. Engineering Telemetry (LeetCode Live Sync + Cache + GitHub Metrics)
+ * 7. Build Log (Engineering Journal)
+ * 8. Web3Forms Comms Form Handler
+ * 9. Local Portfolio Assistant ("Ask Abhinav's Portfolio")
+ * 10. Command Palette (Cmd+K / Ctrl+K)
+ * 11. Navigation Scroll-Spy & Mobile Menu
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,261 +26,980 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================================================
-  // 1. DATA DICTIONARY: MASTER-DETAIL PROJECTS & CASE STUDIES
+  // 1. DATA DICTIONARIES: PROJECTS, SKILLS, PIPELINE, BUILD LOG
   // ==========================================================================
+
+  // --- Verified Projects ---
   const PROJECTS_DATA = [
     {
       id: "docushield",
       index: "01",
       title: "DocuShield AI: Forensic Screening",
-      category: "AI/ML",
+      category: "VISION_FORENSICS",
+      categoryLabel: "Computer Vision & Forensics",
       status: "LIVE",
       tagline: "Multimodal forensic screening platform verifying document authenticity, tampering, and biometric credentials.",
       image: "project_docushield.png",
       liveUrl: "https://docushield-ai-s1x9.onrender.com/",
       repoUrl: "https://github.com/abhinavbuilds2005/DocuShield",
-      summary: "An enterprise-grade multimodal forensic screening platform built for Smart India Hackathon (SIH 2026, Problem Statement SIH26188). It automatically verifies document authenticity across 5 core categories (Passports, Visas, Aadhaar/National IDs, Driving Licences, Travel Permits), extracting OCR schemas, detecting digital tampering via ELA and Copy-Move analysis, and validating biometric credentials.",
-      challenge: "Digital document forgery leverages sophisticated graphic edits (copy-move replication, font splicing, compression artifacts, and fake checksums) that easily deceive conventional OCR systems and isolated classifiers.",
-      solution: "Architected a 5-level Hierarchical Multimodal Evidence Fusion Engine combining Error Level Analysis (ELA), ORB+RANSAC copy-move detection, Laplacian typography variance, ICAO Doc 9303 MRZ check digits, Verhoeff checksums, and facial biometric verification into an explainable 0–100% forensic risk score.",
+      summary: "An enterprise-grade multimodal forensic screening platform engineered for Smart India Hackathon (SIH 2026, Problem Statement SIH26188). It automatically verifies document authenticity across 5 core categories (Passports, Visas, Indian Aadhaar/UID, Driving Licences, Travel Permits), extracting OCR schemas, detecting digital tampering via Error Level Analysis (ELA) and copy-move forgery, verifying ICAO Doc 9303 MRZ check digits and Verhoeff checksums, and cross-matching live facial biometrics.",
+      problem: "Digital document forgery leverages sophisticated graphical manipulation (copy-move replication, font splicing, compression artifacts, and fraudulent checksums) that easily deceive conventional OCR systems and isolated classifiers.",
+      solution: "Architected a 5-level Hierarchical Multimodal Evidence Fusion Engine combining Error Level Analysis (ELA), ORB+RANSAC copy-move detection, Laplacian typography variance, ICAO Doc 9303 MRZ 7-3-1 check digit algorithms, Verhoeff checksums, and facial biometric verification into an explainable 0–100% forensic risk score.",
       features: [
-        "<strong>Multimodal Tampering Detection:</strong> Error Level Analysis (ELA), ORB + RANSAC copy-move detection, typography consistency, and EXIF software signature inspection.",
-        "<strong>Algorithmic Validation & MRZ Parsing:</strong> ICAO Doc 9303 TD1/TD2/TD3 check digits, Verhoeff checksums for Indian Aadhaar/UID, PAN syntax, and chronological date logic.",
+        "<strong>Multimodal Tampering Detection:</strong> Runs Error Level Analysis (ELA) for image compression anomalies, ORB + RANSAC copy-move detection, and typography Laplacian consistency checks.",
+        "<strong>Algorithmic Validation & MRZ Parsing:</strong> Computes ICAO Doc 9303 TD1/TD2/TD3 check digits, Verhoeff checksums for Indian 12-digit Aadhaar, PAN structure validation, and chronological date logic.",
         "<strong>Biometric Face Verification & Fusion:</strong> Document facial extraction cross-matched against live selfies with HSV/gradient similarity, unified by a 5-level forensic risk engine."
       ],
-      tech: ["Python", "OpenCV", "EasyOCR", "FastAPI", "Docker", "React 18 & Vite", "Verhoeff Checksum"]
+      tech: ["Python", "OpenCV", "EasyOCR", "FastAPI", "Docker", "React 18 & Vite", "Verhoeff Checksum"],
+      pipeline: [
+        { label: "Document Upload", sub: "Multi-Format Input" },
+        { label: "OCR & Layout", sub: "EasyOCR Tokenizer" },
+        { label: "Forensic ELA", sub: "Tamper Heatmap" },
+        { label: "MRZ / Verhoeff", sub: "Checksum Engines" },
+        { label: "Evidence Fusion", sub: "Calibrated Risk Score" }
+      ]
     },
     {
       id: "creditwise",
       index: "02",
       title: "CreditWise: AI Loan Risk",
-      category: "AI/ML",
+      category: "PREDICTIVE_ML",
+      categoryLabel: "Predictive ML",
       status: "LIVE",
       tagline: "Predictive machine learning architecture assessing loan default risk for automated underwriting.",
       image: "project_creditwise_1775755763976.png",
       liveUrl: "https://credishield-one.vercel.app/",
       repoUrl: "https://github.com/abhinavbuilds2005/credit-wise-loan-system",
       summary: "An end-to-end machine learning system engineered for loan approval prediction. Built with tailored financial feature engineering, risk scoring algorithms, and real-time inference, offering robust decision intelligence deployed seamlessly via Streamlit.",
-      challenge: "Imbalanced training datasets where historical defaults represent a tiny fraction of total records, causing baseline classifiers to skew heavily toward low-risk labels.",
+      problem: "Imbalanced training datasets where historical defaults represent a tiny fraction of total records, causing baseline classifiers to skew heavily toward low-risk labels.",
       solution: "Applied SMOTE (Synthetic Minority Over-sampling Technique) during training and optimized decision thresholds against Precision-Recall AUC curves rather than misleading raw accuracy metrics.",
       features: [
         "<strong>Custom Financial Feature Engineering:</strong> Modeled debt-to-income weights, installment ratios, and credit history tenure adjustments.",
         "<strong>Interpretable ML Classifier:</strong> Trained a regularized Logistic Regression pipeline scoring default probability with high statistical transparency.",
         "<strong>Real-Time Underwriting Console:</strong> Interactive Streamlit interface enabling variable parameter tuning and immediate credit risk estimation."
       ],
-      tech: ["Python", "Scikit-Learn", "Pandas & NumPy", "Streamlit", "Matplotlib"]
+      tech: ["Python", "Scikit-Learn", "Pandas & NumPy", "SMOTE", "Streamlit", "Matplotlib"],
+      pipeline: [
+        { label: "Financial Data", sub: "Applicant Profile" },
+        { label: "Feature Pipeline", sub: "Debt-to-Income Weights" },
+        { label: "SMOTE Resampling", sub: "Class Imbalance Fix" },
+        { label: "Logistic Classifier", sub: "Calibrated Odds" },
+        { label: "Risk Scorecard", sub: "Streamlit UI" }
+      ]
     },
     {
       id: "smartcart",
       index: "03",
       title: "SmartCart AI: Customer Intelligence",
-      category: "AI/ML",
+      category: "PREDICTIVE_ML",
+      categoryLabel: "Predictive ML",
       status: "LIVE",
       tagline: "Unsupervised machine learning platform for customer segmentation and churn prediction.",
       image: "project_customer_ai_1775755777519.png",
       liveUrl: "https://smartcart-recommendation-system.netlify.app/",
       repoUrl: "https://github.com/abhinavbuilds2005/Smartcart-Recommendation-system",
       summary: "An AI-powered customer segmentation and behavioral analytics platform. It leverages unsupervised clustering and dimensional reduction to discover organic purchasing patterns, generating personalized product recommendations and churn risk assessments.",
-      challenge: "High-dimensional sparse transaction arrays generated poorly-defined cluster centroids (curse of dimensionality), lowering clustering stability.",
+      problem: "High-dimensional sparse transaction arrays generated poorly-defined cluster centroids (curse of dimensionality), lowering clustering stability.",
       solution: "Integrated Principal Component Analysis (PCA) to project high-dimensional transaction features into dense, lower-dimensional representations before clustering, increasing the silhouette coefficient.",
       features: [
         "<strong>Multi-Dimensional Clustering:</strong> Implements K-Means clustering with dynamically evaluated distance metrics.",
         "<strong>Persona Classification:</strong> Automatically categorizes consumer clusters (e.g. frequent budget shoppers vs. high-basket occasional buyers).",
         "<strong>Targeted Marketing Engine:</strong> Formulates targeted catalog recommendations and communication cadences per archetype."
       ],
-      tech: ["Python", "Scikit-Learn", "PCA Dimension Reduction", "Streamlit", "Chart.js"]
+      tech: ["Python", "Scikit-Learn", "PCA Dimension Reduction", "K-Means", "Streamlit", "Chart.js"],
+      pipeline: [
+        { label: "Transaction Matrix", sub: "Sparse Purchase Log" },
+        { label: "PCA Projection", sub: "Dimensional Reduction" },
+        { label: "K-Means Clustering", sub: "Silhouette Optimized" },
+        { label: "Churn Evaluation", sub: "Risk Assessment" },
+        { label: "Catalog Engine", sub: "Segment Recommendations" }
+      ]
     },
     {
       id: "presentai",
       index: "04",
       title: "PresentAI: Biometric Attendance",
-      category: "AI/ML",
+      category: "VISION_FORENSICS",
+      categoryLabel: "Computer Vision & Forensics",
       status: "LIVE",
       tagline: "Multimodal contact-free attendance platform integrating computer vision and acoustic speaker verification.",
       image: "project_attendance_system.jpg",
       liveUrl: "https://presentai-attendance.onrender.com",
       repoUrl: "https://github.com/abhinavbuilds2005/AI-Powered-Attendance-Platform",
       summary: "A high-security biometric attendance verification system designed for institutional deployments. It authenticates identity by simultaneously analyzing real-time facial embeddings and deep acoustic speaker prints to eliminate proxy attendance.",
-      challenge: "Biometric validation accuracy drops substantially under adverse conditions such as poor ambient lighting (camera) or background acoustic interference (microphone).",
+      problem: "Biometric validation accuracy drops substantially under adverse conditions such as poor ambient lighting (camera) or background acoustic interference (microphone).",
       solution: "Engineered a dynamic confidence-fusion model that shifts sensor weights—relying more heavily on acoustic voice biometrics in dim environments and prioritizing facial landmark vectors in noisy rooms.",
       features: [
         "<strong>Dual-Sensor Verification:</strong> Concurrent processing of live camera frames and audio microphone streams.",
         "<strong>Acoustic Voice Biometrics:</strong> Deep neural network extracting frequency embeddings to identify verified speaker profiles.",
         "<strong>Liveness & Anti-Spoofing:</strong> Micro-motion analysis paired with voice pitch variance checks to detect photo/audio replay attacks."
       ],
-      tech: ["Python", "OpenCV", "FaceNet", "Voice Biometrics", "PostgreSQL"]
+      tech: ["Python", "OpenCV", "FaceNet", "Voice Biometrics", "PostgreSQL"],
+      pipeline: [
+        { label: "Dual Stream", sub: "Camera + Microphone" },
+        { label: "Facial Landmark", sub: "FaceNet 128D Vector" },
+        { label: "Voice Frequency", sub: "Speaker Embeddings" },
+        { label: "Dynamic Fusion", sub: "Context Sensor Weights" },
+        { label: "Ledger Commit", sub: "PostgreSQL Database" }
+      ]
     },
     {
       id: "elevatecv",
       index: "05",
       title: "ATS Resume Analyzer: AI Scorer",
-      category: "AI/ML",
+      category: "NLP_GENAI",
+      categoryLabel: "NLP & Generative AI",
       status: "LIVE",
       tagline: "High-performance ATS scoring engine matching resumes to job descriptions via NLP & semantic embeddings.",
       image: "project_ats_resume.jpg",
       liveUrl: "https://ats-resume-analyzer-we86.onrender.com",
       repoUrl: "https://github.com/abhinavbuilds2005/ATS-RESUME-ANALYZER",
       summary: "A production-grade ATS scoring and resume optimization platform. Built with FastAPI and spaCy for structural NLP parsing, Sentence Transformers for chunked semantic similarity against job descriptions, and Groq (Llama 3) for generative feedback with an automated deterministic fallback pipeline and Supabase JWT authentication.",
-      challenge: "Arbitrary multi-column PDF/DOCX layouts scramble standard text extraction, standard embeddings suffer 5,000-character truncation loss, and cloud LLM rate limits risk service disruptions.",
-      solution: "Engineered a layout-aware document parser, implemented rolling chunk-based embeddings (`all-MiniLM-L6-v2`) to eliminate truncation, and built a fault-tolerant pipeline that automatically falls back to deterministic NLP extraction if external LLM APIs are unreachable.",
+      problem: "Arbitrary multi-column PDF/DOCX layouts scramble standard text extraction, standard embeddings suffer 5,000-character truncation loss, and cloud LLM rate limits risk service disruptions.",
+      solution: "Engineered a layout-aware document parser, implemented rolling chunk-based embeddings (all-MiniLM-L6-v2) to eliminate truncation, and built a fault-tolerant pipeline that automatically falls back to deterministic NLP extraction if external LLM APIs are unreachable.",
       features: [
         "<strong>5-Dimension Heuristic Scoring:</strong> Evaluates Formatting (20%), Keywords (25%), Impact (25%), Skill Validation (15%), and ATS Parseability & Privacy (15%).",
         "<strong>Rolling Chunk Semantic Matching:</strong> Uses Sentence Transformers to vectorize resume segments against job description requirements without truncation.",
         "<strong>Resilient AI Pipeline & Auth:</strong> Groq Llama 3 generative feedback with automatic deterministic fallback, Supabase JWT user isolation, and WeasyPrint export."
       ],
-      tech: ["FastAPI", "spaCy NLP", "Sentence Transformers", "Groq Llama 3", "Supabase", "Python"]
+      tech: ["FastAPI", "spaCy NLP", "Sentence Transformers", "Groq Llama 3", "Supabase", "Python"],
+      pipeline: [
+        { label: "Document Parse", sub: "Multi-Column PDF" },
+        { label: "spaCy Extraction", sub: "Entities & Skills" },
+        { label: "Chunk Vectors", sub: "MiniLM-L6-v2" },
+        { label: "Cosine Match", sub: "JD Alignment Score" },
+        { label: "Groq Generation", sub: "Actionable Feedback" }
+      ]
     },
     {
       id: "portfolio",
       index: "06",
       title: "Personal Portfolio v2",
-      category: "WEB DEV",
+      category: "SYSTEMS",
+      categoryLabel: "Full-Stack AI",
       status: "LIVE",
       tagline: "A high-performance console-inspired engineering hub built with zero bloated frameworks.",
       image: "project_portfolio_1775755792684.png",
       liveUrl: null,
       repoUrl: "https://github.com/abhinavbuilds2005/portfolio",
-      summary: "A bespoke engineering portfolio redesigned from first principles. Features a persistent IDE-style TOC activity sidebar, a master-detail project console, and a strict monochromatic visual language designed for senior-engineer clarity.",
-      challenge: "Eliminating the visual clichés common across contemporary AI/student portfolios (gradient blobs, floating pill bars, glassmorphism) while keeping interaction fast, accessible, and responsive.",
+      summary: "A bespoke engineering portfolio redesigned from first principles. Features a persistent IDE-style TOC activity sidebar, an interactive AI systems map, and a master-detail project console designed for senior-engineer clarity.",
+      problem: "Eliminating the visual clichés common across contemporary AI/student portfolios while keeping interaction fast, accessible, and responsive.",
       solution: "Engineered a persistent two-zone layout with hairline 1px borders, monospace metadata hierarchy, and modular vanilla JavaScript components with zero framework overhead.",
       features: [
         "<strong>Persistent Two-Zone Layout:</strong> Fixed TOC navigation sidebar with active section tracking, collapsing to a top drawer on mobile.",
         "<strong>Master-Detail Project Console:</strong> Instant keyboard-navigable index with real-time inspection view and collapsible case studies.",
         "<strong>Strict Design System:</strong> Curated grayscale palette with high-contrast typography (JetBrains Mono + Inter)."
       ],
-      tech: ["HTML5", "Vanilla CSS", "JavaScript (ES6+)", "JetBrains Mono"]
+      tech: ["HTML5", "Vanilla CSS", "JavaScript (ES6+)", "JetBrains Mono"],
+      pipeline: [
+        { label: "Static Structure", sub: "Semantic HTML5" },
+        { label: "Design System", sub: "CSS Custom Tokens" },
+        { label: "State Controller", sub: "Vanilla JS ES6+" },
+        { label: "Live Telemetry", sub: "GraphQL Serverless" },
+        { label: "Edge Delivery", sub: "Netlify Deploy" }
+      ]
     },
     {
       id: "voice-assistant",
       index: "07",
       title: "AI Voice Assistant",
-      category: "AI/ML",
-      status: "UPCOMING",
+      category: "NLP_GENAI",
+      categoryLabel: "NLP & Generative AI",
+      status: "ACTIVE ROADMAP",
       tagline: "Edge-quantized voice assistant orchestrating localized LLM reasoning and OS task execution.",
       image: "",
       liveUrl: null,
       repoUrl: null,
       summary: "A local-first conversational voice assistant engineered for low-latency dialogue, private offline inference, and operating system workflow automation.",
-      challenge: "Maintaining low conversation latency without leaking user voice audio to external commercial cloud endpoints.",
+      problem: "Maintaining low conversation latency without leaking user voice audio to external commercial cloud endpoints.",
       solution: "Deploying 4-bit quantized local instruction LLMs combined with accelerated whisper streaming buffers for entirely on-device inference.",
       features: [
         "<strong>Whisper Audio Streamer:</strong> Continuous low-latency streaming pipeline converting audio buffers to structured tokens.",
         "<strong>Agentic Task Orchestration:</strong> Maps spoken queries into validated execution schema JSONs.",
         "<strong>OS Automation Engine:</strong> Hooks into system APIs for hands-free workflow execution."
       ],
-      tech: ["Python", "OpenAI Whisper", "Local Quantized LLMs", "JSON Schema Parser"]
+      tech: ["Python", "OpenAI Whisper", "Local Quantized LLMs", "JSON Schema Parser"],
+      pipeline: [
+        { label: "Audio Stream", sub: "Continuous Buffer" },
+        { label: "Whisper STT", sub: "Low-Latency Tokens" },
+        { label: "Local LLM", sub: "4-Bit Quantized" },
+        { label: "JSON Validator", sub: "Action Schema" },
+        { label: "OS Executor", sub: "System Automation" }
+      ]
     },
     {
       id: "style-transfer",
       index: "08",
       title: "Neural Style Transfer",
-      category: "AI/ML",
-      status: "UPCOMING",
+      category: "VISION_FORENSICS",
+      categoryLabel: "Computer Vision & Forensics",
+      status: "ACTIVE ROADMAP",
       tagline: "Real-time feed-forward style rendering network blending classical artistic textures onto digital images.",
       image: "",
       liveUrl: null,
       repoUrl: null,
       summary: "A deep learning visual synthesis platform using convolutional neural networks to extract style representations from famous artworks and transfer them onto custom photography while preserving semantic structure.",
-      challenge: "Traditional iterative style transfer optimizations require hundreds of gradient descent steps, taking minutes per image on consumer GPUs.",
+      problem: "Traditional iterative style transfer optimizations require hundreds of gradient descent steps, taking minutes per image on consumer GPUs.",
       solution: "Trained a feed-forward perceptual generative network using Gram matrix style loss and deep perceptual content loss to achieve sub-second real-time inference.",
       features: [
         "<strong>Dual Perceptual Loss:</strong> Balances high-level feature retention with Gram-matrix textural synthesis.",
         "<strong>Feed-Forward Network:</strong> Sub-second processing enabling interactive web execution.",
         "<strong>Interactive Canvas Playground:</strong> Streamlit interface for custom blending and asset export."
       ],
-      tech: ["Python", "PyTorch", "VGG-19 CNN", "FastAPI", "Streamlit Canvas"]
+      tech: ["Python", "PyTorch", "VGG-19 CNN", "FastAPI", "Streamlit Canvas"],
+      pipeline: [
+        { label: "Input Images", sub: "Content & Style" },
+        { label: "VGG-19 Features", sub: "Deep Layer Maps" },
+        { label: "Gram Matrix", sub: "Texture Correlation" },
+        { label: "Perceptual Loss", sub: "Content + Style" },
+        { label: "Synthesized Output", sub: "Sub-Second Image" }
+      ]
     },
     {
       id: "gym-trainer",
       index: "09",
       title: "AI Real-Time Gym Trainer",
-      category: "AI/ML",
-      status: "UPCOMING",
+      category: "VISION_FORENSICS",
+      categoryLabel: "Computer Vision & Forensics",
+      status: "ACTIVE ROADMAP",
       tagline: "Computer vision activity monitor calculating joint kinematics and tracking exercise repetitions.",
       image: "",
       liveUrl: null,
       repoUrl: null,
       summary: "A real-time kinematic posture evaluator using standard webcams to identify skeletal joints, verify exercise angles against biomechanical standards, and count workout repetitions accurately.",
-      challenge: "Perspective shifts, camera tilt, and clothing clutter introduce landmark jitter, producing false repetition triggers.",
+      problem: "Perspective shifts, camera tilt, and clothing clutter introduce landmark jitter, producing false repetition triggers.",
       solution: "Implemented moving-average spatial smoothing filters across 3D coordinates and enforced angular state-machine transitions calibrated for individual limb ratios.",
       features: [
         "<strong>High-Speed Pose Estimation:</strong> Identifies 33 skeletal landmarks at 30+ FPS via standard webcam streams.",
         "<strong>Kinematic Angle Calculation:</strong> Measures joint vector angles across critical movement planes.",
         "<strong>State-Machine Repetition Counter:</strong> Distinguishes full range-of-motion repetitions from erratic movements."
       ],
-      tech: ["Python", "MediaPipe Pose", "OpenCV", "NumPy", "FastAPI"]
+      tech: ["Python", "MediaPipe Pose", "OpenCV", "NumPy", "FastAPI"],
+      pipeline: [
+        { label: "Webcam Feed", sub: "30+ FPS Video" },
+        { label: "MediaPipe 33", sub: "Skeletal Landmarks" },
+        { label: "Spatial Filter", sub: "Coordinate Smoothing" },
+        { label: "Angle Kinematics", sub: "Vector Plane Dot-Product" },
+        { label: "State Machine", sub: "Repetition Counter" }
+      ]
+    }
+  ];
+
+  // --- Verified Skills Ecosystem ---
+  const SKILLS_ECOSYSTEM = [
+    {
+      id: "python",
+      name: "Python",
+      category: "FOUNDATIONS",
+      desc: "Core programming language for data structures, machine learning research, and high-throughput backend services.",
+      projects: ["docushield", "creditwise", "smartcart", "presentai", "elevatecv"]
+    },
+    {
+      id: "cpp",
+      name: "C++ (DSA & Memory)",
+      category: "FOUNDATIONS",
+      desc: "Low-level memory management, pointers, and asymptotic algorithmic complexity reduction verified on LeetCode.",
+      projects: ["portfolio"]
+    },
+    {
+      id: "sql",
+      name: "SQL & Schema Design",
+      category: "FOUNDATIONS",
+      desc: "Relational schema engineering, 3NF normalization, complex window functions, and indexing in PostgreSQL.",
+      projects: ["presentai"]
+    },
+    {
+      id: "math-stats",
+      name: "Statistics & Linear Algebra",
+      category: "FOUNDATIONS",
+      desc: "Probability distributions, covariance matrices, vector spaces, and loss gradient formulations for machine learning.",
+      projects: ["creditwise", "smartcart"]
+    },
+    {
+      id: "scikit-learn",
+      name: "Scikit-Learn",
+      category: "ML",
+      desc: "Regularized classifiers (Logistic, Trees), ensemble methods, and pipeline transformers.",
+      projects: ["creditwise", "smartcart"]
+    },
+    {
+      id: "smote",
+      name: "SMOTE (Class Imbalance)",
+      category: "ML",
+      desc: "Synthetic Minority Over-sampling Technique to prevent model bias on skewed default datasets.",
+      projects: ["creditwise"]
+    },
+    {
+      id: "pca",
+      name: "PCA Decomposition",
+      category: "ML",
+      desc: "Principal Component Analysis to compress high-dimensional sparse transaction matrices without variance loss.",
+      projects: ["smartcart"]
+    },
+    {
+      id: "kmeans",
+      name: "K-Means Clustering",
+      category: "ML",
+      desc: "Unsupervised centroid clustering evaluated using the Elbow method and silhouette coefficient.",
+      projects: ["smartcart"]
+    },
+    {
+      id: "pr-auc",
+      name: "PR-AUC Metric Auditing",
+      category: "ML",
+      desc: "Precision-Recall curve threshold optimization to evaluate true model performance over misleading raw accuracy.",
+      projects: ["creditwise"]
+    },
+    {
+      id: "pytorch",
+      name: "PyTorch",
+      category: "DL_VISION",
+      desc: "Deep learning framework used for custom neural layers, tensor operations, and perceptual loss optimization.",
+      projects: ["style-transfer"]
+    },
+    {
+      id: "opencv",
+      name: "OpenCV",
+      category: "DL_VISION",
+      desc: "Computer vision image processing: morphological filters, Haar cascades, color space conversion, and ELA.",
+      projects: ["docushield", "presentai", "gym-trainer"]
+    },
+    {
+      id: "facenet",
+      name: "FaceNet Biometrics",
+      category: "DL_VISION",
+      desc: "Deep metric learning mapping face images to 128-dimensional Euclidean space for biometric verification.",
+      projects: ["presentai"]
+    },
+    {
+      id: "ela",
+      name: "Error Level Analysis (ELA)",
+      category: "DL_VISION",
+      desc: "Forensic image compression analysis detecting digital splicing by measuring differential JPEG resave error.",
+      projects: ["docushield"]
+    },
+    {
+      id: "verhoeff",
+      name: "Verhoeff Checksum (D5)",
+      category: "DL_VISION",
+      desc: "Mathematical checksum algorithm utilizing dihedral group D5 to validate Indian Aadhaar/UID identity integrity.",
+      projects: ["docushield"]
+    },
+    {
+      id: "sentence-transformers",
+      name: "Sentence Transformers",
+      category: "NLP_GENAI",
+      desc: "Dense semantic text embeddings (all-MiniLM-L6-v2) for chunked similarity matching against job descriptions.",
+      projects: ["elevatecv"]
+    },
+    {
+      id: "spacy",
+      name: "spaCy Pipeline",
+      category: "NLP_GENAI",
+      desc: "Industrial-strength Natural Language Processing for named entity recognition (NER) and syntactic parsing.",
+      projects: ["elevatecv"]
+    },
+    {
+      id: "easyocr",
+      name: "EasyOCR & Tesseract",
+      category: "NLP_GENAI",
+      desc: "Optical Character Recognition extracting layout-aware text tokens, confidences, and normalized bounding boxes.",
+      projects: ["docushield"]
+    },
+    {
+      id: "groq-llama",
+      name: "Groq Llama 3 LLM",
+      category: "NLP_GENAI",
+      desc: "High-speed generative inference for contextual resume rewrites with deterministic fallback handling.",
+      projects: ["elevatecv"]
+    },
+    {
+      id: "fastapi",
+      name: "FastAPI",
+      category: "SYSTEMS",
+      desc: "High-throughput asynchronous Python web framework with Pydantic schema validation and OpenAPI docs.",
+      projects: ["docushield", "elevatecv"]
+    },
+    {
+      id: "docker",
+      name: "Docker Containerization",
+      category: "SYSTEMS",
+      desc: "Reproducible container deployments packaging Python runtimes, C++ system libraries, and OCR binaries.",
+      projects: ["docushield"]
+    },
+    {
+      id: "postgresql",
+      name: "PostgreSQL",
+      category: "SYSTEMS",
+      desc: "ACID-compliant relational database for transactional user isolation and biometric attendance records.",
+      projects: ["presentai"]
+    },
+    {
+      id: "streamlit",
+      name: "Streamlit UI",
+      category: "SYSTEMS",
+      desc: "Interactive reactive dashboards enabling live parameter tuning and instant model risk estimation.",
+      projects: ["creditwise", "smartcart"]
+    }
+  ];
+
+  // --- Model Pipeline Stages ("How I Build Intelligent Systems") ---
+  const PIPELINE_STAGES = [
+    {
+      step: "01",
+      title: "Problem Definition & Data Ingestion",
+      summary: "Framing the ML task (supervised, unsupervised, or forensic) and establishing rigorous data validation schemas.",
+      desc: "Every project starts by understanding operational stakes. Before touching models, I define target labels, check for distribution drift, audit class balance, and establish clean deterministic data schemas.",
+      rationale: "Garbage in, garbage out. A poorly framed problem or corrupted labels cannot be rescued by advanced architectures.",
+      tools: ["Pandas", "NumPy", "Pydantic Schemas", "OpenCV"],
+      projects: ["CreditWise", "DocuShield AI"]
+    },
+    {
+      step: "02",
+      title: "Preprocessing & Normalization",
+      summary: "Transforming raw noisy inputs into standardized, clean representations.",
+      desc: "Handling layout-aware text parsing, multi-column PDF desegmentation, image resizing, morphological noise filtering, and missing-value imputation without data leakage.",
+      rationale: "Feature leakage during normalization is one of the most common causes of high validation scores that collapse in production.",
+      tools: ["spaCy", "OpenCV", "Scikit-Learn Preprocessing", "EasyOCR"],
+      projects: ["ATS Resume Analyzer", "DocuShield AI"]
+    },
+    {
+      step: "03",
+      title: "Feature Engineering & Dimensionality",
+      summary: "Extracting high-leverage domain representations and mitigating the curse of dimensionality.",
+      desc: "Formulating debt-to-income weights, installment ratios, acoustic pitch frequencies, and applying PCA (Principal Component Analysis) to compress sparse matrices.",
+      rationale: "Clever feature representations consistently outperform brute-force parameter scaling on small to medium datasets.",
+      tools: ["PCA", "Scikit-Learn", "NumPy", "Sentence Transformers"],
+      projects: ["SmartCart AI", "CreditWise"]
+    },
+    {
+      step: "04",
+      title: "Model Selection & Inductive Bias",
+      summary: "Selecting the simplest architecture that satisfies accuracy and latency constraints.",
+      desc: "Comparing regularized linear baselines against deep neural embeddings. Prioritizing statistical interpretability for loan underwriting, and convolutional representations for image forensics.",
+      rationale: "Over-parameterized models introduce unnecessary inference cost and hidden failure modes. Start simple, baseline thoroughly.",
+      tools: ["Scikit-Learn", "PyTorch", "FaceNet", "VGG-19"],
+      projects: ["CreditWise", "PresentAI"]
+    },
+    {
+      step: "05",
+      title: "Rigorous Metric Evaluation",
+      summary: "Auditing models with metric sensitivity tailored to real-world cost functions.",
+      desc: "Refusing to rely on raw accuracy. Enforcing Precision-Recall AUC curves, silhouette coefficients, confusion matrices, and test-set verification.",
+      rationale: "A 99% accuracy model that predicts the majority class on an imbalanced dataset is worthless in an underwriting environment.",
+      tools: ["PR-AUC Curves", "Matplotlib", "Seaborn", "Confusion Matrices"],
+      projects: ["CreditWise", "DocuShield AI"]
+    },
+    {
+      step: "06",
+      title: "Deployment & API Runtimes",
+      summary: "Wrapping models into low-latency asynchronous microservices and container runtimes.",
+      desc: "Packaging inference pipelines into FastAPI REST endpoints with Pydantic validation, Streamlit UI controllers, and reproducible Docker images.",
+      rationale: "A model stuck in a Jupyter Notebook provides zero tangible value. Production requires clear contracts, health endpoints, and isolation.",
+      tools: ["FastAPI", "Docker", "Streamlit", "Render / Vercel"],
+      projects: ["DocuShield AI", "ElevateCV"]
+    },
+    {
+      step: "07",
+      title: "Resilience & Fallback Engineering",
+      summary: "Designing fault-tolerant pipelines with deterministic backups for external service failures.",
+      desc: "Building automatic fallback mechanisms: when external LLMs or third-party APIs time out, the system automatically falls back to deterministic rule sets and local heuristics.",
+      rationale: "Intelligent systems must degrade gracefully under adverse network partitions or rate limits rather than crashing.",
+      tools: ["Deterministic Fallbacks", "Local Caching", "Timeout Guards"],
+      projects: ["ATS Resume Analyzer", "DocuShield AI"]
+    }
+  ];
+
+  // --- Build Log Entries ---
+  const BUILD_LOG_ENTRIES = [
+    {
+      id: "LOG_01",
+      date: "SEPTEMBER 2026",
+      title: "Multimodal Evidence Fusion in Document Forensics",
+      text: "Single-modality forensic checks are easily fooled. By fusing image Error Level Analysis (ELA), copy-move geometry (ORB+RANSAC), ICAO MRZ checksums, and facial biometric cosine similarity into a 5-level hierarchical scoring engine, false positive rates drop drastically.",
+      tags: ["DocuShield AI", "OpenCV", "Forensics", "SIH 2026"]
+    },
+    {
+      id: "LOG_02",
+      date: "AUGUST 2026",
+      title: "Navigating Extreme Class Imbalance with PR-AUC",
+      text: "When modeling loan default risk, historical defaults make up less than 5% of records. Standard accuracy is completely misleading. Combining SMOTE over-sampling during training with decision threshold tuning on Precision-Recall AUC curves yielded reliable risk tiers.",
+      tags: ["CreditWise", "SMOTE", "Scikit-Learn", "Evaluation"]
+    },
+    {
+      id: "LOG_03",
+      date: "JULY 2026",
+      title: "Dynamic Confidence Shifting in Dual-Sensor Biometrics",
+      text: "Camera lighting fails in dim environments; audio microphones fail in noisy rooms. PresentAI shifts its validation weight dynamically: prioritizing acoustic voiceprints in low light and camera facial landmark vectors in acoustic noise.",
+      tags: ["PresentAI", "FaceNet", "Audio Biometrics", "Anti-Spoofing"]
+    },
+    {
+      id: "LOG_04",
+      date: "JUNE 2026",
+      title: "Chunked Semantic Embeddings without Truncation",
+      text: "Standard transformer encoders truncate input text beyond 512 tokens (~3,500 chars). For complex multi-page resumes, this strips half the applicant's experience. Implementing a rolling chunk-based embedding strategy preserved semantic recall across entire documents.",
+      tags: ["ElevateCV", "Sentence Transformers", "spaCy", "NLP"]
+    },
+    {
+      id: "LOG_05",
+      date: "MAY 2026",
+      title: "Mitigating Curse of Dimensionality via PCA",
+      text: "Sparse customer transaction matrices cause K-Means clustering centroids to collapse into ambiguous clusters. Projecting high-dimensional purchase vectors into dense lower-dimensional space via PCA restored cluster separation and improved silhouette coefficients.",
+      tags: ["SmartCart AI", "PCA", "K-Means", "Unsupervised ML"]
     }
   ];
 
   // ==========================================================================
-  // 2. MASTER-DETAIL PROJECT CONSOLE CONTROLLER
+  // 2. HERO INTERACTIVE AI SYSTEMS PIPELINE CANVAS (LIGHTWEIGHT 2D CANVAS)
+  // ==========================================================================
+  const heroCanvas = document.getElementById("hero-system-canvas");
+  const heroTooltip = document.getElementById("hero-canvas-tooltip");
+
+  if (heroCanvas) {
+    const ctx = heroCanvas.getContext("2d");
+    let animationFrameId;
+    let isCanvasVisible = true;
+
+    // Responsive Canvas Resizing
+    function resizeHeroCanvas() {
+      const rect = heroCanvas.getBoundingClientRect();
+      heroCanvas.width = rect.width * (window.devicePixelRatio || 1);
+      heroCanvas.height = 280 * (window.devicePixelRatio || 1);
+      ctx.scale(window.devicePixelRatio || 1, window.devicePixelRatio || 1);
+    }
+    resizeHeroCanvas();
+    window.addEventListener("resize", resizeHeroCanvas);
+
+    // AI Pipeline Nodes
+    const pipelineNodes = [
+      { id: "input", name: "01 // DATA INGEST", sub: "Images / Resumes / Logs", x: 0.12, y: 0.5, desc: "Multimodal ingestion: raw images, PDF/DOCX layouts, audio buffers, and tabular transaction records." },
+      { id: "prep", name: "02 // PREPROCESS", sub: "EasyOCR / spaCy / PCA", x: 0.32, y: 0.32, desc: "Token extraction, noise filtering, text normalization, and high-dimensional vector projection." },
+      { id: "feature", name: "03 // FEATURE ENG", sub: "SMOTE / Checksums / ELA", x: 0.52, y: 0.68, desc: "Domain weights, Verhoeff D5 checksum validation, and ELA tamper compression analysis." },
+      { id: "model", name: "04 // MODEL INFERENCE", sub: "FaceNet / Transformers / ML", x: 0.72, y: 0.35, desc: "Dense semantic matching, facial embeddings, and calibrated risk probability classification." },
+      { id: "output", name: "05 // SYSTEM OUTPUT", sub: "Risk Score / Dashboard UI", x: 0.90, y: 0.5, desc: "Actionable decision support: forensic report, underwriting decision, or attendance confirmation." }
+    ];
+
+    let t = 0;
+    let hoveredNode = null;
+
+    // Connections between stages
+    const connections = [
+      { from: 0, to: 1 },
+      { from: 1, to: 2 },
+      { from: 2, to: 3 },
+      { from: 3, to: 4 }
+    ];
+
+    // Data flow pulses
+    const dataPulses = [
+      { conn: 0, progress: 0.1, speed: 0.007 },
+      { conn: 1, progress: 0.4, speed: 0.008 },
+      { conn: 2, progress: 0.7, speed: 0.006 },
+      { conn: 3, progress: 0.2, speed: 0.009 }
+    ];
+
+    function renderHeroCanvas() {
+      if (!isCanvasVisible) return;
+      t += 0.02;
+
+      const width = heroCanvas.width / (window.devicePixelRatio || 1);
+      const height = heroCanvas.height / (window.devicePixelRatio || 1);
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw subtle background grid lines
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
+      ctx.lineWidth = 1;
+      for (let x = 0; x < width; x += 32) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, height); ctx.stroke();
+      }
+      for (let y = 0; y < height; y += 32) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(width, y); ctx.stroke();
+      }
+
+      // Draw connection lines with smooth curves
+      connections.forEach(c => {
+        const p1 = { x: pipelineNodes[c.from].x * width, y: pipelineNodes[c.from].y * height };
+        const p2 = { x: pipelineNodes[c.to].x * width, y: pipelineNodes[c.to].y * height };
+
+        ctx.strokeStyle = "rgba(0, 245, 212, 0.18)";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        const cpX = (p1.x + p2.x) / 2;
+        ctx.moveTo(p1.x, p1.y);
+        ctx.bezierCurveTo(cpX, p1.y, cpX, p2.y, p2.x, p2.y);
+        ctx.stroke();
+      });
+
+      // Draw animated data pulses
+      dataPulses.forEach(pulse => {
+        pulse.progress += pulse.speed;
+        if (pulse.progress > 1) pulse.progress = 0;
+
+        const c = connections[pulse.conn];
+        const p1 = { x: pipelineNodes[c.from].x * width, y: pipelineNodes[c.from].y * height };
+        const p2 = { x: pipelineNodes[c.to].x * width, y: pipelineNodes[c.to].y * height };
+
+        const cpX = (p1.x + p2.x) / 2;
+        const u = pulse.progress;
+        // Cubic bezier interpolation
+        const px = Math.pow(1 - u, 3) * p1.x + 3 * Math.pow(1 - u, 2) * u * cpX + 3 * (1 - u) * Math.pow(u, 2) * cpX + Math.pow(u, 3) * p2.x;
+        const py = Math.pow(1 - u, 3) * p1.y + 3 * Math.pow(1 - u, 2) * u * p1.y + 3 * (1 - u) * Math.pow(u, 2) * p2.y + Math.pow(u, 3) * p2.y;
+
+        // Glowing pulse particle
+        const grad = ctx.createRadialGradient(px, py, 1, px, py, 8);
+        grad.addColorStop(0, "#ffffff");
+        grad.addColorStop(0.4, "#00f5d4");
+        grad.addColorStop(1, "rgba(0, 245, 212, 0)");
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(px, py, 8, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Draw System Nodes
+      pipelineNodes.forEach((node, idx) => {
+        const nx = node.x * width;
+        const ny = node.y * height;
+        const isHovered = hoveredNode === idx;
+
+        // Outer glow on hover or pulsing
+        const haloSize = isHovered ? 24 : 16 + Math.sin(t + idx) * 3;
+        const haloGrad = ctx.createRadialGradient(nx, ny, 2, nx, ny, haloSize);
+        haloGrad.addColorStop(0, isHovered ? "rgba(0, 245, 212, 0.5)" : "rgba(139, 92, 246, 0.35)");
+        haloGrad.addColorStop(1, "transparent");
+        ctx.fillStyle = haloGrad;
+        ctx.beginPath();
+        ctx.arc(nx, ny, haloSize, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Node circle
+        ctx.fillStyle = isHovered ? "#00f5d4" : "#161a24";
+        ctx.strokeStyle = isHovered ? "#ffffff" : "#00f5d4";
+        ctx.lineWidth = isHovered ? 2 : 1.5;
+        ctx.beginPath();
+        ctx.arc(nx, ny, isHovered ? 8 : 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        // Label above / below
+        ctx.fillStyle = isHovered ? "#ffffff" : "#f8fafc";
+        ctx.font = "bold 9px 'JetBrains Mono', monospace";
+        ctx.textAlign = "center";
+        const labelY = ny > height / 2 ? ny + 20 : ny - 16;
+        ctx.fillText(node.name, nx, labelY);
+
+        ctx.fillStyle = "#94a3b8";
+        ctx.font = "8px 'JetBrains Mono', monospace";
+        ctx.fillText(node.sub, nx, labelY + 11);
+      });
+
+      animationFrameId = requestAnimationFrame(renderHeroCanvas);
+    }
+
+    renderHeroCanvas();
+
+    // Mouse hover detection on hero canvas
+    heroCanvas.addEventListener("mousemove", (e) => {
+      const rect = heroCanvas.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      let found = null;
+      pipelineNodes.forEach((node, idx) => {
+        const nx = node.x * rect.width;
+        const ny = node.y * rect.height;
+        const dist = Math.hypot(mouseX - nx, mouseY - ny);
+        if (dist < 26) found = idx;
+      });
+
+      hoveredNode = found;
+      if (found !== null && heroTooltip) {
+        const n = pipelineNodes[found];
+        heroTooltip.innerHTML = `<span class="text-cyan font-bold">${n.name}:</span> <span>${n.desc}</span>`;
+      }
+    });
+
+    heroCanvas.addEventListener("mouseleave", () => {
+      hoveredNode = null;
+      if (heroTooltip) {
+        heroTooltip.innerHTML = `<i class="fas fa-info-circle text-cyan"></i> <span>Hover over any system node to inspect techniques, feature pipelines, and verified models.</span>`;
+      }
+    });
+
+    heroCanvas.addEventListener("click", () => {
+      if (hoveredNode !== null) {
+        const targetSection = hoveredNode >= 3 ? "work" : "pipeline";
+        const el = document.getElementById(targetSection);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+
+    // Visibility Observer to save performance
+    const heroObserver = new IntersectionObserver((entries) => {
+      isCanvasVisible = entries[0].isIntersecting;
+      if (isCanvasVisible) renderHeroCanvas();
+    }, { threshold: 0.1 });
+    heroObserver.observe(heroCanvas);
+  }
+
+  // ==========================================================================
+  // 3. AI SYSTEMS MAP (INTERACTIVE SKILL EXPLORER & LINKAGE)
+  // ==========================================================================
+  const mapBoardContainer = document.getElementById("systems-map-board");
+  const mapFilterBtns = document.querySelectorAll("#map-category-filters .map-filter-btn");
+  const mapResetBtn = document.getElementById("map-reset-btn");
+
+  const inspectorSkillName = document.getElementById("inspector-skill-name");
+  const inspectorSkillDesc = document.getElementById("inspector-skill-desc");
+  const inspectorCatTag = document.getElementById("inspector-cat-tag");
+  const inspectorLinkedProjects = document.getElementById("inspector-linked-projects");
+
+  let activeMapCategory = "ALL";
+  let activeSelectedSkill = null;
+
+  const CATEGORY_NAMES = {
+    FOUNDATIONS: "Foundations & Low-Level Memory",
+    ML: "Machine Learning & Statistical Sampling",
+    DL_VISION: "Deep Learning & Computer Vision",
+    NLP_GENAI: "NLP & Generative AI Systems",
+    SYSTEMS: "Engineering, Runtimes & Databases"
+  };
+
+  function renderSystemsMap() {
+    if (!mapBoardContainer) return;
+
+    // Filter skills by category
+    const filteredSkills = activeMapCategory === "ALL" 
+      ? SKILLS_ECOSYSTEM 
+      : SKILLS_ECOSYSTEM.filter(s => s.category === activeMapCategory);
+
+    // Group skills by category for clear architectural clustering
+    const clusters = {};
+    filteredSkills.forEach(s => {
+      if (!clusters[s.category]) clusters[s.category] = [];
+      clusters[s.category].push(s);
+    });
+
+    let html = "";
+    Object.keys(clusters).forEach(catKey => {
+      const groupSkills = clusters[catKey];
+      html += `
+        <div class="map-cluster-block">
+          <div class="map-cluster-title">
+            <i class="fas fa-layer-group text-cyan text-[10px]"></i>
+            <span>${CATEGORY_NAMES[catKey] || catKey}</span>
+          </div>
+          <div class="map-nodes-wrap">
+            ${groupSkills.map(s => {
+              const isActive = activeSelectedSkill === s.id;
+              return `
+                <button type="button" class="map-skill-node ${isActive ? "active" : ""}" data-skill-id="${s.id}">
+                  <span class="node-dot"></span>
+                  <span>${s.name}</span>
+                </button>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `;
+    });
+
+    mapBoardContainer.innerHTML = html;
+
+    // Attach click listeners to skill nodes
+    const skillNodes = mapBoardContainer.querySelectorAll(".map-skill-node");
+    skillNodes.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const skillId = btn.getAttribute("data-skill-id");
+        selectSkillNode(skillId);
+      });
+    });
+  }
+
+  function selectSkillNode(skillId) {
+    activeSelectedSkill = skillId;
+    const skillObj = SKILLS_ECOSYSTEM.find(s => s.id === skillId);
+    if (!skillObj) return;
+
+    // Update inspector view
+    if (inspectorSkillName) inspectorSkillName.textContent = skillObj.name;
+    if (inspectorSkillDesc) inspectorSkillDesc.textContent = skillObj.desc;
+    if (inspectorCatTag) inspectorCatTag.textContent = skillObj.category;
+
+    if (inspectorLinkedProjects) {
+      const linkedProjs = PROJECTS_DATA.filter(p => skillObj.projects.includes(p.id));
+      if (linkedProjs.length > 0) {
+        inspectorLinkedProjects.innerHTML = linkedProjs.map(p => `
+          <a href="#work" class="linked-project-row" data-proj-id="${p.id}">
+            <div>
+              <div class="linked-proj-name">${p.title}</div>
+              <div class="font-mono text-low" style="font-size: 0.65rem;">${p.tagline}</div>
+            </div>
+            <span class="linked-proj-tag">[INSPECT]</span>
+          </a>
+        `).join("");
+
+        // Attach click handlers to jump to and highlight that project
+        const projRows = inspectorLinkedProjects.querySelectorAll(".linked-project-row");
+        projRows.forEach(row => {
+          row.addEventListener("click", (e) => {
+            e.preventDefault();
+            const pId = row.getAttribute("data-proj-id");
+            const pIdx = PROJECTS_DATA.findIndex(p => p.id === pId);
+            if (pIdx !== -1) {
+              selectProject(pIdx, true);
+              const workEl = document.getElementById("work");
+              if (workEl) workEl.scrollIntoView({ behavior: "smooth" });
+            }
+          });
+        });
+      } else {
+        inspectorLinkedProjects.innerHTML = `<div class="font-mono text-xs text-low">// Foundational coursework & lab implementations</div>`;
+      }
+    }
+
+    renderSystemsMap();
+  }
+
+  // Category filter buttons
+  mapFilterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      mapFilterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeMapCategory = btn.getAttribute("data-category");
+      renderSystemsMap();
+    });
+  });
+
+  if (mapResetBtn) {
+    mapResetBtn.addEventListener("click", () => {
+      activeMapCategory = "ALL";
+      activeSelectedSkill = null;
+      mapFilterBtns.forEach(b => b.classList.remove("active"));
+      const allBtn = document.querySelector('#map-category-filters [data-category="ALL"]');
+      if (allBtn) allBtn.classList.add("active");
+      if (inspectorSkillName) inspectorSkillName.textContent = "Select Any Skill Node";
+      if (inspectorSkillDesc) inspectorSkillDesc.textContent = "Click on any technology or algorithm node on the left to reveal its mathematical role, verified tools, and the exact portfolio projects where it is implemented.";
+      if (inspectorCatTag) inspectorCatTag.textContent = "SELECT NODE";
+      if (inspectorLinkedProjects) inspectorLinkedProjects.innerHTML = `<div class="font-mono text-xs text-low">// No skill node currently active</div>`;
+      renderSystemsMap();
+    });
+  }
+
+  renderSystemsMap();
+
+  // ==========================================================================
+  // 4. PROJECT MATRIX & ARCHITECTURE SPEC CONSOLE
   // ==========================================================================
   const masterListContainer = document.getElementById("project-master-list");
   const detailPanel = document.getElementById("project-detail-panel");
+  const projFilterBtns = document.querySelectorAll("#project-filter-strip .proj-filter-btn");
+
   const modalElement = document.getElementById("spec-modal");
   const modalContent = document.getElementById("spec-modal-body");
   const modalTitle = document.getElementById("spec-modal-title");
   const modalCloseBtn = document.getElementById("spec-modal-close");
   const modalBackdrop = document.getElementById("spec-modal-backdrop");
+  const docushieldSpecBtn = document.getElementById("btn-open-docushield-spec");
 
   let activeProjectIndex = 0;
+  let activeProjectFilter = "ALL";
+
+  function getFilteredProjects() {
+    if (activeProjectFilter === "ALL") return PROJECTS_DATA;
+    return PROJECTS_DATA.filter(p => p.category === activeProjectFilter);
+  }
 
   function renderMasterList() {
     if (!masterListContainer) return;
 
+    const filtered = getFilteredProjects();
+
     masterListContainer.innerHTML = `
       <div class="master-list-header">
-        <span>INDEX / REPO</span>
+        <span>INDEX // REPO</span>
         <span>STATUS</span>
       </div>
     `;
 
-    PROJECTS_DATA.forEach((project, idx) => {
+    filtered.forEach((project, fIdx) => {
+      // Find global index in PROJECTS_DATA
+      const globalIdx = PROJECTS_DATA.findIndex(p => p.id === project.id);
+      const isActive = globalIdx === activeProjectIndex;
+
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = `master-item ${idx === activeProjectIndex ? "active" : ""}`;
-      btn.setAttribute("data-index", idx);
+      btn.className = `master-item ${isActive ? "active" : ""}`;
+      btn.setAttribute("data-global-index", globalIdx);
       btn.setAttribute("aria-label", `Inspect project ${project.title}`);
 
       const statusClass = project.status === "LIVE" ? "live" : "upcoming";
 
       btn.innerHTML = `
         <div class="master-item-meta">
-          <span class="master-item-idx">${project.index} // ${project.category}</span>
+          <span class="master-item-idx">${project.index} // ${project.categoryLabel}</span>
           <span class="master-item-tag ${statusClass}">${project.status}</span>
         </div>
         <div class="master-item-title">${project.title}</div>
       `;
 
       btn.addEventListener("click", () => {
-        selectProject(idx);
+        selectProject(globalIdx);
       });
 
       masterListContainer.appendChild(btn);
     });
   }
 
-  function selectProject(index, shouldScroll = false) {
-    activeProjectIndex = index;
-    const project = PROJECTS_DATA[index];
+  function selectProject(globalIndex, shouldScroll = false) {
+    activeProjectIndex = globalIndex;
+    const project = PROJECTS_DATA[globalIndex];
     if (!project || !detailPanel) return;
 
-    // Update active class on master buttons
+    // Update active highlight on master buttons
     const items = masterListContainer.querySelectorAll(".master-item");
-    items.forEach((item, idx) => {
-      if (idx === index) {
+    items.forEach((item) => {
+      const gIdx = parseInt(item.getAttribute("data-global-index"), 10);
+      if (gIdx === globalIndex) {
         item.classList.add("active");
-        if (shouldScroll && masterListContainer && masterListContainer.scrollHeight > masterListContainer.clientHeight) {
-          const itemOffsetTop = item.offsetTop - masterListContainer.offsetTop;
-          masterListContainer.scrollTo({ top: itemOffsetTop, behavior: "smooth" });
+        if (shouldScroll && masterListContainer.scrollHeight > masterListContainer.clientHeight) {
+          const itemOffset = item.offsetTop - masterListContainer.offsetTop;
+          masterListContainer.scrollTo({ top: itemOffset, behavior: "smooth" });
         }
       } else {
         item.classList.remove("active");
       }
     });
 
-    // Render Detail Viewport
     renderDetailPanel(project);
   }
+
+  window.handlePreviewImageError = function(img, index, id) {
+    if (img.src.endsWith(".png") && !img.dataset.triedJpg) {
+      img.dataset.triedJpg = "true";
+      img.src = img.src.replace(/\.png$/, ".jpg");
+      return;
+    }
+    if (img.src.endsWith(".jpg") && !img.dataset.triedPng) {
+      img.dataset.triedPng = "true";
+      img.src = img.src.replace(/\.jpg$/, ".png");
+      return;
+    }
+    const frame = img.closest(".detail-preview-frame");
+    if (frame) {
+      frame.style.height = "180px";
+      frame.style.display = "flex";
+      frame.style.alignItems = "center";
+      frame.style.justifyContent = "center";
+      frame.style.fontFamily = "var(--font-mono)";
+      frame.style.fontSize = "0.8rem";
+      frame.style.color = "var(--text-low)";
+      frame.style.flexDirection = "column";
+      frame.style.gap = "0.5rem";
+      frame.innerHTML = `<i class="fas fa-terminal text-cyan text-xl"></i><span>[SYSTEM_SCHEMATIC // ${index}_${id}]</span>`;
+    }
+  };
 
   function renderDetailPanel(project) {
     const isLive = project.status === "LIVE";
@@ -293,16 +1009,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (project.image) {
       mediaPreview = `
         <div class="detail-preview-frame">
-          <img src="${project.image}" alt="${project.title} Preview" loading="lazy" class="detail-preview-img">
+          <img src="${project.image}" alt="${project.title} Preview" loading="lazy" class="detail-preview-img" onerror="handlePreviewImageError(this, '${project.index}', '${project.id.toUpperCase()}')">
         </div>
       `;
     } else {
       mediaPreview = `
-        <div class="detail-preview-frame">
-          <div class="detail-preview-placeholder">
-            <i class="fas fa-terminal"></i>
-            <span>[SCHEMATIC_VIEW // ${project.index}_${project.id.toUpperCase()}]</span>
-          </div>
+        <div class="detail-preview-frame" style="height: 180px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-low); flex-direction: column; gap: 0.5rem;">
+          <i class="fas fa-terminal text-cyan text-xl"></i>
+          <span>[SYSTEM_SCHEMATIC // ${project.index}_${project.id.toUpperCase()}]</span>
         </div>
       `;
     }
@@ -311,7 +1025,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (project.liveUrl) {
       liveBtn = `
         <a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-          Launch Live App <i class="fas fa-external-link-alt text-[11px]"></i>
+          Launch Live App <i class="fas fa-external-link-alt text-[10px]"></i>
         </a>
       `;
     }
@@ -328,34 +1042,30 @@ document.addEventListener("DOMContentLoaded", () => {
     detailPanel.innerHTML = `
       <div class="detail-header-bar">
         <span>PROJECT [${project.index}/${PROJECTS_DATA.length.toString().padStart(2, "0")}] // STATUS: ${project.status}</span>
-        <div class="detail-header-links">
-          <span>${project.category}</span>
-        </div>
+        <span class="text-cyan">${project.categoryLabel}</span>
       </div>
 
       <div class="detail-content-body">
-        <div class="detail-title-row">
-          <h3 class="detail-project-title">${project.title}</h3>
-          <p class="detail-project-tagline font-mono">${project.tagline}</p>
-        </div>
+        <h3 class="detail-project-title">${project.title}</h3>
+        <p class="detail-project-tagline">${project.tagline}</p>
 
         ${mediaPreview}
 
-        <p class="text-mid" style="font-size: 0.95rem; margin-bottom: 1.75rem; line-height: 1.65;">
+        <p class="text-mid" style="font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.65;">
           ${project.summary}
         </p>
 
-        <!-- Architecture Breakdown Spec Grid -->
+        <!-- Technical Spec Grid -->
         <div class="detail-spec-grid">
           <div class="detail-spec-cell">
             <div class="spec-cell-title">
-              <i class="fas fa-exclamation-triangle text-low"></i> Technical Challenge
+              <i class="fas fa-exclamation-triangle text-low"></i> Operational Challenge
             </div>
-            <p class="spec-cell-text">${project.challenge}</p>
+            <p class="spec-cell-text">${project.problem}</p>
           </div>
           <div class="detail-spec-cell">
             <div class="spec-cell-title">
-              <i class="fas fa-check-circle text-low"></i> Engineering Solution
+              <i class="fas fa-check-circle text-cyan"></i> Engineering Solution
             </div>
             <p class="spec-cell-text">${project.solution}</p>
           </div>
@@ -363,7 +1073,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <!-- Key Features List -->
         <div class="detail-features-block">
-          <div class="features-title">KEY TECHNICAL FEATURES:</div>
+          <div class="features-title">KEY SYSTEM CAPABILITIES:</div>
           <ul class="features-list">
             ${project.features.map(f => `<li>${f}</li>`).join("")}
           </ul>
@@ -371,7 +1081,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <!-- Tech Stack Chips -->
         <div class="detail-features-block">
-          <div class="features-title">STACK & DEPENDENCIES:</div>
+          <div class="features-title">VERIFIED STACK & DEPENDENCIES:</div>
           <div class="detail-tech-row">
             ${project.tech.map(t => `<span class="tech-chip">${t}</span>`).join("")}
           </div>
@@ -382,13 +1092,13 @@ document.addEventListener("DOMContentLoaded", () => {
           ${liveBtn}
           ${repoBtn}
           <button type="button" class="btn btn-sm" id="btn-open-case-study" data-idx="${activeProjectIndex}">
-            <i class="fas fa-file-alt"></i> Full Spec Modal
+            <i class="fas fa-file-code"></i> Deep Architecture Spec
           </button>
         </div>
       </div>
     `;
 
-    // Hook modal trigger
+    // Hook modal button
     const caseStudyBtn = document.getElementById("btn-open-case-study");
     if (caseStudyBtn) {
       caseStudyBtn.addEventListener("click", () => {
@@ -397,68 +1107,83 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Keyboard navigation for project list (active when interacting with master list)
-  if (masterListContainer) {
-    masterListContainer.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        const nextIdx = (activeProjectIndex + 1) % PROJECTS_DATA.length;
-        selectProject(nextIdx, true);
-        const items = masterListContainer.querySelectorAll(".master-item");
-        if (items[nextIdx]) items[nextIdx].focus();
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        const prevIdx = (activeProjectIndex - 1 + PROJECTS_DATA.length) % PROJECTS_DATA.length;
-        selectProject(prevIdx, true);
-        const items = masterListContainer.querySelectorAll(".master-item");
-        if (items[prevIdx]) items[prevIdx].focus();
+  // Project Category Filter Buttons
+  projFilterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      projFilterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeProjectFilter = btn.getAttribute("data-filter");
+
+      const filtered = getFilteredProjects();
+      if (filtered.length > 0) {
+        const firstGlobalIdx = PROJECTS_DATA.findIndex(p => p.id === filtered[0].id);
+        renderMasterList();
+        selectProject(firstGlobalIdx);
+      } else {
+        renderMasterList();
       }
     });
-  }
+  });
 
-  // Modal Handling
+  // Modal Handling with Architecture Pipeline Diagram
   function openSpecModal(project) {
     if (!modalElement || !modalContent || !modalTitle) return;
 
     modalTitle.textContent = `SPEC // ${project.index}: ${project.title}`;
+
+    const pipelineStepsHtml = project.pipeline ? `
+      <div class="arch-pipeline-block">
+        <div class="features-title" style="margin-bottom: 0.75rem;">
+          <i class="fas fa-project-diagram text-cyan"></i> END-TO-END DATA & INFERENCE PIPELINE:
+        </div>
+        <div class="pipeline-nodes-sequence">
+          ${project.pipeline.map((step, idx) => `
+            <div class="pipeline-node-item">
+              <span class="node-title">${step.label}</span>
+              <span class="node-sub">${step.sub}</span>
+            </div>
+            ${idx < project.pipeline.length - 1 ? `<span class="pipeline-arrow">&rarr;</span>` : ""}
+          `).join("")}
+        </div>
+      </div>
+    ` : "";
+
     modalContent.innerHTML = `
       <div>
-        <p class="font-mono text-mid" style="margin-bottom: 0.75rem; font-size: 0.85rem;">${project.tagline}</p>
+        <p class="font-mono text-cyan" style="font-size: 0.85rem; margin-bottom: 0.5rem;">${project.tagline}</p>
         <p class="text-mid" style="line-height: 1.65; font-size: 0.9rem;">${project.summary}</p>
       </div>
 
-      <div style="border-top: 1px solid var(--line); padding-top: 1.25rem;">
-        <h4 class="font-mono" style="font-size: 0.75rem; color: var(--text-low); text-transform: uppercase; margin-bottom: 0.75rem;">
-          Architectural Analysis
-        </h4>
-        <div class="detail-spec-grid">
-          <div class="detail-spec-cell">
-            <div class="spec-cell-title"><i class="fas fa-exclamation-triangle"></i> Challenge</div>
-            <p class="spec-cell-text">${project.challenge}</p>
-          </div>
-          <div class="detail-spec-cell">
-            <div class="spec-cell-title"><i class="fas fa-check-circle"></i> Solution</div>
-            <p class="spec-cell-text">${project.solution}</p>
-          </div>
+      ${pipelineStepsHtml}
+
+      <div class="detail-spec-grid" style="margin-bottom: 0;">
+        <div class="detail-spec-cell">
+          <div class="spec-cell-title"><i class="fas fa-exclamation-triangle"></i> Technical Challenge</div>
+          <p class="spec-cell-text">${project.problem}</p>
+        </div>
+        <div class="detail-spec-cell">
+          <div class="spec-cell-title"><i class="fas fa-check-circle text-cyan"></i> Algorithmic Solution</div>
+          <p class="spec-cell-text">${project.solution}</p>
         </div>
       </div>
 
-      <div style="border-top: 1px solid var(--line); padding-top: 1.25rem;">
-        <h4 class="font-mono" style="font-size: 0.75rem; color: var(--text-low); text-transform: uppercase; margin-bottom: 0.75rem;">
-          Detailed System Features
-        </h4>
+      <div>
+        <div class="features-title">DETAILED SYSTEM CAPABILITIES:</div>
         <ul class="features-list">
           ${project.features.map(f => `<li>${f}</li>`).join("")}
         </ul>
       </div>
 
-      <div style="border-top: 1px solid var(--line); padding-top: 1.25rem;">
-        <h4 class="font-mono" style="font-size: 0.75rem; color: var(--text-low); text-transform: uppercase; margin-bottom: 0.75rem;">
-          Technology Stack
-        </h4>
-        <div class="detail-tech-row" style="margin-bottom: 0;">
+      <div>
+        <div class="features-title">VERIFIED TECHNOLOGIES:</div>
+        <div class="detail-tech-row">
           ${project.tech.map(t => `<span class="tech-chip">${t}</span>`).join("")}
         </div>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem; border-top: 1px solid var(--line); padding-top: 1rem;">
+        ${project.liveUrl ? `<a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Launch Live App</a>` : ""}
+        ${project.repoUrl ? `<a href="${project.repoUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sm"><i class="fab fa-github"></i> View GitHub Repository</a>` : ""}
       </div>
     `;
 
@@ -480,73 +1205,90 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Initial render of Master-Detail
+  if (docushieldSpecBtn) {
+    docushieldSpecBtn.addEventListener("click", () => {
+      const ds = PROJECTS_DATA.find(p => p.id === "docushield");
+      if (ds) openSpecModal(ds);
+    });
+  }
+
+  // Initial render
   renderMasterList();
   selectProject(0, false);
 
   // ==========================================================================
-  // 3. TOC SCROLL-SPY NAVIGATION
+  // 5. MODEL PIPELINE VISUALIZER ("HOW I BUILD INTELLIGENT SYSTEMS")
   // ==========================================================================
-  const navItems = document.querySelectorAll(".sidebar-nav .nav-item");
-  const observedSections = document.querySelectorAll(".console-section[id]");
+  const pipelineStepsBar = document.getElementById("pipeline-steps-bar");
+  const pipelineDetailBox = document.getElementById("pipeline-detail-box");
+  let activePipelineStep = 0;
 
-  function onScrollSpy() {
-    const scrollPos = window.scrollY + 180;
+  function renderPipelineVisualizer() {
+    if (!pipelineStepsBar || !pipelineDetailBox) return;
 
-    observedSections.forEach((section) => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      const id = section.getAttribute("id");
+    // Render 7 buttons
+    pipelineStepsBar.innerHTML = PIPELINE_STAGES.map((st, idx) => `
+      <button type="button" class="pipeline-step-btn ${idx === activePipelineStep ? "active" : ""}" data-step-idx="${idx}">
+        <span class="step-btn-num">STAGE // ${st.step}</span>
+        <span class="step-btn-name">${st.title.split(" & ")[0]}</span>
+      </button>
+    `).join("");
 
-      if (scrollPos >= top && scrollPos < top + height) {
-        navItems.forEach((item) => {
-          if (item.getAttribute("href") === `#${id}`) {
-            item.classList.add("active");
-          } else {
-            item.classList.remove("active");
-          }
-        });
-      }
-    });
-  }
-
-  window.addEventListener("scroll", onScrollSpy, { passive: true });
-  onScrollSpy();
-
-  // Mobile menu toggle
-  const mobileToggle = document.getElementById("mobile-toggle");
-  const sidebar = document.getElementById("sidebar");
-
-  if (mobileToggle && sidebar) {
-    mobileToggle.addEventListener("click", () => {
-      sidebar.classList.toggle("open");
-    });
-
-    // Close on navigation link click on mobile
-    navItems.forEach((link) => {
-      link.addEventListener("click", () => {
-        sidebar.classList.remove("open");
+    const btns = pipelineStepsBar.querySelectorAll(".pipeline-step-btn");
+    btns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.getAttribute("data-step-idx"), 10);
+        selectPipelineStage(idx);
       });
     });
+
+    // Render Detail Box
+    const current = PIPELINE_STAGES[activePipelineStep];
+    pipelineDetailBox.innerHTML = `
+      <div>
+        <div class="pipeline-detail-header">
+          <span>LIFECYCLE STAGE [${current.step}/07]</span>
+        </div>
+        <h3 class="pipeline-detail-title">${current.title}</h3>
+        <p class="pipeline-detail-desc">${current.desc}</p>
+        <p class="pipeline-detail-rationale">${current.rationale}</p>
+      </div>
+
+      <div style="border-left: 1px solid var(--line); padding-left: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div class="features-title">RELEVANT TOOLS & LIBRARIES:</div>
+          <div class="detail-tech-row" style="margin-bottom: 1.25rem;">
+            ${current.tools.map(t => `<span class="tech-chip">${t}</span>`).join("")}
+          </div>
+
+          <div class="features-title">PORTFOLIO CASE STUDY EXAMPLES:</div>
+          <div class="font-mono text-cyan" style="font-size: 0.8rem;">
+            ${current.projects.map(p => `<div>&rarr; ${p}</div>`).join("")}
+          </div>
+        </div>
+
+        <div class="font-mono text-low" style="font-size: 0.65rem; padding-top: 1rem; border-top: 1px solid var(--line);">
+          INTENTIONAL DISCIPLINE // PRODUCTION-AWARE
+        </div>
+      </div>
+    `;
   }
 
-  // Back to Top Button
-  const backToTopBtn = document.getElementById("back-to-top");
-  if (backToTopBtn) {
-    backToTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+  function selectPipelineStage(idx) {
+    activePipelineStep = idx;
+    renderPipelineVisualizer();
   }
+
+  renderPipelineVisualizer();
 
   // ==========================================================================
-  // 4. LEETCODE TELEMETRY READOUT (API SYNC + CACHE + HARDENED PROXY)
+  // 6. LEETCODE TELEMETRY READOUT (API SYNC + CACHE + PROXY)
   // ==========================================================================
   const leetcodeUsername = "cseabhinav2005";
   const localProxyUrl = `/api/leetcode?username=${leetcodeUsername}`;
   const deployedProxyUrl = `https://coderabhinavanand.netlify.app/api/leetcode?username=${leetcodeUsername}`;
   const secondaryApiUrl = `https://leetcode-api-1.vercel.app/${leetcodeUsername}`;
 
-  // Verified real data baseline (current verified count: 10 solved)
   const FALLBACK_LEETCODE = {
     totalSolved: 10,
     totalQuestions: 4042,
@@ -612,189 +1354,129 @@ document.addEventListener("DOMContentLoaded", () => {
     if (statPoints) statPoints.textContent = data.contributionPoints ?? data.contributionPoint ?? 0;
     if (statRep) statRep.textContent = data.reputation ?? 0;
 
-    // Easy
+    // Difficulty Bars
     const easyPct = data.totalEasy > 0 ? (data.easySolved / data.totalEasy) * 100 : 0;
     if (easyScore) easyScore.textContent = `${data.easySolved} / ${data.totalEasy}`;
     if (easyBar) easyBar.style.width = `${Math.max(easyPct, 1.5)}%`;
 
-    // Medium
     const medPct = data.totalMedium > 0 ? (data.mediumSolved / data.totalMedium) * 100 : 0;
     if (medScore) medScore.textContent = `${data.mediumSolved} / ${data.totalMedium}`;
     if (medBar) medBar.style.width = `${Math.max(medPct, 1.5)}%`;
 
-    // Hard
     const hardPct = data.totalHard > 0 ? (data.hardSolved / data.totalHard) * 100 : 0;
     if (hardScore) hardScore.textContent = `${data.hardSolved} / ${data.totalHard}`;
-    if (hardBar) hardBar.style.width = `${hardPct}%`;
+    if (hardBar) hardBar.style.width = `${Math.max(hardPct, 0)}%`;
 
     // Submissions Table
-    if (submissionsTableBody) {
-      submissionsTableBody.innerHTML = "";
-      const subs = (data.recentSubmissions && data.recentSubmissions.length > 0)
-        ? data.recentSubmissions.slice(0, 4)
-        : FALLBACK_LEETCODE.recentSubmissions;
-
-      subs.forEach((sub) => {
-        const title = sub.title || sub.titleName || "Problem";
-        const slug = sub.titleSlug || "problem";
-        const lang = sub.lang || sub.langName || "C++";
-        const time = formatTimeAgo(sub.timestamp || sub.submitTime);
-        const status = sub.statusDisplay || sub.status || "Accepted";
-
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>
-            <a href="https://leetcode.com/problems/${encodeURIComponent(slug)}/" target="_blank" rel="noopener noreferrer" class="sub-link">
-              ${title}
-            </a>
-          </td>
-          <td><span class="tech-chip" style="font-size: 0.65rem;">${lang}</span></td>
-          <td><span class="sub-status-tag accepted">${status}</span></td>
-          <td style="color: var(--text-low);">${time}</td>
-        `;
-        submissionsTableBody.appendChild(tr);
-      });
+    if (submissionsTableBody && data.recentSubmissions && data.recentSubmissions.length > 0) {
+      submissionsTableBody.innerHTML = data.recentSubmissions.map(sub => `
+        <tr>
+          <td><strong class="text-hi">${sub.title}</strong></td>
+          <td><span class="font-mono text-cyan">${sub.lang || "C++"}</span></td>
+          <td><span style="color: var(--accent-green);">● ${sub.statusDisplay || "Accepted"}</span></td>
+          <td><span class="text-low">${formatTimeAgo(sub.timestamp)}</span></td>
+        </tr>
+      `).join("");
     }
   }
 
-  async function fetchLeetCodeData(force = false) {
-    const syncIcon = syncBtn ? syncBtn.querySelector("i") : null;
-    if (syncIcon) syncIcon.classList.add("fa-spin");
-    updateSyncStatus("SYNCING TELEMETRY...", "CONNECTING GATEWAY...");
-
+  async function fetchLeetCodeData(forceRefresh = false) {
     const cached = localStorage.getItem("lc-console-data");
     const cachedTime = localStorage.getItem("lc-console-time");
 
-    // Check client-side cache (30-minute validity)
-    if (!force && cached && cachedTime) {
-      const ageMs = Date.now() - parseInt(cachedTime, 10);
-      if (ageMs < 30 * 60 * 1000) {
-        try {
-          const parsed = JSON.parse(cached);
-          renderLeetCodeTelemetry(parsed);
-          updateSyncStatus("CACHED", `LAST SYNCED: ${formatTimeAgo(Math.floor(parseInt(cachedTime, 10) / 1000))}`);
-          if (syncIcon) syncIcon.classList.remove("fa-spin");
-          return;
-        } catch (e) {
-          console.warn("Invalid cache in localStorage, refetching...", e);
-        }
-      }
-    }
-
-    let fetchSuccess = false;
-    let finalData = null;
-    let syncSourceLabel = "LIVE SYNCED";
-
-    // Tier 1: Try local serverless endpoint (same-origin on deployed Netlify/Vercel)
-    try {
-      const res = await fetch(localProxyUrl, { signal: AbortSignal.timeout(4000) });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const raw = await res.json();
-      if (!raw || typeof raw.totalSolved !== "number") throw new Error("Invalid payload");
-      finalData = raw;
-      fetchSuccess = true;
-      syncSourceLabel = "LIVE SYNCED";
-    } catch (err1) {
-      console.warn("Same-origin serverless proxy failed, attempting deployed proxy...", err1);
-
-      // Tier 1b: Try deployed proxy directly (handles local static server like python -m http.server)
+    // Use cache if under 30 minutes and not force refreshing
+    if (!forceRefresh && cached && cachedTime && (Date.now() - parseInt(cachedTime, 10) < 30 * 60 * 1000)) {
       try {
-        const res = await fetch(deployedProxyUrl, { signal: AbortSignal.timeout(5000) });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const raw = await res.json();
-        if (!raw || typeof raw.totalSolved !== "number") throw new Error("Invalid payload");
-        finalData = raw;
-        fetchSuccess = true;
-        syncSourceLabel = "LIVE SYNCED";
-      } catch (err2) {
-        console.warn("Deployed serverless proxy failed, checking secondary fallback proxy...", err2);
+        const parsed = JSON.parse(cached);
+        renderLeetCodeTelemetry(parsed);
+        updateSyncStatus("CACHED DATA (OFFLINE SYNC)", `SYNCED: ${formatTimeAgo(Math.floor(parseInt(cachedTime, 10) / 1000))}`);
+        return;
+      } catch (e) {}
+    }
 
-        // Tier 2: Try secondary fallback proxy (leetcode-api-1.vercel.app)
-        try {
-          const [solvedRes, infoRes] = await Promise.all([
-            fetch(`${secondaryApiUrl}/solved`, { signal: AbortSignal.timeout(5000) }),
-            fetch(secondaryApiUrl, { signal: AbortSignal.timeout(5000) })
-          ]);
-          if (!solvedRes.ok || !infoRes.ok) throw new Error("Secondary API responded with error");
+    updateSyncStatus("SYNCING TELEMETRY...", "CONNECTING TO PROXY...");
 
-          const solved = await solvedRes.json();
-          const info = await infoRes.json();
+    const endpoints = [localProxyUrl, deployedProxyUrl, secondaryApiUrl];
+    let fetchedData = null;
 
-          finalData = {
-            totalSolved: solved.solvedProblem ?? FALLBACK_LEETCODE.totalSolved,
-            totalQuestions: 4042,
-            easySolved: solved.easySolved ?? FALLBACK_LEETCODE.easySolved,
-            totalEasy: 962,
-            mediumSolved: solved.mediumSolved ?? FALLBACK_LEETCODE.mediumSolved,
-            totalMedium: 2109,
-            hardSolved: solved.hardSolved ?? 0,
-            totalHard: 971,
-            ranking: info.ranking ?? FALLBACK_LEETCODE.ranking,
-            contributionPoints: info.contributionPoint ?? 0,
-            reputation: info.reputation ?? 0,
-            recentSubmissions: FALLBACK_LEETCODE.recentSubmissions
-          };
-          fetchSuccess = true;
-          syncSourceLabel = "FALLBACK PROXY SYNCED";
-        } catch (err3) {
-          console.warn("All live network gateways failed.", err3);
-          fetchSuccess = false;
+    for (const url of endpoints) {
+      try {
+        const res = await fetch(url, { signal: AbortSignal.timeout(4500) });
+        if (!res.ok) continue;
+        const json = await res.json();
+
+        // Standardize schema
+        if (json.totalSolved !== undefined) {
+          fetchedData = json;
+          break;
         }
+      } catch (err) {
+        // try next endpoint
       }
     }
 
-    if (fetchSuccess && finalData) {
-      const mapped = {
-        totalSolved: finalData.totalSolved ?? FALLBACK_LEETCODE.totalSolved,
-        totalQuestions: finalData.totalQuestions ?? 4042,
-        easySolved: finalData.easySolved ?? FALLBACK_LEETCODE.easySolved,
-        totalEasy: finalData.totalEasy ?? 962,
-        mediumSolved: finalData.mediumSolved ?? FALLBACK_LEETCODE.mediumSolved,
-        totalMedium: finalData.totalMedium ?? 2109,
-        hardSolved: finalData.hardSolved ?? 0,
-        totalHard: finalData.totalHard ?? 971,
-        ranking: finalData.ranking ?? FALLBACK_LEETCODE.ranking,
-        contributionPoints: finalData.contributionPoints ?? finalData.contributionPoint ?? 0,
-        reputation: finalData.reputation ?? 0,
-        recentSubmissions: finalData.recentSubmissions && finalData.recentSubmissions.length > 0
-          ? finalData.recentSubmissions
-          : FALLBACK_LEETCODE.recentSubmissions
-      };
-
-      const now = Date.now();
-      localStorage.setItem("lc-console-data", JSON.stringify(mapped));
-      localStorage.setItem("lc-console-time", now.toString());
-
-      renderLeetCodeTelemetry(mapped);
-      updateSyncStatus(syncSourceLabel, "LAST SYNCED: JUST NOW");
+    if (fetchedData) {
+      localStorage.setItem("lc-console-data", JSON.stringify(fetchedData));
+      localStorage.setItem("lc-console-time", Date.now().toString());
+      renderLeetCodeTelemetry(fetchedData);
+      updateSyncStatus("LIVE SYNCED", `SYNCED: Just now`);
     } else {
-      // Failure hardening: do not silently display numbers without visual indicator
-      if (cached && cachedTime) {
-        try {
-          const cachedParsed = JSON.parse(cached);
-          renderLeetCodeTelemetry(cachedParsed);
-          const cachedSec = Math.floor(parseInt(cachedTime, 10) / 1000);
-          updateSyncStatus("SYNC FAILED // SHOWING LAST KNOWN GOOD DATA", `CACHED: ${formatTimeAgo(cachedSec)}`, true);
-        } catch (e) {
-          renderLeetCodeTelemetry(FALLBACK_LEETCODE);
-          updateSyncStatus("OFFLINE // USING VERIFIED BASELINE ARCHIVE", "BASELINE ARCHIVE", true);
-        }
-      } else {
-        renderLeetCodeTelemetry(FALLBACK_LEETCODE);
-        updateSyncStatus("OFFLINE // USING VERIFIED BASELINE ARCHIVE", "BASELINE ARCHIVE", true);
-      }
+      // Fallback
+      renderLeetCodeTelemetry(FALLBACK_LEETCODE);
+      updateSyncStatus("OFFLINE ARCHIVE BASELINE", "VERIFIED BENCHMARK");
     }
-
-    if (syncIcon) syncIcon.classList.remove("fa-spin");
   }
 
   if (syncBtn) {
     syncBtn.addEventListener("click", () => fetchLeetCodeData(true));
   }
-  fetchLeetCodeData(false);
+  fetchLeetCodeData();
 
   // ==========================================================================
-  // 5. WEB3FORMS CONTACT SUBMISSION
+  // 7. GITHUB CREDIBILITY SIGNAL
+  // ==========================================================================
+  const ghRepoCountEl = document.getElementById("gh-repo-count");
+  const ghRepoSyncEl = document.getElementById("gh-repo-sync");
+
+  async function fetchGitHubMetrics() {
+    try {
+      const res = await fetch("https://api.github.com/users/abhinavbuilds2005", {
+        headers: { Accept: "application/vnd.github.v3+json" },
+        signal: AbortSignal.timeout(3500)
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (ghRepoCountEl && data.public_repos) ghRepoCountEl.textContent = data.public_repos;
+        if (ghRepoSyncEl) ghRepoSyncEl.textContent = "● Live";
+      }
+    } catch (e) {
+      if (ghRepoSyncEl) ghRepoSyncEl.textContent = "● Baseline";
+    }
+  }
+  fetchGitHubMetrics();
+
+  // ==========================================================================
+  // 8. BUILD LOG (ENGINEERING JOURNAL)
+  // ==========================================================================
+  const buildLogContainer = document.getElementById("build-log-grid");
+  if (buildLogContainer) {
+    buildLogContainer.innerHTML = BUILD_LOG_ENTRIES.map(entry => `
+      <div class="build-log-card">
+        <div class="build-log-meta">
+          <span class="build-log-id">${entry.id}</span>
+          <span>${entry.date}</span>
+        </div>
+        <h3 class="build-log-title">${entry.title}</h3>
+        <p class="build-log-text">${entry.text}</p>
+        <div class="build-log-tags">
+          ${entry.tags.map(t => `<span class="build-log-tag">${t}</span>`).join("")}
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // ==========================================================================
+  // 9. WEB3FORMS REAL CONTACT INTEGRATION
   // ==========================================================================
   const contactForm = document.getElementById("contactForm");
   const formButton = document.getElementById("formButton");
@@ -803,127 +1485,150 @@ document.addEventListener("DOMContentLoaded", () => {
   if (contactForm) {
     contactForm.addEventListener("submit", async (e) => {
       e.preventDefault();
-      if (!formButton || !formStatus) return;
+      if (formButton) {
+        formButton.innerHTML = "Transmitting... <i class='fas fa-spinner fa-spin'></i>";
+        formButton.disabled = true;
+      }
 
       const formData = new FormData(contactForm);
-      const json = JSON.stringify(Object.fromEntries(formData));
-
-      formStatus.className = "form-status font-mono";
-      formStatus.classList.remove("hidden");
-      formStatus.textContent = "TRANSMITTING INQUIRY...";
-      formButton.disabled = true;
-
       try {
         const response = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-          },
-          body: json
+          body: formData,
+          signal: AbortSignal.timeout(8000)
         });
-
         const result = await response.json();
-        if (response.status === 200) {
-          formStatus.className = "form-status success";
-          formStatus.textContent = "TRANSMISSION SUCCESSFUL // STATUS: 200 OK";
+
+        if (result.success) {
+          if (formStatus) {
+            formStatus.className = "form-status success";
+            formStatus.style.display = "block";
+            formStatus.innerHTML = "<i class='fas fa-check-circle'></i> Transmission confirmed. Message delivered to Abhinav Anand.";
+          }
           contactForm.reset();
         } else {
-          formStatus.className = "form-status error";
-          formStatus.textContent = `ERR // ${result.message || "Failed to submit"}`;
+          throw new Error(result.message || "Failed to submit");
         }
-      } catch (error) {
-        console.error("Transmission error:", error);
-        formStatus.className = "form-status error";
-        formStatus.textContent = "NETWORK_ERROR // Could not connect to gateway.";
+      } catch (err) {
+        if (formStatus) {
+          formStatus.className = "form-status error";
+          formStatus.style.display = "block";
+          formStatus.innerHTML = "<i class='fas fa-exclamation-triangle'></i> Transmission error. Please email directly at <a href='mailto:abhinavanand9996@gmail.com' style='color:#ffffff; text-decoration:underline;'>abhinavanand9996@gmail.com</a>";
+        }
       } finally {
-        formButton.disabled = false;
-        setTimeout(() => {
-          if (formStatus) formStatus.classList.add("hidden");
-        }, 5000);
+        if (formButton) {
+          formButton.innerHTML = "Transmit Message <i class='fas fa-paper-plane text-xs'></i>";
+          formButton.disabled = false;
+        }
       }
     });
   }
 
   // ==========================================================================
-  // 6. SYSTEM TIMESTAMP FOOTER META
+  // 10. PORTFOLIO ASSISTANT ("ASK ABHINAV'S PORTFOLIO")
   // ==========================================================================
-  const sysClock = document.getElementById("sys-clock");
-  function updateSysClock() {
-    if (!sysClock) return;
-    const now = new Date();
-    const utc = now.toISOString().replace("T", " ").substring(0, 19) + " UTC";
-    sysClock.textContent = utc;
-  }
-  updateSysClock();
-  setInterval(updateSysClock, 1000);
+  const assistantLauncher = document.getElementById("assistant-launcher");
+  const assistantDrawer = document.getElementById("assistant-drawer");
+  const assistantCloseBtn = document.getElementById("assistant-close-btn");
+  const assistantLogs = document.getElementById("assistant-logs");
+  const assistantInput = document.getElementById("assistant-input");
+  const assistantSendBtn = document.getElementById("assistant-send-btn");
+  const assistantChips = document.querySelectorAll(".assistant-chip-btn");
 
-  // ==========================================================================
-  // 7. SUBTLE SCROLL REVEAL (NO GLOW, NO BOUNCE)
-  // ==========================================================================
-  const revealItems = document.querySelectorAll(".reveal-on-scroll");
-  if ("IntersectionObserver" in window) {
-    const revealObserver = new IntersectionObserver((entries, obs) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    revealItems.forEach((el) => revealObserver.observe(el));
-  } else {
-    revealItems.forEach((el) => el.classList.add("is-visible"));
-  }
-
-  // ==========================================================================
-  // 8. GITHUB CREDIBILITY SIGNAL (LIVE REST API + CACHE + FALLBACK)
-  // ==========================================================================
-  const ghRepoCountEl = document.getElementById("gh-repo-count");
-  const ghRepoSyncEl = document.getElementById("gh-repo-sync");
-  const GITHUB_FALLBACK = {
-    public_repos: 7,
-    status: "Verified Archive"
-  };
-
-  async function fetchGitHubMetrics() {
-    const cached = localStorage.getItem("gh-console-data");
-    const cachedTime = localStorage.getItem("gh-console-time");
-
-    if (cached && cachedTime && (Date.now() - parseInt(cachedTime, 10) < 60 * 60 * 1000)) {
-      try {
-        const parsed = JSON.parse(cached);
-        if (ghRepoCountEl) ghRepoCountEl.textContent = parsed.public_repos;
-        if (ghRepoSyncEl) ghRepoSyncEl.textContent = "● Cached";
-        return;
-      } catch (e) {}
+  const KNOWLEDGE_BASE = [
+    {
+      keywords: ["who", "about", "bio", "background", "student"],
+      response: "Abhinav Anand is a 2nd-year B.Tech CSE student specializing in AI & Machine Learning at Lovely Professional University, India. He builds practical intelligent systems across computer vision, forensic document verification, and predictive ML."
+    },
+    {
+      keywords: ["docushield", "flagship", "sih", "hackathon", "forensic"],
+      response: "DocuShield AI is Abhinav's flagship project for Smart India Hackathon (SIH 2026, Problem Statement SIH26188). It is a multimodal forensic screening system that verifies Passports, Visas, and Aadhaar cards using Error Level Analysis (ELA), copy-move tampering detection, ICAO MRZ check digits, Verhoeff checksums, and face verification. Live demo: docushield-ai-s1x9.onrender.com"
+    },
+    {
+      keywords: ["tech", "stack", "skills", "tools", "languages"],
+      response: "Abhinav's core stack includes Python, PyTorch, Scikit-Learn, OpenCV, and C++ for algorithms, backed by FastAPI, PostgreSQL, and Docker. Explore Section [02] // AI.SYSTEMS_MAP for the interactive technical graph."
+    },
+    {
+      keywords: ["project", "projects", "creditwise", "presentai", "smartcart", "elevatecv"],
+      response: "Key deployed projects include: 1. DocuShield AI (Forensics), 2. CreditWise (Loan Risk via SMOTE & Logistic Regression), 3. SmartCart AI (K-Means & PCA Churn Prediction), 4. PresentAI (Multimodal FaceNet+Voice Biometrics), and 5. ATS Resume Analyzer (spaCy & Sentence Transformers). Check Section [03] // PROJECT.MATRIX."
+    },
+    {
+      keywords: ["internship", "hire", "job", "available", "role", "work"],
+      response: "Yes! Abhinav is actively seeking AI/ML Engineer and Junior Machine Learning internships (remote or on-site). He is available for immediate onboarding. You can contact him via Section [07] // COMMS.CONTACT or email abhinavanand9996@gmail.com."
+    },
+    {
+      keywords: ["resume", "cv", "pdf", "download"],
+      response: "You can view and download his specialized AI/ML Curriculum Vitae right here: <a href='Abhinav_Anand_Resume_AIML_Specialized.pdf' target='_blank' style='color:var(--accent-cyan); text-decoration:underline;'>Download AI/ML CV (PDF)</a>."
+    },
+    {
+      keywords: ["contact", "email", "reach", "message", "linkedin"],
+      response: "You can reach Abhinav directly via email at abhinavanand9996@gmail.com, connect on LinkedIn (/in/abhinav-anand-865926300), or transmit a message using the form in Section [07]."
     }
+  ];
 
-    try {
-      const res = await fetch("https://api.github.com/users/abhinavbuilds2005", {
-        headers: { Accept: "application/vnd.github.v3+json" },
-        signal: AbortSignal.timeout(4000)
-      });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
-      const repos = typeof data.public_repos === "number" ? data.public_repos : GITHUB_FALLBACK.public_repos;
-
-      localStorage.setItem("gh-console-data", JSON.stringify({ public_repos: repos }));
-      localStorage.setItem("gh-console-time", Date.now().toString());
-
-      if (ghRepoCountEl) ghRepoCountEl.textContent = repos;
-      if (ghRepoSyncEl) ghRepoSyncEl.textContent = "● Live";
-    } catch (err) {
-      console.warn("GitHub API rate-limited or offline, using fallback:", err);
-      if (ghRepoCountEl) ghRepoCountEl.textContent = GITHUB_FALLBACK.public_repos;
-      if (ghRepoSyncEl) ghRepoSyncEl.textContent = "● Baseline";
+  function toggleAssistant() {
+    if (!assistantDrawer) return;
+    assistantDrawer.classList.toggle("hidden");
+    if (!assistantDrawer.classList.contains("hidden") && assistantInput) {
+      assistantInput.focus();
     }
   }
-  fetchGitHubMetrics();
+
+  if (assistantLauncher) assistantLauncher.addEventListener("click", toggleAssistant);
+  if (assistantCloseBtn) assistantCloseBtn.addEventListener("click", toggleAssistant);
+
+  function handleAssistantQuery(query) {
+    if (!query.trim() || !assistantLogs) return;
+
+    // Add user message
+    const userMsg = document.createElement("div");
+    userMsg.className = "assistant-msg user";
+    userMsg.textContent = query;
+    assistantLogs.appendChild(userMsg);
+
+    // Find match
+    const cleanQ = query.toLowerCase();
+    let bestMatch = null;
+    let maxMatches = 0;
+
+    KNOWLEDGE_BASE.forEach(item => {
+      const matchCount = item.keywords.filter(k => cleanQ.includes(k)).length;
+      if (matchCount > maxMatches) {
+        maxMatches = matchCount;
+        bestMatch = item;
+      }
+    });
+
+    const botMsg = document.createElement("div");
+    botMsg.className = "assistant-msg bot";
+
+    if (bestMatch && maxMatches > 0) {
+      botMsg.innerHTML = bestMatch.response;
+    } else {
+      botMsg.innerHTML = "I can answer questions about Abhinav's AI projects (DocuShield, CreditWise), technical toolchains (PyTorch, FastAPI, C++), resume downloads, or internship availability. Try asking 'What is DocuShield AI?' or 'Is he available for internships?'";
+    }
+
+    assistantLogs.appendChild(botMsg);
+    assistantLogs.scrollTop = assistantLogs.scrollHeight;
+    if (assistantInput) assistantInput.value = "";
+  }
+
+  if (assistantSendBtn && assistantInput) {
+    assistantSendBtn.addEventListener("click", () => handleAssistantQuery(assistantInput.value));
+    assistantInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") handleAssistantQuery(assistantInput.value);
+    });
+  }
+
+  assistantChips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      const q = chip.getAttribute("data-query");
+      handleAssistantQuery(q);
+    });
+  });
 
   // ==========================================================================
-  // 9. COMMAND PALETTE (CMD+K / CTRL+K OVERLAY)
+  // 11. COMMAND PALETTE (CMD+K / CTRL+K)
   // ==========================================================================
   const cmdPalette = document.getElementById("command-palette");
   const cmdPaletteInput = document.getElementById("cmd-palette-input");
@@ -940,37 +1645,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   }
 
-  function selectProjectDirect(index) {
-    selectProject(index);
-    scrollToSection("work");
-  }
-
   const COMMAND_REGISTRY = [
     // Navigation
     { id: "nav-home", group: "Navigation", label: "01 // System Overview", hint: "#home", action: () => scrollToSection("home") },
-    { id: "nav-expertise", group: "Navigation", label: "02 // Technical Competencies & Matrix", hint: "#expertise", action: () => scrollToSection("expertise") },
-    { id: "nav-work", group: "Navigation", label: "03 // Master-Detail Work Index", hint: "#work", action: () => scrollToSection("work") },
-    { id: "nav-leetcode", group: "Navigation", label: "04 // LeetCode Telemetry & Metrics", hint: "#leetcode", action: () => scrollToSection("leetcode") },
-    { id: "nav-certs", group: "Navigation", label: "05 // Milestones & Verified Certifications", hint: "#certifications", action: () => scrollToSection("certifications") },
-    { id: "nav-contact", group: "Navigation", label: "06 // Communication Console", hint: "#contact", action: () => scrollToSection("contact") },
+    { id: "nav-map", group: "Navigation", label: "02 // AI Systems Knowledge Map", hint: "#systems-map", action: () => scrollToSection("systems-map") },
+    { id: "nav-work", group: "Navigation", label: "03 // Project Matrix & Case Studies", hint: "#work", action: () => scrollToSection("work") },
+    { id: "nav-pipeline", group: "Navigation", label: "04 // Model Pipeline Lifecycle", hint: "#pipeline", action: () => scrollToSection("pipeline") },
+    { id: "nav-telemetry", group: "Navigation", label: "05 // LeetCode Telemetry & Metrics", hint: "#telemetry", action: () => scrollToSection("telemetry") },
+    { id: "nav-log", group: "Navigation", label: "06 // Engineering Build Log", hint: "#build-log", action: () => scrollToSection("build-log") },
+    { id: "nav-contact", group: "Navigation", label: "07 // Comms & Transmission Console", hint: "#contact", action: () => scrollToSection("contact") },
 
-    // Projects (Direct select in master-detail console)
-    { id: "proj-0", group: "Projects", label: "DocuShield AI: Forensic Fake Identity & Document Screening", hint: "AI/ML [01]", action: () => selectProjectDirect(0) },
-    { id: "proj-1", group: "Projects", label: "CreditWise: AI Loan Default Prediction", hint: "AI/ML [02]", action: () => selectProjectDirect(1) },
-    { id: "proj-2", group: "Projects", label: "SmartCart AI: Customer Intelligence Platform", hint: "AI/ML [03]", action: () => selectProjectDirect(2) },
-    { id: "proj-3", group: "Projects", label: "PresentAI (AttendPro): Multimodal Biometric Attendance", hint: "AI/ML [04]", action: () => selectProjectDirect(3) },
-    { id: "proj-4", group: "Projects", label: "ATS Resume Analyzer (ElevateCV): AI Scorer & JD Matcher", hint: "AI/ML [05]", action: () => selectProjectDirect(4) },
-    { id: "proj-5", group: "Projects", label: "Personal Portfolio v2 (Console Engineering Hub)", hint: "WEB [06]", action: () => selectProjectDirect(5) },
-    { id: "proj-6", group: "Projects", label: "Voice Assistant & Operating System Automation", hint: "PYTHON [07]", action: () => selectProjectDirect(6) },
-    { id: "proj-7", group: "Projects", label: "Neural Style Transfer (PyTorch VGG-19)", hint: "DL [08]", action: () => selectProjectDirect(7) },
-    { id: "proj-8", group: "Projects", label: "AI Fitness Coach & Real-Time Pose Correction", hint: "CV [09]", action: () => selectProjectDirect(8) },
+    // Projects
+    { id: "proj-0", group: "Projects", label: "DocuShield AI: Multimodal Forensic Screening (SIH '26)", hint: "FORENSICS", action: () => { selectProject(0); scrollToSection("work"); } },
+    { id: "proj-1", group: "Projects", label: "CreditWise: AI Loan Risk & Underwriting", hint: "PREDICTIVE ML", action: () => { selectProject(1); scrollToSection("work"); } },
+    { id: "proj-2", group: "Projects", label: "SmartCart AI: Customer Churn & PCA Segmentation", hint: "PREDICTIVE ML", action: () => { selectProject(2); scrollToSection("work"); } },
+    { id: "proj-3", group: "Projects", label: "PresentAI: Multimodal Biometric Attendance", hint: "BIOMETRICS", action: () => { selectProject(3); scrollToSection("work"); } },
+    { id: "proj-4", group: "Projects", label: "ATS Resume Analyzer: 5-Dim NLP Matcher", hint: "NLP & GENAI", action: () => { selectProject(4); scrollToSection("work"); } },
 
     // Actions
-    { id: "act-cv-aiml", group: "Actions", label: "Download Specialized AI/ML Curriculum Vitae (PDF)", hint: "FILE", action: () => window.open("Abhinav_Anand_Resume_AIML_Specialized.pdf", "_blank") },
-    { id: "act-cv-gen", group: "Actions", label: "Download General Engineering Resume (PDF)", hint: "FILE", action: () => window.open("Abhinav_Resume.pdf", "_blank") },
+    { id: "act-cv", group: "Actions", label: "Download Specialized AI/ML Resume (PDF)", hint: "FILE", action: () => window.open("Abhinav_Anand_Resume_AIML_Specialized.pdf", "_blank") },
     { id: "act-gh", group: "Actions", label: "Open GitHub Profile (@abhinavbuilds2005)", hint: "EXTERNAL", action: () => window.open("https://github.com/abhinavbuilds2005", "_blank") },
     { id: "act-li", group: "Actions", label: "Open LinkedIn Profile (/in/abhinav-anand-865926300)", hint: "EXTERNAL", action: () => window.open("https://www.linkedin.com/in/abhinav-anand-865926300", "_blank") },
-    { id: "act-lc-sync", group: "Actions", label: "Force Re-Sync LeetCode Telemetry", hint: "API", action: () => { scrollToSection("leetcode"); fetchLeetCodeData(true); } }
+    { id: "act-lc-sync", group: "Actions", label: "Re-Sync LeetCode Telemetry", hint: "API", action: () => { scrollToSection("telemetry"); fetchLeetCodeData(true); } }
   ];
 
   function openCommandPalette() {
@@ -995,89 +1691,59 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!cmdPaletteList) return;
     const cleanQ = query.trim().toLowerCase();
 
-    filteredCommands = cleanQ === ""
-      ? COMMAND_REGISTRY
-      : COMMAND_REGISTRY.filter(cmd => {
-          return cmd.label.toLowerCase().includes(cleanQ) ||
-                 cmd.group.toLowerCase().includes(cleanQ) ||
-                 cmd.hint.toLowerCase().includes(cleanQ);
-        });
+    filteredCommands = cleanQ === "" 
+      ? COMMAND_REGISTRY 
+      : COMMAND_REGISTRY.filter(cmd => cmd.label.toLowerCase().includes(cleanQ) || cmd.group.toLowerCase().includes(cleanQ) || cmd.hint.toLowerCase().includes(cleanQ));
 
     if (filteredCommands.length === 0) {
-      cmdPaletteList.innerHTML = `<div class="cmd-palette-empty">NO MATCHING COMMANDS FOR "${query.toUpperCase()}"</div>`;
+      cmdPaletteList.innerHTML = `<div class="font-mono text-xs text-low" style="padding:1rem; text-align:center;">NO COMMANDS MATCHING "${query.toUpperCase()}"</div>`;
       return;
     }
 
     if (selectedCmdIndex >= filteredCommands.length) selectedCmdIndex = 0;
 
     let html = "";
-    let currentGroup = "";
-
+    let curGroup = "";
     filteredCommands.forEach((cmd, idx) => {
-      if (cmd.group !== currentGroup) {
-        currentGroup = cmd.group;
-        html += `<div class="cmd-group-label">${currentGroup}</div>`;
+      if (cmd.group !== curGroup) {
+        curGroup = cmd.group;
+        html += `<div class="cmd-group-label">${curGroup}</div>`;
       }
-
       const isSelected = idx === selectedCmdIndex;
-      const iconClass = cmd.group === "Navigation" ? "fas fa-compass" :
-                        cmd.group === "Projects" ? "fas fa-cube" : "fas fa-bolt";
-
       html += `
-        <div class="cmd-item ${isSelected ? "selected" : ""}" data-cmd-idx="${idx}" role="option" aria-selected="${isSelected}">
-          <div class="cmd-item-left">
-            <i class="${iconClass}"></i>
+        <div class="cmd-item ${isSelected ? "selected" : ""}" data-idx="${idx}">
+          <div>
+            <i class="fas fa-chevron-right text-cyan text-[10px]" style="margin-right: 0.5rem;"></i>
             <span>${cmd.label}</span>
           </div>
-          <span class="cmd-item-tag">${cmd.hint}</span>
+          <span class="font-mono text-low text-[10px]">${cmd.hint}</span>
         </div>
       `;
     });
 
     cmdPaletteList.innerHTML = html;
 
-    // Scroll selected item into view
-    const selectedEl = cmdPaletteList.querySelector(".cmd-item.selected");
-    if (selectedEl) selectedEl.scrollIntoView({ block: "nearest" });
-
-    // Attach click listeners to items
-    const itemEls = cmdPaletteList.querySelectorAll(".cmd-item");
-    itemEls.forEach(el => {
+    const items = cmdPaletteList.querySelectorAll(".cmd-item");
+    items.forEach(el => {
       el.addEventListener("click", () => {
-        const idx = parseInt(el.getAttribute("data-cmd-idx"), 10);
+        const idx = parseInt(el.getAttribute("data-idx"), 10);
         executeCommand(idx);
       });
-      el.addEventListener("mouseenter", () => {
-        const idx = parseInt(el.getAttribute("data-cmd-idx"), 10);
-        selectedCmdIndex = idx;
-        updateSelectedCmdVisual();
-      });
     });
   }
 
-  function updateSelectedCmdVisual() {
-    const itemEls = cmdPaletteList ? cmdPaletteList.querySelectorAll(".cmd-item") : [];
-    itemEls.forEach((el, idx) => {
-      if (idx === selectedCmdIndex) {
-        el.classList.add("selected");
-        el.setAttribute("aria-selected", "true");
-        el.scrollIntoView({ block: "nearest" });
-      } else {
-        el.classList.remove("selected");
-        el.setAttribute("aria-selected", "false");
-      }
-    });
-  }
-
-  function executeCommand(index) {
-    const cmd = filteredCommands[index];
-    if (cmd && typeof cmd.action === "function") {
+  function executeCommand(idx) {
+    const cmd = filteredCommands[idx];
+    if (cmd && cmd.action) {
       closeCommandPalette();
       cmd.action();
     }
   }
 
-  // Global Keyboard Listener for Cmd+K and Ctrl+K
+  if (cmdTriggerSidebar) cmdTriggerSidebar.addEventListener("click", openCommandPalette);
+  if (cmdTriggerMobile) cmdTriggerMobile.addEventListener("click", openCommandPalette);
+  if (cmdPaletteBackdrop) cmdPaletteBackdrop.addEventListener("click", closeCommandPalette);
+
   document.addEventListener("keydown", (e) => {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
       e.preventDefault();
@@ -1086,29 +1752,19 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         closeCommandPalette();
       }
-      return;
-    }
-
-    if (!cmdPalette || cmdPalette.hasAttribute("hidden")) return;
-
-    if (e.key === "Escape") {
-      e.preventDefault();
+    } else if (e.key === "Escape" && cmdPalette && !cmdPalette.hasAttribute("hidden")) {
       closeCommandPalette();
-    } else if (e.key === "ArrowDown") {
-      e.preventDefault();
-      if (filteredCommands.length > 0) {
+    } else if (!cmdPalette.hasAttribute("hidden")) {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
         selectedCmdIndex = (selectedCmdIndex + 1) % filteredCommands.length;
-        updateSelectedCmdVisual();
-      }
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      if (filteredCommands.length > 0) {
+        renderCommandList(cmdPaletteInput ? cmdPaletteInput.value : "");
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
         selectedCmdIndex = (selectedCmdIndex - 1 + filteredCommands.length) % filteredCommands.length;
-        updateSelectedCmdVisual();
-      }
-    } else if (e.key === "Enter") {
-      e.preventDefault();
-      if (filteredCommands.length > 0) {
+        renderCommandList(cmdPaletteInput ? cmdPaletteInput.value : "");
+      } else if (e.key === "Enter") {
+        e.preventDefault();
         executeCommand(selectedCmdIndex);
       }
     }
@@ -1121,8 +1777,65 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  if (cmdPaletteBackdrop) cmdPaletteBackdrop.addEventListener("click", closeCommandPalette);
-  if (cmdTriggerSidebar) cmdTriggerSidebar.addEventListener("click", openCommandPalette);
-  if (cmdTriggerMobile) cmdTriggerMobile.addEventListener("click", openCommandPalette);
-});
+  // ==========================================================================
+  // 12. NAVIGATION SCROLL-SPY & MOBILE MENU
+  // ==========================================================================
+  const navItems = document.querySelectorAll(".sidebar-nav .nav-item");
+  const observedSections = document.querySelectorAll(".console-section[id]");
 
+  function onScrollSpy() {
+    const scrollPos = window.scrollY + 180;
+    observedSections.forEach((section) => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute("id");
+
+      if (scrollPos >= top && scrollPos < top + height) {
+        navItems.forEach((item) => {
+          if (item.getAttribute("href") === `#${id}`) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+      }
+    });
+  }
+  window.addEventListener("scroll", onScrollSpy, { passive: true });
+  onScrollSpy();
+
+  // Mobile menu toggle
+  const mobileToggle = document.getElementById("mobile-toggle");
+  const sidebar = document.getElementById("sidebar");
+
+  if (mobileToggle && sidebar) {
+    mobileToggle.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+    });
+
+    navItems.forEach((link) => {
+      link.addEventListener("click", () => {
+        sidebar.classList.remove("open");
+      });
+    });
+  }
+
+  // Back to Top Button
+  const backToTopBtn = document.getElementById("back-to-top");
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  // Live UTC Clock
+  const clockEl = document.getElementById("sys-clock");
+  function updateClock() {
+    if (clockEl) {
+      const d = new Date();
+      clockEl.textContent = d.toISOString().substring(11, 19);
+    }
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+});

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Abhinav Anand | AI/ML Engineer</title>
   <meta name="description" content="Engineering log and portfolio of Abhinav Anand, an AI/ML Engineer specializing in predictive models, biometric verification, and scalable intelligent systems.">
-  <meta name="theme-color" content="#08080a">
+  <meta name="theme-color" content="#08090d">
   <link rel="icon" href="abhinav.jpeg" type="image/jpeg">
 
   <!-- Canonical & Social Graph Metadata -->
@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://coderabhinavanand.netlify.app/">
   <meta property="og:title" content="Abhinav Anand | AI/ML Engineer">
-  <meta property="og:description" content="Engineering log and portfolio of Abhinav Anand. Predictive machine learning pipelines, multimodal biometric systems, and scalable agentic architectures.">
+  <meta property="og:description" content="Engineering log and portfolio of Abhinav Anand. Predictive machine learning pipelines, multimodal forensic screening, and scalable intelligent systems.">
   <meta property="og:image" content="https://coderabhinavanand.netlify.app/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -21,10 +21,10 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Abhinav Anand | AI/ML Engineer">
-  <meta name="twitter:description" content="Engineering log and portfolio of Abhinav Anand. Predictive machine learning pipelines, multimodal biometric systems, and scalable agentic architectures.">
+  <meta name="twitter:description" content="Engineering log and portfolio of Abhinav Anand. Predictive machine learning pipelines, multimodal forensic screening, and scalable intelligent systems.">
   <meta name="twitter:image" content="https://coderabhinavanand.netlify.app/og-image.png">
 
-  <!-- JSON-LD Person Schema -->
+  <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -45,8 +45,8 @@
     "knowsAbout": [
       "Machine Learning",
       "Deep Learning",
-      "Generative AI",
       "Computer Vision",
+      "Generative AI",
       "Python",
       "C++",
       "PyTorch",
@@ -56,10 +56,10 @@
   }
   </script>
 
-  <!-- Google Fonts: JetBrains Mono & Inter -->
+  <!-- Google Fonts: Space Grotesk, Inter & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   
   <!-- FontAwesome for technical icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -69,14 +69,14 @@
 
   <div class="app-shell">
     
-    <!-- Mobile Top Header Bar (collapses to top bar on small screens) -->
+    <!-- Mobile Top Header Bar -->
     <header class="mobile-topbar" id="mobile-topbar">
       <div class="mobile-brand">
-        <span class="text-low">[AA]</span>
+        <span class="text-cyan font-bold">[AA]</span>
         <span class="font-mono font-bold">ABHINAV.ANAND</span>
       </div>
       <div style="display: flex; align-items: center; gap: 0.6rem;">
-        <button type="button" class="mobile-cmd-btn" id="mobile-cmd-btn" aria-label="Open Command Palette (Cmd+K)" title="Command Palette (Cmd+K)">
+        <button type="button" class="cmd-palette-trigger" id="mobile-cmd-btn" aria-label="Open Command Palette (Cmd+K)" style="margin: 0; padding: 0.25rem 0.5rem;">
           <kbd class="kbd-shortcut">⌘K</kbd>
         </button>
         <span class="status-dot" title="Available for opportunities"></span>
@@ -97,49 +97,53 @@
           AI/ML ENGINEER // LPU B.TECH
         </div>
         
-        <!-- Status Indicator (The ONLY colored signal dot) -->
+        <!-- Status Indicator -->
         <div class="status-indicator">
           <span class="status-dot"></span>
           <span>AVAILABLE FOR HIRE</span>
         </div>
 
         <!-- Command Palette Trigger Hint -->
-        <button type="button" class="cmd-palette-trigger" id="cmd-palette-btn" aria-label="Open Command Palette (Cmd+K)" title="Command Palette (Cmd+K)">
-          <i class="fas fa-terminal"></i>
+        <button type="button" class="cmd-palette-trigger" id="cmd-palette-btn" aria-label="Open Command Palette (Cmd+K)">
+          <i class="fas fa-terminal text-cyan"></i>
           <span>COMMANDS</span>
           <kbd class="kbd-shortcut">⌘K</kbd>
         </button>
       </div>
 
-      <!-- Section Navigation TOC (Hairline Active Indicator) -->
+      <!-- Section Navigation TOC -->
       <nav class="sidebar-nav" aria-label="System navigation">
         <a href="#home" class="nav-item active">
           <span class="nav-idx">01</span>
           <span>SYSTEM.OVERVIEW</span>
         </a>
-        <a href="#expertise" class="nav-item">
+        <a href="#systems-map" class="nav-item">
           <span class="nav-idx">02</span>
-          <span>TECH.EXPERTISE</span>
+          <span>AI.SYSTEMS_MAP</span>
         </a>
         <a href="#work" class="nav-item">
           <span class="nav-idx">03</span>
-          <span>WORK.INDEX</span>
+          <span>PROJECT.MATRIX</span>
         </a>
-        <a href="#leetcode" class="nav-item">
+        <a href="#pipeline" class="nav-item">
           <span class="nav-idx">04</span>
-          <span>METRICS.LEETCODE</span>
+          <span>MODEL.PIPELINE</span>
         </a>
-        <a href="#certifications" class="nav-item">
+        <a href="#telemetry" class="nav-item">
           <span class="nav-idx">05</span>
-          <span>LOG.JOURNEY_CERTS</span>
+          <span>ENGINEERING.METRICS</span>
+        </a>
+        <a href="#build-log" class="nav-item">
+          <span class="nav-idx">06</span>
+          <span>BUILD.LOG</span>
         </a>
         <a href="#contact" class="nav-item">
-          <span class="nav-idx">06</span>
+          <span class="nav-idx">07</span>
           <span>COMMS.CONTACT</span>
         </a>
       </nav>
 
-      <!-- Sidebar Footer / Direct Channels & Meta -->
+      <!-- Sidebar Footer -->
       <div class="sidebar-footer">
         <div class="sidebar-links">
           <a href="https://github.com/abhinavbuilds2005" target="_blank" rel="noopener noreferrer" class="sidebar-icon-link" title="GitHub Profile" aria-label="GitHub">
@@ -148,8 +152,8 @@
           <a href="https://www.linkedin.com/in/abhinav-anand-865926300" target="_blank" rel="noopener noreferrer" class="sidebar-icon-link" title="LinkedIn Profile" aria-label="LinkedIn">
             <i class="fab fa-linkedin-in"></i>
           </a>
-          <a href="https://www.instagram.com/cse.abhinav?igsh=MTcxdDR6N2VyMmIwMQ==" target="_blank" rel="noopener noreferrer" class="sidebar-icon-link" title="Instagram" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
+          <a href="https://leetcode.com/u/cseabhinav2005/" target="_blank" rel="noopener noreferrer" class="sidebar-icon-link" title="LeetCode Profile" aria-label="LeetCode">
+            <i class="fas fa-code"></i>
           </a>
           <a href="mailto:abhinavanand9996@gmail.com" class="sidebar-icon-link" title="Direct Email" aria-label="Email">
             <i class="fas fa-envelope"></i>
@@ -161,7 +165,7 @@
 
         <div class="sidebar-meta-build">
           <span>LOC: INDIA (UTC+5:30)</span>
-          <span>SYS: v2.6.0</span>
+          <span>SYS: v3.2.0</span>
         </div>
       </div>
     </aside>
@@ -170,72 +174,73 @@
     <main class="app-main">
       
       <!-- ====================================================================
-           01 // SYSTEM OVERVIEW (HERO)
+           01 // SYSTEM OVERVIEW (HERO) WITH AI SYSTEMS VISUALIZATION
            ==================================================================== -->
-      <section id="home" class="console-section reveal-on-scroll">
+      <section id="home" class="console-section">
         <div class="section-meta-header">
           <div class="section-meta-tag">
             <span class="tag-prefix">SECTION</span>
             <span class="section-meta-id">[01] // SYSTEM.OVERVIEW</span>
           </div>
           <div class="section-meta-status">
-            <span>STATUS: NOMINAL</span>
+            <span>SYS_STATUS: NOMINAL</span>
             <span class="text-low">|</span>
-            <span>LOG.ID: AA-8659</span>
+            <span>2ND-YEAR B.TECH CSE (AI/ML) @ LPU</span>
           </div>
         </div>
 
         <div class="section-body">
           <div class="hero-grid">
+            <!-- Left: Bio & CTAs -->
             <div>
-              <div class="hero-intro-label">LOG ENTRY // IDENTITY & FOCUS</div>
+              <div class="hero-intro-label">AI SYSTEMS LAB // MODEL ARCHITECT</div>
               <h1 class="hero-headline">
-                Engineering Intelligent Systems & Scalable ML Pipelines.
+                Engineering Practical Intelligent Systems & Scalable ML Pipelines.
               </h1>
               <p class="hero-bio">
-                I'm <strong>Abhinav Anand</strong>, an AI/ML Engineer and 2nd-year B.Tech CSE (AI/ML) student at Lovely Professional University. I architect and implement predictive machine learning models, multimodal biometric verification systems, and agentic workflows built for reliability, scalability, and measurable impact.
+                I'm <strong>Abhinav Anand</strong>, an AI/ML Engineer and 2nd-year B.Tech CSE (AI/ML) student at Lovely Professional University. I architect and implement predictive machine learning models, multimodal forensic document screening, and resilient computer vision systems with verifiable engineering rigor.
               </p>
 
               <!-- Recruiter Quick-Scan Strip (3-second skimmable) -->
               <div class="recruiter-quick-scan" aria-label="Recruiter Quick Scan">
                 <div class="quick-scan-item">
-                  <span class="scan-label">TARGET ROLE</span>
-                  <span class="scan-val">AI/ML Engineer · Systems & Models</span>
+                  <span class="scan-label">TARGET ROLES</span>
+                  <span class="scan-val">AI/ML Engineer · Systems & Models · Intern</span>
                 </div>
                 <div class="quick-scan-item">
                   <span class="scan-label">AVAILABILITY</span>
                   <span class="scan-val"><span class="status-dot"></span> Immediate · Remote / On-Site</span>
                 </div>
                 <div class="quick-scan-item">
-                  <span class="scan-label">PRIMARY STACK</span>
+                  <span class="scan-label">CORE TOOLCHAIN</span>
                   <span class="scan-val">Python · PyTorch · Scikit-Learn · C++</span>
                 </div>
               </div>
 
               <div class="hero-actions">
                 <a href="#work" class="btn btn-primary">
-                  Inspect Work Index [03] <i class="fas fa-arrow-down text-xs"></i>
+                  Inspect Project Matrix [03] <i class="fas fa-arrow-down text-xs"></i>
                 </a>
                 <a href="Abhinav_Anand_Resume_AIML_Specialized.pdf" target="_blank" rel="noopener noreferrer" class="btn">
                   <i class="fas fa-file-pdf"></i> Curriculum Vitae
                 </a>
                 <a href="#contact" class="btn">
-                  Open Comms [06] <i class="fas fa-terminal text-xs"></i>
+                  Open Comms [07] <i class="fas fa-terminal text-xs"></i>
                 </a>
               </div>
 
               <!-- Telemetry Mini Readout Strip -->
               <div class="telemetry-strip">
                 <div class="telemetry-cell">
-                  <span class="cell-label">PRIMARY DOMAIN</span>
-                  <span class="cell-val">AI & Machine Learning</span>
+                  <span class="cell-label">ACADEMIC BASE</span>
+                  <span class="cell-val">Lovely Professional Univ.</span>
                 </div>
                 <div class="telemetry-cell">
-                  <span class="cell-label">CORE TOOLCHAIN</span>
-                  <span class="cell-val">Python / PyTorch / C++</span>
+                  <span class="cell-label">FLAGSHIP INITIATIVE</span>
+                  <span class="cell-val text-cyan">DocuShield AI (SIH '26)</span>
                 </div>
                 <div class="telemetry-cell">
-                  <span class="cell-label">GITHUB VERIFIED REPOS</span>
+                  <span class="cell-label">GITHUB REPOSITORIES</span>
                   <span class="cell-val" id="gh-stat-repos">
                     <span id="gh-repo-count">7</span> Public Repos
                     <span class="text-low" style="font-size: 0.68rem; font-weight: normal;" id="gh-repo-sync">● Live</span>
@@ -244,18 +249,21 @@
               </div>
             </div>
 
-            <!-- Technical Portrait Frame with Viewfinder Reticle -->
-            <div class="hero-visual">
-              <div class="viewfinder-frame">
-                <div class="viewfinder-corner corner-tl"></div>
-                <div class="viewfinder-corner corner-tr"></div>
-                <div class="viewfinder-corner corner-bl"></div>
-                <div class="viewfinder-corner corner-br"></div>
-                <img src="abhinav.jpeg" alt="Abhinav Anand - Engineering Portrait" class="viewfinder-img" width="340" height="340" loading="eager" decoding="async">
+            <!-- Right: Interactive AI Systems Pipeline Canvas -->
+            <div class="hero-visual-card">
+              <div class="hero-visual-header">
+                <span class="header-pill">
+                  <i class="fas fa-network-wired"></i> LIVE AI SYSTEMS PIPELINE
+                </span>
+                <span class="font-mono text-xs text-low">INTERACTIVE SVG/CANVAS</span>
               </div>
-              <div class="avatar-caption">
-                <span>RECON // ID: AA-2005</span>
-                <span>VERIFIED</span>
+              
+              <!-- 2D Canvas for AI Systems Flow -->
+              <canvas id="hero-system-canvas" width="480" height="280"></canvas>
+              
+              <div id="hero-canvas-tooltip" class="hero-visual-tooltip">
+                <i class="fas fa-info-circle text-cyan"></i>
+                <span>Hover over any system node to inspect techniques, feature pipelines, and verified models.</span>
               </div>
             </div>
           </div>
@@ -263,122 +271,83 @@
       </section>
 
       <!-- ====================================================================
-           02 // TECH.EXPERTISE (SKILLS CATEGORY MATRIX)
+           02 // AI SYSTEMS MAP (SIGNATURE INTERACTIVE SKILL EXPLORER)
            ==================================================================== -->
-      <section id="expertise" class="console-section reveal-on-scroll">
+      <section id="systems-map" class="console-section">
         <div class="section-meta-header">
           <div class="section-meta-tag">
             <span class="tag-prefix">SECTION</span>
-            <span class="section-meta-id">[02] // TECH.EXPERTISE</span>
+            <span class="section-meta-id">[02] // AI.SYSTEMS_MAP</span>
           </div>
           <div class="section-meta-status">
-            <span>DOMAIN: AI / ML / DATA / SYSTEMS</span>
+            <span>INTERACTIVE TECHNICAL ECOSYSTEM</span>
           </div>
         </div>
 
         <div class="section-body">
-          <h2 class="section-title">Technical Competencies & Toolchain</h2>
+          <h2 class="section-title">AI Systems Knowledge Map</h2>
           <p class="section-subtitle">
-            A structured category matrix spanning low-level algorithms, predictive machine learning pipelines, agentic orchestration, and modern data architectures.
+            An interactive technical map of my engineering ecosystem. Filter by domain or click any node to inspect operational techniques, mathematical algorithms, and real project implementations.
           </p>
 
-          <!-- Structured Matrix of Categories with Hairline Dividers -->
-          <div class="skills-matrix">
-            
-            <!-- Row 1: Languages -->
-            <div class="skill-category-row">
-              <div class="skill-category-label">
-                <span class="cat-title">01 Languages</span>
-                <span class="cat-sub">Foundations & Runtimes</span>
-              </div>
-              <div class="skill-items-container">
-                <span class="skill-badge"><i class="fab fa-python"></i> Python</span>
-                <span class="skill-badge"><i class="fas fa-code"></i> C++</span>
-                <span class="skill-badge"><i class="fas fa-database"></i> SQL</span>
-                <span class="skill-badge"><i class="fab fa-js"></i> JavaScript</span>
-                <span class="skill-badge"><i class="fab fa-html5"></i> HTML5</span>
-                <span class="skill-badge"><i class="fab fa-css3-alt"></i> CSS3</span>
-              </div>
+          <div class="systems-map-header-bar">
+            <!-- Category Filter Buttons -->
+            <div class="map-category-filters" id="map-category-filters">
+              <button type="button" class="map-filter-btn active" data-category="ALL">ALL DOMAINS</button>
+              <button type="button" class="map-filter-btn" data-category="FOUNDATIONS">FOUNDATIONS</button>
+              <button type="button" class="map-filter-btn" data-category="ML">MACHINE LEARNING</button>
+              <button type="button" class="map-filter-btn" data-category="DL_VISION">DEEP LEARNING & VISION</button>
+              <button type="button" class="map-filter-btn" data-category="NLP_GENAI">NLP & GENERATIVE AI</button>
+              <button type="button" class="map-filter-btn" data-category="SYSTEMS">ENGINEERING & BACKEND</button>
+            </div>
+            <button type="button" class="btn btn-sm" id="map-reset-btn">
+              <i class="fas fa-redo-alt text-[10px]"></i> Reset Filter
+            </button>
+          </div>
+
+          <div class="systems-map-grid">
+            <!-- Left: Categorized Clusters -->
+            <div class="systems-map-board" id="systems-map-board">
+              <!-- Populated dynamically by script.js -->
             </div>
 
-            <!-- Row 2: AI & Machine Learning -->
-            <div class="skill-category-row">
-              <div class="skill-category-label">
-                <span class="cat-title">02 Machine Learning</span>
-                <span class="cat-sub">Modeling & Neural Networks</span>
+            <!-- Right: "Used In" & Skill Detail Inspector -->
+            <div class="map-inspector-panel">
+              <div>
+                <div class="inspector-header-bar">
+                  <span>SKILL TELEMETRY INSPECTOR</span>
+                  <span id="inspector-cat-tag" class="text-cyan font-mono">SELECT NODE</span>
+                </div>
+                <h3 class="inspector-skill-title" id="inspector-skill-name">Select Any Skill Node</h3>
+                <p class="inspector-skill-desc" id="inspector-skill-desc">
+                  Click on any technology or algorithm node on the left to reveal its mathematical role, verified tools, and the exact portfolio projects where it is implemented.
+                </p>
+
+                <div class="inspector-section-label">IMPLEMENTED IN PROJECTS:</div>
+                <div class="inspector-linked-projects" id="inspector-linked-projects">
+                  <div class="font-mono text-xs text-low">// No skill node currently active</div>
+                </div>
               </div>
-              <div class="skill-items-container">
-                <span class="skill-badge"><i class="fas fa-brain"></i> Machine Learning</span>
-                <span class="skill-badge"><i class="fas fa-fire"></i> PyTorch</span>
-                <span class="skill-badge"><i class="fas fa-network-wired"></i> Scikit-Learn</span>
-                <span class="skill-badge"><i class="fas fa-wand-magic-sparkles"></i> Gen AI</span>
-                <span class="skill-badge"><i class="fas fa-robot"></i> Agentic AI</span>
-                <span class="skill-badge"><i class="fas fa-link"></i> LangChain</span>
-                <span class="skill-badge"><i class="fas fa-diagram-project"></i> LangGraph</span>
-                <span class="skill-badge"><i class="fas fa-eye"></i> OpenCV</span>
-                <span class="skill-badge"><i class="fas fa-id-badge"></i> FaceNet</span>
+
+              <div style="border-top: 1px solid var(--line); padding-top: 1rem;">
+                <span class="font-mono text-low" style="font-size: 0.65rem; text-transform: uppercase;">ENGINEERING RIGOR:</span>
+                <p class="font-mono text-mid" style="font-size: 0.75rem; margin-top: 0.25rem;">
+                  Every technology listed represents hands-on project implementation with working source repositories.
+                </p>
               </div>
             </div>
-
-            <!-- Row 3: Data & Mathematics -->
-            <div class="skill-category-row">
-              <div class="skill-category-label">
-                <span class="cat-title">03 Data & Analytics</span>
-                <span class="cat-sub">Processing & Geometry</span>
-              </div>
-              <div class="skill-items-container">
-                <span class="skill-badge"><i class="fas fa-cube"></i> NumPy</span>
-                <span class="skill-badge"><i class="fas fa-table"></i> Pandas</span>
-                <span class="skill-badge"><i class="fas fa-chart-area"></i> Matplotlib</span>
-                <span class="skill-badge"><i class="fas fa-chart-pie"></i> Seaborn</span>
-                <span class="skill-badge"><i class="fas fa-project-diagram"></i> PCA (Dimensional Reduction)</span>
-                <span class="skill-badge"><i class="fas fa-balance-scale"></i> SMOTE (Sampling)</span>
-                <span class="skill-badge"><i class="fas fa-circle-nodes"></i> K-Means Clustering</span>
-              </div>
-            </div>
-
-            <!-- Row 4: Backend & Architecture -->
-            <div class="skill-category-row">
-              <div class="skill-category-label">
-                <span class="cat-title">04 Backend & Storage</span>
-                <span class="cat-sub">APIs & Relational Stores</span>
-              </div>
-              <div class="skill-items-container">
-                <span class="skill-badge"><i class="fas fa-bolt"></i> FastAPI</span>
-                <span class="skill-badge"><i class="fas fa-check-double"></i> Pydantic</span>
-                <span class="skill-badge"><i class="fas fa-server"></i> PostgreSQL</span>
-                <span class="skill-badge"><i class="fas fa-chart-line"></i> Streamlit</span>
-                <span class="skill-badge"><i class="fas fa-network-wired"></i> RESTful Architecture</span>
-              </div>
-            </div>
-
-            <!-- Row 5: Developer Tooling -->
-            <div class="skill-category-row">
-              <div class="skill-category-label">
-                <span class="cat-title">05 Developer Tools</span>
-                <span class="cat-sub">Version Control & Systems</span>
-              </div>
-              <div class="skill-items-container">
-                <span class="skill-badge"><i class="fab fa-git-alt"></i> Git</span>
-                <span class="skill-badge"><i class="fab fa-github"></i> GitHub</span>
-                <span class="skill-badge"><i class="fas fa-terminal"></i> Linux / CLI</span>
-                <span class="skill-badge"><i class="fas fa-running"></i> MediaPipe Pose</span>
-                <span class="skill-badge"><i class="fas fa-wind"></i> Tailwind CSS</span>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
 
       <!-- ====================================================================
-           03 // WORK.INDEX (MASTER-DETAIL PROJECT CONSOLE)
+           03 // PROJECT.MATRIX (INTERACTIVE AI CASE STUDIES)
            ==================================================================== -->
-      <section id="work" class="console-section reveal-on-scroll">
+      <section id="work" class="console-section">
         <div class="section-meta-header">
           <div class="section-meta-tag">
             <span class="tag-prefix">SECTION</span>
-            <span class="section-meta-id">[03] // WORK.INDEX</span>
+            <span class="section-meta-id">[03] // PROJECT.MATRIX</span>
           </div>
           <div class="section-meta-status">
             <span>REGISTRY: 9 SYSTEMS CATALOGED</span>
@@ -388,8 +357,58 @@
         <div class="section-body">
           <h2 class="section-title">Selected Engineering Work</h2>
           <p class="section-subtitle">
-            An engineering index of predictive models, computer vision systems, and applied machine learning platforms. Select any project from the left registry to inspect architecture specs, challenges, and code repositories.
+            An engineering index of forensic screening systems, predictive classifiers, and multimodal platforms. Select any project from the left registry to inspect technical challenges, algorithmic solutions, and verified code repositories.
           </p>
+
+          <!-- Category Filter Strip -->
+          <div class="project-filter-strip" id="project-filter-strip">
+            <button type="button" class="proj-filter-btn active" data-filter="ALL">ALL PROJECTS</button>
+            <button type="button" class="proj-filter-btn" data-filter="VISION_FORENSICS">COMPUTER VISION & FORENSICS</button>
+            <button type="button" class="proj-filter-btn" data-filter="PREDICTIVE_ML">PREDICTIVE ML</button>
+            <button type="button" class="proj-filter-btn" data-filter="NLP_GENAI">NLP & GENERATIVE AI</button>
+            <button type="button" class="proj-filter-btn" data-filter="SYSTEMS">FULL-STACK AI</button>
+          </div>
+
+          <!-- Featured Flagship Banner (DocuShield AI) -->
+          <div class="featured-project-card" id="featured-docushield">
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+                <span class="master-item-tag live">● LIVE DEPLOYMENT</span>
+                <span class="font-mono text-cyan" style="font-size: 0.7rem; font-weight: bold;">
+                  FLAGSHIP // SIH 2026 (PROBLEM STATEMENT SIH26188)
+                </span>
+              </div>
+              <h3 class="font-display font-bold text-2xl text-hi" style="margin-bottom: 0.5rem;">
+                DocuShield AI: Multimodal Forensic Document Screening
+              </h3>
+              <p class="text-mid" style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.25rem;">
+                Enterprise-grade forensic screening platform verifying authenticity across 5 identity categories (Passports, Visas, Aadhaar, Driving Licences, Travel Permits). Detects digital tampering via Error Level Analysis (ELA) and copy-move forgery, parses ICAO Doc 9303 MRZ check digits and Verhoeff checksums, and cross-matches live facial biometrics.
+              </p>
+              <div class="detail-tech-row" style="margin-bottom: 1.5rem;">
+                <span class="tech-chip">Python</span>
+                <span class="tech-chip">OpenCV</span>
+                <span class="tech-chip">EasyOCR</span>
+                <span class="tech-chip">ELA Tamper Heatmap</span>
+                <span class="tech-chip">Verhoeff D5 Checksum</span>
+                <span class="tech-chip">FastAPI</span>
+                <span class="tech-chip">Docker</span>
+              </div>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <a href="https://docushield-ai-s1x9.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  Launch Live App <i class="fas fa-external-link-alt text-[10px]"></i>
+                </a>
+                <a href="https://github.com/abhinavbuilds2005/DocuShield" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
+                  <i class="fab fa-github"></i> View Source
+                </a>
+                <button type="button" class="btn btn-sm" id="btn-open-docushield-spec">
+                  <i class="fas fa-file-code"></i> Deep Architecture Spec
+                </button>
+              </div>
+            </div>
+            <div class="featured-media-frame">
+              <img src="project_docushield.png" alt="DocuShield AI Forensic Screening Interface" loading="lazy" onerror="if(!this.dataset.tried){this.dataset.tried='true';this.src='project_docushield.jpg';}">
+            </div>
+          </div>
 
           <!-- Master-Detail Two-Column Console -->
           <div class="project-console-layout">
@@ -407,13 +426,47 @@
       </section>
 
       <!-- ====================================================================
-           04 // METRICS.LEETCODE (LEETCODE TELEMETRY READOUT)
+           04 // MODEL.PIPELINE (HOW I BUILD INTELLIGENT SYSTEMS)
            ==================================================================== -->
-      <section id="leetcode" class="console-section reveal-on-scroll">
+      <section id="pipeline" class="console-section">
         <div class="section-meta-header">
           <div class="section-meta-tag">
             <span class="tag-prefix">SECTION</span>
-            <span class="section-meta-id">[04] // METRICS.LEETCODE</span>
+            <span class="section-meta-id">[04] // MODEL.PIPELINE</span>
+          </div>
+          <div class="section-meta-status">
+            <span>METHODOLOGY: 7-STAGE INTELLIGENT LIFECYCLE</span>
+          </div>
+        </div>
+
+        <div class="section-body">
+          <h2 class="section-title">How I Build Intelligent Systems</h2>
+          <p class="section-subtitle">
+            An engineering perspective on end-to-end model development. Click through any lifecycle stage to review practical engineering considerations, diagnostic tools, and real project implementations.
+          </p>
+
+          <div class="pipeline-visualizer-container">
+            <!-- 7 Horizontal Pipeline Step Buttons -->
+            <div class="pipeline-steps-bar" id="pipeline-steps-bar">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+
+            <!-- Pipeline Step Detail Box -->
+            <div class="pipeline-detail-box" id="pipeline-detail-box">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           05 // ENGINEERING.METRICS (LEETCODE TELEMETRY & CREDENTIALS)
+           ==================================================================== -->
+      <section id="telemetry" class="console-section">
+        <div class="section-meta-header">
+          <div class="section-meta-tag">
+            <span class="tag-prefix">SECTION</span>
+            <span class="section-meta-id">[05] // ENGINEERING.METRICS</span>
           </div>
           <div class="section-meta-status">
             <span id="leetcode-sync-status">INITIALIZING...</span>
@@ -427,9 +480,9 @@
         </div>
 
         <div class="section-body">
-          <h2 class="section-title">Algorithmic Practice & Telemetry</h2>
+          <h2 class="section-title">Algorithmic Telemetry & Credentials</h2>
           <p class="section-subtitle">
-            Real-time metric telemetry tracking Data Structures & Algorithms problem solving in C++. Data synchronizes directly via serverless proxy from LeetCode for profile <code>@cseabhinav2005</code>.
+            Telemetry tracking asymptotic problem solving in C++ alongside verified academic credentials in memory management, machine learning, and relational schema engineering.
           </p>
 
           <div class="leetcode-console">
@@ -511,10 +564,31 @@
               </table>
             </div>
 
-            <!-- Direct LeetCode Link -->
-            <div style="display: flex; justify-content: flex-end; margin-top: 0.5rem;">
-              <a href="https://leetcode.com/u/cseabhinav2005/" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
-                Open Full LeetCode Profile <i class="fas fa-external-link-alt text-[10px]"></i>
+            <!-- Verified Credentials Strip -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+              <a href="c_programming_certificate.pdf" target="_blank" rel="noopener noreferrer" class="channel-item">
+                <i class="fas fa-certificate text-cyan"></i>
+                <div style="flex: 1;">
+                  <div class="text-hi font-bold text-xs">C Programming & Memory Foundations</div>
+                  <div class="text-low" style="font-size: 0.68rem;">LPU Coursework // Pointers & Data Structures</div>
+                </div>
+                <i class="fas fa-external-link-alt text-[10px]"></i>
+              </a>
+              <a href="python.png" target="_blank" rel="noopener noreferrer" class="channel-item">
+                <i class="fab fa-python text-cyan"></i>
+                <div style="flex: 1;">
+                  <div class="text-hi font-bold text-xs">Python for Data Science & ML</div>
+                  <div class="text-low" style="font-size: 0.68rem;">Scientific Computing // NumPy & Pandas</div>
+                </div>
+                <i class="fas fa-external-link-alt text-[10px]"></i>
+              </a>
+              <a href="sql.png" target="_blank" rel="noopener noreferrer" class="channel-item">
+                <i class="fas fa-database text-cyan"></i>
+                <div style="flex: 1;">
+                  <div class="text-hi font-bold text-xs">Relational Database Modeling</div>
+                  <div class="text-low" style="font-size: 0.68rem;">SQL Schema Normalization & Queries</div>
+                </div>
+                <i class="fas fa-external-link-alt text-[10px]"></i>
               </a>
             </div>
           </div>
@@ -522,154 +596,39 @@
       </section>
 
       <!-- ====================================================================
-           05 // LOG.JOURNEY_CERTS (TIMELINE & CERTIFICATIONS)
+           06 // BUILD.LOG (ENGINEERING JOURNAL)
            ==================================================================== -->
-      <section id="certifications" class="console-section reveal-on-scroll">
+      <section id="build-log" class="console-section">
         <div class="section-meta-header">
           <div class="section-meta-tag">
             <span class="tag-prefix">SECTION</span>
-            <span class="section-meta-id">[05] // LOG.JOURNEY_CERTS</span>
+            <span class="section-meta-id">[06] // BUILD.LOG</span>
           </div>
           <div class="section-meta-status">
-            <span>VERIFIED CREDENTIALS & MILESTONES</span>
+            <span>ENGINEERING INSIGHTS & LESSONS LEARNED</span>
           </div>
         </div>
 
         <div class="section-body">
-          <h2 class="section-title">Engineering Milestones & Certifications</h2>
+          <h2 class="section-title">Engineering Build Log</h2>
           <p class="section-subtitle">
-            A chronological ledger of architectural growth alongside verified academic certifications in low-level programming, machine learning foundations, and database systems.
+            Concise technical notes documenting architectural decisions, failure modes, and practical lessons from building machine learning systems.
           </p>
 
-          <div class="certs-journey-grid">
-            
-            <!-- Left: Timeline Ledger -->
-            <div>
-              <h3 class="font-mono text-mid" style="font-size: 0.8rem; text-transform: uppercase; margin-bottom: 1.25rem; letter-spacing: 0.04em;">
-                // Chronological Milestones
-              </h3>
-              
-              <div class="timeline-ledger">
-                <div class="timeline-entry active">
-                  <div class="timeline-mark"></div>
-                  <div class="timeline-info">
-                    <span class="timeline-date">JUNE 2026 — PRESENT</span>
-                    <h4 class="timeline-heading">DSA Mastery & Complexity Reduction (C++)</h4>
-                    <p class="timeline-desc">Systematic implementation and memory-conscious optimization of data structures and algorithms in C++, focusing on asymptotic complexity reduction.</p>
-                  </div>
-                </div>
-
-                <div class="timeline-entry">
-                  <div class="timeline-mark"></div>
-                  <div class="timeline-info">
-                    <span class="timeline-date">2025 — PRESENT</span>
-                    <h4 class="timeline-heading">Deep Dive into AI & Scalable Web Architectures</h4>
-                    <p class="timeline-desc">Coupling machine learning pipelines with high-throughput backend runtimes and clean web interfaces to build practical, production-ready AI applications.</p>
-                  </div>
-                </div>
-
-                <div class="timeline-entry">
-                  <div class="timeline-mark"></div>
-                  <div class="timeline-info">
-                    <span class="timeline-date">FOUNDATIONAL</span>
-                    <h4 class="timeline-heading">Data Science & Statistical Modeling Core</h4>
-                    <p class="timeline-desc">Mastered multivariate exploratory data analysis, statistical model tuning (PCA, SMOTE, logistic regression), and relational schema engineering.</p>
-                  </div>
-                </div>
-
-                <div class="timeline-entry">
-                  <div class="timeline-mark"></div>
-                  <div class="timeline-info">
-                    <span class="timeline-date">CONTINUOUS</span>
-                    <h4 class="timeline-heading">Algorithmic Optimization & Systems Engineering</h4>
-                    <p class="timeline-desc">Regular competitive problem solving and architecture design focused on low latency, predictable resource footprints, and robust test coverage.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right: Certifications Ledger -->
-            <div>
-              <h3 class="font-mono text-mid" style="font-size: 0.8rem; text-transform: uppercase; margin-bottom: 1.25rem; letter-spacing: 0.04em;">
-                // Verified Credentials
-              </h3>
-
-              <div class="certs-ledger">
-                <!-- Cert 1: C Programming -->
-                <a href="c_programming_certificate.pdf" target="_blank" rel="noopener noreferrer" class="cert-row">
-                  <div class="cert-left">
-                    <span class="cert-code">CSE101</span>
-                    <div>
-                      <div class="cert-name">C Programming & Foundations</div>
-                      <div class="cert-inst">Lovely Professional University // Pointers & Low-Level Memory</div>
-                    </div>
-                  </div>
-                  <div class="cert-action">
-                    <span>PDF</span>
-                    <i class="fas fa-external-link-alt text-[10px]"></i>
-                  </div>
-                </a>
-
-                <!-- Cert 2: Python -->
-                <a href="python.png" target="_blank" rel="noopener noreferrer" class="cert-row">
-                  <div class="cert-left">
-                    <span class="cert-code">PY-CORE</span>
-                    <div>
-                      <div class="cert-name">Python Programming Masterclass</div>
-                      <div class="cert-inst">Data Structures, OOP & Scientific Python Computing</div>
-                    </div>
-                  </div>
-                  <div class="cert-action">
-                    <span>IMAGE</span>
-                    <i class="fas fa-external-link-alt text-[10px]"></i>
-                  </div>
-                </a>
-
-                <!-- Cert 3: SQL -->
-                <a href="sql.png" target="_blank" rel="noopener noreferrer" class="cert-row">
-                  <div class="cert-left">
-                    <span class="cert-code">SQL-DS</span>
-                    <div>
-                      <div class="cert-name">SQL & Relational Database Systems</div>
-                      <div class="cert-inst">Schema Modeling, Complex Queries & Analytics</div>
-                    </div>
-                  </div>
-                  <div class="cert-action">
-                    <span>IMAGE</span>
-                    <i class="fas fa-external-link-alt text-[10px]"></i>
-                  </div>
-                </a>
-
-                <!-- Resume Download Box -->
-                <div class="resume-action-box">
-                  <div>
-                    <div class="cert-name">Curriculum Vitae (PDF)</div>
-                    <div class="cert-inst">Specialized in AI/ML Engineering & Systems Development</div>
-                  </div>
-                  <div style="display: flex; gap: 0.5rem;">
-                    <a href="Abhinav_Anand_Resume_AIML_Specialized.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-                      <i class="fas fa-download"></i> AI/ML CV
-                    </a>
-                    <a href="Abhinav_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
-                      General CV
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+          <div class="build-log-grid" id="build-log-grid">
+            <!-- Rendered dynamically by script.js -->
           </div>
         </div>
       </section>
 
       <!-- ====================================================================
-           06 // COMMS.CONTACT (CONTACT CONSOLE)
+           07 // COMMS.CONTACT (COMMUNICATION CONSOLE)
            ==================================================================== -->
-      <section id="contact" class="console-section reveal-on-scroll">
+      <section id="contact" class="console-section">
         <div class="section-meta-header">
           <div class="section-meta-tag">
             <span class="tag-prefix">SECTION</span>
-            <span class="section-meta-id">[06] // COMMS.CONTACT</span>
+            <span class="section-meta-id">[07] // COMMS.CONTACT</span>
           </div>
           <div class="section-meta-status">
             <span>STATUS: READY FOR TRANSMISSION</span>
@@ -700,9 +659,9 @@
                     <i class="fab fa-linkedin"></i>
                     <span>linkedin.com/in/abhinav-anand-865926300</span>
                   </a>
-                  <a href="https://www.instagram.com/cse.abhinav?igsh=MTcxdDR6N2VyMmIwMQ==" target="_blank" rel="noopener noreferrer" class="channel-item">
-                    <i class="fab fa-instagram"></i>
-                    <span>instagram.com/cse.abhinav</span>
+                  <a href="https://leetcode.com/u/cseabhinav2005/" target="_blank" rel="noopener noreferrer" class="channel-item">
+                    <i class="fas fa-code"></i>
+                    <span>leetcode.com/u/cseabhinav2005</span>
                   </a>
                 </div>
               </div>
@@ -710,21 +669,20 @@
               <div style="margin-top: 2rem; padding: 1rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-2);">
                 <span class="font-mono text-low" style="font-size: 0.675rem; text-transform: uppercase; display: block; margin-bottom: 0.35rem;">AVAILABILITY NOTICE</span>
                 <p class="font-mono text-mid" style="font-size: 0.775rem;">
-                  Targeting AI/ML Engineering & Software Engineering internships and full-time opportunities.
+                  Targeting AI/ML Engineering internships and junior machine learning roles. Immediate availability for remote and on-site opportunities.
                 </p>
               </div>
             </div>
 
-            <!-- Functional Web3Forms Console Form (Sharp 4px corners, monospace labels) -->
+            <!-- Functional Web3Forms Console Form -->
             <form id="contactForm" class="contact-form">
-              <!-- Exact Web3Forms Access Key & Config -->
               <input type="hidden" name="access_key" value="d95cbc2e-a628-4836-b956-a1b038407133">
-              <input type="hidden" name="subject" value="New Transmission from Portfolio Console">
+              <input type="hidden" name="subject" value="New Transmission from AI Engineering Portfolio">
               <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
               <div class="form-group">
                 <label for="name" class="form-label">SENDER NAME [REQUIRED]:</label>
-                <input type="text" id="name" name="name" required class="form-control" placeholder="e.g. Sarah Connor / Anthropic" autocomplete="name">
+                <input type="text" id="name" name="name" required class="form-control" placeholder="e.g. Sarah Connor / Tech Recruiter" autocomplete="name">
               </div>
 
               <div class="form-group">
@@ -734,16 +692,37 @@
 
               <div class="form-group">
                 <label for="message" class="form-label">COMMUNICATION PAYLOAD [REQUIRED]:</label>
-                <textarea id="message" name="message" rows="5" required class="form-control" placeholder="Brief project scope, engineering role specifics, or inquiry..."></textarea>
+                <textarea id="message" name="message" rows="5" required class="form-control" placeholder="Detail your project specifications, role overview, or engineering collaboration..."></textarea>
               </div>
 
-              <button type="submit" id="formButton" class="btn btn-primary" style="width: 100%; padding: 0.85rem;">
+              <button type="submit" id="formButton" class="btn btn-primary" style="width: 100%; padding: 0.85rem; justify-content: center;">
                 Transmit Message <i class="fas fa-paper-plane text-xs"></i>
               </button>
 
-              <div id="formStatus" class="form-status hidden" role="status" aria-live="polite"></div>
+              <div id="formStatus" class="form-status" style="display: none;" role="status" aria-live="polite"></div>
             </form>
 
+          </div>
+
+          <!-- Recruiter Closing CTA Banner -->
+          <div class="recruiter-cta-banner">
+            <div>
+              <div class="recruiter-cta-title">Let's build something intelligent.</div>
+              <div class="recruiter-cta-desc">
+                Review verified code repositories, test running demo deployments, or download my tailored AI/ML resume.
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a href="Abhinav_Anand_Resume_AIML_Specialized.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                <i class="fas fa-file-pdf"></i> Download Resume
+              </a>
+              <a href="https://github.com/abhinavbuilds2005" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
+                <i class="fab fa-github"></i> GitHub Profile
+              </a>
+              <a href="https://www.linkedin.com/in/abhinav-anand-865926300" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
+                <i class="fab fa-linkedin"></i> LinkedIn
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -753,9 +732,9 @@
            ==================================================================== -->
       <footer class="console-footer">
         <div>
-          <span>© 2026 ABHINAV ANAND. BUILT WITH INTENTIONAL DISCIPLINE.</span>
+          <span>© 2026 ABHINAV ANAND. AI SYSTEMS LAB. BUILT WITH INTENTIONAL DISCIPLINE.</span>
         </div>
-        <div class="footer-sys-meta">
+        <div style="display: flex; align-items: center; gap: 1rem;">
           <span>UTC: <span id="sys-clock">--</span></span>
           <span class="text-low">|</span>
           <button type="button" id="back-to-top" class="back-to-top-btn">
@@ -768,18 +747,18 @@
 
   </div>
 
-  <!-- Technical Spec Modal / Case Study Drawer -->
+  <!-- Technical Case Study Modal / Architecture Inspector -->
   <div id="spec-modal" class="spec-modal" role="dialog" aria-modal="true" aria-labelledby="spec-modal-title">
     <div id="spec-modal-backdrop" class="spec-modal-backdrop"></div>
     <div class="spec-modal-dialog">
       <div class="modal-header-bar">
-        <span id="spec-modal-title" class="font-mono font-bold">PROJECT SPECIFICATION</span>
+        <span id="spec-modal-title" class="font-mono font-bold text-cyan">PROJECT ARCHITECTURE SPECIFICATION</span>
         <button type="button" id="spec-modal-close" class="modal-close-btn" aria-label="Close modal">
           <i class="fas fa-times text-xs"></i>
         </button>
       </div>
       <div id="spec-modal-body" class="modal-scroll-body">
-        <!-- Content injected dynamically -->
+        <!-- Content injected dynamically by script.js -->
       </div>
     </div>
   </div>
@@ -801,6 +780,51 @@
         <span class="footer-hint"><kbd>↵</kbd> Select</span>
         <span class="footer-hint"><kbd>ESC</kbd> Close</span>
       </div>
+    </div>
+  </div>
+
+  <!-- Portfolio Assistant Launcher & Drawer ("Ask Abhinav's Portfolio") -->
+  <button type="button" id="assistant-launcher" class="assistant-launcher" aria-label="Ask Abhinav's Portfolio Assistant">
+    <i class="fas fa-robot text-cyan"></i>
+    <span>Ask Portfolio</span>
+  </button>
+
+  <div id="assistant-drawer" class="assistant-drawer hidden" role="region" aria-label="Portfolio Assistant">
+    <div class="assistant-header">
+      <div style="display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-hi);">
+        <span class="status-dot"></span>
+        <span class="font-bold text-cyan">PORTFOLIO ASSISTANT</span>
+        <span class="text-low" style="font-size: 0.65rem;">// LOCAL KNOWLEDGE BASE</span>
+      </div>
+      <button type="button" id="assistant-close-btn" class="modal-close-btn" aria-label="Close Assistant">
+        <i class="fas fa-times text-xs"></i>
+      </button>
+    </div>
+    
+    <div class="assistant-body" id="assistant-logs">
+      <div class="assistant-msg bot">
+        Hello! I'm Abhinav's local portfolio assistant. You can ask about his background, projects like <strong>DocuShield AI</strong>, technical skills, or internship availability.
+      </div>
+    </div>
+
+    <!-- Suggested Question Chips -->
+    <div style="padding: 0.75rem 1rem; border-top: 1px solid var(--line); background: var(--surface-2);">
+      <div class="font-mono text-low" style="font-size: 0.625rem; text-transform: uppercase; margin-bottom: 0.35rem;">SUGGESTED PROMPTS:</div>
+      <div class="assistant-chips-row">
+        <button type="button" class="assistant-chip-btn" data-query="Who is Abhinav?">Who is Abhinav?</button>
+        <button type="button" class="assistant-chip-btn" data-query="What is DocuShield AI?">What is DocuShield AI?</button>
+        <button type="button" class="assistant-chip-btn" data-query="What is his tech stack?">Tech Stack?</button>
+        <button type="button" class="assistant-chip-btn" data-query="Is he available for internships?">Internships?</button>
+        <button type="button" class="assistant-chip-btn" data-query="Where can I find his resume?">Resume?</button>
+      </div>
+    </div>
+
+    <!-- Assistant Input Row -->
+    <div style="padding: 0.75rem 1rem; border-top: 1px solid var(--line); display: flex; gap: 0.5rem; background: var(--surface-1);">
+      <input type="text" id="assistant-input" placeholder="Ask a question about Abhinav's work..." class="form-control" style="font-size: 0.75rem; padding: 0.45rem 0.65rem;">
+      <button type="button" id="assistant-send-btn" class="btn btn-primary btn-sm">
+        <i class="fas fa-paper-plane"></i>
+      </button>
     </div>
   </div>
 
