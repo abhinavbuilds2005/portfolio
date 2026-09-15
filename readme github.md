@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="https://readme-typing-svg.demolab.com">
-    <img src="https://readme-typing-svg.demolab.com?font=Poppins&size=22&duration=3000&pause=1000&color=00C9FF&center=true&vCenter=true&width=750&lines=AI%2FML+Engineer+in+Progress+%F0%9F%A4%96;4+Deployed+ML+Apps+%E2%80%94+CreditWise%2C+SmartCart%2C+ElevateCV+%26+PresentAI;Machine+Learning+%7C+Deep+Learning+%7C+Data+Science;Actively+Seeking+Remote+ML+%2F+Data+Intern+Roles+%F0%9F%9A%80;Building+Intelligent+Systems+That+Actually+Work" />
+    <img src="https://readme-typing-svg.demolab.com?font=Poppins&size=22&duration=3000&pause=1000&color=00C9FF&center=true&vCenter=true&width=750&lines=AI%2FML+Engineer+in+Progress+%F0%9F%A4%96;5+Deployed+ML+Apps+%E2%80%94+DocuShield%2C+CreditWise%2C+SmartCart%2C+ElevateCV+%26+PresentAI;Machine+Learning+%7C+Deep+Learning+%7C+Data+Science;Actively+Seeking+Remote+ML+%2F+Data+Intern+Roles+%F0%9F%9A%80;Building+Intelligent+Systems+That+Actually+Work" />
   </a>
 </p>
 
@@ -26,7 +26,7 @@
 
 - 🎓 **BTech CSE (AIML)** at Lovely Professional University, Jalandhar *(2025–2029)*
 - 🤖 Passionate about **Machine Learning, Deep Learning & Generative AI**
-- 🚀 **4 deployed AI/ML apps** — end-to-end, from raw data to live web applications
+- 🚀 **5 deployed AI/ML apps** — end-to-end, from raw data to live web applications
 - 🔍 Actively exploring **LLMs, NLP, and Computer Vision**
 - 💼 **Open to remote paid internships** — ML Intern / Data Analyst roles
 - 📬 Reach me at **abhinavanand9996@gmail.com**
@@ -106,7 +106,13 @@
       <a href="https://github.com/abhinavbuilds2005/AI-Powered-Attendance-Platform"><img src="https://img.shields.io/badge/Source-GitHub-181717?style=for-the-badge&logo=github"/></a>
     </td>
     <td width="50%" valign="top">
-      <!-- Future Project Placeholder -->
+      <h3>🛡️ DocuShield AI — Fake Identity & Document Screening</h3>
+      <p><strong>Python · OpenCV · EasyOCR · FastAPI · Docker · SIH 2026</strong></p>
+      <p>
+        An enterprise-grade multimodal forensic screening platform verifying document authenticity across 5 categories, detecting digital tampering (ELA, Copy-Move, typography variance), parsing ICAO/Verhoeff checksums, and matching live facial biometrics.
+      </p>
+      <a href="https://docushield-ai-s1x9.onrender.com/"><img src="https://img.shields.io/badge/Live App-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white"/></a>
+      <a href="https://github.com/abhinavbuilds2005/DocuShield"><img src="https://img.shields.io/badge/Source-GitHub-181717?style=for-the-badge&logo=github"/></a>
     </td>
   </tr>
 </table>

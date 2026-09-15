@@ -33,8 +33,28 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================================================================
   const PROJECTS_DATA = [
     {
-      id: "creditwise",
+      id: "docushield",
       index: "01",
+      title: "DocuShield AI: Forensic Screening",
+      category: "AI/ML",
+      status: "LIVE",
+      tagline: "Multimodal forensic screening platform verifying document authenticity, tampering, and biometric credentials.",
+      image: "project_docushield.png",
+      liveUrl: "https://docushield-ai-s1x9.onrender.com/",
+      repoUrl: "https://github.com/abhinavbuilds2005/DocuShield",
+      summary: "An enterprise-grade multimodal forensic screening platform built for Smart India Hackathon (SIH 2026, Problem Statement SIH26188). It automatically verifies document authenticity across 5 core categories (Passports, Visas, Aadhaar/National IDs, Driving Licences, Travel Permits), extracting OCR schemas, detecting digital tampering via ELA and Copy-Move analysis, and validating biometric credentials.",
+      challenge: "Digital document forgery leverages sophisticated graphic edits (copy-move replication, font splicing, compression artifacts, and fake checksums) that easily deceive conventional OCR systems and isolated classifiers.",
+      solution: "Architected a 5-level Hierarchical Multimodal Evidence Fusion Engine combining Error Level Analysis (ELA), ORB+RANSAC copy-move detection, Laplacian typography variance, ICAO Doc 9303 MRZ check digits, Verhoeff checksums, and facial biometric verification into an explainable 0–100% forensic risk score.",
+      features: [
+        "<strong>Multimodal Tampering Detection:</strong> Error Level Analysis (ELA), ORB + RANSAC copy-move detection, typography consistency, and EXIF software signature inspection.",
+        "<strong>Algorithmic Validation & MRZ Parsing:</strong> ICAO Doc 9303 TD1/TD2/TD3 check digits, Verhoeff checksums for Indian Aadhaar/UID, PAN syntax, and chronological date logic.",
+        "<strong>Biometric Face Verification & Fusion:</strong> Document facial extraction cross-matched against live selfies with HSV/gradient similarity, unified by a 5-level forensic risk engine."
+      ],
+      tech: ["Python", "OpenCV", "EasyOCR", "FastAPI", "Docker", "React 18 & Vite", "Verhoeff Checksum"]
+    },
+    {
+      id: "creditwise",
+      index: "02",
       title: "CreditWise: AI Loan Risk",
       category: "AI/ML",
       status: "LIVE",
@@ -54,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       id: "smartcart",
-      index: "02",
+      index: "03",
       title: "SmartCart AI: Customer Intelligence",
       category: "AI/ML",
       status: "LIVE",
@@ -74,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       id: "presentai",
-      index: "03",
+      index: "04",
       title: "PresentAI: Biometric Attendance",
       category: "AI/ML",
       status: "LIVE",
@@ -94,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       id: "elevatecv",
-      index: "04",
+      index: "05",
       title: "ATS Resume Analyzer: AI Scorer",
       category: "AI/ML",
       status: "LIVE",
@@ -114,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       id: "portfolio",
-      index: "05",
+      index: "06",
       title: "Personal Portfolio v2",
       category: "WEB DEV",
       status: "LIVE",
@@ -134,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       id: "voice-assistant",
-      index: "06",
+      index: "07",
       title: "AI Voice Assistant",
       category: "AI/ML",
       status: "UPCOMING",
@@ -154,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       id: "style-transfer",
-      index: "07",
+      index: "08",
       title: "Neural Style Transfer",
       category: "AI/ML",
       status: "UPCOMING",
@@ -174,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       id: "gym-trainer",
-      index: "08",
+      index: "09",
       title: "AI Real-Time Gym Trainer",
       category: "AI/ML",
       status: "UPCOMING",
@@ -935,14 +955,15 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: "nav-contact", group: "Navigation", label: "06 // Communication Console", hint: "#contact", action: () => scrollToSection("contact") },
 
     // Projects (Direct select in master-detail console)
-    { id: "proj-0", group: "Projects", label: "CreditWise: AI Loan Default Prediction", hint: "AI/ML [01]", action: () => selectProjectDirect(0) },
-    { id: "proj-1", group: "Projects", label: "SmartCart AI: Customer Intelligence Platform", hint: "AI/ML [02]", action: () => selectProjectDirect(1) },
-    { id: "proj-2", group: "Projects", label: "PresentAI (AttendPro): Multimodal Biometric Attendance", hint: "AI/ML [03]", action: () => selectProjectDirect(2) },
-    { id: "proj-3", group: "Projects", label: "ATS Resume Analyzer (ElevateCV): AI Scorer & JD Matcher", hint: "AI/ML [04]", action: () => selectProjectDirect(3) },
-    { id: "proj-4", group: "Projects", label: "Personal Portfolio v2 (Console Engineering Hub)", hint: "WEB [05]", action: () => selectProjectDirect(4) },
-    { id: "proj-5", group: "Projects", label: "Voice Assistant & Operating System Automation", hint: "PYTHON [06]", action: () => selectProjectDirect(5) },
-    { id: "proj-6", group: "Projects", label: "Neural Style Transfer (PyTorch VGG-19)", hint: "DL [07]", action: () => selectProjectDirect(6) },
-    { id: "proj-7", group: "Projects", label: "AI Fitness Coach & Real-Time Pose Correction", hint: "CV [08]", action: () => selectProjectDirect(7) },
+    { id: "proj-0", group: "Projects", label: "DocuShield AI: Forensic Fake Identity & Document Screening", hint: "AI/ML [01]", action: () => selectProjectDirect(0) },
+    { id: "proj-1", group: "Projects", label: "CreditWise: AI Loan Default Prediction", hint: "AI/ML [02]", action: () => selectProjectDirect(1) },
+    { id: "proj-2", group: "Projects", label: "SmartCart AI: Customer Intelligence Platform", hint: "AI/ML [03]", action: () => selectProjectDirect(2) },
+    { id: "proj-3", group: "Projects", label: "PresentAI (AttendPro): Multimodal Biometric Attendance", hint: "AI/ML [04]", action: () => selectProjectDirect(3) },
+    { id: "proj-4", group: "Projects", label: "ATS Resume Analyzer (ElevateCV): AI Scorer & JD Matcher", hint: "AI/ML [05]", action: () => selectProjectDirect(4) },
+    { id: "proj-5", group: "Projects", label: "Personal Portfolio v2 (Console Engineering Hub)", hint: "WEB [06]", action: () => selectProjectDirect(5) },
+    { id: "proj-6", group: "Projects", label: "Voice Assistant & Operating System Automation", hint: "PYTHON [07]", action: () => selectProjectDirect(6) },
+    { id: "proj-7", group: "Projects", label: "Neural Style Transfer (PyTorch VGG-19)", hint: "DL [08]", action: () => selectProjectDirect(7) },
+    { id: "proj-8", group: "Projects", label: "AI Fitness Coach & Real-Time Pose Correction", hint: "CV [09]", action: () => selectProjectDirect(8) },
 
     // Actions
     { id: "act-cv-aiml", group: "Actions", label: "Download Specialized AI/ML Curriculum Vitae (PDF)", hint: "FILE", action: () => window.open("Abhinav_Anand_Resume_AIML_Specialized.pdf", "_blank") },
