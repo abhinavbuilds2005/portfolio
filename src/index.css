@@ -91,3 +91,133 @@
 .card-hover-lift:hover {
   transform: translateY(-2px);
 }
+
+/* ─── Animation Keyframes ─── */
+
+@keyframes float-up {
+  0%   { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.6; }
+  33%  { transform: translateY(-18px) translateX(6px) scale(1.05); opacity: 0.8; }
+  66%  { transform: translateY(-8px) translateX(-4px) scale(0.95); opacity: 0.5; }
+  100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.6; }
+}
+
+@keyframes float-slow {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes scan-line {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(400%); }
+}
+
+@keyframes shimmer-pass {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes border-race {
+  0%   { clip-path: inset(0 100% 0 0); }
+  25%  { clip-path: inset(0 0 0 0); }
+  50%  { clip-path: inset(0 0 0 0); }
+  75%  { clip-path: inset(0 0 100% 0); }
+  100% { clip-path: inset(0 100% 0 0); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.7; }
+  70%  { transform: scale(2.2); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes orbit-slow {
+  from { transform: rotate(0deg) translateX(90px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(90px) rotate(-360deg); }
+}
+
+@keyframes orbit-slow-rev {
+  from { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+  to   { transform: rotate(-360deg) translateX(60px) rotate(360deg); }
+}
+
+@keyframes data-stream {
+  0%   { opacity: 0; transform: translateY(-8px); }
+  30%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(8px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0px rgba(229, 139, 36, 0); }
+  50%       { box-shadow: 0 0 18px rgba(229, 139, 36, 0.35), 0 0 40px rgba(229, 139, 36, 0.12); }
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes path-draw {
+  from { stroke-dashoffset: 600; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* ─── Animation Utility Classes ─── */
+.animate-float-up    { animation: float-up 5s ease-in-out infinite; }
+.animate-float-slow  { animation: float-slow 4s ease-in-out infinite; }
+.animate-scan-line   { animation: scan-line 2.5s linear infinite; }
+.animate-shimmer     {
+  background: linear-gradient(90deg, transparent 0%, rgba(229,139,36,0.18) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer-pass 2.5s linear infinite;
+}
+.animate-glow-pulse  { animation: glow-pulse 2.5s ease-in-out infinite; }
+.animate-orbit       { animation: orbit-slow 8s linear infinite; }
+.animate-orbit-rev   { animation: orbit-slow-rev 12s linear infinite; }
+.animate-data-stream { animation: data-stream 2s ease-in-out infinite; }
+.animate-ticker      { animation: ticker-scroll 18s linear infinite; }
+.animate-path-draw   {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: path-draw 1.8s ease-out forwards;
+}
+
+/* ─── Stagger Delay Utilities ─── */
+.delay-0   { animation-delay: 0ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-900 { animation-delay: 900ms; }
+
+/* ─── Scanning card border effect ─── */
+.scan-card {
+  position: relative;
+}
+.scan-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent 20%, rgba(229,139,36,0.5) 50%, transparent 80%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.scan-card:hover::before {
+  opacity: 1;
+}
+
