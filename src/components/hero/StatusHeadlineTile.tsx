@@ -1,45 +1,72 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowDown, Mail, FileText } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export const StatusHeadlineTile: React.FC = () => {
-  const [terminalText, setTerminalText] = useState('training…');
+  const [displayText, setDisplayText] = useState('');
   const [isFinal, setIsFinal] = useState(false);
 
   useEffect(() => {
-    // Check if user prefers reduced motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      setTerminalText('open to internships');
-      setIsFinal(true);
-      return;
-    }
-
-    const sequence = [
-      { text: 'training…', duration: 350 },
-      { text: 'evaluating…', duration: 400 },
-      { text: 'deployed', duration: 350 },
-      { text: 'open to internships', duration: 0 }
+    const phases = [
+      'training…',
+      'evaluating…',
+      'deployed',
+      'open to internships'
     ];
 
-    let currentStep = 0;
-    const runSequence = () => {
-      if (currentStep < sequence.length - 1) {
-        currentStep++;
-        setTerminalText(sequence[currentStep].text);
-        if (currentStep === sequence.length - 1) {
-          setIsFinal(true);
-        } else {
-          setTimeout(runSequence, sequence[currentStep].duration);
+    let phaseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let timeoutId: NodeJS.Timeout;
+
+    const tick = () => {
+      const currentWord = phases[phaseIndex];
+
+      if (!isDeleting) {
+        // Typing forward
+        setDisplayText(currentWord.substring(0, charIndex + 1));
+        charIndex++;
+
+        if (charIndex === currentWord.length) {
+          // Finished typing this word
+          if (phaseIndex === phases.length - 1) {
+            // Reached final phase ("open to internships")
+            setIsFinal(true);
+            return; // Stop animation here!
+          }
+          // Pause before deleting
+          isDeleting = true;
+          timeoutId = setTimeout(tick, 700);
+          return;
         }
+        timeoutId = setTimeout(tick, 60);
+      } else {
+        // Deleting backward
+        setDisplayText(currentWord.substring(0, charIndex - 1));
+        charIndex--;
+
+        if (charIndex === 0) {
+          // Finished deleting, move to next word
+          isDeleting = false;
+          phaseIndex++;
+          timeoutId = setTimeout(tick, 200);
+          return;
+        }
+        timeoutId = setTimeout(tick, 35);
       }
     };
 
-    const timer = setTimeout(runSequence, sequence[0].duration);
-    return () => clearTimeout(timer);
+    timeoutId = setTimeout(tick, 250);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   return (
-    <div className="flex flex-col justify-between p-6 sm:p-7 rounded border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="flex flex-col justify-between p-6 sm:p-7 rounded border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden card-hover-lift"
+    >
       <div>
         {/* Terminal status badge */}
         <div className="flex items-center gap-2 mb-4 font-mono text-xs">
@@ -50,8 +77,9 @@ export const StatusHeadlineTile: React.FC = () => {
           <span className="text-[#78716c] dark:text-[#78716c] light:text-[#a8a29e] uppercase tracking-wider text-[11px]">
             SYS_STATUS:
           </span>
-          <span className="text-[#e58b24] dark:text-[#e58b24] light:text-[#c84b31] font-semibold tracking-wide">
-            {terminalText}
+          <span className="text-[#e58b24] dark:text-[#e58b24] light:text-[#c84b31] font-semibold tracking-wide flex items-center">
+            <span>{displayText}</span>
+            <span className="inline-block w-1.5 h-3.5 bg-[#e58b24] ml-1 animate-pulse" />
           </span>
         </div>
 
@@ -91,7 +119,7 @@ export const StatusHeadlineTile: React.FC = () => {
       <div className="flex flex-wrap items-center gap-3 pt-2">
         <a
           href="#projects"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-mono font-medium tracking-wide bg-[#e58b24] hover:bg-[#d97706] text-[#121212] transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-mono font-medium tracking-wide bg-[#e58b24] hover:bg-[#d97706] text-[#121212] transition-all hover:scale-[1.02] active:scale-[0.98]"
         >
           <span>Explore Projects</span>
           <ArrowDown className="w-3.5 h-3.5" />
@@ -101,7 +129,7 @@ export const StatusHeadlineTile: React.FC = () => {
           href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-mono font-medium tracking-wide border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] hover:border-[#e58b24]/60 bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-mono font-medium tracking-wide border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] hover:border-[#e58b24]/60 bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] transition-all hover:scale-[1.02] active:scale-[0.98]"
         >
           <FileText className="w-3.5 h-3.5" />
           <span>Curriculum Vitae</span>
@@ -109,12 +137,12 @@ export const StatusHeadlineTile: React.FC = () => {
 
         <a
           href="#contact"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-mono font-medium tracking-wide border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] hover:border-[#e58b24]/60 bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-mono font-medium tracking-wide border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] hover:border-[#e58b24]/60 bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] transition-all hover:scale-[1.02] active:scale-[0.98]"
         >
           <Mail className="w-3.5 h-3.5" />
           <span>Contact</span>
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 };

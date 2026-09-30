@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Target } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export const ResultsTile: React.FC = () => {
   const [hasScrolledIn, setHasScrolledIn] = useState(false);
@@ -10,22 +11,12 @@ export const ResultsTile: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      setTp(142);
-      setFp(8);
-      setFn(6);
-      setTn(184);
-      setHasScrolledIn(true);
-      return;
-    }
-
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && !hasScrolledIn) {
           setHasScrolledIn(true);
-          const duration = 500; // < 600ms as per motion rules
-          const steps = 20;
+          const duration = 600;
+          const steps = 30;
           const interval = duration / steps;
           let step = 0;
 
@@ -47,7 +38,7 @@ export const ResultsTile: React.FC = () => {
           }, interval);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
 
     if (containerRef.current) {
@@ -58,9 +49,12 @@ export const ResultsTile: React.FC = () => {
   }, [hasScrolledIn]);
 
   return (
-    <div
+    <motion.div
       ref={containerRef}
-      className="flex flex-col justify-between p-5 rounded border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+      className="flex flex-col justify-between p-5 rounded border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden card-hover-lift"
     >
       {/* Tile Header */}
       <div className="flex items-center justify-between mb-3">
@@ -83,9 +77,10 @@ export const ResultsTile: React.FC = () => {
         <div className="grid grid-cols-2 gap-1.5">
           {/* True Positive (High Heat) */}
           <div
-            className="p-3 rounded border border-[#2b2a27] text-center transition-colors duration-500"
+            className="p-3 rounded border border-[#2b2a27] text-center transition-all duration-700 ease-out"
             style={{
-              backgroundColor: hasScrolledIn ? 'rgba(229, 139, 36, 0.28)' : 'transparent'
+              backgroundColor: hasScrolledIn ? 'rgba(229, 139, 36, 0.28)' : 'transparent',
+              borderColor: hasScrolledIn ? 'rgba(229, 139, 36, 0.4)' : '#2b2a27'
             }}
           >
             <div className="font-mono text-[10px] text-[#a8a29e] uppercase">TP</div>
@@ -97,9 +92,9 @@ export const ResultsTile: React.FC = () => {
 
           {/* False Positive (Low Heat) */}
           <div
-            className="p-3 rounded border border-[#2b2a27] text-center transition-colors duration-500"
+            className="p-3 rounded border border-[#2b2a27] text-center transition-all duration-700 ease-out"
             style={{
-              backgroundColor: hasScrolledIn ? 'rgba(229, 139, 36, 0.06)' : 'transparent'
+              backgroundColor: hasScrolledIn ? 'rgba(229, 139, 36, 0.08)' : 'transparent'
             }}
           >
             <div className="font-mono text-[10px] text-[#78716c] uppercase">FP</div>
@@ -111,9 +106,9 @@ export const ResultsTile: React.FC = () => {
 
           {/* False Negative (Low Heat) */}
           <div
-            className="p-3 rounded border border-[#2b2a27] text-center transition-colors duration-500"
+            className="p-3 rounded border border-[#2b2a27] text-center transition-all duration-700 ease-out"
             style={{
-              backgroundColor: hasScrolledIn ? 'rgba(229, 139, 36, 0.05)' : 'transparent'
+              backgroundColor: hasScrolledIn ? 'rgba(229, 139, 36, 0.06)' : 'transparent'
             }}
           >
             <div className="font-mono text-[10px] text-[#78716c] uppercase">FN</div>
@@ -125,9 +120,10 @@ export const ResultsTile: React.FC = () => {
 
           {/* True Negative (High Heat) */}
           <div
-            className="p-3 rounded border border-[#2b2a27] text-center transition-colors duration-500"
+            className="p-3 rounded border border-[#2b2a27] text-center transition-all duration-700 ease-out"
             style={{
-              backgroundColor: hasScrolledIn ? 'rgba(229, 139, 36, 0.35)' : 'transparent'
+              backgroundColor: hasScrolledIn ? 'rgba(229, 139, 36, 0.32)' : 'transparent',
+              borderColor: hasScrolledIn ? 'rgba(229, 139, 36, 0.4)' : '#2b2a27'
             }}
           >
             <div className="font-mono text-[10px] text-[#a8a29e] uppercase">TN</div>
@@ -144,6 +140,6 @@ export const ResultsTile: React.FC = () => {
         <span className="text-[#78716c]">F1-Score (Sample):</span>
         <span className="font-bold text-[#e58b24]">0.953</span>
       </div>
-    </div>
+    </motion.div>
   );
 };

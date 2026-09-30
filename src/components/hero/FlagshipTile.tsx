@@ -1,6 +1,8 @@
 import React from 'react';
 import { ExternalLink, Github, ShieldCheck, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { PROJECTS } from '../../data/projects';
+import { MagneticButton } from '../shared/MagneticButton';
 
 interface FlagshipTileProps {
   onOpenCaseStudy: (projectId: string) => void;
@@ -10,8 +12,12 @@ export const FlagshipTile: React.FC<FlagshipTileProps> = ({ onOpenCaseStudy }) =
   const docushield = PROJECTS.find((p) => p.id === 'docushield') || PROJECTS[0];
 
   return (
-    <div className="flex flex-col justify-between p-6 sm:p-7 rounded border-2 border-[#e58b24]/50 dark:border-[#e58b24]/50 light:border-[#c84b31]/50 bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden group">
-      
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+      className="flex flex-col justify-between p-6 sm:p-7 rounded border-2 border-[#e58b24]/50 dark:border-[#e58b24]/50 light:border-[#c84b31]/50 bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden group card-hover-lift"
+    >
       {/* Top Tag & Flagship Badge */}
       <div>
         <div className="flex items-center justify-between gap-2 mb-3">
@@ -63,18 +69,20 @@ export const FlagshipTile: React.FC<FlagshipTileProps> = ({ onOpenCaseStudy }) =
         </div>
       </div>
 
-      {/* Action links */}
+      {/* Action links with Magnetic Primary Button */}
       <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-[#2b2a27]/60">
         {docushield.liveUrl && (
-          <a
+          <MagneticButton
             href={docushield.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono font-medium tracking-wide bg-[#e58b24] hover:bg-[#d97706] text-[#121212] transition-colors"
+            className="px-3.5 py-1.5 rounded text-xs font-mono font-medium tracking-wide bg-[#e58b24] hover:bg-[#d97706] text-[#121212] transition-colors shadow-sm"
           >
-            <span>Launch App</span>
-            <ExternalLink className="w-3 h-3" />
-          </a>
+            <span className="flex items-center gap-1.5">
+              <span>Launch App</span>
+              <ExternalLink className="w-3 h-3" />
+            </span>
+          </MagneticButton>
         )}
 
         {docushield.repoUrl && (
@@ -82,7 +90,7 @@ export const FlagshipTile: React.FC<FlagshipTileProps> = ({ onOpenCaseStudy }) =
             href={docushield.repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono font-medium tracking-wide border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] hover:border-[#e58b24]/50 bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-mono font-medium tracking-wide border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] hover:border-[#e58b24]/50 bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] transition-all hover:scale-[1.02]"
           >
             <Github className="w-3.5 h-3.5" />
             <span>Source</span>
@@ -91,13 +99,13 @@ export const FlagshipTile: React.FC<FlagshipTileProps> = ({ onOpenCaseStudy }) =
 
         <button
           onClick={() => onOpenCaseStudy(docushield.id)}
-          className="inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs font-mono font-medium tracking-wide border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] hover:border-[#e58b24]/50 text-[#a8a29e] hover:text-[#f5f2eb] transition-colors ml-auto"
+          className="inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs font-mono font-medium tracking-wide border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] hover:border-[#e58b24]/50 text-[#a8a29e] hover:text-[#f5f2eb] transition-all hover:scale-[1.02] ml-auto"
         >
           <span>Deep Spec</span>
           <ArrowRight className="w-3 h-3 text-[#e58b24]" />
         </button>
       </div>
 
-    </div>
+    </motion.div>
   );
 };

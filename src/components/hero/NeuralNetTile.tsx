@@ -1,48 +1,33 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layers } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export const NeuralNetTile: React.FC = () => {
   const [activeLayer, setActiveLayer] = useState<number>(0);
-  const [hasActivated, setHasActivated] = useState<boolean>(false);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      setActiveLayer(3);
-      setHasActivated(true);
-      return;
-    }
+    // Left-to-right activation: 1 (input) -> 2 (hidden) -> 3 (output) -> rest at 3
+    const t1 = setTimeout(() => setActiveLayer(1), 300);
+    const t2 = setTimeout(() => setActiveLayer(2), 650);
+    const t3 = setTimeout(() => setActiveLayer(3), 1000);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasActivated) {
-          setHasActivated(true);
-          // Activate layer 1 -> 2 -> 3 once, then rest
-          setTimeout(() => setActiveLayer(1), 100);
-          setTimeout(() => setActiveLayer(2), 350);
-          setTimeout(() => setActiveLayer(3), 600);
-        }
-      },
-      { threshold: 0.3 }
-    );
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+    };
+  }, []);
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [hasActivated]);
-
-  // Layer node distributions
   const inputNodes = [20, 45, 70, 95];
   const hiddenNodes = [15, 38, 60, 82, 105];
   const outputNodes = [40, 80];
 
   return (
-    <div
-      ref={containerRef}
-      className="flex flex-col justify-between p-5 rounded border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden"
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.25, ease: 'easeOut' }}
+      className="flex flex-col justify-between p-5 rounded border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden card-hover-lift"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-2">
@@ -55,7 +40,7 @@ export const NeuralNetTile: React.FC = () => {
         </span>
       </div>
 
-      {/* Subtle Neural Network Layer Diagram */}
+      {/* Neural Network Layer Diagram with clear visible pulse */}
       <div className="relative w-full h-28 my-1 flex items-center justify-center">
         <svg viewBox="0 0 200 120" className="w-full h-full max-w-[220px]" aria-label="Neural Network Layers">
           {/* Connector lines between Input and Hidden */}
@@ -67,10 +52,10 @@ export const NeuralNetTile: React.FC = () => {
                 y1={y1}
                 x2="100"
                 y2={y2}
-                stroke="#2b2a27"
-                strokeWidth={activeLayer >= 2 ? "1" : "0.5"}
-                opacity={activeLayer >= 2 ? "0.8" : "0.3"}
-                style={{ transition: 'opacity 0.3s ease, stroke-width 0.3s ease' }}
+                stroke={activeLayer >= 2 ? "#e58b24" : "#2b2a27"}
+                strokeWidth={activeLayer >= 2 ? "1.2" : "0.5"}
+                opacity={activeLayer >= 2 ? 0.7 : 0.2}
+                style={{ transition: 'all 0.4s ease' }}
               />
             ))
           )}
@@ -84,10 +69,10 @@ export const NeuralNetTile: React.FC = () => {
                 y1={y1}
                 x2="170"
                 y2={y2}
-                stroke="#2b2a27"
-                strokeWidth={activeLayer >= 3 ? "1" : "0.5"}
-                opacity={activeLayer >= 3 ? "0.8" : "0.3"}
-                style={{ transition: 'opacity 0.3s ease, stroke-width 0.3s ease' }}
+                stroke={activeLayer >= 3 ? "#e58b24" : "#2b2a27"}
+                strokeWidth={activeLayer >= 3 ? "1.2" : "0.5"}
+                opacity={activeLayer >= 3 ? 0.7 : 0.2}
+                style={{ transition: 'all 0.4s ease' }}
               />
             ))
           )}
@@ -98,11 +83,11 @@ export const NeuralNetTile: React.FC = () => {
               key={`in-${i}`}
               cx="30"
               cy={y}
-              r="4.5"
+              r="5"
               fill={activeLayer >= 1 ? "#e58b24" : "#2b2a27"}
               stroke="#121212"
               strokeWidth="1.5"
-              style={{ transition: 'fill 0.3s ease' }}
+              style={{ transition: 'all 0.35s ease' }}
             />
           ))}
 
@@ -112,11 +97,11 @@ export const NeuralNetTile: React.FC = () => {
               key={`hid-${i}`}
               cx="100"
               cy={y}
-              r="4.5"
+              r="5"
               fill={activeLayer >= 2 ? "#e58b24" : "#2b2a27"}
               stroke="#121212"
               strokeWidth="1.5"
-              style={{ transition: 'fill 0.3s ease' }}
+              style={{ transition: 'all 0.35s ease' }}
             />
           ))}
 
@@ -126,11 +111,11 @@ export const NeuralNetTile: React.FC = () => {
               key={`out-${i}`}
               cx="170"
               cy={y}
-              r="5"
+              r="5.5"
               fill={activeLayer >= 3 ? "#e58b24" : "#2b2a27"}
               stroke="#121212"
               strokeWidth="1.5"
-              style={{ transition: 'fill 0.3s ease' }}
+              style={{ transition: 'all 0.35s ease' }}
             />
           ))}
         </svg>
@@ -147,6 +132,6 @@ export const NeuralNetTile: React.FC = () => {
           </span>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };

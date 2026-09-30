@@ -1,70 +1,62 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Activity } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export const LossCurveTile: React.FC = () => {
   const [epoch, setEpoch] = useState(1);
   const [trainLoss, setTrainLoss] = useState(0.85);
   const [valLoss, setValLoss] = useState(0.92);
-  const [hasDrawn, setHasDrawn] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      setEpoch(50);
-      setTrainLoss(0.042);
-      setValLoss(0.068);
-      setHasDrawn(true);
-      return;
-    }
+    // Start drawing shortly after mount or when in view
+    const timer = setTimeout(() => {
+      setHasStarted(true);
 
-    // Observer to play once when scrolled into view
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasDrawn) {
-          setHasDrawn(true);
-          const duration = 1400; // 1.4s max as per motion rules
-          const steps = 50;
-          const interval = duration / steps;
-          let currentStep = 1;
+      const totalSteps = 50;
+      const duration = 1400; // 1.4s duration
+      const stepInterval = duration / totalSteps;
+      let currentEpoch = 1;
 
-          const timer = setInterval(() => {
-            currentStep++;
-            setEpoch(currentStep);
-            
-            // Exponential decay simulation
-            const decay = Math.exp(-currentStep / 12);
-            setTrainLoss(Number((0.042 + 0.82 * decay).toFixed(3)));
-            setValLoss(Number((0.068 + 0.86 * decay + (Math.sin(currentStep) * 0.015)).toFixed(3)));
+      const intervalId = setInterval(() => {
+        currentEpoch++;
+        setEpoch(currentEpoch);
 
-            if (currentStep >= steps) {
-              clearInterval(timer);
-              setEpoch(50);
-              setTrainLoss(0.042);
-              setValLoss(0.068);
-            }
-          }, interval);
+        // Exponential convergence simulation
+        const progress = currentEpoch / totalSteps;
+        const decay = Math.exp(-progress * 3.5);
+        
+        const curTrain = (0.042 + 0.808 * decay).toFixed(3);
+        const curVal = (0.068 + 0.852 * decay + Math.sin(currentEpoch * 0.4) * 0.008).toFixed(3);
+
+        setTrainLoss(parseFloat(curTrain));
+        setValLoss(parseFloat(curVal));
+
+        if (currentEpoch >= totalSteps) {
+          clearInterval(intervalId);
+          setEpoch(50);
+          setTrainLoss(0.042);
+          setValLoss(0.068);
         }
-      },
-      { threshold: 0.2 }
-    );
+      }, stepInterval);
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+      return () => clearInterval(intervalId);
+    }, 200);
 
-    return () => observer.disconnect();
-  }, [hasDrawn]);
+    return () => clearTimeout(timer);
+  }, []);
 
-  // Pre-calculated smooth SVG path points for 50 epochs
-  // SVG ViewBox 0 0 260 120
   const trainPath = "M 10 105 C 40 85, 80 40, 140 25 S 210 20, 250 18";
   const valPath = "M 10 110 C 45 92, 90 48, 140 32 S 210 28, 250 24";
 
   return (
-    <div
+    <motion.div
       ref={containerRef}
-      className="flex flex-col justify-between p-5 rounded border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+      className="flex flex-col justify-between p-5 rounded border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden card-hover-lift"
     >
       {/* Tile Header */}
       <div className="flex items-center justify-between mb-2">
@@ -73,11 +65,11 @@ export const LossCurveTile: React.FC = () => {
           <span>Convergence Telemetry</span>
         </div>
         <span className="font-mono text-[10px] px-1.5 py-0.5 rounded border border-[#2b2a27] text-[#78716c]">
-          Sample Curve
+          Realtime Draw
         </span>
       </div>
 
-      {/* SVG Loss Curve with drawing animation */}
+      {/* SVG Loss Curve with smooth stroke-dashoffset transition */}
       <div className="relative w-full h-32 my-1">
         <svg viewBox="0 0 260 120" className="w-full h-full overflow-visible" aria-label="Training Loss vs Validation Loss Curve">
           {/* Subtle grid lines */}
@@ -90,11 +82,11 @@ export const LossCurveTile: React.FC = () => {
             d={valPath}
             fill="none"
             stroke="#a8a29e"
-            strokeWidth="1.5"
-            strokeDasharray={hasDrawn ? "none" : "300"}
-            strokeDashoffset={hasDrawn ? "0" : "300"}
+            strokeWidth="1.6"
+            strokeDasharray="320"
+            strokeDashoffset={hasStarted ? "0" : "320"}
             style={{
-              transition: hasDrawn ? "stroke-dashoffset 1.4s ease-out" : "none"
+              transition: 'stroke-dashoffset 1.4s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
           />
 
@@ -103,11 +95,11 @@ export const LossCurveTile: React.FC = () => {
             d={trainPath}
             fill="none"
             stroke="#e58b24"
-            strokeWidth="2.2"
-            strokeDasharray={hasDrawn ? "none" : "300"}
-            strokeDashoffset={hasDrawn ? "0" : "300"}
+            strokeWidth="2.4"
+            strokeDasharray="320"
+            strokeDashoffset={hasStarted ? "0" : "320"}
             style={{
-              transition: hasDrawn ? "stroke-dashoffset 1.4s ease-out" : "none"
+              transition: 'stroke-dashoffset 1.4s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
           />
         </svg>
@@ -116,11 +108,11 @@ export const LossCurveTile: React.FC = () => {
         <div className="absolute top-1 right-1 flex items-center gap-3 font-mono text-[10px]">
           <div className="flex items-center gap-1">
             <span className="w-2.5 h-0.5 bg-[#e58b24] inline-block"></span>
-            <span className="text-[#a8a29e]">train</span>
+            <span className="text-[#e58b24] font-medium">train</span>
           </div>
           <div className="flex items-center gap-1">
             <span className="w-2.5 h-0.5 bg-[#a8a29e] inline-block"></span>
-            <span className="text-[#78716c]">val</span>
+            <span className="text-[#a8a29e]">val</span>
           </div>
         </div>
       </div>
@@ -129,7 +121,7 @@ export const LossCurveTile: React.FC = () => {
       <div className="grid grid-cols-3 gap-2 pt-2 border-t border-[#2b2a27]/60 font-mono text-[11px]">
         <div>
           <div className="text-[10px] text-[#78716c] uppercase">Epoch</div>
-          <div className="font-semibold text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917]">
+          <div className="font-semibold text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] tracking-wider">
             {epoch.toString().padStart(2, '0')} / 50
           </div>
         </div>
@@ -146,6 +138,6 @@ export const LossCurveTile: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

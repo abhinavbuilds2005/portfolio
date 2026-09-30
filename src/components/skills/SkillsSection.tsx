@@ -1,38 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Award, BookOpen, BarChart3, ExternalLink } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { PROJECTS } from '../../data/projects';
 import { CERTIFICATIONS, CURRENTLY_LEARNING } from '../../data/certifications';
 import { calculateTechUsage } from '../../lib/utils';
 
 export const SkillsSection: React.FC = () => {
-  const [animatedBars, setAnimatedBars] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
   // Dynamically calculate feature importance from real project data
   const techUsageList = calculateTechUsage(PROJECTS).slice(0, 10);
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      setAnimatedBars(true);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !animatedBars) {
-          setAnimatedBars(true);
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [animatedBars]);
 
   return (
     <section id="skills" className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-[#2b2a27]/60">
@@ -58,10 +33,10 @@ export const SkillsSection: React.FC = () => {
         </p>
       </div>
 
-      <div ref={containerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
         
         {/* Left: Dynamic Feature Importance Bars (7 cols) */}
-        <div className="lg:col-span-7 p-6 rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm">
+        <div className="lg:col-span-7 p-6 rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm card-hover-lift">
           <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#2b2a27]/60">
             <div className="flex items-center gap-2 font-mono text-xs text-[#e58b24] font-semibold">
               <BarChart3 className="w-4 h-4" />
@@ -84,14 +59,18 @@ export const SkillsSection: React.FC = () => {
                   </span>
                 </div>
 
-                {/* Progress bar track */}
+                {/* Smoothly animated progress bar track */}
                 <div className="w-full h-2 rounded-full bg-[#121212] overflow-hidden border border-[#2b2a27]/50">
-                  <div
-                    className="h-full bg-[#e58b24] dark:bg-[#e58b24] light:bg-[#c84b31] rounded-full transition-all duration-700 ease-out"
-                    style={{
-                      width: animatedBars ? `${item.percentage}%` : '0%',
-                      transitionDelay: `${idx * 40}ms`
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${item.percentage}%` }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{
+                      duration: 0.7,
+                      delay: idx * 0.05,
+                      ease: [0.16, 1, 0.3, 1]
                     }}
+                    className="h-full bg-[#e58b24] dark:bg-[#e58b24] light:bg-[#c84b31] rounded-full"
                   />
                 </div>
 
@@ -105,7 +84,7 @@ export const SkillsSection: React.FC = () => {
 
         {/* Right: Verified Credentials (5 cols) */}
         <div className="lg:col-span-5 flex flex-col justify-between">
-          <div className="p-6 rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm mb-6">
+          <div className="p-6 rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm mb-6 card-hover-lift">
             <div className="flex items-center gap-2 mb-4 pb-2 border-b border-[#2b2a27]/60 font-mono text-xs text-[#e58b24] font-semibold">
               <Award className="w-4 h-4" />
               <span>VERIFIED CERTIFICATIONS</span>
@@ -118,7 +97,7 @@ export const SkillsSection: React.FC = () => {
                   href={cert.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-start justify-between p-3 rounded border border-[#2b2a27] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] hover:border-[#e58b24]/50 transition-colors group"
+                  className="flex items-start justify-between p-3 rounded border border-[#2b2a27] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] hover:border-[#e58b24]/50 transition-all hover:scale-[1.01] group"
                 >
                   <div>
                     <h4 className="text-xs font-bold text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] group-hover:text-[#e58b24] transition-colors">
@@ -161,7 +140,7 @@ export const SkillsSection: React.FC = () => {
           {CURRENTLY_LEARNING.map((item) => (
             <div
               key={item.topic}
-              className="p-3.5 rounded border border-[#2b2a27] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] flex flex-col justify-between"
+              className="p-3.5 rounded border border-[#2b2a27] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] flex flex-col justify-between hover:border-[#e58b24]/40 transition-colors"
             >
               <div>
                 <div className="flex items-center justify-between mb-1.5">

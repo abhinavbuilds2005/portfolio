@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Database, Cpu, CheckCircle2, CloudUpload, ArrowRight, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { PIPELINE_STAGES } from '../../data/projects';
 
 export const PipelineTile: React.FC = () => {
   const [activeStageId, setActiveStageId] = useState<string | null>(null);
-  const [litIndex, setLitIndex] = useState(0);
+  const [currentStageIdx, setCurrentStageIdx] = useState<number>(0);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      setLitIndex(3);
-      return;
-    }
+    // Sequence 0 -> 1 -> 2 -> 3
+    const interval = setInterval(() => {
+      setCurrentStageIdx((prev) => {
+        if (prev < 3) {
+          return prev + 1;
+        } else {
+          clearInterval(interval);
+          return 3;
+        }
+      });
+    }, 400);
 
-    // Sequence stages 0 -> 1 -> 2 -> 3 once over 1.4s
-    const stepDuration = 350;
-    const timers = [
-      setTimeout(() => setLitIndex(1), stepDuration),
-      setTimeout(() => setLitIndex(2), stepDuration * 2),
-      setTimeout(() => setLitIndex(3), stepDuration * 3),
-    ];
-
-    return () => timers.forEach(clearTimeout);
+    return () => clearInterval(interval);
   }, []);
 
   const getStageIcon = (id: string) => {
@@ -36,9 +35,16 @@ export const PipelineTile: React.FC = () => {
 
   const selectedStage = PIPELINE_STAGES.find((s) => s.id === activeStageId);
 
+  // Calculate dot percentage position across the 4 stages
+  const dotPositions = ['12%', '38%', '62%', '88%'];
+
   return (
-    <div className="flex flex-col justify-between p-5 rounded border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative">
-      
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
+      className="flex flex-col justify-between p-5 rounded border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden card-hover-lift"
+    >
       {/* Tile Header */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
@@ -46,7 +52,7 @@ export const PipelineTile: React.FC = () => {
             Model Lifecycle Pipeline
           </span>
           <span className="font-mono text-[10px] text-[#78716c]">
-            [Click stage to inspect]
+            [Interactive stages]
           </span>
         </div>
         <span className="font-mono text-[10px] text-[#e58b24]">
@@ -54,11 +60,25 @@ export const PipelineTile: React.FC = () => {
         </span>
       </div>
 
+      {/* Travelling connector track */}
+      <div className="relative w-full h-1 bg-[#2b2a27] dark:bg-[#2b2a27] light:bg-[#e6dfd5] rounded-full mb-3 hidden sm:block overflow-hidden">
+        <div
+          className="absolute top-0 bottom-0 bg-[#e58b24] transition-all duration-500 ease-out"
+          style={{ width: `${(currentStageIdx / 3) * 100}%` }}
+        />
+        {/* Animated pulse travelling dot */}
+        <div
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-[#e58b24] shadow-md transition-all duration-500 ease-out"
+          style={{ left: dotPositions[currentStageIdx] }}
+        />
+      </div>
+
       {/* 4 Pipeline Stages Strip */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 my-2 relative">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 my-1 relative">
         {PIPELINE_STAGES.map((stage, idx) => {
-          const isLit = idx <= litIndex;
+          const isLit = idx <= currentStageIdx;
           const isSelected = activeStageId === stage.id;
+          const isCurrentActive = idx === currentStageIdx;
 
           return (
             <button
@@ -66,19 +86,23 @@ export const PipelineTile: React.FC = () => {
               onClick={() => setActiveStageId(isSelected ? null : stage.id)}
               className={`flex flex-col items-start p-3 rounded border text-left transition-all relative overflow-hidden ${
                 isSelected
-                  ? 'border-[#e58b24] bg-[#e58b24]/10'
+                  ? 'border-[#e58b24] bg-[#e58b24]/15'
                   : isLit
                   ? 'border-[#3f3e3b] dark:border-[#3f3e3b] light:border-[#d6ccbe] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] hover:border-[#e58b24]/50'
-                  : 'border-[#2b2a27]/50 bg-[#121212]/50 opacity-60'
+                  : 'border-[#2b2a27]/40 bg-[#121212]/40 opacity-50'
               }`}
             >
-              {/* Connector pulse dot if active */}
-              {isLit && idx === litIndex && (
-                <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-[#e58b24] animate-ping" />
+              {/* Highlight dot if currently active */}
+              {isCurrentActive && (
+                <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-[#e58b24] animate-ping" />
               )}
 
               <div className="flex items-center justify-between w-full mb-1.5">
-                <span className={`p-1.5 rounded ${isSelected || isLit ? 'text-[#e58b24] bg-[#e58b24]/10' : 'text-[#78716c]'}`}>
+                <span className={`p-1.5 rounded transition-colors ${
+                  isSelected || isLit
+                    ? 'text-[#e58b24] bg-[#e58b24]/10'
+                    : 'text-[#78716c]'
+                }`}>
                   {getStageIcon(stage.id)}
                 </span>
                 <span className="font-mono text-[10px] text-[#78716c]">
@@ -99,7 +123,7 @@ export const PipelineTile: React.FC = () => {
 
       {/* Interactive Expandable Stage Inspector Panel */}
       {selectedStage ? (
-        <div className="mt-3 p-3.5 rounded border border-[#e58b24]/40 bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] text-xs">
+        <div className="mt-3 p-3.5 rounded border border-[#e58b24]/40 bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] text-xs animate-in fade-in duration-200">
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-1.5 font-mono text-xs text-[#e58b24] font-semibold">
               <ArrowRight className="w-3 h-3" />
@@ -144,6 +168,6 @@ export const PipelineTile: React.FC = () => {
         </div>
       )}
 
-    </div>
+    </motion.div>
   );
 };
