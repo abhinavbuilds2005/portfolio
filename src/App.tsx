@@ -9,11 +9,13 @@ import { ContactSection } from './components/contact/ContactSection';
 import { Footer } from './components/layout/Footer';
 import { CommandPalette } from './components/shared/CommandPalette';
 import { PhysicsTensorDropper } from './components/shared/PhysicsTensorDropper';
+import { MLMechanismsLab } from './components/shared/MLMechanismsLab';
 
 export function App() {
   const [isDark, setIsDark] = useState<boolean>(true);
   const [isCmdOpen, setIsCmdOpen] = useState<boolean>(false);
   const [isPhysicsOpen, setIsPhysicsOpen] = useState<boolean>(false);
+  const [isMLLabOpen, setIsMLLabOpen] = useState<boolean>(false);
   const [activeCaseStudyId, setActiveCaseStudyId] = useState<string | null>(null);
 
   // Initialize theme from storage or system preference
@@ -71,6 +73,7 @@ export function App() {
         onToggleTheme={toggleTheme}
         onOpenCmd={() => setIsCmdOpen(true)}
         onOpenPhysics={() => setIsPhysicsOpen(true)}
+        onOpenMLLab={() => setIsMLLabOpen(true)}
       />
 
       {/* Main Content Area */}
@@ -117,6 +120,12 @@ export function App() {
       <PhysicsTensorDropper
         isOpen={isPhysicsOpen}
         onClose={() => setIsPhysicsOpen(false)}
+      />
+
+      {/* ML Mechanisms Lab: Transformer Attention & Gradient Descent */}
+      <MLMechanismsLab
+        isOpen={isMLLabOpen}
+        onClose={() => setIsMLLabOpen(false)}
       />
 
     </div>

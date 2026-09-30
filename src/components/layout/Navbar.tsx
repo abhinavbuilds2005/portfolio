@@ -1,18 +1,20 @@
 import React from 'react';
-import { Moon, Sun, Command, FileText, ExternalLink, Sparkles } from 'lucide-react';
+import { Moon, Sun, Command, FileText, ExternalLink, Sparkles, Cpu } from 'lucide-react';
 
 interface NavbarProps {
   isDark: boolean;
   onToggleTheme: () => void;
   onOpenCmd: () => void;
   onOpenPhysics: () => void;
+  onOpenMLLab: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   isDark,
   onToggleTheme,
   onOpenCmd,
-  onOpenPhysics
+  onOpenPhysics,
+  onOpenMLLab
 }) => {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#2b2a27] dark:border-[#2b2a27] border-opacity-70 dark:border-opacity-70 bg-[#121212]/90 dark:bg-[#121212]/90 light:bg-[#faf8f5]/90 backdrop-blur-md transition-colors">
@@ -49,14 +51,24 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Quick actions */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* ML Mechanisms Lab Trigger */}
+          <button
+            onClick={onOpenMLLab}
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded border border-[#e58b24]/40 bg-[#e58b24]/10 text-[#e58b24] text-xs font-mono hover:bg-[#e58b24] hover:text-[#121212] transition-colors shadow-sm"
+            title="Launch Live ML Mechanisms (Transformer Attention & Gradient Descent)"
+          >
+            <Cpu className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">ML Lab</span>
+          </button>
+
           {/* Free-Fall Physics Sandbox Trigger */}
           <button
             onClick={onOpenPhysics}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded border border-[#e58b24]/40 bg-[#e58b24]/10 text-[#e58b24] text-xs font-mono hover:bg-[#e58b24] hover:text-[#121212] transition-colors shadow-sm"
+            className="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded border border-[#2b2a27] bg-[#1c1c1c] text-[#a8a29e] text-xs font-mono hover:text-[#f5f2eb] hover:border-[#e58b24]/50 transition-colors shadow-sm"
             title="Launch Free-Fall Gravity Physics Sandbox"
           >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Physics Lab</span>
+            <Sparkles className="w-3.5 h-3.5 text-[#e58b24]" />
+            <span>Physics</span>
           </button>
 
           {/* Command Palette Trigger */}
