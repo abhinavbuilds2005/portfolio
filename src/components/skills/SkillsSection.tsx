@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { PROJECTS } from '../../data/projects';
 import { CERTIFICATIONS, CURRENTLY_LEARNING } from '../../data/certifications';
 import { calculateTechUsage } from '../../lib/utils';
+import { LeetCodeDashboard } from './LeetCodeDashboard';
 
 // Animated skill bar with glow on hover
 const SkillBar: React.FC<{
@@ -282,6 +283,17 @@ export const SkillsSection: React.FC = () => {
             </motion.div>
           ))}
         </div>
+      </motion.div>
+
+      {/* LeetCode Telemetry Dashboard */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+        className="mt-8"
+      >
+        <LeetCodeDashboard />
       </motion.div>
 
     </section>
