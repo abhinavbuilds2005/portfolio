@@ -8,10 +8,12 @@ import { BuildLogSection } from './components/build-log/BuildLogSection';
 import { ContactSection } from './components/contact/ContactSection';
 import { Footer } from './components/layout/Footer';
 import { CommandPalette } from './components/shared/CommandPalette';
+import { PhysicsTensorDropper } from './components/shared/PhysicsTensorDropper';
 
 export function App() {
   const [isDark, setIsDark] = useState<boolean>(true);
   const [isCmdOpen, setIsCmdOpen] = useState<boolean>(false);
+  const [isPhysicsOpen, setIsPhysicsOpen] = useState<boolean>(false);
   const [activeCaseStudyId, setActiveCaseStudyId] = useState<string | null>(null);
 
   // Initialize theme from storage or system preference
@@ -68,12 +70,16 @@ export function App() {
         isDark={isDark}
         onToggleTheme={toggleTheme}
         onOpenCmd={() => setIsCmdOpen(true)}
+        onOpenPhysics={() => setIsPhysicsOpen(true)}
       />
 
       {/* Main Content Area */}
       <main id="main-content">
         {/* Bento Grid Hero */}
-        <BentoHero onOpenCaseStudy={(id) => setActiveCaseStudyId(id)} />
+        <BentoHero
+          onOpenCaseStudy={(id) => setActiveCaseStudyId(id)}
+          onOpenPhysics={() => setIsPhysicsOpen(true)}
+        />
 
         {/* Projects Section */}
         <ProjectsSection
@@ -104,6 +110,13 @@ export function App() {
         onSelectProject={(id) => {
           setActiveCaseStudyId(id);
         }}
+        onOpenPhysics={() => setIsPhysicsOpen(true)}
+      />
+
+      {/* Physics Free-Fall Tensor Gravity Sandbox Modal */}
+      <PhysicsTensorDropper
+        isOpen={isPhysicsOpen}
+        onClose={() => setIsPhysicsOpen(false)}
       />
 
     </div>

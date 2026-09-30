@@ -1,13 +1,19 @@
 import React from 'react';
-import { Moon, Sun, Command, FileText, ExternalLink } from 'lucide-react';
+import { Moon, Sun, Command, FileText, ExternalLink, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   isDark: boolean;
   onToggleTheme: () => void;
   onOpenCmd: () => void;
+  onOpenPhysics: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ isDark, onToggleTheme, onOpenCmd }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  isDark,
+  onToggleTheme,
+  onOpenCmd,
+  onOpenPhysics
+}) => {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#2b2a27] dark:border-[#2b2a27] border-opacity-70 dark:border-opacity-70 bg-[#121212]/90 dark:bg-[#121212]/90 light:bg-[#faf8f5]/90 backdrop-blur-md transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
@@ -43,6 +49,16 @@ export const Navbar: React.FC<NavbarProps> = ({ isDark, onToggleTheme, onOpenCmd
 
         {/* Quick actions */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* Free-Fall Physics Sandbox Trigger */}
+          <button
+            onClick={onOpenPhysics}
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded border border-[#e58b24]/40 bg-[#e58b24]/10 text-[#e58b24] text-xs font-mono hover:bg-[#e58b24] hover:text-[#121212] transition-colors shadow-sm"
+            title="Launch Free-Fall Gravity Physics Sandbox"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Physics Lab</span>
+          </button>
+
           {/* Command Palette Trigger */}
           <button
             onClick={onOpenCmd}

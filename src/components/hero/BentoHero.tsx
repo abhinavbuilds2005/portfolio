@@ -6,23 +6,33 @@ import { PipelineTile } from './PipelineTile';
 import { ResultsTile } from './ResultsTile';
 import { NeuralNetTile } from './NeuralNetTile';
 import { BuildLogNoteTile } from './BuildLogNoteTile';
+import { Sparkles } from 'lucide-react';
 
 interface BentoHeroProps {
   onOpenCaseStudy: (projectId: string) => void;
+  onOpenPhysics: () => void;
 }
 
-export const BentoHero: React.FC<BentoHeroProps> = ({ onOpenCaseStudy }) => {
+export const BentoHero: React.FC<BentoHeroProps> = ({ onOpenCaseStudy, onOpenPhysics }) => {
   return (
     <section id="home" className="pt-6 pb-12 sm:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Top Section Metadata Header */}
-      <div className="flex items-center justify-between py-2 border-b border-[#2b2a27]/60 mb-6 font-mono text-[11px] text-[#78716c]">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2 border-b border-[#2b2a27]/60 mb-6 font-mono text-[11px] text-[#78716c]">
         <div className="flex items-center gap-2">
           <span className="text-[#e58b24] font-semibold">[01]</span>
           <span className="uppercase tracking-wider">OVERVIEW // BENTO CONSOLE</span>
+          <span>•</span>
+          <span>LPU B.TECH (AI/ML)</span>
         </div>
-        <div>
-          <span>LPU B.TECH (AI/ML) · UTC+5:30</span>
-        </div>
+
+        {/* Physics Free-Fall Simulator Trigger */}
+        <button
+          onClick={onOpenPhysics}
+          className="flex items-center gap-1.5 self-start sm:self-auto px-2.5 py-0.5 rounded border border-[#e58b24]/40 bg-[#e58b24]/10 text-[#e58b24] hover:bg-[#e58b24] hover:text-[#121212] transition-colors"
+        >
+          <Sparkles className="w-3 h-3" />
+          <span>TRY PHYSICS LAB // FREE-FALL TENSORS</span>
+        </button>
       </div>
 
       {/* Bento Grid */}
