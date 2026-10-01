@@ -52,7 +52,7 @@ export const PIPELINE_STAGES: PipelineStage[] = [
     desc: "Comparing regularized linear baselines against deep neural embeddings. Prioritizing statistical interpretability for loan underwriting, and convolutional representations for image forensics.",
     rationale: "Over-parameterized models introduce unnecessary inference cost and hidden failure modes. Start simple, baseline thoroughly.",
     tools: ["Scikit-Learn", "PyTorch", "FaceNet", "VGG-19"],
-    projects: ["CreditWise", "PresentAI"],
+    projects: ["CreditWise", "AttendPro"],
     metricsNote: "Logistic baseline vs Deep Embeddings benchmarked"
   },
   {

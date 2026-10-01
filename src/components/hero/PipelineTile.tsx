@@ -110,8 +110,8 @@ export const PipelineTile: React.FC = () => {
                 </span>
               </div>
 
-              <div className="font-mono text-xs font-semibold text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] capitalize">
-                {stage.id}
+              <div className="font-mono text-xs font-semibold text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917]">
+                {stage.title}
               </div>
               <div className="text-[11px] text-[#a8a29e] dark:text-[#a8a29e] light:text-[#78716c] truncate w-full mt-0.5">
                 {stage.tools.slice(0, 2).join(', ')}

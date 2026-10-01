@@ -21,7 +21,7 @@ export const ModelPipelineVisualizer: React.FC<ModelPipelineVisualizerProps> = (
   const currentStage: PipelineStage = PIPELINE_STAGES[activeStepIdx];
 
   return (
-    <div className="mb-12 p-6 rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden">
+    <div className="mb-12 p-6 rounded-lg border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden">
       {/* Background gradient/pattern */}
       <div
         className="absolute inset-0 pointer-events-none opacity-20"
@@ -88,7 +88,7 @@ export const ModelPipelineVisualizer: React.FC<ModelPipelineVisualizerProps> = (
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.25 }}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-5 rounded border border-[#2b2a27] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] relative"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 rounded-lg border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] relative"
         >
           {/* Left: Summary & Rationale (7 cols) */}
           <div className="lg:col-span-7">

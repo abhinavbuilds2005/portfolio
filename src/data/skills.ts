@@ -32,7 +32,7 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     desc: 'Core language for tensor computations, scientific computing, PyTorch architectures, and asynchronous microservices.',
     mathRole: 'Vectorized linear algebra (NumPy), automated differentiation graphs, and high-performance async event loops.',
     tools: ['NumPy', 'Pandas', 'AsyncIO', 'Multiprocessing', 'Type Hints'],
-    projects: ['docushield', 'creditwise', 'smartcart', 'presentai', 'elevatecv'],
+    projects: ['docushield', 'creditwise', 'smartcart', 'attendpro', 'ats-resume-analyzer'],
     level: 'Expert'
   },
   {
@@ -43,7 +43,7 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     desc: 'Low-level memory management, pointers, dynamic programming, and asymptotic algorithmic complexity reduction verified on LeetCode.',
     mathRole: 'Cache-locality optimization, asymptotic big-O complexity reduction, custom graph traversal and bitwise algorithms.',
     tools: ['STL', 'Pointers & Memory', 'Graph Algorithms', 'Dynamic Programming', 'C++17/20'],
-    projects: ['portfolio'],
+    projects: ['portfolio-v2'],
     level: 'Advanced'
   },
   {
@@ -54,7 +54,7 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     desc: 'Relational schema engineering, 3NF normalization, ACID transaction integrity, window functions, and indexing in PostgreSQL.',
     mathRole: 'Relational tuple calculus, B-Tree index traversal cost optimization, and ACID serializability guarantees.',
     tools: ['PostgreSQL', 'Window Functions', 'Query Optimization', 'Foreign Key Cascades', 'Schema Migrations'],
-    projects: ['presentai', 'docushield'],
+    projects: ['attendpro', 'docushield'],
     level: 'Advanced'
   },
   {
@@ -135,7 +135,7 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     desc: 'Deep learning framework for custom convolutional architectures, tensor gradient graphs, and perceptual loss optimization.',
     mathRole: 'Autograd automatic differentiation, backpropagation graph computation, GPU CUDA tensor acceleration.',
     tools: ['torch.nn', 'Autograd', 'CUDA Tensors', 'DataLoader Pipelines', 'Custom Loss Functions'],
-    projects: ['style-transfer', 'docushield'],
+    projects: ['docushield', 'attendpro'],
     level: 'Advanced'
   },
   {
@@ -146,7 +146,7 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     desc: 'Production computer vision image processing: morphological filters, affine transforms, Haar cascades, color space conversion, and contours.',
     mathRole: 'Discrete 2D spatial convolution kernels, Sobel gradient edge operators, and affine perspective homography matrices.',
     tools: ['Morphological Ops', 'Perspective Warp', 'Color Spaces (HSV/LAB)', 'Contour Extraction', 'Canny / Sobel'],
-    projects: ['docushield', 'presentai', 'gym-trainer'],
+    projects: ['docushield', 'attendpro'],
     level: 'Expert'
   },
   {
@@ -157,7 +157,7 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     desc: 'Deep metric learning mapping face images to 128-dimensional Euclidean space for real-time verification and anti-spoofing.',
     mathRole: 'Triplet loss optimization: L = max(0, ||f(a) - f(p)||^2 - ||f(a) - f(n)||^2 + α), mapping identities to hypersphere embeddings.',
     tools: ['128-D Embeddings', 'Cosine Similarity', 'Euclidean Metric', 'Facial Landmarks', 'Anti-Spoofing'],
-    projects: ['presentai'],
+    projects: ['attendpro'],
     level: 'Advanced'
   },
   {
@@ -192,7 +192,7 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     desc: 'Dense semantic text embeddings (all-MiniLM-L6-v2) for rolling-chunk semantic similarity matching without token truncation.',
     mathRole: 'Dense vector projection through multi-head self-attention, generating 384-dimensional cosine similarity alignments.',
     tools: ['all-MiniLM-L6-v2', 'Cosine Distance', 'Rolling Chunking', 'Semantic Retrieval', 'Vector Caching'],
-    projects: ['elevatecv'],
+    projects: ['ats-resume-analyzer'],
     level: 'Expert'
   },
   {
@@ -203,7 +203,7 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     desc: 'Industrial-strength Natural Language Processing for named entity recognition (NER), part-of-speech tagging, and syntactic token parsing.',
     mathRole: 'Transition-based dependency parsing and statistical token classification using pre-trained convolutional embeddings.',
     tools: ['NER Extraction', 'Tokenization', 'Dependency Parsing', 'Stopword Filtering', 'Custom Entity Rulers'],
-    projects: ['elevatecv'],
+    projects: ['ats-resume-analyzer'],
     level: 'Advanced'
   },
   {
@@ -225,7 +225,7 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     desc: 'High-speed LPUs executing generative resume and document critiques with automatic deterministic NLP fallback architectures.',
     mathRole: 'Rotary position embeddings (RoPE), grouped-query attention (GQA), and temperature-calibrated nucleus sampling.',
     tools: ['Groq LPU Inference', 'Llama 3 70B/8B', 'Structured JSON Output', 'Deterministic Fallbacks', 'Prompt Engineering'],
-    projects: ['elevatecv'],
+    projects: ['ats-resume-analyzer'],
     level: 'Advanced'
   },
 
@@ -238,7 +238,7 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     desc: 'Asynchronous Python web framework with Pydantic strict schema validation, OpenAPI auto-docs, and low-latency inference routes.',
     mathRole: 'Non-blocking I/O event loops (uvicorn/uvloop) handling concurrent batch model requests without thread starvation.',
     tools: ['Async Endpoints', 'Pydantic V2', 'Dependency Injection', 'CORS Middleware', 'OpenAPI Specs'],
-    projects: ['docushield', 'elevatecv'],
+    projects: ['docushield', 'ats-resume-analyzer'],
     level: 'Expert'
   },
   {
@@ -260,7 +260,7 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     desc: 'ACID-compliant relational database for transactional user isolation, biometric attendance logs, and audit trails.',
     mathRole: 'Write-Ahead Logging (WAL), Multi-Version Concurrency Control (MVCC), and indexed relational join optimizations.',
     tools: ['ACID Compliance', 'Connection Pooling', 'JSONB Storage', 'Index Tuning', 'Row-Level Security'],
-    projects: ['presentai'],
+    projects: ['attendpro'],
     level: 'Advanced'
   },
   {

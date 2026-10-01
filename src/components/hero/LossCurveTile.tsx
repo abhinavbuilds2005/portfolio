@@ -111,24 +111,13 @@ export const LossCurveTile: React.FC = () => {
   // SVG coordinate transformation
   // ViewBox: 0 0 280 130
   // X: 15 to 265
-  // Y: 15 (high metric) to 115 (low metric)
+  // Y: 15 (high metric/loss at top) to 115 (low metric/loss at bottom)
   const getCoordinates = (p: DataPoint) => {
     const x = 15 + ((p.epoch - 1) / (maxEpochs - 1)) * 250;
-
-    let yTrain: number;
-    let yVal: number;
-
-    if (metricMode === 'loss') {
-      // High loss (1.0) is near TOP (y = 15), Low loss (0.0) is near BOTTOM (y = 115)
-      // Loss: lower is better (descending downwards!)
-      yTrain = 15 + p.train * 100;
-      yVal = 15 + p.val * 100;
-    } else {
-      // Accuracy: High (1.0) is near TOP (y = 15), Low (0.0) is near BOTTOM (y = 115)
-      yTrain = 115 - p.train * 100;
-      yVal = 115 - p.val * 100;
-    }
-
+    // Both loss and accuracy: high value (1.0) maps near top (y=15), low value (0.0) maps near bottom (y=115)
+    // For loss, it starts high (~0.92, y=23) and falls down to near zero (~0.04, y=111)
+    const yTrain = 115 - p.train * 100;
+    const yVal = 115 - p.val * 100;
     return { x, yTrain, yVal };
   };
 
@@ -157,13 +146,14 @@ export const LossCurveTile: React.FC = () => {
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-1.5 font-mono text-[11px] text-[#a8a29e] dark:text-[#a8a29e] light:text-[#78716c] uppercase tracking-wider">
             <Activity className="w-3.5 h-3.5 text-[#e58b24]" />
-            <span>Convergence Telemetry (Live Engine)</span>
+            <span>Convergence Telemetry</span>
+            <span className="text-[9px] px-1.5 py-0.2 rounded border border-[#2b2a27] text-[#78716c] lowercase font-normal">[simulated / sample data]</span>
           </div>
 
           <div className="flex items-center gap-1.5">
-            {/* Live blinking status dot */}
-            <span className="flex items-center gap-1 font-mono text-[10px] text-[#e58b24]">
-              <span className={`w-1.5 h-1.5 rounded-full bg-[#e58b24] ${isTraining ? 'animate-ping' : ''}`} />
+            {/* Live status dot */}
+            <span className="flex items-center gap-1.5 font-mono text-[10px] text-[#a8a29e]">
+              <span className={`w-1.5 h-1.5 rounded-full ${isTraining ? 'bg-[#e58b24]' : 'bg-[#78716c]'}`} />
               <span>{isTraining ? 'OPTIMIZING' : 'CONVERGED'}</span>
             </span>
           </div>
@@ -303,10 +293,10 @@ export const LossCurveTile: React.FC = () => {
 
         {/* Y-axis indicator */}
         <div className="absolute top-2 left-2 font-mono text-[8px] text-[#78716c]">
-          {metricMode === 'loss' ? 'ERR 1.0 ↑' : 'ACC 100% ↑'}
+          {metricMode === 'loss' ? 'LOSS 1.0 (High)' : 'ACC 100%'}
         </div>
         <div className="absolute bottom-1 left-2 font-mono text-[8px] text-[#78716c]">
-          {metricMode === 'loss' ? 'ERR 0.0 ↓' : 'ACC 0% ↓'}
+          {metricMode === 'loss' ? 'LOSS 0.0 (Converged) ↓' : 'ACC 0%'}
         </div>
       </div>
 

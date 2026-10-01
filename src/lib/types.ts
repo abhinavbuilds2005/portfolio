@@ -4,11 +4,19 @@ export interface ProjectMetric {
   label: string;
   value: string;
   isSample?: boolean; // clearly labelled as sample data until user replaces
+  notes?: string;
 }
 
 export interface ProjectPipelineStep {
   label: string;
   sub: string;
+}
+
+export interface ProjectDecision {
+  decision: string;
+  rationale: string;
+  tradeoff: string;
+  status: string; // e.g. "[Draft, to be confirmed by Abhinav]"
 }
 
 export interface Project {
@@ -26,6 +34,11 @@ export interface Project {
   summary: string;
   problem: string;
   solution: string;
+  constraints?: string[];
+  approach?: string;
+  decisionsAndTradeoffs?: ProjectDecision[];
+  results?: ProjectMetric[];
+  nextImprovements?: string[];
   features: string[];
   tech: string[];
   metrics: ProjectMetric[];

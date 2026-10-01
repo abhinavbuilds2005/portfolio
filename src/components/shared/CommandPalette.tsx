@@ -8,7 +8,6 @@ interface CommandPaletteProps {
   onToggleTheme: () => void;
   isDark: boolean;
   onSelectProject: (projectId: string) => void;
-  onOpenPhysics?: () => void;
 }
 
 export const CommandPalette: React.FC<CommandPaletteProps> = ({
@@ -16,8 +15,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   onClose,
   onToggleTheme,
   isDark,
-  onSelectProject,
-  onOpenPhysics
+  onSelectProject
 }) => {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -33,13 +31,6 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
   // Static commands
   const defaultItems = [
-    {
-      id: 'act-physics',
-      label: 'Launch Physics Lab: Free-Fall Gravity Tensors',
-      sub: 'Interactive physical gravity simulation dropping tensors and weights',
-      icon: <Sparkles className="w-4 h-4 text-[#e58b24]" />,
-      action: () => { onOpenPhysics?.(); onClose(); }
-    },
     {
       id: 'sec-projects',
       label: 'Jump to: Projects',

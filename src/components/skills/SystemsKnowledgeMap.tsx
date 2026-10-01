@@ -121,9 +121,9 @@ export const SystemsKnowledgeMap: React.FC<SystemsKnowledgeMapProps> = ({ onOpen
             return (
               <div
                 key={group.id}
-                className="p-4 rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm"
+                className="p-5 rounded-lg border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm"
               >
-                <div className="flex items-center justify-between mb-3 pb-1.5 border-b border-[#2b2a27]/60">
+                <div className="flex items-center justify-between mb-3 pb-1.5 border-b border-[#2b2a27]/60 dark:border-[#2b2a27]/60 light:border-[#e6dfd5]">
                   <div className="flex items-center gap-2 font-mono text-xs font-semibold text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917]">
                     <span className="text-[#e58b24]">{getCategoryIcon(group.id)}</span>
                     <span className="uppercase tracking-wide">{group.label}</span>
@@ -173,10 +173,10 @@ export const SystemsKnowledgeMap: React.FC<SystemsKnowledgeMapProps> = ({ onOpen
 
         {/* Right: Skill Telemetry Inspector Panel (5 cols) */}
         <div className="lg:col-span-5">
-          <div className="sticky top-20 p-5 rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm flex flex-col justify-between">
+          <div className="sticky top-20 p-6 rounded-lg border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm flex flex-col justify-between">
             <div>
               {/* Panel Top Meta */}
-              <div className="flex items-center justify-between pb-3 border-b border-[#2b2a27]/60 mb-4 font-mono text-[10px]">
+              <div className="flex items-center justify-between pb-3 border-b border-[#2b2a27]/60 dark:border-[#2b2a27]/60 light:border-[#e6dfd5] mb-4 font-mono text-[10px]">
                 <div className="flex items-center gap-1.5 text-[#e58b24] font-semibold">
                   <Code2 className="w-3.5 h-3.5" />
                   <span>SKILL TELEMETRY INSPECTOR</span>

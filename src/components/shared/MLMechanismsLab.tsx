@@ -95,7 +95,7 @@ export const MLMechanismsLab: React.FC<{ isOpen: boolean; onClose: () => void }>
       onClick={onClose}
     >
       <div
-        className="w-full max-w-4xl rounded-xl border border-[#2b2a27] bg-[#161616] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
+        className="w-full max-w-4xl rounded-lg border border-[#2b2a27] bg-[#161616] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Bar */}
@@ -106,6 +106,9 @@ export const MLMechanismsLab: React.FC<{ isOpen: boolean; onClose: () => void }>
             </span>
             <span className="font-mono text-xs text-[#f5f2eb]">
               LIVE MACHINE LEARNING MECHANISMS
+            </span>
+            <span className="font-mono text-[9px] px-1.5 py-0.2 rounded border border-[#2b2a27] text-[#78716c]">
+              [pedagogical simulation]
             </span>
           </div>
 

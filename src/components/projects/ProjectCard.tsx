@@ -21,11 +21,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`flex flex-col justify-between rounded border ${
+      className={`flex flex-col justify-between rounded-lg border ${
         isPriority
-          ? 'border-[#e58b24]/40 dark:border-[#e58b24]/40 light:border-[#c84b31]/40 shadow-sm'
+          ? 'border-[#e58b24]/40 dark:border-[#e58b24]/40 light:border-[#e58b24]/40 shadow-sm'
           : 'border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5]'
-      } bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] overflow-hidden group hover:border-[#e58b24]/60 transition-all duration-200 card-hover-lift`}
+      } bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] overflow-hidden group hover:border-[#a8a29e] transition-all duration-200 card-hover-lift`}
     >
       <div>
         {/* Project Thumbnail Image */}

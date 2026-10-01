@@ -8,13 +8,11 @@ import { BuildLogSection } from './components/build-log/BuildLogSection';
 import { ContactSection } from './components/contact/ContactSection';
 import { Footer } from './components/layout/Footer';
 import { CommandPalette } from './components/shared/CommandPalette';
-import { PhysicsTensorDropper } from './components/shared/PhysicsTensorDropper';
 import { MLMechanismsLab } from './components/shared/MLMechanismsLab';
 
 export function App() {
   const [isDark, setIsDark] = useState<boolean>(true);
   const [isCmdOpen, setIsCmdOpen] = useState<boolean>(false);
-  const [isPhysicsOpen, setIsPhysicsOpen] = useState<boolean>(false);
   const [isMLLabOpen, setIsMLLabOpen] = useState<boolean>(false);
   const [activeCaseStudyId, setActiveCaseStudyId] = useState<string | null>(null);
 
@@ -72,7 +70,6 @@ export function App() {
         isDark={isDark}
         onToggleTheme={toggleTheme}
         onOpenCmd={() => setIsCmdOpen(true)}
-        onOpenPhysics={() => setIsPhysicsOpen(true)}
         onOpenMLLab={() => setIsMLLabOpen(true)}
       />
 
@@ -81,17 +78,16 @@ export function App() {
         {/* Bento Grid Hero */}
         <BentoHero
           onOpenCaseStudy={(id) => setActiveCaseStudyId(id)}
-          onOpenPhysics={() => setIsPhysicsOpen(true)}
         />
 
-        {/* Projects Section */}
+        {/* Projects Section with 2D Embedding Map & Case Study Trigger */}
         <ProjectsSection
           activeCaseStudyId={activeCaseStudyId}
           onOpenCaseStudy={(id) => setActiveCaseStudyId(id)}
           onCloseCaseStudy={() => setActiveCaseStudyId(null)}
         />
 
-        {/* Skills & Empirical Feature Importance */}
+        {/* Skills Section with Empirical Feature Importance, Knowledge Map & Pipeline */}
         <SkillsSection onOpenCaseStudy={(id) => setActiveCaseStudyId(id)} />
 
         {/* Engineering Build Log */}
@@ -101,7 +97,7 @@ export function App() {
         <ContactSection />
       </main>
 
-      {/* Footer */}
+      {/* Footer with Build-Time Metadata */}
       <Footer />
 
       {/* Command Palette Modal */}
@@ -113,13 +109,6 @@ export function App() {
         onSelectProject={(id) => {
           setActiveCaseStudyId(id);
         }}
-        onOpenPhysics={() => setIsPhysicsOpen(true)}
-      />
-
-      {/* Physics Free-Fall Tensor Gravity Sandbox Modal */}
-      <PhysicsTensorDropper
-        isOpen={isPhysicsOpen}
-        onClose={() => setIsPhysicsOpen(false)}
       />
 
       {/* ML Mechanisms Lab: Transformer Attention & Gradient Descent */}
