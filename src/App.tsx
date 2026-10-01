@@ -92,7 +92,7 @@ export function App() {
         />
 
         {/* Skills & Empirical Feature Importance */}
-        <SkillsSection />
+        <SkillsSection onOpenCaseStudy={(id) => setActiveCaseStudyId(id)} />
 
         {/* Engineering Build Log */}
         <BuildLogSection />

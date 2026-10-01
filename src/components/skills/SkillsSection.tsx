@@ -5,6 +5,8 @@ import { PROJECTS } from '../../data/projects';
 import { CERTIFICATIONS, CURRENTLY_LEARNING } from '../../data/certifications';
 import { calculateTechUsage } from '../../lib/utils';
 import { LeetCodeDashboard } from './LeetCodeDashboard';
+import { SystemsKnowledgeMap } from './SystemsKnowledgeMap';
+import { ModelPipelineVisualizer } from './ModelPipelineVisualizer';
 
 // Animated skill bar with glow on hover
 const SkillBar: React.FC<{
@@ -93,7 +95,11 @@ const sectionVariants = {
   },
 };
 
-export const SkillsSection: React.FC = () => {
+interface SkillsSectionProps {
+  onOpenCaseStudy?: (projectId: string) => void;
+}
+
+export const SkillsSection: React.FC<SkillsSectionProps> = ({ onOpenCaseStudy }) => {
   const techUsageList = calculateTechUsage(PROJECTS).slice(0, 10);
   const shouldReduceMotion = useReducedMotion();
 
@@ -110,7 +116,7 @@ export const SkillsSection: React.FC = () => {
       >
         <div className="flex items-center gap-2">
           <span className="text-[#e58b24] font-semibold">[03]</span>
-          <span className="uppercase tracking-wider">SKILLS // FEATURE IMPORTANCE & CREDENTIALS</span>
+          <span className="uppercase tracking-wider">SKILLS // AI SYSTEMS KNOWLEDGE MAP & CAPABILITIES</span>
         </div>
         <div>
           <span>DYNAMICALLY COMPUTED FROM {PROJECTS.length} REPOSITORIES</span>
@@ -126,13 +132,20 @@ export const SkillsSection: React.FC = () => {
         className="max-w-3xl mb-10"
       >
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] mb-3">
-          Technical Capabilities & Feature Importance
+          AI Systems Knowledge Map & Technical Capabilities
         </h2>
         <p className="text-sm sm:text-base text-[#a8a29e] dark:text-[#a8a29e] light:text-[#57534e] leading-relaxed">
-          Instead of subjective 5-star skill ratings, below is an empirical feature-importance breakdown indicating how frequently each core framework and algorithm appears across my verified projects.
+          An engineering breakdown of mathematical foundations, deep learning frameworks, NLP algorithms, and cloud microservices verified across active production repositories.
         </p>
       </motion.div>
 
+      {/* 1. RESTORED: Interactive AI Systems Knowledge Map (22 skills with domain filters & telemetry inspector) */}
+      <SystemsKnowledgeMap onOpenCaseStudy={onOpenCaseStudy} />
+
+      {/* 2. RESTORED: How I Build Intelligent Systems (7-Stage End-to-End Model Lifecycle) */}
+      <ModelPipelineVisualizer onOpenCaseStudy={onOpenCaseStudy} />
+
+      {/* 3. Feature Importance & Verified Credentials */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
 
         {/* Left: Dynamic Feature Importance Bars (7 cols) */}
