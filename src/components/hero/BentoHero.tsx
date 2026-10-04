@@ -1,15 +1,18 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { StatusHeadlineTile } from './StatusHeadlineTile';
-import { LossCurveTile } from './LossCurveTile';
+import { SystemPipelineHeroVisual } from './SystemPipelineHeroVisual';
 import { FlagshipTile } from './FlagshipTile';
-import { PipelineTile } from './PipelineTile';
+import { LossCurveTile } from './LossCurveTile';
+import { NeuralSynapseCanvas } from '../animations/NeuralSynapseCanvas';
+import { TiltCard } from '../shared/TiltCard';
 
 interface BentoHeroProps {
   onOpenCaseStudy: (projectId: string) => void;
+  isDark?: boolean;
 }
 
-export const BentoHero: React.FC<BentoHeroProps> = ({ onOpenCaseStudy }) => {
+export const BentoHero: React.FC<BentoHeroProps> = ({ onOpenCaseStudy, isDark = true }) => {
   const shouldReduceMotion = useReducedMotion();
 
   const tileVariants = {
@@ -18,7 +21,7 @@ export const BentoHero: React.FC<BentoHeroProps> = ({ onOpenCaseStudy }) => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: shouldReduceMotion ? 0 : 0.45,
+        duration: shouldReduceMotion ? 0 : 0.5,
         delay: shouldReduceMotion ? 0 : i * 0.08,
         ease: [0.16, 1, 0.3, 1],
       },
@@ -26,54 +29,39 @@ export const BentoHero: React.FC<BentoHeroProps> = ({ onOpenCaseStudy }) => {
   };
 
   return (
-    <section id="home" className="pt-6 pb-12 sm:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="home" className="relative pt-6 sm:pt-10 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Interactive Neural Synapse Canvas Ambient Layer */}
+      <NeuralSynapseCanvas isDark={isDark} />
 
-      {/* Top Section Metadata Header */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4 }}
-        className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-2 border-b border-[#2b2a27]/60 mb-6 font-mono text-[11px] text-[#78716c]"
-      >
-        <div className="flex items-center gap-2">
-          <span className="text-[#e58b24] font-semibold">[01]</span>
-          <span className="uppercase tracking-wider">OVERVIEW // BENTO CONSOLE</span>
-          <span>•</span>
-          <span>LPU B.TECH (AI/ML)</span>
-        </div>
+      {/* Bento Grid: Clean 2-Row Hierarchical Layout */}
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
 
-        <div className="text-[10px] text-[#78716c] font-mono">
-          LOC: INDIA (UTC+5:30) · SYS: v2.0
-        </div>
-      </motion.div>
-
-      {/* Bento Grid: Clean 2-Row Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-
-        {/* Row 1: Headline & Bio (7 cols) + Inverted Loss Convergence Chart (5 cols) */}
-        <motion.div custom={0} variants={tileVariants} initial="hidden" animate="visible" className="md:col-span-7 flex">
-          <div className="w-full flex">
+        {/* Row 1: Left / Large - Personal Introduction + Core Headline (7 cols) */}
+        <motion.div custom={0} variants={tileVariants} initial="hidden" animate="visible" className="lg:col-span-7 flex">
+          <TiltCard className="w-full flex" maxTilt={1.5}>
             <StatusHeadlineTile />
-          </div>
+          </TiltCard>
         </motion.div>
 
-        <motion.div custom={1} variants={tileVariants} initial="hidden" animate="visible" className="md:col-span-5 flex">
-          <div className="w-full flex">
-            <LossCurveTile />
-          </div>
+        {/* Row 1: Right - Interactive AI System Data Pipeline (5 cols) */}
+        <motion.div custom={1} variants={tileVariants} initial="hidden" animate="visible" className="lg:col-span-5 flex">
+          <TiltCard className="w-full flex" maxTilt={1.8}>
+            <SystemPipelineHeroVisual />
+          </TiltCard>
         </motion.div>
 
-        {/* Row 2: Flagship DocuShield AI (7 cols) + Model Lifecycle Pipeline (5 cols) */}
-        <motion.div custom={2} variants={tileVariants} initial="hidden" animate="visible" className="md:col-span-7 flex">
-          <div className="w-full flex">
+        {/* Row 2: Bottom Left - Featured Flagship DocuShield AI (7 cols) */}
+        <motion.div custom={2} variants={tileVariants} initial="hidden" animate="visible" className="lg:col-span-7 flex">
+          <TiltCard className="w-full flex" maxTilt={1.5}>
             <FlagshipTile onOpenCaseStudy={onOpenCaseStudy} />
-          </div>
+          </TiltCard>
         </motion.div>
 
-        <motion.div custom={3} variants={tileVariants} initial="hidden" animate="visible" className="md:col-span-5 flex">
-          <div className="w-full flex">
-            <PipelineTile />
-          </div>
+        {/* Row 2: Bottom Right - ML Training Convergence Simulation (5 cols) */}
+        <motion.div custom={3} variants={tileVariants} initial="hidden" animate="visible" className="lg:col-span-5 flex">
+          <TiltCard className="w-full flex" maxTilt={1.8}>
+            <LossCurveTile />
+          </TiltCard>
         </motion.div>
 
       </div>

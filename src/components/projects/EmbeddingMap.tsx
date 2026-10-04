@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Network, Eye } from 'lucide-react';
+import { Network, Eye, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Project, ProjectCategory } from '../../lib/types';
 
@@ -12,12 +12,12 @@ export const EmbeddingMap: React.FC<EmbeddingMapProps> = ({ projects, onSelectPr
   const [activeFilter, setActiveFilter] = useState<'all' | ProjectCategory>('all');
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
 
-  // Cluster centers for categorized filter
+  // Cluster centers for categorized projection
   const clusterCenters: Record<ProjectCategory, { x: number; y: number }> = {
-    vision: { x: 26, y: 34 },
-    nlp: { x: 38, y: 72 },
-    predictive: { x: 74, y: 64 },
-    fullstack: { x: 68, y: 28 }
+    vision: { x: 28, y: 32 },
+    nlp: { x: 42, y: 72 },
+    predictive: { x: 72, y: 62 },
+    fullstack: { x: 68, y: 30 }
   };
 
   const getCoordinates = (project: Project) => {
@@ -26,46 +26,54 @@ export const EmbeddingMap: React.FC<EmbeddingMapProps> = ({ projects, onSelectPr
     }
     if (project.category === activeFilter) {
       const center = clusterCenters[activeFilter];
-      // Deterministic slight displacement so multiple dots in the same cluster don't completely overlap
       const offset = (project.title.charCodeAt(0) % 7) * 4 - 12;
       const offsetY = (project.title.length % 5) * 4 - 8;
       return { x: center.x + offset, y: center.y + offsetY };
     }
-    // Non-matching dots scatter outward slightly
     return project.embedding;
   };
 
+  const getCategoryColor = (cat: ProjectCategory) => {
+    switch (cat) {
+      case 'vision': return '#6366F1'; // Electric Indigo
+      case 'nlp': return '#22D3EE';    // Cyan
+      case 'predictive': return '#34D399'; // Emerald
+      case 'fullstack': return '#38BDF8';  // Sky
+      default: return '#818CF8';
+    }
+  };
+
   return (
-    <div className="p-5 rounded border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm mb-10 card-hover-lift">
+    <div className="p-6 sm:p-7 rounded-2xl border border-white/[0.08] dark:border-white/[0.08] light:border-black/[0.08] bg-[#11151A] dark:bg-[#11151A] light:bg-white shadow-xl mb-12">
       
-      {/* Header & Category Filters */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+      {/* Header & Cluster Filter Buttons */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
-          <div className="flex items-center gap-1.5 font-mono text-xs text-[#e58b24] font-semibold">
+          <div className="flex items-center gap-2 font-mono text-xs text-[#6366F1] font-semibold uppercase tracking-wider mb-1">
             <Network className="w-3.5 h-3.5" />
-            <span>2D LATENT EMBEDDING MAP (PROJECT CLUSTERS)</span>
+            <span>Interactive 2D Embedding Space</span>
           </div>
-          <p className="text-xs text-[#a8a29e] dark:text-[#a8a29e] light:text-[#78716c] mt-0.5">
-            Click filter tags to smoothly move project vectors into semantic clusters via spring physics.
+          <p className="text-xs text-[#9AA4B2] dark:text-[#9AA4B2] light:text-[#667085]">
+            Projects projected across semantic similarity axes. Click any node to open its full engineering case study.
           </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap gap-1 font-mono text-xs">
+        {/* Category Pills */}
+        <div className="flex flex-wrap gap-1.5 font-mono text-xs">
           {[
-            { id: 'all', label: 'All Clusters' },
-            { id: 'vision', label: 'Vision' },
+            { id: 'all', label: 'All Modalities' },
+            { id: 'vision', label: 'Computer Vision' },
             { id: 'nlp', label: 'NLP' },
-            { id: 'predictive', label: 'Predictive' },
+            { id: 'predictive', label: 'Predictive ML' },
             { id: 'fullstack', label: 'Full-Stack' },
           ].map((btn) => (
             <button
               key={btn.id}
               onClick={() => setActiveFilter(btn.id as any)}
-              className={`px-2.5 py-1 rounded text-[11px] transition-all border ${
+              className={`px-3 py-1 rounded-lg text-xs transition-all border ${
                 activeFilter === btn.id
-                  ? 'border-[#e58b24] bg-[#e58b24]/15 text-[#e58b24] font-semibold'
-                  : 'border-[#2b2a27] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] text-[#a8a29e] hover:text-[#f5f2eb]'
+                  ? 'border-[#6366F1] bg-[#6366F1]/15 text-[#818CF8] font-semibold'
+                  : 'border-white/[0.06] bg-[#0D1014] text-[#9AA4B2] hover:text-white'
               }`}
             >
               {btn.label}
@@ -74,31 +82,36 @@ export const EmbeddingMap: React.FC<EmbeddingMapProps> = ({ projects, onSelectPr
         </div>
       </div>
 
-      {/* 2D Scatter Space */}
-      <div className="relative w-full h-64 sm:h-80 rounded border border-[#2b2a27] bg-[#121212] overflow-hidden">
+      {/* 2D Coordinate Space */}
+      <div className="relative w-full h-72 sm:h-96 rounded-xl border border-white/[0.06] bg-[#08090B] overflow-hidden">
         
-        {/* Subtle coordinate grid lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-20 pointer-events-none">
-          <line x1="25%" y1="0" x2="25%" y2="100%" stroke="#3f3e3b" strokeDasharray="3 3" />
-          <line x1="50%" y1="0" x2="50%" y2="100%" stroke="#3f3e3b" strokeDasharray="3 3" />
-          <line x1="75%" y1="0" x2="75%" y2="100%" stroke="#3f3e3b" strokeDasharray="3 3" />
-          <line x1="0" y1="33%" x2="100%" y2="33%" stroke="#3f3e3b" strokeDasharray="3 3" />
-          <line x1="0" y1="66%" x2="100%" y2="66%" stroke="#3f3e3b" strokeDasharray="3 3" />
+        {/* Subtle grid background */}
+        <svg className="absolute inset-0 w-full h-full opacity-30 pointer-events-none">
+          <defs>
+            <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="0.8" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+          {/* Subtle centroid axes */}
+          <line x1="50%" y1="0" x2="50%" y2="100%" stroke="rgba(99,102,241,0.15)" strokeDasharray="3 3" />
+          <line x1="0" y1="50%" x2="100%" y2="50%" stroke="rgba(99,102,241,0.15)" strokeDasharray="3 3" />
         </svg>
 
-        {/* Axis labels */}
-        <div className="absolute bottom-2 left-3 font-mono text-[9px] text-[#78716c] uppercase">
-          PCA Dim 1: Model Modality & Input Space →
-        </div>
-        <div className="absolute top-3 left-3 font-mono text-[9px] text-[#78716c] uppercase">
-          ↑ PCA Dim 2: Task Complexity
+        {/* Modality Legend Tags */}
+        <div className="absolute top-3 left-3 hidden sm:flex items-center gap-3 font-mono text-[10px] text-[#667085] bg-[#0D1014]/90 px-3 py-1 rounded-lg border border-white/[0.06] backdrop-blur-sm">
+          <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-[#6366F1]" /> Vision</span>
+          <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-[#22D3EE]" /> NLP</span>
+          <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-[#34D399]" /> Predictive</span>
+          <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-[#38BDF8]" /> Full-Stack</span>
         </div>
 
-        {/* Smoothly animated project scatter dots using Framer Motion */}
+        {/* Dynamic Project Nodes */}
         {projects.map((proj) => {
           const coords = getCoordinates(proj);
           const isDimmed = activeFilter !== 'all' && proj.category !== activeFilter;
           const isHighlighted = activeFilter === proj.category;
+          const dotColor = getCategoryColor(proj.category);
 
           return (
             <motion.button
@@ -109,7 +122,7 @@ export const EmbeddingMap: React.FC<EmbeddingMapProps> = ({ projects, onSelectPr
               animate={{
                 left: `${coords.x}%`,
                 top: `${coords.y}%`,
-                opacity: isDimmed ? 0.25 : 1,
+                opacity: isDimmed ? 0.2 : 1,
                 scale: isHighlighted ? 1.25 : 1
               }}
               transition={{
@@ -121,57 +134,47 @@ export const EmbeddingMap: React.FC<EmbeddingMapProps> = ({ projects, onSelectPr
               className="absolute -translate-x-1/2 -translate-y-1/2 p-2 group cursor-pointer focus:outline-none z-10"
               aria-label={`Project: ${proj.title}`}
             >
-              {/* Pulsing ring on hover or flagship */}
               <span className="relative flex items-center justify-center">
                 <span
-                  className={`absolute w-6 h-6 rounded-full transition-opacity ${
-                    proj.id === 'docushield'
-                      ? 'bg-[#e58b24]/30 animate-ping'
-                      : 'bg-[#a8a29e]/20 group-hover:opacity-100 opacity-0'
-                  }`}
+                  className="absolute w-7 h-7 rounded-full opacity-0 group-hover:opacity-40 transition-opacity"
+                  style={{ backgroundColor: dotColor }}
                 />
                 <span
-                  className={`w-3.5 h-3.5 rounded-full border-2 border-[#121212] transition-colors shadow-md ${
-                    proj.id === 'docushield'
-                      ? 'bg-[#e58b24]'
-                      : isHighlighted
-                      ? 'bg-[#e58b24]'
-                      : 'bg-[#a8a29e] group-hover:bg-[#e58b24]'
-                  }`}
+                  className="w-3.5 h-3.5 rounded-full border-2 border-[#08090B] shadow-md transition-transform group-hover:scale-125"
+                  style={{ backgroundColor: dotColor }}
                 />
               </span>
 
-              {/* Minimal inline label */}
-              <span className="hidden sm:block absolute top-4 left-1/2 -translate-x-1/2 font-mono text-[9px] text-[#78716c] group-hover:text-[#f5f2eb] whitespace-nowrap transition-colors">
+              {/* Node Title */}
+              <span className="hidden sm:block absolute top-5 left-1/2 -translate-x-1/2 font-mono text-[10px] text-[#9AA4B2] group-hover:text-white whitespace-nowrap transition-colors bg-[#0D1014]/80 px-1.5 py-0.5 rounded border border-white/[0.04]">
                 {proj.title}
               </span>
             </motion.button>
           );
         })}
 
-        {/* Interactive Tooltip Card */}
+        {/* Hover Tooltip Card */}
         <AnimatePresence>
           {hoveredProject && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.95, y: 6 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 6 }}
               transition={{ duration: 0.15 }}
-              className="absolute bottom-4 right-4 p-3 rounded border border-[#e58b24]/50 bg-[#161616]/95 backdrop-blur-md shadow-xl max-w-xs pointer-events-none z-20"
+              className="absolute bottom-4 right-4 p-4 rounded-xl border border-white/10 bg-[#0D1014]/95 backdrop-blur-md shadow-2xl max-w-sm pointer-events-none z-20"
             >
-              <div className="flex items-center gap-1.5 font-mono text-[10px] text-[#e58b24] uppercase mb-1">
-                <Eye className="w-3 h-3" />
-                <span>{hoveredProject.categoryLabel}</span>
+              <div className="flex items-center justify-between mb-1.5 font-mono text-[10px]">
+                <span className="font-semibold text-[#818CF8] uppercase">
+                  {hoveredProject.categoryLabel}
+                </span>
+                <span className="text-emerald-400 font-medium">Click to inspect</span>
               </div>
-              <div className="text-sm font-bold text-[#f5f2eb] mb-1">
+              <div className="text-sm font-bold text-white mb-1">
                 {hoveredProject.title}
               </div>
-              <div className="text-xs text-[#a8a29e] leading-snug line-clamp-2">
+              <p className="text-xs text-[#9AA4B2] leading-relaxed line-clamp-2">
                 {hoveredProject.tagline}
-              </div>
-              <div className="font-mono text-[10px] text-[#78716c] mt-2">
-                Click dot to inspect case study
-              </div>
+              </p>
             </motion.div>
           )}
         </AnimatePresence>

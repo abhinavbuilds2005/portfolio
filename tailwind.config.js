@@ -8,52 +8,59 @@ export default {
   theme: {
     extend: {
       colors: {
-        charcoal: {
-          950: '#0c0c0c',
-          900: '#121212',
-          850: '#161616',
-          800: '#1c1c1c',
-          750: '#242424',
-          700: '#2b2a27',
-          600: '#3a3835',
+        bg: {
+          primary: '#08090B',
+          surface: '#0D1014',
+          card: '#11151A',
+          cardHover: '#151B22',
+          lightPrimary: '#F7F8FA',
+          lightSurface: '#F0F2F5',
+          lightCard: '#FFFFFF',
+          lightCardHover: '#F4F6F9',
         },
-        paper: {
-          50: '#faf8f5',
-          100: '#f5f2eb',
-          200: '#eae5db',
-          300: '#ded7cb',
-          400: '#cac1b2',
+        border: {
+          subtle: 'rgba(255, 255, 255, 0.08)',
+          strong: 'rgba(255, 255, 255, 0.16)',
+          lightSubtle: 'rgba(0, 0, 0, 0.08)',
+          lightStrong: 'rgba(0, 0, 0, 0.15)',
         },
-        ink: {
-          950: '#0f0e0d',
-          900: '#1a1918',
-          800: '#292524',
-          700: '#44403c',
-          600: '#57534e',
+        text: {
+          primary: '#F5F7FA',
+          secondary: '#9AA4B2',
+          muted: '#667085',
+          lightPrimary: '#0F172A',
+          lightSecondary: '#475569',
+          lightMuted: '#94A3B8',
         },
-        saffron: {
-          300: '#fbbf24',
-          400: '#f59e0b',
-          500: '#e58b24',
-          600: '#d97706',
-          700: '#b45309',
+        indigo: {
+          DEFAULT: '#6366F1',
+          400: '#818CF8',
+          500: '#6366F1',
+          600: '#4F46E5',
         },
-        vermilion: {
-          400: '#e0583b',
-          500: '#c84b31',
-          600: '#b03b22',
-        }
+        cyan: {
+          DEFAULT: '#22D3EE',
+          400: '#22D3EE',
+          500: '#06B6D4',
+        },
+        emerald: {
+          DEFAULT: '#34D399',
+          400: '#34D399',
+          500: '#10B981',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
       },
       letterSpacing: {
-        'micro': '0.08em',
-        'wide-tech': '0.12em',
+        'micro': '0.06em',
+        'wide-tech': '0.1em',
       },
-      borderWidth: {
-        'hairline': '1px',
+      boxShadow: {
+        'subtle-glow': '0 0 24px -6px rgba(99, 102, 241, 0.18)',
+        'cyan-glow': '0 0 24px -6px rgba(34, 211, 238, 0.18)',
+        'card-elevated': '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
       }
     },
   },

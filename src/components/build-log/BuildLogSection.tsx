@@ -1,118 +1,139 @@
 import React, { useState } from 'react';
-import { BookOpen, Calendar, Clock, ChevronDown, ChevronUp } from 'lucide-react';
+import { Calendar, Clock, ChevronDown, ChevronUp, BookOpen, GitCommit } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { BUILD_LOGS } from '../../data/buildLogs';
 
 export const BuildLogSection: React.FC = () => {
-  const [expandedLogId, setExpandedLogId] = useState<string | null>(null);
+  const [expandedLogId, setExpandedLogId] = useState<string | null>('01-multimodal-evidence-fusion');
 
   const toggleExpand = (id: string) => {
     setExpandedLogId(expandedLogId === id ? null : id);
   };
 
   return (
-    <section id="build-log" className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-[#2b2a27]/60">
+    <section id="build-log" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-white/[0.08] dark:border-white/[0.08] light:border-black/[0.08]">
       
-      {/* Section Meta Header */}
-      <div className="flex items-center justify-between py-2 border-b border-[#2b2a27]/60 mb-8 font-mono text-[11px] text-[#78716c]">
-        <div className="flex items-center gap-2">
-          <span className="text-[#e58b24] font-semibold">[04]</span>
-          <span className="uppercase tracking-wider">BUILD LOG // ENGINEERING JOURNAL</span>
+      {/* Section Header */}
+      <div className="max-w-3xl mb-12">
+        <div className="flex items-center gap-2 font-mono text-xs text-[#6366F1] font-semibold uppercase tracking-wider mb-2">
+          <BookOpen className="w-3.5 h-3.5" />
+          <span>Engineering Journal</span>
         </div>
-        <div>
-          <span>{BUILD_LOGS.length} TECHNICAL ENTRIES RECORDED</span>
-        </div>
-      </div>
-
-      {/* Headline */}
-      <div className="max-w-3xl mb-10">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] mb-3">
-          Engineering Build Log
+        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#F5F7FA] dark:text-[#F5F7FA] light:text-[#0F172A] mb-4">
+          Build Log & Retrospectives
         </h2>
-        <p className="text-sm sm:text-base text-[#a8a29e] dark:text-[#a8a29e] light:text-[#57534e] leading-relaxed">
-          Concise architectural notes, benchmark retrospectives, and failure mode analyses written while building and evaluating machine learning systems.
+        <p className="text-base text-[#9AA4B2] dark:text-[#9AA4B2] light:text-[#475569] leading-relaxed">
+          Architectural decisions, failure mode analyses, and benchmark findings written during the development of real machine learning systems.
         </p>
       </div>
 
-      {/* Build Log Entries Stack */}
-      <div className="space-y-4">
-        {BUILD_LOGS.map((entry) => {
+      {/* Vertical Timeline Stack */}
+      <div className="relative pl-6 sm:pl-8 border-l border-white/[0.08] dark:border-white/[0.08] light:border-black/[0.08] space-y-6">
+        {BUILD_LOGS.map((entry, idx) => {
           const isExpanded = expandedLogId === entry.id;
 
           return (
-            <article
-              key={entry.id}
-              className="rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] overflow-hidden transition-colors"
-            >
-              <div
-                onClick={() => toggleExpand(entry.id)}
-                className="p-5 sm:p-6 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-[#161616]/50 dark:hover:bg-[#161616]/50 light:hover:bg-[#faf8f5] transition-colors"
+            <div key={entry.id} className="relative">
+              
+              {/* Timeline Node Indicator */}
+              <div className="absolute -left-[31px] sm:-left-[39px] top-6 w-3 h-3 rounded-full border-2 border-[#6366F1] bg-[#08090B] dark:bg-[#08090B] light:bg-white shadow-[0_0_8px_rgba(99,102,241,0.5)]" />
+
+              {/* Journal Card */}
+              <article
+                className={`rounded-2xl border transition-all overflow-hidden ${
+                  isExpanded
+                    ? 'border-[#6366F1]/40 bg-[#11151A] dark:bg-[#11151A] light:bg-white shadow-xl'
+                    : 'border-white/[0.08] dark:border-white/[0.08] light:border-black/[0.08] bg-[#11151A] dark:bg-[#11151A] light:bg-white hover:border-white/20'
+                }`}
               >
-                <div className="space-y-1.5 flex-1">
-                  <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] text-[#78716c]">
-                    <span className="flex items-center gap-1 text-[#e58b24]">
-                      <Calendar className="w-3 h-3" />
-                      {entry.date}
-                    </span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {entry.readTime} read
-                    </span>
-                  </div>
-
-                  <h3 className="text-base sm:text-lg font-bold text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917]">
-                    {entry.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-[#a8a29e] dark:text-[#a8a29e] light:text-[#57534e] line-clamp-2 leading-relaxed">
-                    {entry.excerpt}
-                  </p>
-                </div>
-
-                <div className="flex sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0">
-                  <div className="flex flex-wrap gap-1">
-                    {entry.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-0.5 rounded font-mono text-[10px] border border-[#2b2a27] bg-[#121212] text-[#a8a29e]"
-                      >
-                        #{tag}
+                <div
+                  onClick={() => toggleExpand(entry.id)}
+                  className="p-6 sm:p-7 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 select-none"
+                >
+                  <div className="space-y-2 flex-1">
+                    {/* Metadata Header */}
+                    <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-[#667085]">
+                      <span className="font-bold text-[#6366F1]">
+                        ENTRY 0{idx + 1}
                       </span>
-                    ))}
+                      <span>•</span>
+                      <span className="flex items-center gap-1.5 text-[#9AA4B2] dark:text-[#9AA4B2] light:text-[#475569]">
+                        <Calendar className="w-3.5 h-3.5 text-[#6366F1]" />
+                        {entry.date}
+                      </span>
+                      <span>•</span>
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5" />
+                        {entry.readTime}
+                      </span>
+                    </div>
+
+                    {/* Entry Title */}
+                    <h3 className="text-lg sm:text-xl font-bold text-[#F5F7FA] dark:text-[#F5F7FA] light:text-[#0F172A] tracking-tight">
+                      {entry.title}
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-xs sm:text-sm text-[#9AA4B2] dark:text-[#9AA4B2] light:text-[#475569] leading-relaxed line-clamp-2">
+                      {entry.excerpt}
+                    </p>
                   </div>
 
-                  <button
-                    className="p-1 rounded text-[#e58b24] hover:bg-[#2b2a27] transition-colors flex items-center gap-1 font-mono text-xs"
-                    aria-label={isExpanded ? "Collapse entry" : "Expand entry"}
-                  >
-                    <span>{isExpanded ? 'Collapse' : 'Read Note'}</span>
-                    {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                  </button>
-                </div>
-              </div>
+                  <div className="flex sm:flex-col items-center sm:items-end justify-between gap-3 shrink-0">
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {entry.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-0.5 rounded text-[11px] font-mono border border-white/[0.06] bg-[#0D1014] dark:bg-[#0D1014] light:bg-[#F0F2F5] text-[#9AA4B2]"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
 
-              {/* Expanded Markdown Content */}
-              {isExpanded && (
-                <div className="p-6 pt-0 border-t border-[#2b2a27]/60 bg-[#161616]/40 dark:bg-[#161616]/40 light:bg-[#faf8f5]">
-                  <div className="prose dark:prose-invert prose-sm max-w-none text-[#a8a29e] dark:text-[#a8a29e] light:text-[#57534e] leading-relaxed space-y-3 font-sans pt-4">
-                    {entry.content.split('\n\n').map((paragraph, pIdx) => {
-                      if (paragraph.startsWith('### ')) {
-                        return (
-                          <h4 key={pIdx} className="text-sm font-bold font-mono text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] mt-4 mb-2">
-                            {paragraph.replace('### ', '')}
-                          </h4>
-                        );
-                      }
-                      return (
-                        <p key={pIdx} className="text-xs sm:text-sm">
-                          {paragraph}
-                        </p>
-                      );
-                    })}
+                    <button
+                      className="inline-flex items-center gap-1.5 font-mono text-xs text-[#818CF8] hover:text-white transition-colors"
+                      aria-label={isExpanded ? "Collapse entry" : "Read entry"}
+                    >
+                      <span>{isExpanded ? 'Collapse' : 'Read Note'}</span>
+                      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    </button>
                   </div>
                 </div>
-              )}
-            </article>
+
+                {/* Expanded Markdown Content */}
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                      className="border-t border-white/[0.06] dark:border-white/[0.06] light:border-black/[0.06] bg-[#0D1014]/60 dark:bg-[#0D1014]/60 light:bg-[#F7F8FA]"
+                    >
+                      <div className="p-6 sm:p-8 space-y-4 text-xs sm:text-sm text-[#9AA4B2] dark:text-[#9AA4B2] light:text-[#475569] leading-relaxed">
+                        {entry.content.split('\n\n').map((paragraph, pIdx) => {
+                          if (paragraph.startsWith('### ')) {
+                            return (
+                              <h4 key={pIdx} className="text-sm sm:text-base font-bold text-[#F5F7FA] dark:text-[#F5F7FA] light:text-[#0F172A] mt-4 mb-2 flex items-center gap-2">
+                                <GitCommit className="w-4 h-4 text-[#6366F1]" />
+                                <span>{paragraph.replace('### ', '')}</span>
+                              </h4>
+                            );
+                          }
+                          return (
+                            <p key={pIdx}>
+                              {paragraph}
+                            </p>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </article>
+            </div>
           );
         })}
       </div>

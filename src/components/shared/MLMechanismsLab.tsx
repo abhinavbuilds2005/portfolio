@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Cpu, Eye, Zap, Play, RotateCcw, X, Layers, Activity } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Cpu, Zap, Play, RotateCcw, X, Activity, Sparkles, Layers } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const MLMechanismsLab: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
   isOpen,
@@ -8,27 +8,19 @@ export const MLMechanismsLab: React.FC<{ isOpen: boolean; onClose: () => void }>
 }) => {
   const [activeTab, setActiveTab] = useState<'attention' | 'gradient'>('attention');
 
-  // =========================================================================
-  // 1. TRANSFORMER SELF-ATTENTION SIMULATOR
-  // Attention(Q, K, V) = softmax(QK^T / sqrt(d_k)) * V
-  // =========================================================================
+  // Transformer self-attention simulator
   const tokens = ['Multimodal', 'Forensic', 'Screening', 'Checksums', 'Biometrics'];
-  const [activeTokenIdx, setActiveTokenIdx] = useState<number>(1); // Default "Forensic"
+  const [activeTokenIdx, setActiveTokenIdx] = useState<number>(1);
 
-  // Pre-calculated attention weight matrix (5x5)
   const attentionWeights = [
-    [0.45, 0.25, 0.15, 0.05, 0.10], // Multimodal
-    [0.18, 0.42, 0.22, 0.10, 0.08], // Forensic
-    [0.12, 0.28, 0.35, 0.15, 0.10], // Screening
-    [0.08, 0.15, 0.12, 0.55, 0.10], // Checksums
-    [0.15, 0.20, 0.10, 0.05, 0.50]  // Biometrics
+    [0.45, 0.25, 0.15, 0.05, 0.10],
+    [0.18, 0.42, 0.22, 0.10, 0.08],
+    [0.12, 0.28, 0.35, 0.15, 0.10],
+    [0.08, 0.15, 0.12, 0.55, 0.10],
+    [0.15, 0.20, 0.10, 0.05, 0.50]
   ];
 
-  // =========================================================================
-  // 2. GRADIENT DESCENT SIMULATOR
-  // Non-convex function: f(x) = x^2 + 0.35 * sin(5x)
-  // df/dx = 2x + 1.75 * cos(5x)
-  // =========================================================================
+  // Non-convex gradient descent simulator
   const [learningRate, setLearningRate] = useState<number>(0.08);
   const [optimizer, setOptimizer] = useState<'sgd' | 'momentum' | 'adam'>('adam');
   const [gdSteps, setGdSteps] = useState<{ x: number; y: number }[]>([]);
@@ -41,9 +33,9 @@ export const MLMechanismsLab: React.FC<{ isOpen: boolean; onClose: () => void }>
   const startGradientDescent = () => {
     setIsOptimizing(true);
     let x = 2.4;
-    let v = 0; // momentum velocity
-    let m = 0; // adam 1st moment
-    let s = 0; // adam 2nd moment
+    let v = 0;
+    let m = 0;
+    let s = 0;
     let t = 0;
 
     const steps: { x: number; y: number }[] = [{ x, y: lossFunction(x) }];
@@ -67,7 +59,6 @@ export const MLMechanismsLab: React.FC<{ isOpen: boolean; onClose: () => void }>
         x -= (learningRate / (Math.sqrt(sHat) + 1e-8)) * mHat;
       }
 
-      // Constrain
       x = Math.max(-2.6, Math.min(2.6, x));
 
       steps.push({ x, y: lossFunction(x) });
@@ -78,7 +69,7 @@ export const MLMechanismsLab: React.FC<{ isOpen: boolean; onClose: () => void }>
         clearInterval(interval);
         setIsOptimizing(false);
       }
-    }, 90);
+    }, 80);
   };
 
   useEffect(() => {
@@ -90,252 +81,253 @@ export const MLMechanismsLab: React.FC<{ isOpen: boolean; onClose: () => void }>
   if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md animate-in fade-in duration-200"
-      onClick={onClose}
-    >
+    <AnimatePresence>
       <div
-        className="w-full max-w-4xl rounded-lg border border-[#2b2a27] bg-[#161616] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
-        onClick={(e) => e.stopPropagation()}
+        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md"
+        onClick={onClose}
       >
-        {/* Header Bar */}
-        <div className="flex items-center justify-between px-6 py-3.5 border-b border-[#2b2a27] bg-[#121212]">
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-xs text-[#e58b24] font-bold">
-              AI SYSTEMS LAB //
-            </span>
-            <span className="font-mono text-xs text-[#f5f2eb]">
-              LIVE MACHINE LEARNING MECHANISMS
-            </span>
-            <span className="font-mono text-[9px] px-1.5 py-0.2 rounded border border-[#2b2a27] text-[#78716c]">
-              [pedagogical simulation]
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            {/* Tab switch */}
-            <div className="flex items-center bg-[#1c1c1c] p-0.5 rounded border border-[#2b2a27] font-mono text-xs">
-              <button
-                onClick={() => setActiveTab('attention')}
-                className={`px-3 py-1 rounded transition-colors ${
-                  activeTab === 'attention'
-                    ? 'bg-[#e58b24] text-[#121212] font-semibold'
-                    : 'text-[#a8a29e] hover:text-[#f5f2eb]'
-                }`}
-              >
-                Transformer Attention
-              </button>
-              <button
-                onClick={() => setActiveTab('gradient')}
-                className={`px-3 py-1 rounded transition-colors ${
-                  activeTab === 'gradient'
-                    ? 'bg-[#e58b24] text-[#121212] font-semibold'
-                    : 'text-[#a8a29e] hover:text-[#f5f2eb]'
-                }`}
-              >
-                Gradient Descent Valley
-              </button>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96, y: 12 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.96, y: 12 }}
+          transition={{ duration: 0.2 }}
+          className="w-full max-w-4xl rounded-2xl border border-white/10 bg-[#0D1014] text-[#F5F7FA] shadow-2xl overflow-hidden flex flex-col max-h-[92vh]"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Header Bar */}
+          <div className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08] bg-[#11151A]">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-xs text-[#6366F1] font-bold">
+                AI LAB //
+              </span>
+              <span className="font-mono text-xs text-white font-medium">
+                INTERACTIVE ML MECHANISMS
+              </span>
             </div>
 
-            <button
-              onClick={onClose}
-              className="p-1 rounded text-[#78716c] hover:text-[#f5f2eb] transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-
-        {/* Content Body */}
-        <div className="p-6 overflow-y-auto space-y-6">
-          
-          {/* TAB 1: TRANSFORMER SELF-ATTENTION */}
-          {activeTab === 'attention' && (
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-base font-bold text-[#f5f2eb] mb-1 flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-[#e58b24]" />
-                  <span>Scaled Dot-Product Self-Attention: A = softmax(Q · Kᵀ / √dₖ)</span>
-                </h3>
-                <p className="text-xs text-[#a8a29e]">
-                  Hover over or click any token below to observe how the transformer dynamically queries keys and redistributes attention weights across the sequence.
-                </p>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center bg-[#08090B] p-1 rounded-lg border border-white/[0.08] font-mono text-xs">
+                <button
+                  onClick={() => setActiveTab('attention')}
+                  className={`px-3 py-1 rounded-md transition-colors ${
+                    activeTab === 'attention'
+                      ? 'bg-[#6366F1] text-white font-semibold'
+                      : 'text-[#9AA4B2] hover:text-white'
+                  }`}
+                >
+                  Self-Attention
+                </button>
+                <button
+                  onClick={() => setActiveTab('gradient')}
+                  className={`px-3 py-1 rounded-md transition-colors ${
+                    activeTab === 'gradient'
+                      ? 'bg-[#6366F1] text-white font-semibold'
+                      : 'text-[#9AA4B2] hover:text-white'
+                  }`}
+                >
+                  Gradient Descent
+                </button>
               </div>
 
-              {/* Sequence Tokens Interactive Row */}
-              <div className="flex flex-wrap gap-2 pt-2">
-                {tokens.map((token, idx) => {
-                  const isSelected = activeTokenIdx === idx;
-                  const weightToActive = attentionWeights[activeTokenIdx][idx];
-
-                  return (
-                    <button
-                      key={token}
-                      onClick={() => setActiveTokenIdx(idx)}
-                      onMouseEnter={() => setActiveTokenIdx(idx)}
-                      className={`px-3 py-2 rounded border font-mono text-xs transition-all relative overflow-hidden ${
-                        isSelected
-                          ? 'border-[#e58b24] bg-[#e58b24]/20 text-[#f5f2eb] font-bold shadow-lg scale-105'
-                          : 'border-[#2b2a27] bg-[#1c1c1c] text-[#a8a29e] hover:border-[#e58b24]/50'
-                      }`}
-                    >
-                      <div className="text-[9px] text-[#78716c] mb-0.5">Token [{idx}]</div>
-                      <div>{token}</div>
-                      {/* Weight pill */}
-                      <div className="text-[10px] text-[#e58b24] mt-1 font-semibold">
-                        {(weightToActive * 100).toFixed(0)}% attn
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Dynamic Attention Heatmap Grid */}
-              <div className="p-4 rounded border border-[#2b2a27] bg-[#121212]">
-                <div className="font-mono text-xs text-[#a8a29e] mb-3 flex justify-between">
-                  <span>ATTENTION WEIGHT MATRIX (QUERY \ KEY):</span>
-                  <span className="text-[#e58b24]">Active Query: "{tokens[activeTokenIdx]}"</span>
-                </div>
-
-                <div className="grid grid-cols-6 gap-1 font-mono text-xs">
-                  {/* Header Row */}
-                  <div className="text-[10px] text-[#78716c]">Q \ K</div>
-                  {tokens.map((t) => (
-                    <div key={t} className="text-[10px] text-[#78716c] truncate text-center">
-                      {t.slice(0, 5)}
-                    </div>
-                  ))}
-
-                  {/* Matrix Rows */}
-                  {tokens.map((qToken, qIdx) => (
-                    <React.Fragment key={qToken}>
-                      <div className={`text-[10px] truncate py-1.5 ${qIdx === activeTokenIdx ? 'text-[#e58b24] font-bold' : 'text-[#78716c]'}`}>
-                        {qToken.slice(0, 6)}
-                      </div>
-                      {tokens.map((kToken, kIdx) => {
-                        const weight = attentionWeights[qIdx][kIdx];
-                        const isRowActive = qIdx === activeTokenIdx;
-
-                        return (
-                          <div
-                            key={`${qToken}-${kToken}`}
-                            className="p-2 rounded text-center transition-colors border border-[#2b2a27]/30"
-                            style={{
-                              backgroundColor: `rgba(229, 139, 36, ${weight * (isRowActive ? 1.2 : 0.4)})`,
-                              color: weight > 0.3 ? '#121212' : '#f5f2eb',
-                              fontWeight: isRowActive ? 'bold' : 'normal'
-                            }}
-                          >
-                            {(weight * 100).toFixed(0)}%
-                          </div>
-                        );
-                      })}
-                    </React.Fragment>
-                  ))}
-                </div>
-              </div>
+              <button
+                onClick={onClose}
+                className="p-1 rounded-lg text-[#9AA4B2] hover:text-white hover:bg-white/10"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
-          )}
+          </div>
 
-          {/* TAB 2: NON-CONVEX GRADIENT DESCENT VALLEY */}
-          {activeTab === 'gradient' && (
-            <div className="space-y-6">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          {/* Content Body */}
+          <div className="p-6 overflow-y-auto space-y-6">
+            
+            {/* TAB 1: TRANSFORMER SELF-ATTENTION */}
+            {activeTab === 'attention' && (
+              <div className="space-y-6">
                 <div>
-                  <h3 className="text-base font-bold text-[#f5f2eb] mb-1 flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-[#e58b24]" />
-                    <span>Non-Convex Optimization: θₜ₊₁ = θₜ - η · ∇L(θ)</span>
+                  <h3 className="text-base font-bold text-white mb-1 flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-[#22D3EE]" />
+                    <span>Scaled Dot-Product Self-Attention: A = softmax(Q · Kᵀ / √dₖ)</span>
                   </h3>
-                  <p className="text-xs text-[#a8a29e]">
-                    Watch momentum and adaptive optimizers navigate local minima, momentum oscillations, and find the global cost minimum.
+                  <p className="text-xs text-[#9AA4B2]">
+                    Select any token below to inspect how query vectors route attention weights across keys in the sequence.
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1 font-mono text-xs bg-[#121212] p-1 rounded border border-[#2b2a27]">
-                    <span className="text-[#78716c] px-1">OPT:</span>
-                    {(['adam', 'momentum', 'sgd'] as const).map((opt) => (
+                {/* Tokens Row */}
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {tokens.map((token, idx) => {
+                    const isSelected = activeTokenIdx === idx;
+                    const weightToActive = attentionWeights[activeTokenIdx][idx];
+
+                    return (
                       <button
-                        key={opt}
-                        onClick={() => setOptimizer(opt)}
-                        className={`px-2 py-0.5 rounded uppercase ${
-                          optimizer === opt ? 'bg-[#e58b24] text-[#121212] font-bold' : 'text-[#a8a29e]'
+                        key={token}
+                        onClick={() => setActiveTokenIdx(idx)}
+                        className={`px-3.5 py-2 rounded-xl border font-mono text-xs transition-all ${
+                          isSelected
+                            ? 'border-[#6366F1] bg-[#6366F1]/20 text-white font-bold shadow-sm scale-105'
+                            : 'border-white/[0.08] bg-[#11151A] text-[#9AA4B2] hover:border-white/20'
                         }`}
                       >
-                        {opt}
+                        <div className="text-[10px] text-[#667085] mb-0.5">Token [{idx}]</div>
+                        <div>{token}</div>
+                        <div className="text-[10px] text-[#6366F1] mt-1 font-semibold">
+                          {(weightToActive * 100).toFixed(0)}% attn
+                        </div>
                       </button>
-                    ))}
+                    );
+                  })}
+                </div>
+
+                {/* Attention Matrix Grid */}
+                <div className="p-5 rounded-xl border border-white/[0.08] bg-[#08090B]">
+                  <div className="font-mono text-xs text-[#9AA4B2] mb-3 flex justify-between">
+                    <span>ATTENTION WEIGHT MATRIX (QUERY \ KEY):</span>
+                    <span className="text-[#6366F1]">Active Query: "{tokens[activeTokenIdx]}"</span>
                   </div>
 
-                  <button
-                    onClick={startGradientDescent}
-                    disabled={isOptimizing}
-                    className="flex items-center gap-1 px-3 py-1 rounded font-mono text-xs bg-[#e58b24] hover:bg-[#d97706] text-[#121212] font-bold transition-colors disabled:opacity-50"
-                  >
-                    <Play className="w-3 h-3" />
-                    <span>Drop Ball</span>
-                  </button>
+                  <div className="grid grid-cols-6 gap-1.5 font-mono text-xs">
+                    <div className="text-[10px] text-[#667085]">Q \ K</div>
+                    {tokens.map((t) => (
+                      <div key={t} className="text-[10px] text-[#667085] truncate text-center">
+                        {t.slice(0, 5)}
+                      </div>
+                    ))}
+
+                    {tokens.map((qToken, qIdx) => (
+                      <React.Fragment key={qToken}>
+                        <div className={`text-[10px] truncate py-2 ${qIdx === activeTokenIdx ? 'text-[#818CF8] font-bold' : 'text-[#667085]'}`}>
+                          {qToken.slice(0, 6)}
+                        </div>
+                        {tokens.map((kToken, kIdx) => {
+                          const weight = attentionWeights[qIdx][kIdx];
+                          const isRowActive = qIdx === activeTokenIdx;
+
+                          return (
+                            <div
+                              key={`${qToken}-${kToken}`}
+                              className="p-2.5 rounded-lg text-center transition-colors border border-white/[0.04]"
+                              style={{
+                                backgroundColor: `rgba(99, 102, 241, ${weight * (isRowActive ? 1.4 : 0.4)})`,
+                                color: weight > 0.3 ? '#FFFFFF' : '#9AA4B2',
+                                fontWeight: isRowActive ? 'bold' : 'normal'
+                              }}
+                            >
+                              {(weight * 100).toFixed(0)}%
+                            </div>
+                          );
+                        })}
+                      </React.Fragment>
+                    ))}
+                  </div>
                 </div>
               </div>
+            )}
 
-              {/* 2D Cost Landscape SVG */}
-              <div className="relative w-full h-64 bg-[#121212] rounded border border-[#2b2a27] overflow-hidden p-2">
-                <svg viewBox="-3 0 6 3.2" className="w-full h-full overflow-visible" preserveAspectRatio="none">
-                  {/* Grid Lines */}
-                  <line x1="-3" y1="1" x2="3" y2="1" stroke="#2b2a27" strokeDasharray="0.1 0.1" strokeWidth="0.02" />
-                  <line x1="-3" y1="2" x2="3" y2="2" stroke="#2b2a27" strokeDasharray="0.1 0.1" strokeWidth="0.02" />
+            {/* TAB 2: NON-CONVEX GRADIENT DESCENT */}
+            {activeTab === 'gradient' && (
+              <div className="space-y-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <h3 className="text-base font-bold text-white mb-1 flex items-center gap-2">
+                      <Activity className="w-4 h-4 text-[#34D399]" />
+                      <span>Non-Convex Optimization: θₜ₊₁ = θₜ - η · ∇L(θ)</span>
+                    </h3>
+                    <p className="text-xs text-[#9AA4B2]">
+                      Observe how Adam, Momentum, and SGD navigate local saddle points and settle in minima.
+                    </p>
+                  </div>
 
-                  {/* Cost Curve: f(x) = 0.25*x^2 + 0.3*sin(4*x) + 0.8 */}
-                  <path
-                    d={`M -2.8 ${lossFunction(-2.8)} ` +
-                      Array.from({ length: 60 }, (_, i) => {
-                        const x = -2.8 + (i / 59) * 5.6;
-                        return `L ${x} ${lossFunction(x)}`;
-                      }).join(' ')
-                    }
-                    fill="none"
-                    stroke="#a8a29e"
-                    strokeWidth="0.04"
-                  />
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 font-mono text-xs bg-[#08090B] p-1 rounded-lg border border-white/[0.08]">
+                      <span className="text-[#667085] px-1.5">Optimizer:</span>
+                      {(['adam', 'momentum', 'sgd'] as const).map((opt) => (
+                        <button
+                          key={opt}
+                          onClick={() => setOptimizer(opt)}
+                          className={`px-2 py-0.5 rounded transition-colors uppercase ${
+                            optimizer === opt
+                              ? 'bg-[#6366F1] text-white font-bold'
+                              : 'text-[#9AA4B2] hover:text-white'
+                          }`}
+                        >
+                          {opt}
+                        </button>
+                      ))}
+                    </div>
 
-                  {/* Gradient Steps Trajectory */}
-                  {gdSteps.length > 1 && (
-                    <polyline
-                      points={gdSteps.map((s) => `${s.x},${s.y}`).join(' ')}
+                    <button
+                      onClick={startGradientDescent}
+                      disabled={isOptimizing}
+                      className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#34D399] hover:bg-emerald-400 text-[#08090B] font-mono text-xs font-semibold disabled:opacity-50 transition-colors"
+                    >
+                      <RotateCcw className={`w-3.5 h-3.5 ${isOptimizing ? 'animate-spin' : ''}`} />
+                      <span>Re-Run</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* SVG Cost Curve with Optimizer Descent */}
+                <div className="relative w-full h-56 bg-[#08090B] rounded-xl border border-white/[0.08] overflow-hidden p-4">
+                  <svg viewBox="-3 0 6 3" className="w-full h-full overflow-visible">
+                    <path
+                      d={Array.from({ length: 120 }, (_, i) => {
+                        const x = -2.8 + (i / 119) * 5.6;
+                        const y = 3 - lossFunction(x);
+                        return `${i === 0 ? 'M' : 'L'} ${x.toFixed(3)} ${y.toFixed(3)}`;
+                      }).join(' ')}
                       fill="none"
-                      stroke="#e58b24"
-                      strokeWidth="0.05"
-                      strokeDasharray="0.08 0.04"
+                      stroke="#6366F1"
+                      strokeWidth="0.06"
                     />
-                  )}
 
-                  {/* Active Optimizer Ball */}
-                  <circle
-                    cx={currentX}
-                    cy={lossFunction(currentX)}
-                    r="0.12"
-                    fill="#e58b24"
-                    stroke="#ffffff"
-                    strokeWidth="0.03"
-                  />
-                </svg>
+                    {/* Descent Step Trail */}
+                    {gdSteps.map((step, idx) => (
+                      <circle
+                        key={idx}
+                        cx={step.x}
+                        cy={3 - step.y}
+                        r="0.05"
+                        fill="#22D3EE"
+                        opacity={0.4 + (idx / gdSteps.length) * 0.6}
+                      />
+                    ))}
 
-                {/* Real-time coordinates */}
-                <div className="absolute bottom-3 left-4 font-mono text-[10px] text-[#78716c] bg-[#121212]/80 px-2 py-1 rounded border border-[#2b2a27]">
-                  Parameter θ: <span className="text-[#f5f2eb] font-bold">{currentX.toFixed(3)}</span> · Loss L(θ): <span className="text-[#e58b24] font-bold">{lossFunction(currentX).toFixed(3)}</span>
+                    {/* Current Position Marker */}
+                    <circle
+                      cx={currentX}
+                      cy={3 - lossFunction(currentX)}
+                      r="0.1"
+                      fill="#34D399"
+                      stroke="#FFFFFF"
+                      strokeWidth="0.02"
+                    />
+                  </svg>
+
+                  <div className="absolute bottom-3 left-4 font-mono text-[10px] text-[#667085] flex items-center gap-4">
+                    <span>Position θ: {currentX.toFixed(3)}</span>
+                    <span>Loss L(θ): {lossFunction(currentX).toFixed(3)}</span>
+                    <span className="text-[#34D399]">Optimizer: {optimizer.toUpperCase()}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-        </div>
+          </div>
 
-        {/* Footer */}
-        <div className="px-6 py-2.5 border-t border-[#2b2a27] bg-[#121212] flex items-center justify-between font-mono text-[11px] text-[#78716c]">
-          <span>Mathematical visualizations run locally via client runtime equations</span>
-          <span className="text-[#e58b24]">Press ESC to close</span>
-        </div>
+          {/* Footer */}
+          <div className="px-6 py-3 border-t border-white/[0.08] bg-[#11151A] flex items-center justify-between text-xs font-mono text-[#667085]">
+            <span>Pedagogical Visualization Environment</span>
+            <button
+              onClick={onClose}
+              className="px-3 py-1 rounded bg-white/10 text-white hover:bg-white/20 transition-colors"
+            >
+              Done
+            </button>
+          </div>
+        </motion.div>
       </div>
-    </div>
+    </AnimatePresence>
   );
 };

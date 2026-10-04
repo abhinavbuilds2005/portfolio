@@ -1,127 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowDown, Mail, FileText } from 'lucide-react';
+import React from 'react';
+import { ArrowDown, FileText, Github, Sparkles, MapPin, GraduationCap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const StatusHeadlineTile: React.FC = () => {
-  const [displayText, setDisplayText] = useState('');
-  const [isFinal, setIsFinal] = useState(false);
-
-  useEffect(() => {
-    const phases = [
-      'training…',
-      'evaluating…',
-      'deployed',
-      'open to internships'
-    ];
-
-    let phaseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let timeoutId: NodeJS.Timeout;
-
-    const tick = () => {
-      const currentWord = phases[phaseIndex];
-
-      if (!isDeleting) {
-        // Typing forward
-        setDisplayText(currentWord.substring(0, charIndex + 1));
-        charIndex++;
-
-        if (charIndex === currentWord.length) {
-          // Finished typing this word
-          if (phaseIndex === phases.length - 1) {
-            // Reached final phase ("open to internships")
-            setIsFinal(true);
-            return; // Stop animation here!
-          }
-          // Pause before deleting
-          isDeleting = true;
-          timeoutId = setTimeout(tick, 700);
-          return;
-        }
-        timeoutId = setTimeout(tick, 60);
-      } else {
-        // Deleting backward
-        setDisplayText(currentWord.substring(0, charIndex - 1));
-        charIndex--;
-
-        if (charIndex === 0) {
-          // Finished deleting, move to next word
-          isDeleting = false;
-          phaseIndex++;
-          timeoutId = setTimeout(tick, 200);
-          return;
-        }
-        timeoutId = setTimeout(tick, 35);
-      }
-    };
-
-    timeoutId = setTimeout(tick, 250);
-    return () => clearTimeout(timeoutId);
-  }, []);
-
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="flex flex-col justify-between p-6 sm:p-7 rounded border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm relative overflow-hidden card-hover-lift"
-    >
-      <div>
-        {/* Terminal status badge */}
-        <div className="flex items-center gap-2 mb-4 font-mono text-xs">
-          <span className="relative flex h-2 w-2">
-            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${isFinal ? 'bg-[#e58b24]' : 'bg-[#78716c]'} opacity-75`}></span>
-            <span className={`relative inline-flex rounded-full h-2 w-2 ${isFinal ? 'bg-[#e58b24]' : 'bg-[#78716c]'}`}></span>
-          </span>
-          <span className="text-[#78716c] dark:text-[#78716c] light:text-[#a8a29e] uppercase tracking-wider text-[11px]">
-            SYS_STATUS:
-          </span>
-          <span className="text-[#e58b24] dark:text-[#e58b24] light:text-[#c84b31] font-semibold tracking-wide flex items-center">
-            <span>{displayText}</span>
-            <span className="inline-block w-1.5 h-3.5 bg-[#e58b24] ml-1 animate-pulse" />
+    <div className="flex flex-col justify-between p-7 sm:p-9 rounded-xl border border-white/[0.08] dark:border-white/[0.08] light:border-black/[0.08] bg-[#11151A] dark:bg-[#11151A] light:bg-white shadow-xl relative overflow-hidden h-full">
+      
+      {/* Subtle radial ambient glow behind headline */}
+      <div className="absolute -top-16 -left-16 w-80 h-80 bg-[#6366F1]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-0 w-64 h-64 bg-[#22D3EE]/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative z-10">
+        
+        {/* Top identity & Availability Tag */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs font-semibold px-2.5 py-1 rounded-md bg-[#6366F1]/10 text-[#818CF8] border border-[#6366F1]/25">
+              AI / ML ENGINEER
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 font-mono text-[11px] text-[#9AA4B2] dark:text-[#9AA4B2] light:text-[#475569]">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
+            <span>Available for Internships & Projects</span>
+          </div>
+        </div>
+
+        {/* Name Header */}
+        <div className="mb-2">
+          <span className="font-mono text-xs text-[#9AA4B2] dark:text-[#9AA4B2] light:text-[#667085] tracking-widest uppercase">
+            Abhinav Anand
           </span>
         </div>
 
-        {/* Technical title label */}
-        <div className="font-mono text-[11px] text-[#a8a29e] dark:text-[#a8a29e] light:text-[#78716c] uppercase tracking-wide-tech mb-2">
-          AI/ML Engineer · 2nd-Year B.Tech CSE (AIML) @ LPU
-        </div>
-
-        {/* Main headline */}
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] mb-4 leading-snug">
-          Engineering Practical Intelligent Systems & Scalable ML Pipelines.
+        {/* Main Headline */}
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#F5F7FA] dark:text-[#F5F7FA] light:text-[#0F172A] mb-5 leading-[1.15]">
+          I build AI systems that move from experiments to production.
         </h1>
 
-        {/* Bio paragraph */}
-        <p className="text-sm sm:text-base text-[#a8a29e] dark:text-[#a8a29e] light:text-[#57534e] leading-relaxed mb-6 max-w-2xl">
-          I'm <strong className="text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] font-semibold">Abhinav Anand</strong>. I architect predictive models, multimodal forensic document screening, and resilient full-stack systems with verifiable engineering rigor.
+        {/* Sub-headline core pillars */}
+        <p className="text-sm sm:text-base text-[#9AA4B2] dark:text-[#9AA4B2] light:text-[#475569] leading-relaxed mb-6 max-w-xl">
+          Specializing in <span className="text-[#F5F7FA] dark:text-[#F5F7FA] light:text-[#0F172A] font-medium">Machine Learning</span>, <span className="text-[#F5F7FA] dark:text-[#F5F7FA] light:text-[#0F172A] font-medium">Deep Learning</span>, <span className="text-[#F5F7FA] dark:text-[#F5F7FA] light:text-[#0F172A] font-medium">Generative AI</span>, and <span className="text-[#F5F7FA] dark:text-[#F5F7FA] light:text-[#0F172A] font-medium">Computer Vision</span>. Focused on empirical evaluation, data pipeline resilience, and production engineering.
         </p>
 
-        {/* Quick-scan strip for recruiters */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3 rounded border border-[#2b2a27]/60 dark:border-[#2b2a27]/60 light:border-[#e6dfd5] bg-[#121212]/50 dark:bg-[#121212]/50 light:bg-[#faf8f5] mb-6">
-          <div>
-            <div className="font-mono text-[10px] text-[#78716c] uppercase">Target Roles</div>
-            <div className="text-xs font-medium text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917]">AI/ML & Systems Intern</div>
+        {/* Academic credentials strip */}
+        <div className="flex flex-wrap items-center gap-y-2 gap-x-4 py-3 px-4 rounded-lg border border-white/[0.06] dark:border-white/[0.06] light:border-black/[0.06] bg-[#0D1014] dark:bg-[#0D1014] light:bg-[#F0F2F5] text-xs font-mono text-[#9AA4B2] dark:text-[#9AA4B2] light:text-[#475569] mb-8">
+          <div className="flex items-center gap-2">
+            <GraduationCap className="w-4 h-4 text-[#6366F1]" />
+            <span className="text-[#F5F7FA] dark:text-[#F5F7FA] light:text-[#0F172A] font-medium">B.Tech CSE (AI/ML)</span>
+            <span>· Lovely Professional University</span>
           </div>
-          <div>
-            <div className="font-mono text-[10px] text-[#78716c] uppercase">Availability</div>
-            <div className="text-xs font-medium text-[#e58b24] dark:text-[#e58b24] light:text-[#c84b31]">Immediate · Remote / On-Site</div>
-          </div>
-          <div>
-            <div className="font-mono text-[10px] text-[#78716c] uppercase">Location</div>
-            <div className="text-xs font-medium text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917]">India (UTC+5:30)</div>
+          <span className="text-[#667085] hidden sm:inline">•</span>
+          <div className="flex items-center gap-1.5 text-[#667085] dark:text-[#667085] light:text-[#64748B]">
+            <MapPin className="w-3.5 h-3.5" />
+            <span>Class of 2029</span>
           </div>
         </div>
+
       </div>
 
-      {/* Action buttons */}
-      <div className="flex flex-wrap items-center gap-3 pt-2">
+      {/* Action CTAs */}
+      <div className="relative z-10 flex flex-wrap items-center gap-3 pt-2">
         <a
           href="#projects"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-mono font-medium tracking-wide bg-[#e58b24] hover:bg-[#d97706] text-[#121212] transition-colors shadow-sm"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-medium tracking-wide bg-[#6366F1] hover:bg-[#4F46E5] text-white transition-all shadow-subtle-glow"
         >
-          <span>Explore Case Studies</span>
+          <span>View Projects</span>
           <ArrowDown className="w-3.5 h-3.5" />
         </a>
 
@@ -129,20 +76,23 @@ export const StatusHeadlineTile: React.FC = () => {
           href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-mono font-medium tracking-wide border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] hover:border-[#a8a29e] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-medium tracking-wide border border-white/10 dark:border-white/10 light:border-black/10 hover:border-white/25 bg-[#151B22] dark:bg-[#151B22] light:bg-white text-[#F5F7FA] dark:text-[#F5F7FA] light:text-[#0F172A] transition-colors"
         >
-          <FileText className="w-3.5 h-3.5 text-[#78716c]" />
-          <span>Curriculum Vitae</span>
+          <FileText className="w-3.5 h-3.5 text-[#9AA4B2]" />
+          <span>Download Resume</span>
         </a>
 
         <a
-          href="#contact"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded text-xs font-mono font-medium tracking-wide border border-[#2b2a27] dark:border-[#2b2a27] light:border-[#e6dfd5] hover:border-[#a8a29e] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] transition-colors"
+          href="https://github.com/abhinavbuilds2005"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-medium tracking-wide border border-white/10 dark:border-white/10 light:border-black/10 hover:border-white/25 bg-[#151B22] dark:bg-[#151B22] light:bg-white text-[#F5F7FA] dark:text-[#F5F7FA] light:text-[#0F172A] transition-colors"
         >
-          <Mail className="w-3.5 h-3.5 text-[#78716c]" />
-          <span>Contact</span>
+          <Github className="w-3.5 h-3.5 text-[#9AA4B2]" />
+          <span>GitHub</span>
         </a>
       </div>
-    </motion.div>
+
+    </div>
   );
 };
