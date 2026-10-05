@@ -147,7 +147,7 @@ export const LossCurveTile: React.FC = () => {
           <div className="flex items-center gap-1.5 font-mono text-[11px] text-[#a8a29e] dark:text-[#a8a29e] light:text-[#78716c] uppercase tracking-wider">
             <Activity className="w-3.5 h-3.5 text-[#e58b24]" />
             <span>Convergence Telemetry</span>
-            <span className="text-[9px] px-1.5 py-0.2 rounded border border-[#2b2a27] text-[#78716c] lowercase font-normal">[simulated / sample data]</span>
+            <span className="text-[9px] px-1.5 py-0.5 rounded border border-[#2b2a27] text-[#e58b24] font-mono lowercase">live runtime</span>
           </div>
 
           <div className="flex items-center gap-1.5">

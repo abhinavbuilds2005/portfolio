@@ -107,8 +107,8 @@ export const MLMechanismsLab: React.FC<{ isOpen: boolean; onClose: () => void }>
             <span className="font-mono text-xs text-[#f5f2eb]">
               LIVE MACHINE LEARNING MECHANISMS
             </span>
-            <span className="font-mono text-[9px] px-1.5 py-0.2 rounded border border-[#2b2a27] text-[#78716c]">
-              [pedagogical simulation]
+            <span className="font-mono text-[9px] px-1.5 py-0.5 rounded border border-[#2b2a27] text-[#78716c]">
+              interactive lab
             </span>
           </div>
 

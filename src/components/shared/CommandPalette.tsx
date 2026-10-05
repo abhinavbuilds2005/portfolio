@@ -102,6 +102,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       );
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (filteredItems.length === 0) {
+      if (e.key === 'Escape') onClose();
+      return;
+    }
     if (e.key === 'ArrowDown') {
       e.preventDefault();
       setSelectedIndex((prev) => (prev + 1) % filteredItems.length);

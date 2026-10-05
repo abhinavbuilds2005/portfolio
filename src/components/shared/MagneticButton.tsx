@@ -34,6 +34,13 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
     setPosition({ x: 0, y: 0 });
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if ((e.key === 'Enter' || e.key === ' ') && onClick) {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
   const content = (
     <motion.div
       ref={ref}
@@ -43,6 +50,9 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
       transition={{ type: 'spring', stiffness: 250, damping: 15, mass: 0.1 }}
       className={`inline-block ${className}`}
       onClick={onClick}
+      role={onClick && !href ? 'button' : undefined}
+      tabIndex={onClick && !href ? 0 : undefined}
+      onKeyDown={onClick && !href ? handleKeyDown : undefined}
     >
       {children}
     </motion.div>

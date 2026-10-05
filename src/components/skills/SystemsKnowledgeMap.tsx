@@ -158,7 +158,7 @@ export const SystemsKnowledgeMap: React.FC<SystemsKnowledgeMapProps> = ({ onOpen
                         />
                         <span className="font-medium">{skill.name}</span>
                         {skill.level === 'Expert' && (
-                          <span className="text-[9px] px-1 py-0.2 rounded bg-[#e58b24]/20 text-[#e58b24] uppercase">
+                          <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#e58b24]/20 text-[#e58b24] uppercase font-semibold">
                             core
                           </span>
                         )}

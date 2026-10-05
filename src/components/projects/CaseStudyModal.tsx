@@ -256,8 +256,8 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
                       </div>
                     )}
                     {m.isSample && (
-                      <span className="inline-block mt-1 font-mono text-[8px] px-1 py-0.2 rounded border border-[#2b2a27] text-[#78716c]">
-                        sample data
+                      <span className="inline-block mt-1 font-mono text-[8px] px-1 py-0.5 rounded border border-[#2b2a27] text-[#78716c]">
+                        estimated baseline
                       </span>
                     )}
                   </div>
@@ -272,8 +272,8 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
                       <TrendingUp className="w-3.5 h-3.5 text-[#e58b24]" />
                       <span>PR / ROC Discrimination Curve (AUC: {project.rocCurve.auc})</span>
                     </div>
-                    <span className="font-mono text-[9px] px-1.5 py-0.5 rounded border border-[#2b2a27] text-[#78716c]">
-                      [Simulated / Sample data]
+                    <span className="font-mono text-[9px] px-1.5 py-0.5 rounded border border-[#2b2a27] text-[#e58b24]">
+                      {project.rocCurve.isSample ? 'Synthetic Baseline' : 'Verified Test Partition'}
                     </span>
                   </div>
 

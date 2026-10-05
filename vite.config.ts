@@ -14,6 +14,11 @@ export default defineConfig({
   server: {
     port: 3000,
     open: false,
+    watch: {
+      usePolling: true,
+      interval: 1000,
+      ignored: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.pdf', '**/dist/**', '**/.git/**']
+    }
   },
   build: {
     outDir: 'dist',

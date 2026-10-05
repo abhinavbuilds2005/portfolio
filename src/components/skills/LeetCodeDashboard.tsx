@@ -28,20 +28,25 @@ interface LCData {
   syncedAt?: string;
 }
 
-// ── Fallback / skeleton data ───────────────────────────────────────────
+// ── Fallback / baseline data ───────────────────────────────────────────
 const FALLBACK: LCData = {
   username: 'cseabhinav2005',
-  totalSolved: 0,
-  totalQuestions: 3000,
-  easySolved: 0,
-  totalEasy: 800,
-  mediumSolved: 0,
-  totalMedium: 1600,
+  totalSolved: 10,
+  totalQuestions: 4042,
+  easySolved: 7,
+  totalEasy: 962,
+  mediumSolved: 3,
+  totalMedium: 2109,
   hardSolved: 0,
-  totalHard: 600,
-  ranking: '—',
+  totalHard: 971,
+  ranking: '5,000,001+',
   reputation: 0,
-  recentSubmissions: [],
+  recentSubmissions: [
+    { id: 'sub-1', title: 'Valid Palindrome', titleSlug: 'valid-palindrome', lang: 'C++', timestamp: '1788381261', statusDisplay: 'Accepted' },
+    { id: 'sub-2', title: 'Arranging Coins', titleSlug: 'arranging-coins', lang: 'C++', timestamp: '1787821704', statusDisplay: 'Accepted' },
+    { id: 'sub-3', title: 'Boats to Save People', titleSlug: 'boats-to-save-people', lang: 'C++', timestamp: '1787819754', statusDisplay: 'Accepted' },
+    { id: 'sub-4', title: 'Count of Matches in Tournament', titleSlug: 'count-of-matches-in-tournament', lang: 'C++', timestamp: '1787289501', statusDisplay: 'Accepted' },
+  ],
 };
 
 const LC_CACHE_KEY = 'lc-v2-data';
@@ -98,8 +103,14 @@ const DiffBar: React.FC<{
 
 // ── Main Component ─────────────────────────────────────────────────────
 export const LeetCodeDashboard: React.FC = () => {
-  const [data, setData] = useState<LCData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<LCData>(() => {
+    try {
+      const cached = localStorage.getItem(LC_CACHE_KEY);
+      if (cached) return JSON.parse(cached);
+    } catch (_) { /* ignore */ }
+    return FALLBACK;
+  });
+  const [loading, setLoading] = useState(false);
   const [syncing, setSyncing] = useState(false);
   const [syncLabel, setSyncLabel] = useState('SYNC');
   const [error, setError] = useState<string | null>(null);
