@@ -23,10 +23,21 @@ export function App() {
       setIsDark(false);
       document.documentElement.classList.remove('dark');
       document.documentElement.classList.add('light');
-    } else {
+    } else if (savedTheme === 'dark') {
       setIsDark(true);
       document.documentElement.classList.add('dark');
       document.documentElement.classList.remove('light');
+    } else {
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      if (prefersLight) {
+        setIsDark(false);
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      } else {
+        setIsDark(true);
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      }
     }
   }, []);
 
@@ -60,7 +71,7 @@ export function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#121212] dark:bg-[#121212] light:bg-[#faf8f5] text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] transition-colors duration-200 selection:bg-[#e58b24] selection:text-[#121212]">
+    <div className="min-h-screen bg-base text-text-primary transition-colors duration-200 selection:bg-accent selection:text-base">
       
       {/* Scroll Progress Epoch Bar */}
       <ScrollProgress />
