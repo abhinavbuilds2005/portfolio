@@ -48,8 +48,8 @@ const FALLBACK: LCData = {
   ],
 };
 
-const LC_CACHE_KEY = 'lc-v3-telemetry';
-const LC_CACHE_TIME_KEY = 'lc-v3-telemetry-time';
+const LC_CACHE_KEY = 'lc-v4-telemetry';
+const LC_CACHE_TIME_KEY = 'lc-v4-telemetry-time';
 const CACHE_TTL_MS = 30 * 60 * 1000; // 30 min
 
 function formatTimeAgo(ts: string | number): string {
@@ -62,6 +62,20 @@ function formatTimeAgo(ts: string | number): string {
   return `${Math.floor(h / 24)}d ago`;
 }
 
+const NumberTicker: React.FC<{ value: number | string }> = ({ value }) => {
+  return (
+    <motion.span
+      key={String(value)}
+      initial={{ opacity: 0, y: 5 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.35, ease: 'easeOut' }}
+      className="inline-block"
+    >
+      {value}
+    </motion.span>
+  );
+};
+
 const DiffBar: React.FC<{
   label: string;
   solved: number;
@@ -72,18 +86,18 @@ const DiffBar: React.FC<{
   const pct = total > 0 ? Math.max((solved / total) * 100, solved > 0 ? 3 : 0) : 0;
   return (
     <div>
-      <div className="flex justify-between text-xs font-mono mb-1">
-        <span style={{ color }}>{label}</span>
-        <span className="text-text-muted">{solved} / {total}</span>
+      <div className="flex justify-between text-xs font-mono mb-1.5">
+        <span style={{ color }} className="font-semibold">{label}</span>
+        <span className="text-text-secondary font-medium">{solved} / {total}</span>
       </div>
-      <div className="w-full h-2 rounded-full bg-base overflow-hidden border border-border-subtle">
+      <div className="w-full h-2 rounded-full bg-surface overflow-hidden border border-border-subtle">
         <motion.div
-          className="h-full rounded-full relative overflow-hidden"
+          className="h-full rounded-full"
           style={{ backgroundColor: color }}
           initial={{ width: 0 }}
           whileInView={{ width: `${pct}%` }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.9, delay, ease: [0.16, 1, 0.3, 1] }}
         />
       </div>
     </div>
@@ -219,7 +233,13 @@ export const LeetCodeDashboard: React.FC = () => {
   const acceptanceRate = '51.5%';
 
   return (
-    <div className="p-6 rounded-lg border border-border-subtle bg-surface shadow-sm">
+    <motion.div
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="p-6 rounded-lg border border-border-subtle bg-surface shadow-sm"
+    >
       {/* Header */}
       <div className="flex items-center justify-between mb-5 pb-3 border-b border-border-subtle">
         <div className="flex items-center gap-2 font-mono text-xs text-accent font-semibold">
@@ -236,22 +256,29 @@ export const LeetCodeDashboard: React.FC = () => {
           </a>
         </div>
 
-        <button
+        <motion.button
           onClick={() => fetchData(true)}
           disabled={syncing}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
           className="flex items-center gap-1.5 font-mono text-xs px-2.5 py-1 rounded border border-border-subtle bg-base text-text-secondary hover:border-border-strong hover:text-accent transition-colors disabled:opacity-50"
         >
-          <RefreshCw className={`w-3 h-3 ${syncing ? 'animate-spin' : ''}`} />
+          <RefreshCw className={`w-3 h-3 ${syncing ? 'animate-spin text-accent' : ''}`} />
           <span>{syncLabel}</span>
-        </button>
+        </motion.button>
       </div>
 
       {/* Error notice */}
       <AnimatePresence>
         {error && (
-          <div className="font-mono text-xs text-text-secondary bg-base border border-border-subtle rounded-md px-3 py-2 mb-4">
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="font-mono text-xs text-text-secondary bg-base border border-border-subtle rounded-md px-3 py-2 mb-4"
+          >
             ℹ {error}
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
 
@@ -260,28 +287,31 @@ export const LeetCodeDashboard: React.FC = () => {
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-2.5">
             {[
-              { icon: <CheckCircle2 className="w-3.5 h-3.5" />, label: 'Solved', value: String(solvedCount), accent: true },
-              { icon: <Trophy className="w-3.5 h-3.5" />, label: 'Ranking', value: rankStr, accent: false },
-              { icon: <Zap className="w-3.5 h-3.5" />, label: 'Total Qs', value: String(totalQs), accent: false },
-              { icon: <CheckCircle2 className="w-3.5 h-3.5" />, label: 'Acceptance', value: acceptanceRate, accent: false },
-            ].map(({ icon, label, value, accent }) => (
-              <div
+              { icon: <CheckCircle2 className="w-4 h-4" />, label: 'Solved', value: String(solvedCount) },
+              { icon: <Trophy className="w-4 h-4" />, label: 'Ranking', value: rankStr },
+              { icon: <Zap className="w-4 h-4" />, label: 'Total Qs', value: String(totalQs) },
+              { icon: <CheckCircle2 className="w-4 h-4" />, label: 'Acceptance', value: acceptanceRate },
+            ].map(({ icon, label, value }) => (
+              <motion.div
                 key={label}
-                className="p-3 rounded-md border border-border-subtle bg-base text-center"
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                className="p-3.5 rounded-lg border border-border-subtle bg-base text-center transition-colors hover:border-accent/40 shadow-sm"
               >
-                <div className={`flex items-center justify-center gap-1 mb-1 ${accent ? 'text-accent' : 'text-text-muted'}`}>
+                <div className="flex items-center justify-center gap-1 mb-1.5 text-accent">
                   {icon}
                 </div>
-                <div className={`font-mono text-base font-bold ${accent ? 'text-accent' : 'text-text-primary'}`}>
-                  {value}
+                <div className="font-mono text-xl font-bold text-text-primary">
+                  <NumberTicker value={value} />
                 </div>
-                <div className="font-mono text-xs text-text-muted uppercase mt-0.5">{label}</div>
-              </div>
+                <div className="font-mono text-xs text-text-muted uppercase tracking-wide mt-1">
+                  {label}
+                </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Difficulty Breakdown Bars */}
-          <div className="space-y-3 p-4 rounded-md border border-border-subtle bg-base">
+          <div className="space-y-3 p-4 rounded-lg border border-border-subtle bg-base">
             <div className="font-mono text-xs text-text-muted uppercase">Difficulty Breakdown</div>
             <DiffBar label="Easy" solved={d.easySolved ?? 10} total={d.totalEasy ?? 969} color="#10b981" delay={0.1} />
             <DiffBar label="Medium" solved={d.mediumSolved ?? 7} total={d.totalMedium ?? 2124} color="#f59e0b" delay={0.2} />
@@ -293,40 +323,46 @@ export const LeetCodeDashboard: React.FC = () => {
         <div className="space-y-3">
           <div className="font-mono text-xs text-text-muted uppercase">Recent Accepted Problems</div>
           <div className="space-y-2">
-            {(d.recentSubmissions && d.recentSubmissions.length > 0 ? d.recentSubmissions.slice(0, 5) : FALLBACK.recentSubmissions).map((sub) => (
-              <a
+            {(d.recentSubmissions && d.recentSubmissions.length > 0 ? d.recentSubmissions.slice(0, 5) : FALLBACK.recentSubmissions).map((sub, idx) => (
+              <motion.a
                 key={sub.id}
                 href={`https://leetcode.com/problems/${sub.titleSlug}/`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-3 rounded-md border border-border-subtle bg-base hover:border-border-strong transition-colors group"
+                initial={{ opacity: 0, x: 8 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: idx * 0.06 }}
+                whileHover={{ x: 4, transition: { duration: 0.15 } }}
+                className="flex items-center justify-between p-2.5 rounded-md border border-border-subtle bg-base hover:border-accent/40 transition-colors group"
               >
-                <span className="font-mono text-xs text-text-primary group-hover:text-accent transition-colors truncate max-w-[160px]">
+                <span className="font-mono text-xs text-text-primary group-hover:text-accent transition-colors truncate max-w-[170px]">
                   {sub.title}
                 </span>
                 <div className="flex items-center gap-2 shrink-0">
-                  <span className="font-mono text-xs px-2 py-0.5 rounded bg-surface border border-border-subtle text-accent">
+                  <span className="font-mono text-xs px-2 py-0.5 rounded bg-surface border border-border-subtle text-accent font-semibold">
                     {sub.lang || 'C++'}
                   </span>
                   {sub.timestamp && String(sub.timestamp) !== '0' && (
                     <span className="font-mono text-xs text-text-muted">{formatTimeAgo(sub.timestamp)}</span>
                   )}
                 </div>
-              </a>
+              </motion.a>
             ))}
           </div>
 
-          <a
+          <motion.a
             href="https://leetcode.com/u/cseabhinav2005/"
             target="_blank"
             rel="noopener noreferrer"
+            whileHover={{ x: 3 }}
             className="inline-flex items-center gap-1.5 mt-2 font-mono text-xs text-accent hover:underline"
           >
             <span>View Full LeetCode Profile</span>
-            <ExternalLink className="w-3 h-3" />
-          </a>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </motion.a>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
