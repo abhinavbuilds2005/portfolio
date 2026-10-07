@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Project } from '../../lib/types';
 import { PROJECTS } from '../../data/projects';
 import { CaseStudyModal } from './CaseStudyModal';
+import { EmbeddingMap } from './EmbeddingMap';
 
 interface ProjectsSectionProps {
   activeCaseStudyId: string | null;
@@ -364,6 +365,14 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             </motion.div>
           ))}
         </div>
+      </div>
+
+      {/* 4. Interactive 2D Latent Embedding Scatter Map */}
+      <div className="mt-14 pt-10 border-t border-border-subtle">
+        <EmbeddingMap
+          projects={PROJECTS}
+          onSelectProject={onOpenCaseStudy}
+        />
       </div>
 
       {/* Case Study Modal */}

@@ -96,8 +96,8 @@ export function App() {
           onCloseCaseStudy={() => setActiveCaseStudyId(null)}
         />
 
-        {/* Skills Section Grouped by 4 Engineering Domains */}
-        <SkillsSection />
+        {/* Skills Section with Knowledge Map, Pipeline, Feature Importance & LeetCode */}
+        <SkillsSection onOpenCaseStudy={(id) => setActiveCaseStudyId(id)} />
 
         {/* Technical Build Log */}
         <BuildLogSection />
