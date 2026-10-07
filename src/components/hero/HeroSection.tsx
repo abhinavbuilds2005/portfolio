@@ -25,7 +25,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenProjects }) => {
           <div className="flex flex-wrap items-center gap-3">
             <div className="relative">
               <img
-                src="/abhinav.jpeg"
+                src="/abhinav.png"
                 alt="Abhinav Anand"
                 className="w-12 h-12 rounded-full object-cover border-2 border-border-strong shadow-sm"
                 width={48}
