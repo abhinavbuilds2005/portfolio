@@ -1,88 +1,88 @@
 import React, { useState } from 'react';
-import { BookOpen, Calendar, Clock, ChevronDown, ChevronUp } from 'lucide-react';
+import { Calendar, Clock, ChevronDown, ChevronUp } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { BUILD_LOGS } from '../../data/buildLogs';
 
 export const BuildLogSection: React.FC = () => {
   const [expandedLogId, setExpandedLogId] = useState<string | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   const toggleExpand = (id: string) => {
     setExpandedLogId(expandedLogId === id ? null : id);
   };
 
   return (
-    <section id="build-log" className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-[#2b2a27]/60">
+    <section id="build-log" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-border-subtle">
       
-      {/* Section Meta Header */}
-      <div className="flex items-center justify-between py-2 border-b border-[#2b2a27]/60 mb-8 font-mono text-[11px] text-[#78716c]">
-        <div className="flex items-center gap-2">
-          <span className="text-[#e58b24] font-semibold">[04]</span>
-          <span className="uppercase tracking-wider">BUILD LOG // ENGINEERING JOURNAL</span>
-        </div>
+      {/* Section Header */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
         <div>
-          <span>{BUILD_LOGS.length} TECHNICAL ENTRIES RECORDED</span>
+          <div className="font-mono text-xs uppercase tracking-wide text-accent mb-2">
+            Engineering Journal
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">
+            Technical Build Log
+          </h2>
         </div>
-      </div>
-
-      {/* Headline */}
-      <div className="max-w-3xl mb-10">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] mb-3">
-          Engineering Build Log
-        </h2>
-        <p className="text-sm sm:text-base text-[#a8a29e] dark:text-[#a8a29e] light:text-[#57534e] leading-relaxed">
-          Concise architectural notes, benchmark retrospectives, and failure mode analyses written while building and evaluating machine learning systems.
+        <p className="text-sm text-text-secondary max-w-md">
+          Concise architectural retrospectives, evaluation trade-offs, and failure mode analyses written during production system engineering.
         </p>
       </div>
 
-      {/* Build Log Entries Stack */}
-      <div className="space-y-4">
-        {BUILD_LOGS.map((entry) => {
+      {/* Build Log Entries Stack (Constrained to optimal reading width) */}
+      <div className="space-y-4 max-w-4xl mx-auto">
+        {BUILD_LOGS.map((entry, idx) => {
           const isExpanded = expandedLogId === entry.id;
 
           return (
-            <article
+            <motion.article
               key={entry.id}
-              className="rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] overflow-hidden transition-colors"
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.45, delay: shouldReduceMotion ? 0 : idx * 0.08, ease: 'easeOut' }}
+              className="rounded-lg border border-border-subtle bg-surface overflow-hidden card-hover transition-colors"
             >
               <div
                 onClick={() => toggleExpand(entry.id)}
-                className="p-5 sm:p-6 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-[#161616]/50 dark:hover:bg-[#161616]/50 light:hover:bg-[#faf8f5] transition-colors"
+                className="p-6 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-elevated/60 transition-colors"
               >
-                <div className="space-y-1.5 flex-1">
-                  <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] text-[#78716c]">
-                    <span className="flex items-center gap-1 text-[#e58b24]">
-                      <Calendar className="w-3 h-3" />
+                <div className="space-y-2 flex-1">
+                  <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-text-muted">
+                    <span className="flex items-center gap-1.5 text-accent font-medium">
+                      <Calendar className="w-3.5 h-3.5" />
                       {entry.date}
                     </span>
                     <span>•</span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5" />
                       {entry.readTime} read
                     </span>
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-bold text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917]">
+                  <h3 className="text-lg sm:text-xl font-bold text-text-primary">
                     {entry.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#a8a29e] dark:text-[#a8a29e] light:text-[#57534e] line-clamp-2 leading-relaxed">
+                  <p className="text-sm text-text-secondary line-clamp-2 leading-relaxed">
                     {entry.excerpt}
                   </p>
                 </div>
 
-                <div className="flex sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0">
-                  <div className="flex flex-wrap gap-1">
+                <div className="flex sm:flex-col items-center sm:items-end justify-between gap-3 shrink-0">
+                  <div className="flex flex-wrap gap-1.5">
                     {entry.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-0.5 rounded font-mono text-[10px] border border-[#2b2a27] bg-[#121212] text-[#a8a29e]"
+                        className="px-2.5 py-0.5 rounded font-mono text-xs border border-border-subtle bg-base text-text-secondary"
                       >
-                        #{tag}
+                        {tag}
                       </span>
                     ))}
                   </div>
 
                   <button
-                    className="p-1 rounded text-[#e58b24] hover:bg-[#2b2a27] transition-colors flex items-center gap-1 font-mono text-xs"
+                    className="p-1 text-accent flex items-center gap-1 font-mono text-xs hover:underline"
                     aria-label={isExpanded ? "Collapse entry" : "Expand entry"}
                   >
                     <span>{isExpanded ? 'Collapse' : 'Read Note'}</span>
@@ -91,20 +91,20 @@ export const BuildLogSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Expanded Markdown Content */}
+              {/* Expanded Note Content */}
               {isExpanded && (
-                <div className="p-6 pt-0 border-t border-[#2b2a27]/60 bg-[#161616]/40 dark:bg-[#161616]/40 light:bg-[#faf8f5]">
-                  <div className="prose dark:prose-invert prose-sm max-w-none text-[#a8a29e] dark:text-[#a8a29e] light:text-[#57534e] leading-relaxed space-y-3 font-sans pt-4">
+                <div className="p-6 pt-2 border-t border-border-subtle bg-base/50">
+                  <div className="max-w-none text-text-secondary leading-relaxed space-y-3 font-sans text-sm sm:text-base">
                     {entry.content.split('\n\n').map((paragraph, pIdx) => {
                       if (paragraph.startsWith('### ')) {
                         return (
-                          <h4 key={pIdx} className="text-sm font-bold font-mono text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] mt-4 mb-2">
+                          <h4 key={pIdx} className="text-base font-bold font-mono text-text-primary mt-4 mb-2">
                             {paragraph.replace('### ', '')}
                           </h4>
                         );
                       }
                       return (
-                        <p key={pIdx} className="text-xs sm:text-sm">
+                        <p key={pIdx}>
                           {paragraph}
                         </p>
                       );
@@ -112,7 +112,7 @@ export const BuildLogSection: React.FC = () => {
                   </div>
                 </div>
               )}
-            </article>
+            </motion.article>
           );
         })}
       </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, ExternalLink, Moon, Sun, FileText, ArrowRight, FolderGit2, Sparkles } from 'lucide-react';
+import { Search, ExternalLink, Moon, Sun, FileText, ArrowRight, FolderGit2, Cpu } from 'lucide-react';
 import { PROJECTS } from '../../data/projects';
 
 interface CommandPaletteProps {
@@ -8,6 +8,7 @@ interface CommandPaletteProps {
   onToggleTheme: () => void;
   isDark: boolean;
   onSelectProject: (projectId: string) => void;
+  onOpenLab?: () => void;
 }
 
 export const CommandPalette: React.FC<CommandPaletteProps> = ({
@@ -15,7 +16,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   onClose,
   onToggleTheme,
   isDark,
-  onSelectProject
+  onSelectProject,
+  onOpenLab
 }) => {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -34,50 +36,57 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     {
       id: 'sec-projects',
       label: 'Jump to: Projects',
-      sub: 'Selected engineering work & 2D latent embedding map',
-      icon: <FolderGit2 className="w-4 h-4 text-[#e58b24]" />,
+      sub: 'Selected engineering work & verified repositories',
+      icon: <FolderGit2 className="w-4 h-4 text-accent" />,
       action: () => { window.location.hash = '#projects'; onClose(); }
     },
     {
       id: 'sec-skills',
-      label: 'Jump to: Skills & Feature Importance',
-      sub: 'Dynamic empirical tech frequency bars & certifications',
-      icon: <ArrowRight className="w-4 h-4 text-[#e58b24]" />,
+      label: 'Jump to: Skills & Capabilities',
+      sub: 'Machine learning, computer vision, NLP, and backend architecture',
+      icon: <ArrowRight className="w-4 h-4 text-accent" />,
       action: () => { window.location.hash = '#skills'; onClose(); }
+    },
+    {
+      id: 'sec-lab',
+      label: 'Open: Interactive ML Lab',
+      sub: 'Transformer attention, gradient descent, embeddings & model pipeline',
+      icon: <Cpu className="w-4 h-4 text-accent" />,
+      action: () => { if (onOpenLab) onOpenLab(); onClose(); }
     },
     {
       id: 'sec-build-log',
       label: 'Jump to: Build Log',
-      sub: 'Architectural notes and failure mode retrospectives',
-      icon: <ArrowRight className="w-4 h-4 text-[#e58b24]" />,
+      sub: 'Technical architectural notes and evaluation retrospectives',
+      icon: <ArrowRight className="w-4 h-4 text-accent" />,
       action: () => { window.location.hash = '#build-log'; onClose(); }
     },
     {
       id: 'sec-contact',
       label: 'Jump to: Contact',
-      sub: 'Initiate transmission or view direct communication channels',
-      icon: <ArrowRight className="w-4 h-4 text-[#e58b24]" />,
+      sub: 'Initiate communication or view direct channels',
+      icon: <ArrowRight className="w-4 h-4 text-accent" />,
       action: () => { window.location.hash = '#contact'; onClose(); }
     },
     {
       id: 'act-resume',
-      label: 'Download Curriculum Vitae (PDF)',
-      sub: 'Tailored AI/ML Engineer resume',
-      icon: <FileText className="w-4 h-4 text-[#e58b24]" />,
+      label: 'View Curriculum Vitae (PDF)',
+      sub: 'Abhinav Anand AI/ML specialized resume',
+      icon: <FileText className="w-4 h-4 text-accent" />,
       action: () => { window.open('/Abhinav_Anand_Resume_AIML_Specialized.pdf', '_blank'); onClose(); }
     },
     {
       id: 'act-theme',
       label: `Switch to ${isDark ? 'Light Warm Paper Mode' : 'Dark Charcoal Mode'}`,
-      sub: 'Toggle Ink and Saffron visual identity',
-      icon: isDark ? <Sun className="w-4 h-4 text-[#e58b24]" /> : <Moon className="w-4 h-4 text-[#c84b31]" />,
+      sub: 'Toggle color scheme',
+      icon: isDark ? <Sun className="w-4 h-4 text-accent" /> : <Moon className="w-4 h-4 text-accent" />,
       action: () => { onToggleTheme(); onClose(); }
     },
     {
       id: 'act-github',
       label: 'Open GitHub Profile',
       sub: 'github.com/abhinavbuilds2005',
-      icon: <ExternalLink className="w-4 h-4 text-[#e58b24]" />,
+      icon: <ExternalLink className="w-4 h-4 text-accent" />,
       action: () => { window.open('https://github.com/abhinavbuilds2005', '_blank'); onClose(); }
     }
   ];
@@ -87,7 +96,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
     id: `proj-${p.id}`,
     label: `Project: ${p.title}`,
     sub: p.tagline,
-    icon: <FolderGit2 className="w-4 h-4 text-[#e58b24]" />,
+    icon: <FolderGit2 className="w-4 h-4 text-accent" />,
     action: () => { onSelectProject(p.id); onClose(); }
   }));
 
@@ -124,17 +133,17 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center pt-20 sm:pt-28 px-4 bg-black/75 backdrop-blur-sm animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-20 sm:pt-28 px-4 bg-black/75 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-xl rounded-lg border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-2xl overflow-hidden"
+        className="w-full max-w-xl rounded-lg border border-border-strong bg-surface shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleKeyDown}
       >
         {/* Search Input Bar */}
-        <div className="flex items-center px-4 py-3 border-b border-[#2b2a27] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5]">
-          <Search className="w-4 h-4 text-[#e58b24] mr-3 shrink-0" />
+        <div className="flex items-center px-4 py-3 border-b border-border-subtle bg-elevated">
+          <Search className="w-4 h-4 text-accent mr-3 shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -144,9 +153,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
               setSelectedIndex(0);
             }}
             placeholder="Type a section, project, or command..."
-            className="w-full bg-transparent text-sm font-mono text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] placeholder-[#78716c] focus:outline-none"
+            className="w-full bg-transparent text-sm font-mono text-text-primary placeholder:text-text-muted focus:outline-none"
           />
-          <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded border border-[#2b2a27] text-[#78716c]">
+          <kbd className="text-xs font-mono px-1.5 py-0.5 rounded border border-border-subtle text-text-muted bg-base">
             ESC
           </kbd>
         </div>
@@ -154,7 +163,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         {/* Results List */}
         <div className="max-h-72 overflow-y-auto p-2">
           {filteredItems.length === 0 ? (
-            <div className="p-4 text-center text-xs font-mono text-[#78716c]">
+            <div className="p-4 text-center text-xs font-mono text-text-muted">
               No commands matching "{query}"
             </div>
           ) : (
@@ -165,25 +174,25 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                   key={item.id}
                   onClick={item.action}
                   onMouseEnter={() => setSelectedIndex(idx)}
-                  className={`flex items-center justify-between p-2.5 rounded cursor-pointer transition-colors ${
+                  className={`flex items-center justify-between p-2.5 rounded-md cursor-pointer transition-colors ${
                     isSelected
-                      ? 'bg-[#e58b24]/15 border border-[#e58b24]/40 text-[#f5f2eb]'
-                      : 'text-[#a8a29e] hover:bg-[#161616] border border-transparent'
+                      ? 'bg-accent/15 border border-accent/40 text-text-primary'
+                      : 'text-text-secondary hover:bg-elevated border border-transparent'
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="p-1 rounded bg-[#121212]">{item.icon}</span>
+                    <span className="p-1 rounded bg-base border border-border-subtle">{item.icon}</span>
                     <div>
-                      <div className="text-xs font-semibold font-mono text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917]">
+                      <div className="text-xs font-semibold font-mono text-text-primary">
                         {item.label}
                       </div>
-                      <div className="text-[11px] text-[#78716c] truncate max-w-sm">
+                      <div className="text-xs text-text-muted truncate max-w-sm">
                         {item.sub}
                       </div>
                     </div>
                   </div>
                   {isSelected && (
-                    <span className="font-mono text-[10px] text-[#e58b24]">↵</span>
+                    <span className="font-mono text-xs text-accent">↵</span>
                   )}
                 </div>
               );
@@ -192,13 +201,13 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         </div>
 
         {/* Footer shortcuts */}
-        <div className="px-4 py-2 border-t border-[#2b2a27]/60 bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] flex items-center justify-between text-[10px] font-mono text-[#78716c]">
+        <div className="px-4 py-2 border-t border-border-subtle bg-elevated flex items-center justify-between text-xs font-mono text-text-muted">
           <div className="flex items-center gap-3">
             <span>↑↓ Navigate</span>
             <span>↵ Select</span>
             <span>ESC Close</span>
           </div>
-          <span className="text-[#e58b24]">Ctrl+K or ⌘K</span>
+          <span className="text-accent font-medium">Ctrl+K or ⌘K</span>
         </div>
 
       </div>

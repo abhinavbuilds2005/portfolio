@@ -1,313 +1,205 @@
-import React, { useState } from 'react';
-import { Award, BookOpen, BarChart3, ExternalLink } from 'lucide-react';
+import React from 'react';
+import { Award, BookOpen, Layers, CheckCircle, ExternalLink, ArrowRight } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { PROJECTS } from '../../data/projects';
 import { CERTIFICATIONS, CURRENTLY_LEARNING } from '../../data/certifications';
-import { calculateTechUsage } from '../../lib/utils';
-import { LeetCodeDashboard } from './LeetCodeDashboard';
-import { SystemsKnowledgeMap } from './SystemsKnowledgeMap';
-import { ModelPipelineVisualizer } from './ModelPipelineVisualizer';
 
-// Animated skill bar with glow on hover
-const SkillBar: React.FC<{
-  item: { name: string; count: number; percentage: number; projects: string[] };
-  idx: number;
-  shouldReduceMotion: boolean | null;
-}> = ({ item, idx, shouldReduceMotion }) => {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <motion.div
-      key={item.name}
-      className="group"
-      initial={{ opacity: 0, x: -16 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.5, delay: idx * 0.06, ease: [0.16, 1, 0.3, 1] }}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-    >
-      <div className="flex justify-between items-center text-xs font-mono mb-1">
-        <motion.span
-          className="font-medium transition-colors"
-          animate={{ color: hovered ? '#e58b24' : '#f5f2eb' }}
-          transition={{ duration: 0.2 }}
-        >
-          {item.name}
-        </motion.span>
-        <motion.span
-          className="text-[#78716c]"
-          animate={{ opacity: hovered ? 1 : 0.7 }}
-        >
-          {item.count} {item.count === 1 ? 'project' : 'projects'} ({item.percentage}%)
-        </motion.span>
-      </div>
-
-      {/* Progress bar track */}
-      <div className="w-full h-2 rounded-full bg-[#121212] overflow-hidden border border-[#2b2a27]/50 relative">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${item.percentage}%` }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{
-            duration: shouldReduceMotion ? 0 : 0.9,
-            delay: idx * 0.07,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-          className="h-full rounded-full relative overflow-hidden"
-          style={{ backgroundColor: '#e58b24' }}
-        >
-          {/* Shimmer sweep on bar */}
-          {!shouldReduceMotion && (
-            <motion.div
-              className="absolute inset-y-0 w-8 bg-white/30 skew-x-[-20deg]"
-              initial={{ x: '-100%' }}
-              whileInView={{ x: '400%' }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.6 + idx * 0.07, ease: 'easeOut' }}
-            />
-          )}
-        </motion.div>
-
-        {/* Glow overlay when hovered */}
-        <motion.div
-          className="absolute inset-0 rounded-full pointer-events-none"
-          animate={{
-            boxShadow: hovered ? '0 0 10px rgba(229,139,36,0.5), inset 0 0 6px rgba(229,139,36,0.2)' : '0 0 0px transparent',
-          }}
-          transition={{ duration: 0.3 }}
-        />
-      </div>
-
-      <div className="text-[10px] text-[#78716c] truncate mt-0.5 opacity-80">
-        Used in: {item.projects.join(', ')}
-      </div>
-    </motion.div>
-  );
-};
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+const SKILL_DOMAINS = [
+  {
+    title: 'Machine Learning & Applied Statistics',
+    desc: 'Convex optimization, imbalanced classification, and threshold auditing.',
+    skills: [
+      { name: 'Scikit-Learn', level: 'Expert', note: 'Regularized estimators & pipelines' },
+      { name: 'SMOTE (Imbalanced-Learn)', level: 'Advanced', note: 'In-fold synthetic k-NN resampling' },
+      { name: 'PCA Decomposition', level: 'Advanced', note: '>85% variance eigen-projection' },
+      { name: 'K-Means Clustering', level: 'Advanced', note: 'Silhouette & elbow optimization' },
+      { name: 'PR-AUC Evaluation', level: 'Expert', note: 'Minority positive frontier tuning' },
+      { name: 'Statistics & Linear Algebra', level: 'Advanced', note: 'SVD, covariance, loss gradients' },
+    ]
   },
-};
+  {
+    title: 'Deep Learning & Computer Vision',
+    desc: 'Pixel forensics, metric learning embeddings, and deterministic checksums.',
+    skills: [
+      { name: 'PyTorch', level: 'Advanced', note: 'Autograd graphs & tensor models' },
+      { name: 'OpenCV', level: 'Expert', note: 'Morphological filters & homography' },
+      { name: 'Error Level Analysis (ELA)', level: 'Advanced', note: 'Quantization resave forensics' },
+      { name: 'FaceNet Biometrics', level: 'Advanced', note: '128D Euclidean triplet metric space' },
+      { name: 'Verhoeff Checksum (D5)', level: 'Advanced', note: 'Dihedral group D5 permutation validation' },
+      { name: 'EasyOCR & CRAFT', level: 'Advanced', note: 'Layout-aware text token extraction' },
+    ]
+  },
+  {
+    title: 'NLP & Generative AI',
+    desc: 'Dense semantic representations, entity extraction, and resilient fallback LLMs.',
+    skills: [
+      { name: 'Sentence Transformers', level: 'Expert', note: 'all-MiniLM-L6-v2 384D semantic vectors' },
+      { name: 'Rolling Chunk Embeddings', level: 'Advanced', note: 'Eliminates 512-token CV truncation' },
+      { name: 'spaCy Industrial NLP', level: 'Advanced', note: 'Named entity recognition & POS tagging' },
+      { name: 'Groq Llama 3 API', level: 'Advanced', note: 'Ultra low-latency LPU inference' },
+      { name: 'Deterministic NLP Fallbacks', level: 'Expert', note: 'Zero-downtime heuristic backups' },
+      { name: 'Cosine Distance Metric', level: 'Expert', note: 'Max-pooled semantic alignment' },
+    ]
+  },
+  {
+    title: 'Backend, Systems & Data Engineering',
+    desc: 'High-concurrency microservices, containerization, and relational integrity.',
+    skills: [
+      { name: 'Python (AsyncIO / NumPy)', level: 'Expert', note: 'Vectorized operations & non-blocking I/O' },
+      { name: 'FastAPI', level: 'Expert', note: 'Pydantic V2 schema validation & OpenAPI' },
+      { name: 'C++ (DSA & Memory)', level: 'Advanced', note: 'Cache locality, pointers, LeetCode DSA' },
+      { name: 'Docker Containerization', level: 'Advanced', note: 'Multi-stage builds & runtime isolation' },
+      { name: 'PostgreSQL & SQL', level: 'Advanced', note: '3NF schema design & ACID integrity' },
+      { name: 'Streamlit UI', level: 'Proficient', note: 'Reactive parameter exploration consoles' },
+    ]
+  }
+];
 
-interface SkillsSectionProps {
-  onOpenCaseStudy?: (projectId: string) => void;
-}
-
-export const SkillsSection: React.FC<SkillsSectionProps> = ({ onOpenCaseStudy }) => {
-  const techUsageList = calculateTechUsage(PROJECTS).slice(0, 10);
+export const SkillsSection: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="skills" className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-[#2b2a27]/60">
-
-      {/* Section Meta Header */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="flex items-center justify-between py-2 border-b border-[#2b2a27]/60 mb-8 font-mono text-[11px] text-[#78716c]"
-      >
-        <div className="flex items-center gap-2">
-          <span className="text-[#e58b24] font-semibold">[03]</span>
-          <span className="uppercase tracking-wider">SKILLS // AI SYSTEMS KNOWLEDGE MAP & CAPABILITIES</span>
-        </div>
+    <section id="skills" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-border-subtle">
+      
+      {/* Section Header */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
         <div>
-          <span>DYNAMICALLY COMPUTED FROM {PROJECTS.length} REPOSITORIES</span>
+          <div className="font-mono text-xs uppercase tracking-wide text-accent mb-2">
+            Technical Capabilities
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">
+            Engineering Skill Architecture
+          </h2>
         </div>
-      </motion.div>
-
-      {/* Headline */}
-      <motion.div
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-60px' }}
-        className="max-w-3xl mb-10"
-      >
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] mb-3">
-          AI Systems Knowledge Map & Technical Capabilities
-        </h2>
-        <p className="text-sm sm:text-base text-[#a8a29e] dark:text-[#a8a29e] light:text-[#57534e] leading-relaxed">
-          An engineering breakdown of mathematical foundations, deep learning frameworks, NLP algorithms, and cloud microservices verified across active production repositories.
+        <p className="text-sm text-text-secondary max-w-md">
+          Core technical competencies verified across active repositories, audited against mathematical foundations, evaluation benchmarks, and containerized deployments.
         </p>
-      </motion.div>
-
-      {/* 1. RESTORED: Interactive AI Systems Knowledge Map (22 skills with domain filters & telemetry inspector) */}
-      <SystemsKnowledgeMap onOpenCaseStudy={onOpenCaseStudy} />
-
-      {/* 2. RESTORED: How I Build Intelligent Systems (7-Stage End-to-End Model Lifecycle) */}
-      <ModelPipelineVisualizer onOpenCaseStudy={onOpenCaseStudy} />
-
-      {/* 3. Feature Importance & Verified Credentials */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-
-        {/* Left: Dynamic Feature Importance Bars (7 cols) */}
-        <motion.div
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
-          className="lg:col-span-7 p-6 rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm card-hover-lift relative overflow-hidden"
-        >
-          {/* Subtle grid pattern */}
-          <div
-            className="absolute inset-0 pointer-events-none opacity-30"
-            style={{
-              backgroundImage: 'linear-gradient(rgba(229,139,36,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(229,139,36,0.04) 1px, transparent 1px)',
-              backgroundSize: '24px 24px',
-            }}
-          />
-
-          <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#2b2a27]/60 relative">
-            <div className="flex items-center gap-2 font-mono text-xs text-[#e58b24] font-semibold">
-              <motion.div
-                animate={{ rotate: [0, 5, -5, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                <BarChart3 className="w-4 h-4" />
-              </motion.div>
-              <span>EMPIRICAL FEATURE IMPORTANCE (TOOL USAGE)</span>
-            </div>
-            <span className="font-mono text-[10px] text-[#78716c]">Frequency across projects</span>
-          </div>
-
-          <div className="space-y-3.5 relative">
-            {techUsageList.map((item, idx) => (
-              <SkillBar key={item.name} item={item} idx={idx} shouldReduceMotion={shouldReduceMotion} />
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Right: Verified Credentials (5 cols) */}
-        <motion.div
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ delay: 0.1 }}
-          className="lg:col-span-5 flex flex-col justify-between"
-        >
-          <div className="p-6 rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm mb-6 card-hover-lift">
-            <div className="flex items-center gap-2 mb-4 pb-2 border-b border-[#2b2a27]/60 font-mono text-xs text-[#e58b24] font-semibold">
-              <Award className="w-4 h-4" />
-              <span>VERIFIED CERTIFICATIONS</span>
-            </div>
-
-            <div className="space-y-3">
-              {CERTIFICATIONS.map((cert, i) => (
-                <motion.a
-                  key={cert.id}
-                  href={cert.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, x: 12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  whileHover={{ x: 3, borderColor: 'rgba(229,139,36,0.5)' }}
-                  className="flex items-start justify-between p-3 rounded border border-[#2b2a27] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] transition-all group"
-                >
-                  <div>
-                    <h4 className="text-xs font-bold text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] group-hover:text-[#e58b24] transition-colors">
-                      {cert.title}
-                    </h4>
-                    <div className="font-mono text-[11px] text-[#78716c] mt-0.5">
-                      {cert.platform} // {cert.tag}
-                    </div>
-                  </div>
-                  <motion.div whileHover={{ rotate: -45 }} transition={{ type: 'spring', stiffness: 300 }}>
-                    <ExternalLink className="w-3.5 h-3.5 text-[#78716c] group-hover:text-[#e58b24] mt-1 shrink-0 ml-2 transition-colors" />
-                  </motion.div>
-                </motion.a>
-              ))}
-            </div>
-          </div>
-
-          {/* Academic Background summary */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.3 }}
-            className="p-4 rounded border border-[#2b2a27] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5]"
-          >
-            <div className="font-mono text-[10px] text-[#e58b24] uppercase mb-1">
-              Academic Background
-            </div>
-            <div className="text-xs font-bold text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917]">
-              Lovely Professional University, Jalandhar
-            </div>
-            <div className="font-mono text-[11px] text-[#a8a29e] mt-0.5">
-              B.Tech in Computer Science & Engineering (AI/ML) · Class of 2025–2029
-            </div>
-          </motion.div>
-        </motion.div>
-
       </div>
 
-      {/* "Currently Learning" Strip */}
-      <motion.div
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-40px' }}
-        className="p-6 rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm"
-      >
-        <div className="flex items-center gap-2 mb-4 pb-2 border-b border-[#2b2a27]/60 font-mono text-xs text-[#e58b24] font-semibold">
-          <BookOpen className="w-4 h-4" />
-          <span>CURRENTLY LEARNING & RESEARCH FOCUS</span>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {CURRENTLY_LEARNING.map((item, i) => (
-            <motion.div
-              key={item.topic}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.1 }}
-              whileHover={{ y: -3, borderColor: 'rgba(229,139,36,0.4)' }}
-              className="p-3.5 rounded border border-[#2b2a27] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5] flex flex-col justify-between transition-colors"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <motion.span
-                    className="font-mono text-[10px] px-1.5 py-0.5 rounded bg-[#e58b24]/10 text-[#e58b24] border border-[#e58b24]/30"
-                    animate={{ opacity: [0.7, 1, 0.7] }}
-                    transition={{ duration: 2.5 + i * 0.5, repeat: Infinity, ease: 'easeInOut' }}
-                  >
-                    {item.status}
-                  </motion.span>
-                </div>
-                <h4 className="text-xs font-bold text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] mb-1">
-                  {item.topic}
-                </h4>
-                <p className="text-[11px] text-[#a8a29e] dark:text-[#a8a29e] light:text-[#78716c] leading-relaxed">
-                  {item.focus}
-                </p>
+      {/* 4 Categorical Skill Domain Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        {SKILL_DOMAINS.map((domain, dIdx) => (
+          <motion.div
+            key={domain.title}
+            initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.45, delay: shouldReduceMotion ? 0 : dIdx * 0.08, ease: 'easeOut' }}
+            className="p-6 rounded-lg border border-border-subtle bg-surface flex flex-col justify-between card-hover"
+          >
+            <div>
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="font-mono text-xs text-accent font-semibold">
+                  0{dIdx + 1}
+                </span>
+                <h3 className="text-lg font-bold text-text-primary">
+                  {domain.title}
+                </h3>
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+              <p className="text-xs text-text-muted mb-5">
+                {domain.desc}
+              </p>
 
-      {/* LeetCode Telemetry Dashboard */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-40px' }}
-        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-        className="mt-8"
-      >
-        <LeetCodeDashboard />
-      </motion.div>
+              {/* Skill Chips / List */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {domain.skills.map((s) => (
+                  <div
+                    key={s.name}
+                    className="p-2.5 rounded border border-border-subtle bg-base flex flex-col justify-between"
+                  >
+                    <div className="flex items-center justify-between gap-1 mb-1">
+                      <span className="text-xs font-semibold text-text-primary">
+                        {s.name}
+                      </span>
+                      <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded border ${
+                        s.level === 'Expert'
+                          ? 'border-accent/40 text-accent bg-accent/10'
+                          : 'border-border-subtle text-text-muted'
+                      }`}>
+                        {s.level}
+                      </span>
+                    </div>
+                    <span className="text-[11px] text-text-muted leading-tight">
+                      {s.note}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Verified Credentials & Currently Learning Strip */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        
+        {/* Verified Certifications (6 cols) */}
+        <div className="md:col-span-6 p-6 rounded-lg border border-border-subtle bg-surface card-hover">
+          <div className="flex items-center gap-2 mb-4 pb-2 border-b border-border-subtle">
+            <Award className="w-4 h-4 text-accent" />
+            <h4 className="text-sm font-bold font-mono text-text-primary uppercase tracking-wide">
+              Verified Certifications
+            </h4>
+          </div>
+
+          <div className="space-y-3">
+            {CERTIFICATIONS.map((cert) => (
+              <a
+                key={cert.id}
+                href={cert.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between p-3 rounded border border-border-subtle bg-base hover:border-border-strong transition-colors"
+              >
+                <div>
+                  <div className="text-xs font-semibold text-text-primary group-hover:text-accent transition-colors flex items-center gap-1.5">
+                    <span>{cert.title}</span>
+                    <ExternalLink className="w-3 h-3 text-text-muted opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                  <div className="text-[11px] text-text-muted mt-0.5">
+                    {cert.platform} · {cert.tag}
+                  </div>
+                </div>
+                <span className="font-mono text-[11px] text-live flex items-center gap-1 shrink-0">
+                  <CheckCircle className="w-3 h-3 text-live" />
+                  <span>Verified</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Currently Exploring / Learning (6 cols) */}
+        <div className="md:col-span-6 p-6 rounded-lg border border-border-subtle bg-surface card-hover">
+          <div className="flex items-center gap-2 mb-4 pb-2 border-b border-border-subtle">
+            <BookOpen className="w-4 h-4 text-accent" />
+            <h4 className="text-sm font-bold font-mono text-text-primary uppercase tracking-wide">
+              Active Focus & Research Areas
+            </h4>
+          </div>
+
+          <div className="space-y-3">
+            {CURRENTLY_LEARNING.map((item, idx) => (
+              <div
+                key={idx}
+                className="p-3 rounded border border-border-subtle bg-base"
+              >
+                <div className="flex items-center justify-between gap-1 mb-0.5">
+                  <span className="text-xs font-semibold text-text-primary">
+                    {item.topic}
+                  </span>
+                  <span className="font-mono text-[10px] px-1.5 py-0.2 rounded border border-accent/40 text-accent bg-accent/10">
+                    {item.status}
+                  </span>
+                </div>
+                <div className="text-[11px] text-text-secondary leading-snug">
+                  {item.focus}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
 
     </section>
   );

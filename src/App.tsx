@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/layout/Navbar';
 import { ScrollProgress } from './components/layout/ScrollProgress';
-import { BentoHero } from './components/hero/BentoHero';
+import { HeroSection } from './components/hero/HeroSection';
 import { ProjectsSection } from './components/projects/ProjectsSection';
 import { SkillsSection } from './components/skills/SkillsSection';
 import { BuildLogSection } from './components/build-log/BuildLogSection';
 import { ContactSection } from './components/contact/ContactSection';
 import { Footer } from './components/layout/Footer';
 import { CommandPalette } from './components/shared/CommandPalette';
-import { MLMechanismsLab } from './components/shared/MLMechanismsLab';
+import { LabModal } from './components/shared/LabModal';
 
 export function App() {
   const [isDark, setIsDark] = useState<boolean>(true);
   const [isCmdOpen, setIsCmdOpen] = useState<boolean>(false);
-  const [isMLLabOpen, setIsMLLabOpen] = useState<boolean>(false);
+  const [isLabOpen, setIsLabOpen] = useState<boolean>(false);
   const [activeCaseStudyId, setActiveCaseStudyId] = useState<string | null>(null);
 
   // Initialize theme from storage or system preference
@@ -81,34 +81,32 @@ export function App() {
         isDark={isDark}
         onToggleTheme={toggleTheme}
         onOpenCmd={() => setIsCmdOpen(true)}
-        onOpenMLLab={() => setIsMLLabOpen(true)}
+        onOpenLab={() => setIsLabOpen(true)}
       />
 
       {/* Main Content Area */}
       <main id="main-content">
-        {/* Bento Grid Hero */}
-        <BentoHero
-          onOpenCaseStudy={(id) => setActiveCaseStudyId(id)}
-        />
+        {/* Editorial Hero Section */}
+        <HeroSection />
 
-        {/* Projects Section with 2D Embedding Map & Case Study Trigger */}
+        {/* Projects Section with DocuShield Flagship & Distinct Hierarchy */}
         <ProjectsSection
           activeCaseStudyId={activeCaseStudyId}
           onOpenCaseStudy={(id) => setActiveCaseStudyId(id)}
           onCloseCaseStudy={() => setActiveCaseStudyId(null)}
         />
 
-        {/* Skills Section with Empirical Feature Importance, Knowledge Map & Pipeline */}
-        <SkillsSection onOpenCaseStudy={(id) => setActiveCaseStudyId(id)} />
+        {/* Skills Section Grouped by 4 Engineering Domains */}
+        <SkillsSection />
 
-        {/* Engineering Build Log */}
+        {/* Technical Build Log */}
         <BuildLogSection />
 
         {/* Contact Section */}
         <ContactSection />
       </main>
 
-      {/* Footer with Build-Time Metadata */}
+      {/* Minimal Footer */}
       <Footer />
 
       {/* Command Palette Modal */}
@@ -120,12 +118,16 @@ export function App() {
         onSelectProject={(id) => {
           setActiveCaseStudyId(id);
         }}
+        onOpenLab={() => setIsLabOpen(true)}
       />
 
-      {/* ML Mechanisms Lab: Transformer Attention & Gradient Descent */}
-      <MLMechanismsLab
-        isOpen={isMLLabOpen}
-        onClose={() => setIsMLLabOpen(false)}
+      {/* Interactive ML Lab Modal (Mechanisms, Embeddings, Pipeline & LeetCode) */}
+      <LabModal
+        isOpen={isLabOpen}
+        onClose={() => setIsLabOpen(false)}
+        onSelectProject={(id) => {
+          setActiveCaseStudyId(id);
+        }}
       />
 
     </div>

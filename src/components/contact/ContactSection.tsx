@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Mail, Github, Linkedin, Send, CheckCircle2, AlertTriangle, Loader2 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export const ContactSection: React.FC = () => {
+  const shouldReduceMotion = useReducedMotion();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,9 +26,8 @@ export const ContactSection: React.FC = () => {
 
     // Honeypot check
     if (formData.botcheck) {
-      // Bot detected, silently succeed
       setStatus('success');
-      setStatusMessage('Transmission accepted.');
+      setStatusMessage('Message sent successfully.');
       return;
     }
 
@@ -53,10 +53,10 @@ export const ContactSection: React.FC = () => {
 
       if (res.ok) {
         setStatus('success');
-        setStatusMessage('Transmission received. I will respond to your inquiry shortly.');
+        setStatusMessage('Thank you for reaching out! I will respond to your message shortly.');
         setFormData({ name: '', email: '', message: '', botcheck: '' });
       } else {
-        // Fallback to Web3Forms directly if running in a client-only environment
+        // Fallback to Web3Forms
         const web3Res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -65,273 +65,228 @@ export const ContactSection: React.FC = () => {
             name: formData.name,
             email: formData.email,
             message: formData.message,
-            subject: 'New Transmission from AI Engineering Portfolio'
+            subject: 'New Message from AI Engineering Portfolio'
           })
         });
 
         if (web3Res.ok) {
           setStatus('success');
-          setStatusMessage('Transmission received. I will respond to your inquiry shortly.');
+          setStatusMessage('Thank you for reaching out! I will respond to your message shortly.');
           setFormData({ name: '', email: '', message: '', botcheck: '' });
         } else {
-          throw new Error('Transmission endpoint failed.');
+          throw new Error('Endpoint failure');
         }
       }
     } catch (err: any) {
       setStatus('error');
-      setStatusMessage('Unable to deliver message automatically. Please reach out directly to abhinavanand9996@gmail.com.');
+      setStatusMessage('Message delivery failed. Please send an email directly to abhinavanand2005.cse@gmail.com.');
     }
   };
 
   return (
-    <section id="contact" className="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-[#2b2a27]/60 relative overflow-hidden">
-
-      {/* ── Orbiting accent decoration (top-right) ── */}
-      <div className="absolute top-8 right-8 w-40 h-40 pointer-events-none hidden lg:block" aria-hidden="true">
-        <div className="relative w-full h-full">
-          {/* Outer ring */}
-          <div className="absolute inset-0 rounded-full border border-[#e58b24]/8" />
-          {/* Middle ring */}
-          <div className="absolute inset-6 rounded-full border border-[#e58b24]/5" />
-          {/* Orbiting dot 1 */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-2 h-2 -mt-1 -ml-1"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-            style={{ transformOrigin: '50% calc(-50px)' }}
-          >
-            <div className="w-2 h-2 rounded-full bg-[#e58b24]/50" />
-          </motion.div>
-          {/* Orbiting dot 2 */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-1.5 h-1.5 -mt-0.75 -ml-0.75"
-            animate={{ rotate: -360 }}
-            transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
-            style={{ transformOrigin: '50% calc(-30px)' }}
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-[#e58b24]/30" />
-          </motion.div>
-          {/* Center pulse */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-3 h-3 -mt-1.5 -ml-1.5 rounded-full bg-[#e58b24]/20"
-            animate={{ scale: [1, 1.8, 1], opacity: [0.4, 0.1, 0.4] }}
-            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-          />
+    <section id="contact" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-border-subtle">
+      
+      {/* Section Header */}
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+        <div>
+          <div className="font-mono text-xs uppercase tracking-wide text-accent mb-2">
+            Get In Touch
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">
+            Initiate Conversation
+          </h2>
         </div>
+        <p className="text-sm text-text-secondary max-w-md">
+          Available for Summer & Fall AI/ML and Machine Learning Engineering internships. Always interested in discussing technical challenges.
+        </p>
       </div>
 
-      {/* Section Meta Header */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="flex items-center justify-between py-2 border-b border-[#2b2a27]/60 mb-8 font-mono text-[11px] text-[#78716c]"
-      >
-        <div className="flex items-center gap-2">
-          <span className="text-[#e58b24] font-semibold">[05]</span>
-          <span className="uppercase tracking-wider">CONTACT // TRANSMISSION CHANNELS</span>
-        </div>
-        <div>
-          <motion.span
-            animate={{ opacity: [0.6, 1, 0.6] }}
-            transition={{ duration: 2.5, repeat: Infinity }}
-          >
-            STATUS: READY FOR TRANSMISSION
-          </motion.span>
-        </div>
-      </motion.div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Left Column: Direct channels & availability */}
+        {/* Direct Contact Cards (5 cols) */}
         <motion.div
-          className="lg:col-span-5 space-y-6"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
+          className="lg:col-span-5 space-y-4"
         >
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] mb-3">
-              Initiate Transmission
-            </h2>
-            <p className="text-sm text-[#a8a29e] dark:text-[#a8a29e] light:text-[#57534e] leading-relaxed mb-6">
-              Whether you are looking to hire for an AI/ML engineering role, exploring technical collaborations, or discussing machine learning pipelines—my channels are open.
+          <div className="p-6 rounded-lg border border-border-subtle bg-surface space-y-4 card-hover">
+            <h3 className="text-base font-bold text-text-primary">
+              Direct Channels
+            </h3>
+            <p className="text-sm text-text-secondary leading-relaxed">
+              For internship opportunities, code reviews, or engineering discussions, reach out directly via email or professional profiles.
             </p>
-          </div>
 
-
-          <div className="space-y-3 font-mono text-xs">
-            {[
-              {
-                href: 'mailto:abhinavanand9996@gmail.com',
-                icon: <Mail className="w-4 h-4" />,
-                label: 'Direct Email',
-                value: 'abhinavanand9996@gmail.com',
-                external: false,
-              },
-              {
-                href: 'https://github.com/abhinavbuilds2005',
-                icon: <Github className="w-4 h-4" />,
-                label: 'Source Repositories',
-                value: 'github.com/abhinavbuilds2005',
-                external: true,
-              },
-              {
-                href: 'https://www.linkedin.com/in/abhinav-anand-865926300',
-                icon: <Linkedin className="w-4 h-4" />,
-                label: 'LinkedIn Profile',
-                value: 'linkedin.com/in/abhinav-anand-865926300',
-                external: true,
-              },
-            ].map((channel, i) => (
-              <motion.a
-                key={channel.href}
-                href={channel.href}
-                target={channel.external ? '_blank' : undefined}
-                rel={channel.external ? 'noopener noreferrer' : undefined}
-                initial={{ opacity: 0, x: -12 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
-                whileHover={{ x: 4, borderColor: 'rgba(229,139,36,0.5)' }}
-                className="flex items-center gap-3 p-3.5 rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] transition-colors group"
+            <div className="space-y-3 pt-2">
+              <a
+                href="mailto:abhinavanand2005.cse@gmail.com"
+                className="flex items-center gap-3 p-3 rounded-md border border-border-subtle bg-base hover:border-border-strong text-text-primary hover:text-accent transition-colors"
               >
-                <motion.div
-                  className="p-2 rounded bg-[#161616] text-[#e58b24]"
-                  whileHover={{ scale: 1.15, rotate: 5 }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                >
-                  {channel.icon}
-                </motion.div>
-                <div className="truncate">
-                  <div className="text-[10px] text-[#78716c] uppercase">{channel.label}</div>
-                  <div className="font-semibold group-hover:text-[#e58b24] transition-colors">{channel.value}</div>
+                <div className="p-2 rounded bg-surface border border-border-subtle text-accent">
+                  <Mail className="w-4 h-4" />
                 </div>
-              </motion.a>
-            ))}
+                <div>
+                  <div className="text-xs text-text-muted font-mono uppercase">Email</div>
+                  <div className="text-xs sm:text-sm font-medium">abhinavanand2005.cse@gmail.com</div>
+                </div>
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/abhinav-anand-865926300"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 rounded-md border border-border-subtle bg-base hover:border-border-strong text-text-primary hover:text-accent transition-colors"
+              >
+                <div className="p-2 rounded bg-surface border border-border-subtle text-accent">
+                  <Linkedin className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-xs text-text-muted font-mono uppercase">LinkedIn</div>
+                  <div className="text-xs sm:text-sm font-medium">in/abhinav-anand-865926300</div>
+                </div>
+              </a>
+
+              <a
+                href="https://github.com/abhinavbuilds2005"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-3 rounded-md border border-border-subtle bg-base hover:border-border-strong text-text-primary hover:text-accent transition-colors"
+              >
+                <div className="p-2 rounded bg-surface border border-border-subtle text-accent">
+                  <Github className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-xs text-text-muted font-mono uppercase">GitHub</div>
+                  <div className="text-xs sm:text-sm font-medium">github.com/abhinavbuilds2005</div>
+                </div>
+              </a>
+            </div>
           </div>
 
-
-          <div className="p-4 rounded border border-[#2b2a27] bg-[#161616] dark:bg-[#161616] light:bg-[#faf8f5]">
-            <span className="font-mono text-[10px] text-[#e58b24] uppercase tracking-wider block mb-1">
-              Availability Notice
-            </span>
-            <p className="text-xs text-[#a8a29e] dark:text-[#a8a29e] light:text-[#57534e] leading-relaxed">
-              Targeting AI/ML Engineering internships, junior machine learning roles, and research assistantships. Immediate availability for remote and on-site opportunities.
-            </p>
+          <div className="p-4 rounded-lg border border-border-subtle bg-surface text-xs text-text-secondary flex items-center gap-2.5">
+            <span className="w-2 h-2 rounded-full bg-live shrink-0 animate-live-pulse" />
+            <span>Response latency: typically within 24 hours (IST, UTC+5:30).</span>
           </div>
         </motion.div>
 
-        {/* Right Column: Serverless Contact Form */}
+        {/* Message Form (7 cols) */}
         <motion.div
-          className="lg:col-span-7"
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.45, delay: shouldReduceMotion ? 0 : 0.1, ease: 'easeOut' }}
+          className="lg:col-span-7"
         >
-          <form
-            onSubmit={handleSubmit}
-            className="p-6 sm:p-7 rounded border border-[#2b2a27] bg-[#1c1c1c] dark:bg-[#1c1c1c] light:bg-[#ffffff] shadow-sm space-y-4"
-          >
-            <div className="font-mono text-xs text-[#e58b24] font-semibold pb-2 border-b border-[#2b2a27]/60">
-              DISPATCH COMMUNICATION PAYLOAD
-            </div>
+          <div className="p-6 sm:p-8 rounded-lg border border-border-subtle bg-surface card-hover">
+            <h3 className="text-lg font-bold text-text-primary mb-1">
+              Send a Message
+            </h3>
+            <p className="text-xs sm:text-sm text-text-secondary mb-6">
+              Delivered through our serverless pipeline with immediate notification.
+            </p>
 
-            {/* Honeypot anti-spam field */}
-            <input
-              type="text"
-              name="botcheck"
-              value={formData.botcheck}
-              onChange={handleChange}
-              style={{ display: 'none' }}
-              tabIndex={-1}
-              autoComplete="off"
-            />
-
-            <div>
-              <label htmlFor="name" className="block font-mono text-[11px] text-[#a8a29e] uppercase mb-1">
-                Sender Name <span className="text-[#e58b24]">*</span>
-              </label>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot field for bot detection */}
               <input
                 type="text"
-                id="name"
-                name="name"
-                required
-                value={formData.name}
+                name="botcheck"
+                value={formData.botcheck}
                 onChange={handleChange}
-                placeholder="e.g. Sarah Connor / ML Recruiter"
-                className="w-full px-3.5 py-2 rounded text-xs font-mono border border-[#2b2a27] bg-[#121212] dark:bg-[#121212] light:bg-[#faf8f5] text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] focus:border-[#e58b24] focus:outline-none transition-colors"
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
               />
-            </div>
 
-            <div>
-              <label htmlFor="email" className="block font-mono text-[11px] text-[#a8a29e] uppercase mb-1">
-                Transmission Email <span className="text-[#e58b24]">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="e.g. sarah@lab.ai"
-                className="w-full px-3.5 py-2 rounded text-xs font-mono border border-[#2b2a27] bg-[#121212] dark:bg-[#121212] light:bg-[#faf8f5] text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] focus:border-[#e58b24] focus:outline-none transition-colors"
-              />
-            </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="name" className="block text-xs font-mono text-text-secondary mb-1">
+                    Your Name *
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="e.g. Jane Doe"
+                    required
+                    className="w-full px-3.5 py-2.5 rounded-md border border-border-subtle bg-base text-text-primary text-sm focus:border-accent focus:outline-none transition-colors"
+                  />
+                </div>
 
-            <div>
-              <label htmlFor="message" className="block font-mono text-[11px] text-[#a8a29e] uppercase mb-1">
-                Project Specs / Message <span className="text-[#e58b24]">*</span>
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                rows={4}
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Detail role scope, project specifications, or collaboration details..."
-                className="w-full px-3.5 py-2 rounded text-xs font-mono border border-[#2b2a27] bg-[#121212] dark:bg-[#121212] light:bg-[#faf8f5] text-[#f5f2eb] dark:text-[#f5f2eb] light:text-[#1c1917] focus:border-[#e58b24] focus:outline-none transition-colors"
-              />
-            </div>
+                <div>
+                  <label htmlFor="email" className="block text-xs font-mono text-text-secondary mb-1">
+                    Email Address *
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="jane@company.com"
+                    required
+                    className="w-full px-3.5 py-2.5 rounded-md border border-border-subtle bg-base text-text-primary text-sm focus:border-accent focus:outline-none transition-colors"
+                  />
+                </div>
+              </div>
 
-            <button
-              type="submit"
-              disabled={status === 'loading'}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded font-mono text-xs font-medium tracking-wide bg-[#e58b24] hover:bg-[#d97706] text-[#121212] disabled:opacity-50 transition-colors shadow-sm"
-            >
-              {status === 'loading' ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Transmitting...</span>
-                </>
-              ) : (
-                <>
-                  <Send className="w-4 h-4" />
-                  <span>Transmit Message</span>
-                </>
+              <div>
+                <label htmlFor="message" className="block text-xs font-mono text-text-secondary mb-1">
+                  Message *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell me about your team, role requirements, or project..."
+                  required
+                  className="w-full px-3.5 py-2.5 rounded-md border border-border-subtle bg-base text-text-primary text-sm focus:border-accent focus:outline-none transition-colors resize-y"
+                />
+              </div>
+
+              {/* Status Message Alert */}
+              {statusMessage && (
+                <div
+                  className={`p-3 rounded-md text-xs flex items-start gap-2 border ${
+                    status === 'success'
+                      ? 'border-live/40 bg-live/10 text-live'
+                      : 'border-accent/40 bg-accent/10 text-accent'
+                  }`}
+                  role="alert"
+                >
+                  {status === 'success' ? (
+                    <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" />
+                  ) : (
+                    <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
+                  )}
+                  <span>{statusMessage}</span>
+                </div>
               )}
-            </button>
 
-            {/* Status alerts */}
-            {status === 'success' && (
-              <div className="flex items-center gap-2 p-3 rounded border border-[#e58b24]/50 bg-[#e58b24]/10 text-[#f5f2eb] text-xs font-mono">
-                <CheckCircle2 className="w-4 h-4 text-[#e58b24] shrink-0" />
-                <span>{statusMessage}</span>
-              </div>
-            )}
-
-            {status === 'error' && (
-              <div className="flex items-center gap-2 p-3 rounded border border-red-500/50 bg-red-950/20 text-[#f5f2eb] text-xs font-mono">
-                <AlertTriangle className="w-4 h-4 text-red-400 shrink-0" />
-                <span>{statusMessage}</span>
-              </div>
-            )}
-          </form>
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-md text-sm font-medium bg-accent hover:bg-accent-hover text-base transition-colors shadow-sm disabled:opacity-50 cursor-pointer"
+              >
+                {status === 'loading' ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Dispatching...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    <span>Send Message</span>
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
         </motion.div>
 
       </div>
