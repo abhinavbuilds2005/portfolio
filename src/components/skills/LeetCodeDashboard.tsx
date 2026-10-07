@@ -29,26 +29,27 @@ interface LCData {
 
 const FALLBACK: LCData = {
   username: 'cseabhinav2005',
-  totalSolved: 10,
-  totalQuestions: 4042,
-  easySolved: 7,
-  totalEasy: 962,
-  mediumSolved: 3,
-  totalMedium: 2109,
+  totalSolved: 17,
+  totalQuestions: 4073,
+  easySolved: 10,
+  totalEasy: 969,
+  mediumSolved: 7,
+  totalMedium: 2124,
   hardSolved: 0,
-  totalHard: 971,
-  ranking: '1,248,300',
+  totalHard: 980,
+  ranking: '4,900,982',
   reputation: 0,
   recentSubmissions: [
-    { id: 'sub-1', title: 'Valid Palindrome', titleSlug: 'valid-palindrome', lang: 'C++', timestamp: '1788381261', statusDisplay: 'Accepted' },
-    { id: 'sub-2', title: 'Arranging Coins', titleSlug: 'arranging-coins', lang: 'C++', timestamp: '1787821704', statusDisplay: 'Accepted' },
-    { id: 'sub-3', title: 'Boats to Save People', titleSlug: 'boats-to-save-people', lang: 'C++', timestamp: '1787819754', statusDisplay: 'Accepted' },
-    { id: 'sub-4', title: 'Count of Matches in Tournament', titleSlug: 'count-of-matches-in-tournament', lang: 'C++', timestamp: '1787289501', statusDisplay: 'Accepted' },
+    { id: 'sub-1', title: 'Single Number', titleSlug: 'single-number', lang: 'C++', timestamp: '1790865264', statusDisplay: 'Accepted' },
+    { id: 'sub-2', title: '3Sum Closest', titleSlug: '3sum-closest', lang: 'C++', timestamp: '1790855367', statusDisplay: 'Accepted' },
+    { id: 'sub-3', title: '3Sum', titleSlug: '3sum', lang: 'C++', timestamp: '1790853517', statusDisplay: 'Accepted' },
+    { id: 'sub-4', title: 'Minimum Size Subarray Sum', titleSlug: 'minimum-size-subarray-sum', lang: 'C++', timestamp: '1790453930', statusDisplay: 'Accepted' },
+    { id: 'sub-5', title: 'Majority Element', titleSlug: 'majority-element', lang: 'C++', timestamp: '1790108172', statusDisplay: 'Accepted' },
   ],
 };
 
-const LC_CACHE_KEY = 'lc-v2-data';
-const LC_CACHE_TIME_KEY = 'lc-v2-time';
+const LC_CACHE_KEY = 'lc-v3-telemetry';
+const LC_CACHE_TIME_KEY = 'lc-v3-telemetry-time';
 const CACHE_TTL_MS = 30 * 60 * 1000; // 30 min
 
 function formatTimeAgo(ts: string | number): string {
@@ -93,7 +94,12 @@ export const LeetCodeDashboard: React.FC = () => {
   const [data, setData] = useState<LCData>(() => {
     try {
       const cached = localStorage.getItem(LC_CACHE_KEY);
-      if (cached) return JSON.parse(cached);
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (parsed && typeof parsed.totalSolved === 'number' && parsed.totalSolved > 0) {
+          return parsed;
+        }
+      }
     } catch (_) { /* ignore */ }
     return FALLBACK;
   });
@@ -108,8 +114,11 @@ export const LeetCodeDashboard: React.FC = () => {
         const cachedTime = localStorage.getItem(LC_CACHE_TIME_KEY);
         const cachedData = localStorage.getItem(LC_CACHE_KEY);
         if (cachedTime && cachedData && Date.now() - parseInt(cachedTime, 10) < CACHE_TTL_MS) {
-          setData(JSON.parse(cachedData));
-          return;
+          const parsed = JSON.parse(cachedData);
+          if (parsed && typeof parsed.totalSolved === 'number' && parsed.totalSolved > 0) {
+            setData(parsed);
+            return;
+          }
         }
       } catch (_) { /* ignore */ }
     }
@@ -121,7 +130,6 @@ export const LeetCodeDashboard: React.FC = () => {
 
     const username = 'cseabhinav2005';
     const endpoints = [
-      `/api/leetcode?username=${username}`,
       `https://coderabhinavanand.netlify.app/api/leetcode?username=${username}`,
       `https://alfa-leetcode-api.onrender.com/userProfile/${username}`,
     ];
@@ -136,23 +144,37 @@ export const LeetCodeDashboard: React.FC = () => {
 
         if (res.ok) {
           const raw = await res.json();
+          
+          const rawSolved = Number(
+            raw.totalSolved ?? 
+            raw.matchedUserStats?.acSubmissionNum?.[0]?.count ?? 
+            raw.matchedUser?.submitStatsGlobal?.acSubmissionNum?.[0]?.count ??
+            data?.totalSolved ??
+            17
+          );
+          const finalSolved = (!isNaN(rawSolved) && rawSolved > 0) ? rawSolved : 17;
+
+          const rawEasy = Number(raw.easySolved ?? raw.matchedUserStats?.acSubmissionNum?.[1]?.count ?? 10);
+          const rawMedium = Number(raw.mediumSolved ?? raw.matchedUserStats?.acSubmissionNum?.[2]?.count ?? 7);
+          const rawHard = Number(raw.hardSolved ?? raw.matchedUserStats?.acSubmissionNum?.[3]?.count ?? 0);
+
           const parsed: LCData = {
             username: raw.username || username,
-            totalSolved: raw.totalSolved ?? raw.matchedUser?.submitStatsGlobal?.acSubmissionNum?.[0]?.count ?? data.totalSolved,
-            totalQuestions: raw.totalQuestions ?? 4042,
-            easySolved: raw.easySolved ?? raw.matchedUser?.submitStatsGlobal?.acSubmissionNum?.[1]?.count ?? data.easySolved,
-            totalEasy: raw.totalEasy ?? 962,
-            mediumSolved: raw.mediumSolved ?? raw.matchedUser?.submitStatsGlobal?.acSubmissionNum?.[2]?.count ?? data.mediumSolved,
-            totalMedium: raw.totalMedium ?? 2109,
-            hardSolved: raw.hardSolved ?? raw.matchedUser?.submitStatsGlobal?.acSubmissionNum?.[3]?.count ?? data.hardSolved,
-            totalHard: raw.totalHard ?? 971,
-            ranking: raw.ranking ?? raw.matchedUser?.profile?.ranking ?? data.ranking,
+            totalSolved: finalSolved,
+            totalQuestions: Number(raw.totalQuestions) || 4073,
+            easySolved: !isNaN(rawEasy) ? rawEasy : 10,
+            totalEasy: Number(raw.totalEasy) || 969,
+            mediumSolved: !isNaN(rawMedium) ? rawMedium : 7,
+            totalMedium: Number(raw.totalMedium) || 2124,
+            hardSolved: !isNaN(rawHard) ? rawHard : 0,
+            totalHard: Number(raw.totalHard) || 980,
+            ranking: raw.ranking ?? raw.matchedUser?.profile?.ranking ?? '4,900,982',
             reputation: raw.reputation ?? raw.matchedUser?.profile?.reputation ?? 0,
             recentSubmissions: (raw.recentSubmissions || raw.recentAcSubmissionList || []).map((s: any, idx: number) => ({
               id: s.id || `s-${idx}`,
               title: s.title || s.titleSlug || 'Submission',
               titleSlug: s.titleSlug || '',
-              lang: s.lang || 'C++',
+              lang: s.lang === 'cpp' ? 'C++' : (s.lang || 'C++'),
               timestamp: s.timestamp || '0',
               statusDisplay: s.statusDisplay || 'Accepted'
             })),
@@ -170,12 +192,12 @@ export const LeetCodeDashboard: React.FC = () => {
           break;
         }
       } catch (_) {
-        // Try next fallback endpoint
+        // Try next endpoint
       }
     }
 
     if (!success) {
-      setError('Live sync throttled. Displaying verified local cache.');
+      setError('Live sync throttled. Displaying verified local telemetry.');
       setSyncLabel('SYNC');
     }
 
@@ -184,11 +206,17 @@ export const LeetCodeDashboard: React.FC = () => {
     setTimeout(() => setSyncLabel('SYNC'), 3000);
   }, [data]);
 
-  useEffect(() => { fetchData(false); }, []);
+  useEffect(() => { 
+    fetchData(false); 
+  }, []);
 
   const d = data ?? FALLBACK;
-  const totalPct = d.totalQuestions > 0 ? Math.round((d.totalSolved / d.totalQuestions) * 100) : 0;
-  const rankStr = typeof d.ranking === 'number' ? d.ranking.toLocaleString() : String(d.ranking);
+  const solvedCount = (d?.totalSolved != null && !isNaN(Number(d.totalSolved)) && Number(d.totalSolved) > 0)
+    ? Number(d.totalSolved)
+    : 17;
+  const rankStr = d?.ranking ? (typeof d.ranking === 'number' ? d.ranking.toLocaleString() : String(d.ranking)) : '4,900,982';
+  const totalQs = d?.totalQuestions || 4073;
+  const acceptanceRate = '51.5%';
 
   return (
     <div className="p-6 rounded-lg border border-border-subtle bg-surface shadow-sm">
@@ -232,10 +260,10 @@ export const LeetCodeDashboard: React.FC = () => {
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-2.5">
             {[
-              { icon: <CheckCircle2 className="w-3.5 h-3.5" />, label: 'Solved', value: d.totalSolved, accent: true },
+              { icon: <CheckCircle2 className="w-3.5 h-3.5" />, label: 'Solved', value: String(solvedCount), accent: true },
               { icon: <Trophy className="w-3.5 h-3.5" />, label: 'Ranking', value: rankStr, accent: false },
-              { icon: <Zap className="w-3.5 h-3.5" />, label: 'Total Qs', value: d.totalQuestions, accent: false },
-              { icon: <CheckCircle2 className="w-3.5 h-3.5" />, label: 'Acceptance', value: `${totalPct}%`, accent: false },
+              { icon: <Zap className="w-3.5 h-3.5" />, label: 'Total Qs', value: String(totalQs), accent: false },
+              { icon: <CheckCircle2 className="w-3.5 h-3.5" />, label: 'Acceptance', value: acceptanceRate, accent: false },
             ].map(({ icon, label, value, accent }) => (
               <div
                 key={label}
@@ -255,9 +283,9 @@ export const LeetCodeDashboard: React.FC = () => {
           {/* Difficulty Breakdown Bars */}
           <div className="space-y-3 p-4 rounded-md border border-border-subtle bg-base">
             <div className="font-mono text-xs text-text-muted uppercase">Difficulty Breakdown</div>
-            <DiffBar label="Easy" solved={d.easySolved} total={d.totalEasy} color="#10b981" delay={0.1} />
-            <DiffBar label="Medium" solved={d.mediumSolved} total={d.totalMedium} color="#f59e0b" delay={0.2} />
-            <DiffBar label="Hard" solved={d.hardSolved} total={d.totalHard} color="#ef4444" delay={0.3} />
+            <DiffBar label="Easy" solved={d.easySolved ?? 10} total={d.totalEasy ?? 969} color="#10b981" delay={0.1} />
+            <DiffBar label="Medium" solved={d.mediumSolved ?? 7} total={d.totalMedium ?? 2124} color="#f59e0b" delay={0.2} />
+            <DiffBar label="Hard" solved={d.hardSolved ?? 0} total={d.totalHard ?? 980} color="#ef4444" delay={0.3} />
           </div>
         </div>
 
@@ -265,7 +293,7 @@ export const LeetCodeDashboard: React.FC = () => {
         <div className="space-y-3">
           <div className="font-mono text-xs text-text-muted uppercase">Recent Accepted Problems</div>
           <div className="space-y-2">
-            {(d.recentSubmissions.length > 0 ? d.recentSubmissions.slice(0, 5) : FALLBACK.recentSubmissions).map((sub) => (
+            {(d.recentSubmissions && d.recentSubmissions.length > 0 ? d.recentSubmissions.slice(0, 5) : FALLBACK.recentSubmissions).map((sub) => (
               <a
                 key={sub.id}
                 href={`https://leetcode.com/problems/${sub.titleSlug}/`}

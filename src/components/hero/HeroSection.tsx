@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowDown, FileText, ExternalLink, Github, Linkedin, Mail, Activity, Play, RotateCcw } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
+import avatarImg from '../../assets/abhinav.png';
 
 interface HeroSectionProps {
   onOpenProjects?: () => void;
@@ -25,7 +26,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenProjects }) => {
           <div className="flex flex-wrap items-center gap-3">
             <div className="relative">
               <img
-                src="/abhinav.png"
+                src={avatarImg}
                 alt="Abhinav Anand"
                 className="w-12 h-12 rounded-full object-cover border-2 border-border-strong shadow-sm"
                 width={48}
