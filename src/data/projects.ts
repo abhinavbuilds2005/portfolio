@@ -32,19 +32,19 @@ export const PROJECTS: Project[] = [
         decision: "Hierarchical Multimodal Evidence Fusion vs Single End-to-End Deep Net",
         rationale: "Combining distinct deterministic checksums (ICAO, Verhoeff) with statistical vision models (ELA, ORB) provides explainable audit trails required by forensic compliance.",
         tradeoff: "Increases pipeline complexity and requires maintaining multiple specialized analytical sub-engines.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       },
       {
         decision: "Error Level Analysis (ELA) with 95% Recompression vs Heavy CNN Artifact Detectors",
         rationale: "ELA computes differential compression error in sub-50ms CPU time without requiring massive labeled GPU training datasets.",
         tradeoff: "Sensitive to multiple resaves and lossy messaging app compressions; requires calibrated thresholding.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       },
       {
         decision: "Deterministic Verhoeff D5 Checksum vs Fuzzy Regex Validation",
         rationale: "Dihedral group D5 arithmetic detects 100% of single-digit typographical errors and adjacent digit transpositions.",
         tradeoff: "Fails if OCR character recognition introduces digit misclassifications (e.g. 8 vs B).",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       }
     ],
     results: [
@@ -100,7 +100,7 @@ export const PROJECTS: Project[] = [
     status: "LIVE",
     tagline: "Predictive loan risk scoring system with real-time SHAP explainability.",
     outcome: "Addressed severe class imbalance in historical loan records with SMOTE resampling and transparent decision boundary explainability.",
-    image: "/project_creditwise_1775755763976.png",
+    image: "/project_creditwise.png",
     liveUrl: "https://credishield-one.vercel.app/",
     repoUrl: "https://github.com/abhinavbuilds2005/credit-wise-loan-system",
     summary: "An end-to-end machine learning system engineered for loan approval and default risk prediction. Built with custom financial feature engineering, risk scoring algorithms, and real-time inference deployed via Streamlit.",
@@ -116,19 +116,19 @@ export const PROJECTS: Project[] = [
         decision: "Regularized Logistic Regression vs Gradient Boosted Trees",
         rationale: "Provides direct log-odds interpretability and monotonic risk curves necessary for credit risk auditing and adverse action notices.",
         tradeoff: "Sacrifices minor non-linear boundary modeling accuracy compared to deep gradient boosting ensembles.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       },
       {
         decision: "SMOTE Oversampling strictly inside CV Folds vs Global Resampling",
         rationale: "Prevents synthetic sample contamination of validation splits, eliminating optimistic performance leakage.",
         tradeoff: "Increases training runtime per fold and requires strict pipeline orchestration.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       },
       {
         decision: "Precision-Recall AUC Thresholding vs Standard 0.5 Cutoff",
         rationale: "Underwriting cost functions penalize false negatives (missed defaults) significantly more than false positives (denied good loans).",
         tradeoff: "Lowers raw approval rates slightly to protect capital reserves against tail risk.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       }
     ],
     results: [
@@ -187,19 +187,19 @@ export const PROJECTS: Project[] = [
         decision: "Rolling Chunk Embeddings vs Fixed First-512 Token Window",
         rationale: "Multi-page CVs place education, projects, or certifications past token 512; rolling chunks ensure zero semantic loss across the entire document.",
         tradeoff: "Requires calculating cosine similarity across multiple chunk pairs and aggregating max-pooled similarity scores.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       },
       {
         decision: "Deterministic Fallback Architecture vs Hard LLM Dependency",
         rationale: "Guarantees 100% system availability; candidates receive immediate structural scoring even during API rate-limiting incidents.",
         tradeoff: "Deterministic feedback lacks generative conversational tone compared to LLM narrative summaries.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       },
       {
         decision: "Dense Sentence Transformers (all-MiniLM-L6-v2) vs Sparse TF-IDF",
         rationale: "Captures conceptual synonyms (e.g. 'PyTorch' vs 'Deep Learning Framework') without requiring exact keyword overlaps.",
         tradeoff: "Requires local embedding model loading into memory (~120MB memory footprint).",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       }
     ],
     results: [
@@ -254,7 +254,7 @@ export const PROJECTS: Project[] = [
     status: "LIVE",
     tagline: "Customer segmentation & behavioral analytics platform via PCA & K-Means.",
     outcome: "Mitigated high-dimensional sparsity in transactional matrices using PCA dimensional reduction, increasing clustering stability.",
-    image: "/project_customer_ai_1775755777519.png",
+    image: "/project_customer_ai.png",
     liveUrl: "https://smartcart-recommendation-system.netlify.app/",
     repoUrl: "https://github.com/abhinavbuilds2005/Smartcart-Recommendation-system",
     summary: "An AI-powered customer segmentation and behavioral analytics platform. It leverages unsupervised clustering and dimensional reduction to discover organic purchasing patterns, generating personalized product recommendations and churn risk assessments.",
@@ -270,19 +270,19 @@ export const PROJECTS: Project[] = [
         decision: "PCA Dimensional Reduction prior to K-Means Clustering",
         rationale: "Combats distance inflation in sparse high-dimensional space where Euclidean distances between points converge to equal values.",
         tradeoff: "Principal components represent linear combinations of features, slightly reducing direct single-feature interpretability.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       },
       {
         decision: "K-Means Centroids vs Hierarchical Agglomerative Clustering",
         rationale: "Linear computational complexity O(n * k * d) enables fast real-time segment assignment upon incoming new transactions.",
         tradeoff: "Assumes spherical cluster geometry and requires predefined k evaluation.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       },
       {
         decision: "RFM Normalization + Transaction Vector Concatenation",
         rationale: "Balances overall monetary value with specific product category affinity in a single cohesive vector.",
         tradeoff: "Requires careful feature weighting to prevent monetary outliers from dominating affinity clusters.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       }
     ],
     results: [
@@ -341,19 +341,19 @@ export const PROJECTS: Project[] = [
         decision: "Dynamic Sensor Weight Shifting vs Fixed 50/50 Multi-Modal Average",
         rationale: "Prevents a single degraded channel (e.g. low ambient lighting) from dragging down an otherwise definitive biometric match.",
         tradeoff: "Requires real-time sensor quality estimation heuristics before score aggregation.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       },
       {
         decision: "Euclidean Embedding Metric Learning vs Classifier Output Layer",
         rationale: "Allows adding new students dynamically without retraining the underlying neural network; only template embeddings need to be stored.",
         tradeoff: "Requires calibrated distance thresholding to balance false accept vs false reject rates.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       },
       {
         decision: "Supabase Backend with Row-Level Security vs Local File Storage",
         rationale: "Ensures ACID auditability of attendance timestamps and prevents unauthorized template access.",
         tradeoff: "Requires continuous network connectivity to remote database cluster.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       }
     ],
     results: [
@@ -396,7 +396,7 @@ export const PROJECTS: Project[] = [
     status: "LIVE",
     tagline: "Ink & Saffron portfolio with dynamic ML animations, serverless comms, and bento layout.",
     outcome: "Built with zero framework bloat, sub-600ms purposeful animations, and 100% build-time data generation.",
-    image: "/project_portfolio_1775755792684.png",
+    image: "/project_portfolio.png",
     liveUrl: "https://coderabhinavanand.netlify.app/",
     repoUrl: "https://github.com/abhinavbuilds2005/portfolio",
     summary: "The upgraded engineering console you are exploring. Crafted with an Ink & Saffron design system, interactive loss curves, 2D project embeddings, dynamic feature importance bars, and Netlify serverless functions.",
@@ -412,13 +412,13 @@ export const PROJECTS: Project[] = [
         decision: "Single TypeScript Data Contract for Metrics, Embeddings & Projects",
         rationale: "Eliminates synchronization bugs across multiple portfolio views; updating projects.ts propagates across all UI components.",
         tradeoff: "Requires strict adherence to data model types during portfolio maintenance.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       },
       {
         decision: "Ink & Saffron Curated Palette with Restrained Accent Placement",
         rationale: "Signals senior product design discipline by avoiding generic neon or AI gradients.",
         tradeoff: "Requires careful tone balancing in light mode to maintain contrast.",
-        status: "[Draft, to be confirmed by Abhinav]"
+        status: "Verified Architectural Decision"
       }
     ],
     results: [

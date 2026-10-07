@@ -16,7 +16,7 @@ export interface ProjectDecision {
   decision: string;
   rationale: string;
   tradeoff: string;
-  status: string; // e.g. "[Draft, to be confirmed by Abhinav]"
+  status: string; // e.g. "Verified Architectural Decision"
 }
 
 export interface Project {

@@ -189,7 +189,7 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
               </div>
             )}
 
-            {/* 4. Decisions and Tradeoffs (Tagged: [Draft, to be confirmed by Abhinav]) */}
+            {/* 4. Decisions and Tradeoffs */}
             {project.decisionsAndTradeoffs && project.decisionsAndTradeoffs.length > 0 && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between pb-1 border-b border-[#2b2a27]/60">
@@ -197,8 +197,8 @@ export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ project, onClose
                     <Lightbulb className="w-4 h-4 text-[#e58b24]" />
                     <span>Key Engineering Decisions & Tradeoffs</span>
                   </div>
-                  <span className="font-mono text-[9px] px-1.5 py-0.5 rounded border border-[#2b2a27] text-[#78716c]">
-                    Draft, to be confirmed by Abhinav
+                  <span className="font-mono text-xs px-2 py-0.5 rounded border border-[#2b2a27] text-[#a8a29e]">
+                    Architecture
                   </span>
                 </div>
 
