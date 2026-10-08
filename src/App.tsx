@@ -9,6 +9,7 @@ import { ContactSection } from './components/contact/ContactSection';
 import { Footer } from './components/layout/Footer';
 import { CommandPalette } from './components/shared/CommandPalette';
 import { LabModal } from './components/shared/LabModal';
+import { ModelInferenceSandbox } from './components/playground/ModelInferenceSandbox';
 
 export function App() {
   const [isDark, setIsDark] = useState<boolean>(true);
@@ -95,6 +96,9 @@ export function App() {
           onOpenCaseStudy={(id) => setActiveCaseStudyId(id)}
           onCloseCaseStudy={() => setActiveCaseStudyId(null)}
         />
+
+        {/* Interactive Production Model Telemetry & Diagnostics Sandbox */}
+        <ModelInferenceSandbox />
 
         {/* Skills Section with Knowledge Map, Pipeline, Feature Importance & LeetCode */}
         <SkillsSection onOpenCaseStudy={(id) => setActiveCaseStudyId(id)} />

@@ -7,6 +7,8 @@ import { calculateTechUsage, TechUsage } from '../../lib/utils';
 import { SystemsKnowledgeMap } from './SystemsKnowledgeMap';
 import { ModelPipelineVisualizer } from './ModelPipelineVisualizer';
 import { LeetCodeDashboard } from './LeetCodeDashboard';
+import { SpotlightCard } from '../shared/SpotlightCard';
+import { ScrambleText } from '../shared/ScrambleText';
 
 interface SkillsSectionProps {
   onOpenCaseStudy?: (projectId: string) => void;
@@ -59,7 +61,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onOpenCaseStudy })
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
         <div>
           <div className="font-mono text-xs uppercase tracking-wide text-accent mb-2">
-            Technical Capabilities
+            <ScrambleText text="Technical Capabilities" scrambleOnMount={true} />
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">
             Engineering Skill Architecture
@@ -89,32 +91,34 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onOpenCaseStudy })
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
           transition={{ duration: 0.45 }}
-          className="lg:col-span-7 p-6 rounded-lg border border-border-subtle bg-surface card-hover flex flex-col justify-between"
+          className="lg:col-span-7"
         >
-          <div>
-            <div className="flex items-center justify-between mb-4 pb-2 border-b border-border-subtle">
-              <div className="flex items-center gap-2 font-mono text-xs text-accent font-semibold">
-                <BarChart3 className="w-4 h-4" />
-                <span>EMPIRICAL FEATURE IMPORTANCE (TOOL USAGE)</span>
+          <SpotlightCard className="p-6 rounded-lg border border-border-subtle bg-surface card-hover flex flex-col justify-between h-full">
+            <div>
+              <div className="flex items-center justify-between mb-4 pb-2 border-b border-border-subtle">
+                <div className="flex items-center gap-2 font-mono text-xs text-accent font-semibold">
+                  <BarChart3 className="w-4 h-4" />
+                  <span>EMPIRICAL FEATURE IMPORTANCE (TOOL USAGE)</span>
+                </div>
+                <span className="font-mono text-xs text-text-muted">Repo frequency</span>
               </div>
-              <span className="font-mono text-xs text-text-muted">Repo frequency</span>
+
+              <p className="text-xs text-text-secondary mb-4 leading-relaxed">
+                Relative utilization frequency of core frameworks and libraries across audited production projects, modeled as architectural feature weights.
+              </p>
+
+              <div className="space-y-3.5">
+                {techUsageList.map((item, idx) => (
+                  <SkillBar key={item.name} item={item} idx={idx} shouldReduceMotion={shouldReduceMotion} />
+                ))}
+              </div>
             </div>
 
-            <p className="text-xs text-text-secondary mb-4 leading-relaxed">
-              Relative utilization frequency of core frameworks and libraries across audited production projects, modeled as architectural feature weights.
-            </p>
-
-            <div className="space-y-3.5">
-              {techUsageList.map((item, idx) => (
-                <SkillBar key={item.name} item={item} idx={idx} shouldReduceMotion={shouldReduceMotion} />
-              ))}
+            <div className="pt-4 mt-6 border-t border-border-subtle font-mono text-xs text-text-muted flex items-center justify-between">
+              <span>DATA-DRIVEN METRIC</span>
+              <span className="text-accent font-semibold">CALCULATED FROM CODEBASE</span>
             </div>
-          </div>
-
-          <div className="pt-4 mt-6 border-t border-border-subtle font-mono text-xs text-text-muted flex items-center justify-between">
-            <span>DATA-DRIVEN METRIC</span>
-            <span className="text-accent font-semibold">CALCULATED FROM CODEBASE</span>
-          </div>
+          </SpotlightCard>
         </motion.div>
 
         {/* Right: Verified Credentials & Academic Foundation (5 cols) */}

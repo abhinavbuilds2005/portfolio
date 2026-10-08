@@ -5,6 +5,8 @@ import { Project } from '../../lib/types';
 import { PROJECTS } from '../../data/projects';
 import { CaseStudyModal } from './CaseStudyModal';
 import { EmbeddingMap } from './EmbeddingMap';
+import { SpotlightCard } from '../shared/SpotlightCard';
+import { ScrambleText } from '../shared/ScrambleText';
 
 interface ProjectsSectionProps {
   activeCaseStudyId: string | null;
@@ -37,7 +39,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
         <div>
           <div className="font-mono text-xs uppercase tracking-wide text-accent mb-2">
-            Selected Work
+            <ScrambleText text="Selected Work" scrambleOnMount={true} />
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">
             Featured Engineering Systems
@@ -57,105 +59,112 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           transition={{ duration: 0.45, ease: 'easeOut' }}
           className="rounded-lg border border-border-strong bg-surface overflow-hidden card-hover"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
-            {/* Screenshot side (5 cols on lg) */}
-            <div className="lg:col-span-5 relative bg-base border-b lg:border-b-0 lg:border-r border-border-subtle flex items-center justify-center p-4 sm:p-6 overflow-hidden">
-              <img
-                src={docushield.image}
-                alt="DocuShield AI Forensic Screening Interface"
-                className="w-full h-auto max-h-80 object-contain rounded-md border border-border-subtle shadow-md"
-                width={560}
-                height={360}
-                loading="eager"
-              />
-              <div className="absolute top-4 left-4 flex items-center gap-1.5 px-2.5 py-1 rounded bg-base/90 backdrop-blur-md border border-border-subtle font-mono text-xs text-live">
-                <span className="w-1.5 h-1.5 rounded-full bg-live animate-live-pulse" />
-                <span>Verified Live System</span>
+          <SpotlightCard className="h-full">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 group">
+              {/* Screenshot side (5 cols on lg) */}
+              <div className="lg:col-span-5 relative bg-base border-b lg:border-b-0 lg:border-r border-border-subtle flex items-center justify-center p-4 sm:p-6 overflow-hidden">
+                <img
+                  src={docushield.image}
+                  alt="DocuShield AI Forensic Screening Interface"
+                  className="w-full h-auto max-h-80 object-contain rounded-md border border-border-subtle shadow-md group-hover:scale-[1.02] transition-transform duration-500"
+                  width={560}
+                  height={360}
+                  loading="eager"
+                />
+                <div className="absolute top-4 left-4 flex items-center gap-2 px-2.5 py-1 rounded bg-base/90 backdrop-blur-md border border-border-subtle font-mono text-xs text-live shadow-sm">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-radar absolute inline-flex h-full w-full rounded-full bg-live opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-live" />
+                  </span>
+                  <span>Verified Live System</span>
+                </div>
               </div>
-            </div>
 
-            {/* Content side (7 cols on lg) */}
-            <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-6">
-              <div>
-                <div className="flex flex-wrap items-center gap-2 mb-2 font-mono text-xs text-text-muted">
-                  <span className="text-accent font-semibold">FLAGSHIP SYSTEM</span>
-                  <span>•</span>
-                  <span>{docushield.categoryLabel}</span>
-                  <span>•</span>
-                  <span className="text-text-secondary">SIH 2026</span>
-                </div>
-
-                <h3 className="text-2xl sm:text-3xl font-bold text-text-primary mb-3">
-                  {docushield.title}
-                </h3>
-
-                <p className="text-sm text-text-secondary leading-relaxed mb-4">
-                  {docushield.summary}
-                </p>
-
-                {/* Problem, Approach, Outcome summary points */}
-                <div className="space-y-2.5 text-xs rounded-md bg-elevated p-4 border border-border-subtle mb-5">
-                  <div>
-                    <span className="font-mono text-accent font-semibold mr-1.5">Problem:</span>
-                    <span className="text-text-secondary">{docushield.problem}</span>
-                  </div>
-                  <div>
-                    <span className="font-mono text-accent font-semibold mr-1.5">Approach:</span>
-                    <span className="text-text-secondary">{docushield.approach}</span>
-                  </div>
-                  <div>
-                    <span className="font-mono text-live font-semibold mr-1.5">Result:</span>
-                    <span className="text-text-primary font-medium">{docushield.outcome}</span>
-                  </div>
-                </div>
-
-                {/* Tech Chips */}
-                <div className="flex flex-wrap gap-1.5">
-                  {docushield.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="px-2.5 py-1 rounded font-mono text-xs border border-border-subtle bg-base text-text-secondary"
-                    >
-                      {t}
+              {/* Content side (7 cols on lg) */}
+              <div className="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 mb-2 font-mono text-xs text-text-muted">
+                    <span className="animate-text-shimmer font-bold text-accent tracking-wider">
+                      FLAGSHIP SYSTEM
                     </span>
-                  ))}
+                    <span>•</span>
+                    <span>{docushield.categoryLabel}</span>
+                    <span>•</span>
+                    <span className="text-text-secondary">SIH 2026</span>
+                  </div>
+
+                  <h3 className="text-2xl sm:text-3xl font-bold text-text-primary mb-3">
+                    {docushield.title}
+                  </h3>
+
+                  <p className="text-sm text-text-secondary leading-relaxed mb-4">
+                    {docushield.summary}
+                  </p>
+
+                  {/* Problem, Approach, Outcome summary points */}
+                  <div className="space-y-2.5 text-xs rounded-md bg-elevated p-4 border border-border-subtle mb-5">
+                    <div>
+                      <span className="font-mono text-accent font-semibold mr-1.5">Problem:</span>
+                      <span className="text-text-secondary">{docushield.problem}</span>
+                    </div>
+                    <div>
+                      <span className="font-mono text-accent font-semibold mr-1.5">Approach:</span>
+                      <span className="text-text-secondary">{docushield.approach}</span>
+                    </div>
+                    <div>
+                      <span className="font-mono text-live font-semibold mr-1.5">Result:</span>
+                      <span className="text-text-primary font-medium">{docushield.outcome}</span>
+                    </div>
+                  </div>
+
+                  {/* Tech Chips */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {docushield.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="px-2.5 py-1 rounded font-mono text-xs border border-border-subtle bg-base text-text-secondary hover:text-text-primary hover:border-accent/40 transition-colors"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Actions */}
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-border-subtle">
-                <div className="flex items-center gap-2.5">
-                  <a
-                    href={docushield.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md text-xs font-medium bg-accent hover:bg-accent-hover text-base transition-colors"
-                  >
-                    <span>Live Demo</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
+                {/* Actions */}
+                <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-border-subtle">
+                  <div className="flex items-center gap-2.5">
+                    <a
+                      href={docushield.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md text-xs font-medium bg-accent hover:bg-accent-hover text-base transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <span>Live Demo</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
 
-                  <a
-                    href={docushield.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md text-xs font-medium border border-border-subtle hover:border-border-strong bg-base text-text-primary hover:text-accent transition-colors"
+                    <a
+                      href={docushield.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-md text-xs font-medium border border-border-subtle hover:border-border-strong bg-base text-text-primary hover:text-accent transition-all hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <Github className="w-3.5 h-3.5" />
+                      <span>Source Code</span>
+                    </a>
+                  </div>
+
+                  <button
+                    onClick={() => onOpenCaseStudy(docushield.id)}
+                    className="inline-flex items-center gap-1 text-xs font-mono text-accent hover:underline cursor-pointer group"
                   >
-                    <Github className="w-3.5 h-3.5" />
-                    <span>Source Code</span>
-                  </a>
+                    <span>Case Study & Architecture</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                  </button>
                 </div>
-
-                <button
-                  onClick={() => onOpenCaseStudy(docushield.id)}
-                  className="inline-flex items-center gap-1 text-xs font-mono text-accent hover:underline cursor-pointer"
-                >
-                  <span>Case Study & Architecture</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
               </div>
             </div>
-          </div>
+          </SpotlightCard>
         </motion.div>
       </div>
 
@@ -170,91 +179,93 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             transition={{ duration: 0.45, delay: shouldReduceMotion ? 0 : idx * 0.1, ease: 'easeOut' }}
             className="rounded-lg border border-border-subtle bg-surface flex flex-col justify-between overflow-hidden card-hover"
           >
-            <div>
-              {/* Screenshot */}
-              <div className="relative w-full h-48 sm:h-52 bg-base border-b border-border-subtle overflow-hidden p-3 flex items-center justify-center">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-contain rounded border border-border-subtle"
-                  width={480}
-                  height={280}
-                  loading="lazy"
-                />
-                <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 rounded bg-base/90 border border-border-subtle font-mono text-xs text-live">
-                  <span className="w-1.5 h-1.5 rounded-full bg-live animate-live-pulse" />
-                  <span>Live</span>
-                </div>
-                <div className="absolute bottom-3 left-3 px-2 py-0.5 rounded bg-base/90 border border-border-subtle font-mono text-xs text-text-muted">
-                  {project.categoryLabel}
-                </div>
-              </div>
-
-              {/* Body */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-text-primary mb-2">
-                  {project.title}
-                </h3>
-
-                <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-4">
-                  {project.tagline}
-                </p>
-
-                {/* One-line outcome */}
-                <div className="text-xs text-text-primary bg-elevated p-3 rounded border border-border-subtle mb-4">
-                  <span className="font-mono text-live font-semibold mr-1">Outcome:</span>
-                  {project.outcome}
-                </div>
-
-                {/* Tech chips */}
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tech.slice(0, 5).map((t) => (
-                    <span
-                      key={t}
-                      className="px-2 py-0.5 rounded font-mono text-xs border border-border-subtle bg-base text-text-secondary"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Card Footer Actions */}
-            <div className="p-6 pt-0 flex items-center justify-between border-t border-border-subtle pt-4">
-              <div className="flex items-center gap-2">
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs font-medium bg-accent hover:bg-accent-hover text-base transition-colors"
-                  >
+            <SpotlightCard className="h-full flex flex-col justify-between">
+              <div>
+                {/* Screenshot */}
+                <div className="relative w-full h-48 sm:h-52 bg-base border-b border-border-subtle overflow-hidden p-3 flex items-center justify-center group">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-contain rounded border border-border-subtle group-hover:scale-105 transition-transform duration-500"
+                    width={480}
+                    height={280}
+                    loading="lazy"
+                  />
+                  <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2 py-0.5 rounded bg-base/90 border border-border-subtle font-mono text-xs text-live">
+                    <span className="w-1.5 h-1.5 rounded-full bg-live animate-live-pulse" />
                     <span>Live</span>
-                    <ArrowUpRight className="w-3 h-3" />
-                  </a>
-                )}
-                {project.repoUrl && (
-                  <a
-                    href={project.repoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs font-medium border border-border-subtle hover:border-border-strong bg-base text-text-primary hover:text-accent transition-colors"
-                  >
-                    <Github className="w-3 h-3" />
-                    <span>Code</span>
-                  </a>
-                )}
+                  </div>
+                  <div className="absolute bottom-3 left-3 px-2 py-0.5 rounded bg-base/90 border border-border-subtle font-mono text-xs text-text-muted">
+                    {project.categoryLabel}
+                  </div>
+                </div>
+
+                {/* Body */}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-text-primary mb-2">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-text-secondary leading-relaxed mb-4">
+                    {project.tagline}
+                  </p>
+
+                  {/* One-line outcome */}
+                  <div className="text-xs text-text-primary bg-elevated p-3 rounded border border-border-subtle mb-4">
+                    <span className="font-mono text-live font-semibold mr-1">Outcome:</span>
+                    {project.outcome}
+                  </div>
+
+                  {/* Tech chips */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tech.slice(0, 5).map((t) => (
+                      <span
+                        key={t}
+                        className="px-2 py-0.5 rounded font-mono text-xs border border-border-subtle bg-base text-text-secondary hover:text-text-primary transition-colors"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              <button
-                onClick={() => onOpenCaseStudy(project.id)}
-                className="text-xs font-mono text-accent hover:underline cursor-pointer flex items-center gap-1"
-              >
-                <span>Case study</span>
-                <ArrowRight className="w-3 h-3" />
-              </button>
-            </div>
+              {/* Card Footer Actions */}
+              <div className="p-6 pt-0 flex items-center justify-between border-t border-border-subtle pt-4">
+                <div className="flex items-center gap-2">
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs font-medium bg-accent hover:bg-accent-hover text-base transition-all hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <span>Live</span>
+                      <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                  )}
+                  {project.repoUrl && (
+                    <a
+                      href={project.repoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded text-xs font-medium border border-border-subtle hover:border-border-strong bg-base text-text-primary hover:text-accent transition-all hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <Github className="w-3 h-3" />
+                      <span>Code</span>
+                    </a>
+                  )}
+                </div>
+
+                <button
+                  onClick={() => onOpenCaseStudy(project.id)}
+                  className="text-xs font-mono text-accent hover:underline cursor-pointer flex items-center gap-1 group"
+                >
+                  <span>Case study</span>
+                  <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+                </button>
+              </div>
+            </SpotlightCard>
           </motion.div>
         ))}
       </div>
@@ -285,83 +296,85 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               transition={{ duration: 0.45, delay: shouldReduceMotion ? 0 : idx * 0.1, ease: 'easeOut' }}
               className="rounded-lg border border-border-subtle bg-surface flex flex-col justify-between overflow-hidden card-hover"
             >
-              <div>
-                <div className="relative w-full h-44 bg-base border-b border-border-subtle overflow-hidden p-3 flex items-center justify-center">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-contain rounded border border-border-subtle"
-                    width={400}
-                    height={220}
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 rounded bg-base/90 border border-border-subtle font-mono text-xs text-live">
-                    <span className="w-1.5 h-1.5 rounded-full bg-live" />
-                    <span>Live</span>
-                  </div>
-                  <div className="absolute bottom-3 left-3 px-2 py-0.5 rounded bg-base/90 border border-border-subtle font-mono text-xs text-text-muted">
-                    {project.categoryLabel}
-                  </div>
-                </div>
-
-                <div className="p-5">
-                  <h4 className="text-lg font-bold text-text-primary mb-1.5">
-                    {project.title}
-                  </h4>
-                  <p className="text-xs text-text-secondary line-clamp-2 leading-relaxed mb-3">
-                    {project.tagline}
-                  </p>
-                  <p className="text-xs text-text-primary bg-elevated p-2.5 rounded border border-border-subtle mb-3">
-                    <span className="font-mono text-live font-semibold mr-1">Outcome:</span>
-                    {project.outcome}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tech.slice(0, 4).map((t) => (
-                      <span
-                        key={t}
-                        className="px-2 py-0.5 rounded font-mono text-xs border border-border-subtle bg-base text-text-muted"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-5 pt-0 flex items-center justify-between border-t border-border-subtle pt-3">
-                <div className="flex items-center gap-2">
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded text-xs font-medium bg-accent hover:bg-accent-hover text-base transition-colors"
-                    >
+              <SpotlightCard className="h-full flex flex-col justify-between">
+                <div>
+                  <div className="relative w-full h-44 bg-base border-b border-border-subtle overflow-hidden p-3 flex items-center justify-center group">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-contain rounded border border-border-subtle group-hover:scale-105 transition-transform duration-500"
+                      width={400}
+                      height={220}
+                      loading="lazy"
+                    />
+                    <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-0.5 rounded bg-base/90 border border-border-subtle font-mono text-xs text-live">
+                      <span className="w-1.5 h-1.5 rounded-full bg-live" />
                       <span>Live</span>
-                      <ArrowUpRight className="w-3 h-3" />
-                    </a>
-                  )}
-                  {project.repoUrl && (
-                    <a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded text-xs font-medium border border-border-subtle hover:border-border-strong bg-base text-text-primary hover:text-accent transition-colors"
-                    >
-                      <Github className="w-3 h-3" />
-                      <span>Code</span>
-                    </a>
-                  )}
+                    </div>
+                    <div className="absolute bottom-3 left-3 px-2 py-0.5 rounded bg-base/90 border border-border-subtle font-mono text-xs text-text-muted">
+                      {project.categoryLabel}
+                    </div>
+                  </div>
+
+                  <div className="p-5">
+                    <h4 className="text-lg font-bold text-text-primary mb-1.5">
+                      {project.title}
+                    </h4>
+                    <p className="text-xs text-text-secondary line-clamp-2 leading-relaxed mb-3">
+                      {project.tagline}
+                    </p>
+                    <p className="text-xs text-text-primary bg-elevated p-2.5 rounded border border-border-subtle mb-3">
+                      <span className="font-mono text-live font-semibold mr-1">Outcome:</span>
+                      {project.outcome}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tech.slice(0, 4).map((t) => (
+                        <span
+                          key={t}
+                          className="px-2 py-0.5 rounded font-mono text-xs border border-border-subtle bg-base text-text-muted hover:text-text-primary transition-colors"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
-                <button
-                  onClick={() => onOpenCaseStudy(project.id)}
-                  className="text-xs font-mono text-accent hover:underline cursor-pointer flex items-center gap-1"
-                >
-                  <span>Case study</span>
-                  <ArrowRight className="w-3 h-3" />
-                </button>
-              </div>
+                <div className="p-5 pt-0 flex items-center justify-between border-t border-border-subtle pt-3">
+                  <div className="flex items-center gap-2">
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded text-xs font-medium bg-accent hover:bg-accent-hover text-base transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      >
+                        <span>Live</span>
+                        <ArrowUpRight className="w-3 h-3" />
+                      </a>
+                    )}
+                    {project.repoUrl && (
+                      <a
+                        href={project.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded text-xs font-medium border border-border-subtle hover:border-border-strong bg-base text-text-primary hover:text-accent transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      >
+                        <Github className="w-3 h-3" />
+                        <span>Code</span>
+                      </a>
+                    )}
+                  </div>
+
+                  <button
+                    onClick={() => onOpenCaseStudy(project.id)}
+                    className="text-xs font-mono text-accent hover:underline cursor-pointer flex items-center gap-1 group"
+                  >
+                    <span>Case study</span>
+                    <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
+                  </button>
+                </div>
+              </SpotlightCard>
             </motion.div>
           ))}
         </div>

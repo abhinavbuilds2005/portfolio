@@ -62,7 +62,17 @@ function formatTimeAgo(ts: string | number): string {
   return `${Math.floor(h / 24)}d ago`;
 }
 
+import { AnimatedCounter } from '../shared/AnimatedCounter';
+
 const NumberTicker: React.FC<{ value: number | string }> = ({ value }) => {
+  const num = typeof value === 'number' ? value : Number(value);
+  if (!isNaN(num) && typeof value !== 'string') {
+    return <AnimatedCounter value={num} duration={1.0} />;
+  }
+  if (typeof value === 'string' && !isNaN(Number(value)) && !value.includes(',') && !value.includes('%')) {
+    return <AnimatedCounter value={Number(value)} duration={1.0} />;
+  }
+
   return (
     <motion.span
       key={String(value)}

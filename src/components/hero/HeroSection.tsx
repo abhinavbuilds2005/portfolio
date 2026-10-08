@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
-import { ArrowDown, FileText, ExternalLink, Github, Linkedin, Mail, Activity, Play, RotateCcw } from 'lucide-react';
+import React from 'react';
+import { ArrowDown, FileText, ExternalLink, Github, Linkedin, Mail, Cpu } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import avatarImg from '../../assets/abhinav.png';
+import { TypewriterRole } from '../shared/TypewriterRole';
+import { AnimatedCounter } from '../shared/AnimatedCounter';
+import { SpotlightCard } from '../shared/SpotlightCard';
+import { MagneticButton } from '../shared/MagneticButton';
+import { ConvergenceVisualizer } from './ConvergenceVisualizer';
 
 interface HeroSectionProps {
   onOpenProjects?: () => void;
@@ -9,10 +14,21 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenProjects }) => {
   const shouldReduceMotion = useReducedMotion();
-  const [isPlaying, setIsPlaying] = useState(true);
 
   return (
-    <section id="home" className="pt-8 pb-16 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="home" className="relative pt-8 pb-16 sm:pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+      
+      {/* Ambient Neural Floating Glow Orbs */}
+      {!shouldReduceMotion && (
+        <>
+          <div className="pointer-events-none absolute -top-24 -left-20 w-96 h-96 bg-accent/8 rounded-full blur-3xl animate-float-slow -z-10" />
+          <div
+            className="pointer-events-none absolute top-1/3 -right-24 w-80 h-80 bg-amber-500/6 rounded-full blur-3xl animate-float-slow -z-10"
+            style={{ animationDelay: '3.5s' }}
+          />
+        </>
+      )}
+
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
         {/* Left Column: Recruiter Elevator Pitch & Proof Stats (7 cols on lg) */}
@@ -33,6 +49,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenProjects }) => {
                 height={48}
                 loading="eager"
               />
+              {/* Radar live ring effect */}
+              <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-live/50 animate-radar pointer-events-none" />
               <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-live border-2 border-base animate-live-pulse" />
             </div>
 
@@ -43,15 +61,35 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenProjects }) => {
                 <span className="text-xs font-mono text-accent">2nd-Year B.Tech (AI/ML) @ LPU</span>
               </div>
               <div className="text-xs text-text-secondary flex items-center gap-1.5 mt-0.5">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-live" />
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-live opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-live" />
+                </span>
                 <span>Open to AI/ML & ML Engineering Internships</span>
               </div>
             </div>
           </div>
 
-          {/* Hero Headline (Option A) */}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-text-primary leading-[1.18]">
-            Building production ML pipelines, multimodal forensic vision, and high-availability AI systems.
+          {/* Hero Headline with Dynamic Typography Animation */}
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-text-primary leading-[1.2]">
+            <span>Building </span>
+            <span className="text-accent underline decoration-accent/30 underline-offset-8">
+              <TypewriterRole
+                phrases={[
+                  'multimodal forensic vision',
+                  'production ML pipelines',
+                  'high-availability AI systems',
+                  'verifiable fraud detection',
+                  'low-latency NLP architectures',
+                ]}
+                typingSpeed={65}
+                deletingSpeed={35}
+                pauseDuration={2400}
+              />
+            </span>
+            <span className="block mt-2 text-text-secondary text-2xl sm:text-3xl lg:text-4xl font-normal">
+              engineered with statistical rigor.
+            </span>
           </h1>
 
           {/* Supporting Statement */}
@@ -59,187 +97,135 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenProjects }) => {
             Specializing in multimodal document verification, predictive risk scoring under severe class imbalance, and low-latency NLP architectures with verifiable engineering rigor.
           </p>
 
-          {/* 3 Proof Stats */}
+          {/* 3 Proof Stats with Spotlight & Animated Counters */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 py-1">
-            <div className="p-3.5 rounded-md border border-border-subtle bg-surface">
-              <div className="text-2xl font-bold font-mono text-accent">5</div>
+            <SpotlightCard className="p-3.5 rounded-md border border-border-subtle bg-surface card-hover">
+              <div className="text-2xl font-bold font-mono text-accent">
+                <AnimatedCounter value={5} duration={1.2} />
+              </div>
               <div className="text-xs font-medium text-text-primary mt-0.5">Deployed Systems</div>
               <div className="text-xs text-text-muted mt-0.5">Vision, Predictive ML & NLP</div>
-            </div>
+            </SpotlightCard>
 
-            <div className="p-3.5 rounded-md border border-border-subtle bg-surface">
-              <div className="text-2xl font-bold font-mono text-accent">100%</div>
+            <SpotlightCard className="p-3.5 rounded-md border border-border-subtle bg-surface card-hover">
+              <div className="text-2xl font-bold font-mono text-accent">
+                <AnimatedCounter value={100} duration={1.4} suffix="%" />
+              </div>
               <div className="text-xs font-medium text-text-primary mt-0.5">Checksum Coverage</div>
               <div className="text-xs text-text-muted mt-0.5">ICAO Doc 9303 & Verhoeff D5</div>
-            </div>
+            </SpotlightCard>
 
-            <div className="p-3.5 rounded-md border border-border-subtle bg-surface">
-              <div className="text-2xl font-bold font-mono text-accent">&lt; 2s</div>
+            <SpotlightCard className="p-3.5 rounded-md border border-border-subtle bg-surface card-hover">
+              <div className="text-2xl font-bold font-mono text-accent">
+                <AnimatedCounter value={2} duration={1.0} prefix="< " suffix="s" />
+              </div>
               <div className="text-xs font-medium text-text-primary mt-0.5">Screening Latency</div>
               <div className="text-xs text-text-muted mt-0.5">SIH 2026 Multimodal Engine</div>
+            </SpotlightCard>
+          </div>
+
+          {/* CTAs with Magnetic Buttons & Hover Micro-Interactions */}
+          <div className="flex flex-wrap items-center gap-3 pt-2">
+            <MagneticButton>
+              <a
+                href="#projects"
+                onClick={onOpenProjects}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-medium bg-accent hover:bg-accent-hover text-base transition-all shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <span>View Projects</span>
+                <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
+              </a>
+            </MagneticButton>
+
+            <MagneticButton>
+              <a
+                href="#ai-telemetry"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium border border-accent/40 bg-accent/10 hover:bg-accent/20 text-accent transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <Cpu className="w-4 h-4 animate-pulse" />
+                <span>ML Sandbox</span>
+              </a>
+            </MagneticButton>
+
+            <MagneticButton>
+              <a
+                href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium border border-border-subtle hover:border-border-strong bg-surface text-text-primary hover:text-accent transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <FileText className="w-4 h-4 text-text-muted" />
+                <span>Resume</span>
+                <ExternalLink className="w-3.5 h-3.5 text-text-muted" />
+              </a>
+            </MagneticButton>
+
+            <div className="flex items-center gap-1.5 ml-auto sm:ml-0">
+              <MagneticButton>
+                <a
+                  href="https://github.com/abhinavbuilds2005"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-md border border-border-subtle hover:border-border-strong bg-surface text-text-secondary hover:text-text-primary transition-all inline-block hover:scale-105"
+                  title="GitHub: abhinavbuilds2005"
+                  aria-label="GitHub Profile"
+                >
+                  <Github className="w-4 h-4" />
+                </a>
+              </MagneticButton>
+
+              <MagneticButton>
+                <a
+                  href="https://www.linkedin.com/in/abhinav-anand-865926300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-md border border-border-subtle hover:border-border-strong bg-surface text-text-secondary hover:text-text-primary transition-all inline-block hover:scale-105"
+                  title="LinkedIn Profile"
+                  aria-label="LinkedIn Profile"
+                >
+                  <Linkedin className="w-4 h-4" />
+                </a>
+              </MagneticButton>
+
+              <MagneticButton>
+                <a
+                  href="mailto:abhinavanand2005.cse@gmail.com"
+                  className="p-2.5 rounded-md border border-border-subtle hover:border-border-strong bg-surface text-text-secondary hover:text-text-primary transition-all inline-block hover:scale-105"
+                  title="Email: abhinavanand2005.cse@gmail.com"
+                  aria-label="Send Email"
+                >
+                  <Mail className="w-4 h-4" />
+                </a>
+              </MagneticButton>
             </div>
           </div>
 
-          {/* CTAs */}
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            <a
-              href="#projects"
-              onClick={onOpenProjects}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-medium bg-accent hover:bg-accent-hover text-base transition-colors shadow-sm"
-            >
-              <span>View Projects</span>
-              <ArrowDown className="w-4 h-4" />
-            </a>
-
-            <a
-              href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium border border-border-subtle hover:border-border-strong bg-surface text-text-primary hover:text-accent transition-colors"
-            >
-              <FileText className="w-4 h-4 text-text-muted" />
-              <span>Resume</span>
-              <ExternalLink className="w-3.5 h-3.5 text-text-muted" />
-            </a>
-
-            <div className="flex items-center gap-1.5 ml-auto sm:ml-0">
-              <a
-                href="https://github.com/abhinavbuilds2005"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-md border border-border-subtle hover:border-border-strong bg-surface text-text-secondary hover:text-text-primary transition-colors"
-                title="GitHub: abhinavbuilds2005"
-                aria-label="GitHub Profile"
-              >
-                <Github className="w-4 h-4" />
-              </a>
-
-              <a
-                href="https://www.linkedin.com/in/abhinav-anand-865926300"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-md border border-border-subtle hover:border-border-strong bg-surface text-text-secondary hover:text-text-primary transition-colors"
-                title="LinkedIn Profile"
-                aria-label="LinkedIn Profile"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-
-              <a
-                href="mailto:abhinavanand2005.cse@gmail.com"
-                className="p-2.5 rounded-md border border-border-subtle hover:border-border-strong bg-surface text-text-secondary hover:text-text-primary transition-colors"
-                title="Email: abhinavanand2005.cse@gmail.com"
-                aria-label="Send Email"
-              >
-                <Mail className="w-4 h-4" />
-              </a>
-            </div>
+          {/* Production Engineering Invariants Row for Senior ML Reviewers */}
+          <div className="pt-2 flex flex-wrap items-center gap-2 font-mono text-[11px] text-text-muted">
+            <span className="text-text-secondary font-medium">Production Invariants:</span>
+            <span className="px-2 py-0.5 rounded bg-surface border border-accent/40 text-accent font-medium">
+              0% Leakage (In-Fold CV)
+            </span>
+            <span className="px-2 py-0.5 rounded bg-surface border border-border-subtle text-text-primary">
+              ONNX INT8 Quantization
+            </span>
+            <span className="px-2 py-0.5 rounded bg-surface border border-border-subtle text-text-primary">
+              FastAPI Async Pool
+            </span>
+            <span className="px-2 py-0.5 rounded bg-surface border border-live/40 text-live font-medium">
+              P95 Latency &lt; 45ms
+            </span>
           </div>
         </motion.div>
 
-        {/* Right Column: Quiet, labeled training curve visual (5 cols on lg) */}
+        {/* Right Column: Interactive Animated Model Convergence Visualizer (5 cols on lg) */}
         <motion.div
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: shouldReduceMotion ? 0 : 0.1, ease: 'easeOut' }}
           className="lg:col-span-5"
         >
-          <div className="rounded-lg border border-border-subtle bg-surface p-5 sm:p-6 card-hover relative overflow-hidden">
-            {/* Header */}
-            <div className="flex items-center justify-between pb-3 border-b border-border-subtle mb-4">
-              <div className="flex items-center gap-2">
-                <Activity className="w-4 h-4 text-accent" />
-                <span className="font-mono text-xs font-semibold text-text-primary uppercase tracking-wide">
-                  Model Convergence
-                </span>
-              </div>
-              <span className="font-mono text-xs px-2 py-0.5 rounded border border-border-subtle text-text-muted bg-base">
-                Illustration
-              </span>
-            </div>
-
-            {/* SVG Training Curve */}
-            <div className="relative w-full h-44 bg-base rounded border border-border-subtle p-3 mb-4">
-              <svg viewBox="0 0 320 130" className="w-full h-full overflow-visible">
-                {/* Grid lines */}
-                <line x1="30" y1="20" x2="310" y2="20" stroke="var(--border-subtle)" strokeDasharray="3 3" />
-                <line x1="30" y1="55" x2="310" y2="55" stroke="var(--border-subtle)" strokeDasharray="3 3" />
-                <line x1="30" y1="90" x2="310" y2="90" stroke="var(--border-subtle)" strokeDasharray="3 3" />
-                <line x1="30" y1="120" x2="310" y2="120" stroke="var(--border-subtle)" />
-                <line x1="30" y1="10" x2="30" y2="120" stroke="var(--border-subtle)" />
-
-                {/* Axis Labels */}
-                <text x="10" y="24" fill="var(--text-muted)" fontSize="9" fontFamily="monospace">1.5</text>
-                <text x="10" y="59" fill="var(--text-muted)" fontSize="9" fontFamily="monospace">1.0</text>
-                <text x="10" y="94" fill="var(--text-muted)" fontSize="9" fontFamily="monospace">0.5</text>
-                <text x="10" y="122" fill="var(--text-muted)" fontSize="9" fontFamily="monospace">0.0</text>
-
-                <text x="30" y="129" fill="var(--text-muted)" fontSize="8" fontFamily="monospace">E1</text>
-                <text x="165" y="129" fill="var(--text-muted)" fontSize="8" fontFamily="monospace">E30</text>
-                <text x="295" y="129" fill="var(--text-muted)" fontSize="8" fontFamily="monospace">E60</text>
-
-                {/* Validation Loss Curve (Subtle dashed line) */}
-                <path
-                  d="M 30 18 Q 70 38 110 65 T 190 92 T 270 99 T 305 101"
-                  fill="none"
-                  stroke="var(--text-muted)"
-                  strokeWidth="1.5"
-                  strokeDasharray="4 3"
-                />
-
-                {/* Training Loss Curve (Amber solid smooth curve) */}
-                <path
-                  d="M 30 15 Q 70 42 110 72 T 190 97 T 270 106 T 305 107"
-                  fill="none"
-                  stroke="var(--accent)"
-                  strokeWidth="2.2"
-                />
-
-                {/* Converged Marker Dot */}
-                <circle cx="305" cy="107" r="4" fill="var(--accent)" />
-                <circle cx="305" cy="107" r="8" fill="var(--accent)" opacity="0.2" />
-              </svg>
-
-              {/* Legend overlay */}
-              <div className="absolute top-4 right-4 flex items-center gap-3 font-mono text-xs bg-surface/90 px-2 py-1 rounded border border-border-subtle backdrop-blur-sm">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-0.5 bg-accent inline-block" />
-                  <span className="text-text-primary text-[11px]">Train</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-0.5 border-b border-text-muted border-dashed inline-block" />
-                  <span className="text-text-muted text-[11px]">Val</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Checkpoint Metrics Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1 border-t border-border-subtle">
-              <div>
-                <div className="font-mono text-[11px] text-text-muted uppercase">Epoch</div>
-                <div className="font-mono text-xs font-semibold text-text-primary mt-0.5">60 / 60</div>
-              </div>
-              <div>
-                <div className="font-mono text-[11px] text-text-muted uppercase">Loss</div>
-                <div className="font-mono text-xs font-semibold text-accent mt-0.5">0.082</div>
-              </div>
-              <div>
-                <div className="font-mono text-[11px] text-text-muted uppercase">PR-AUC</div>
-                <div className="font-mono text-xs font-semibold text-text-primary mt-0.5">0.940</div>
-              </div>
-              <div>
-                <div className="font-mono text-[11px] text-text-muted uppercase">Status</div>
-                <div className="font-mono text-xs font-semibold text-live mt-0.5 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-live" />
-                  <span>Optimal</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-3 text-xs text-text-muted">
-              Audited with in-fold cross-validation to guarantee zero data leakage between training splits and evaluation metrics.
-            </div>
-          </div>
+          <ConvergenceVisualizer />
         </motion.div>
 
       </div>

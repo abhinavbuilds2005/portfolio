@@ -41,6 +41,13 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       action: () => { window.location.hash = '#projects'; onClose(); }
     },
     {
+      id: 'sec-telemetry',
+      label: 'Jump to: ML Systems Sandbox',
+      sub: 'Live model inference trace, threshold tuning & cost matrix optimizer',
+      icon: <Cpu className="w-4 h-4 text-accent" />,
+      action: () => { window.location.hash = '#ai-telemetry'; onClose(); }
+    },
+    {
       id: 'sec-skills',
       label: 'Jump to: Skills & Capabilities',
       sub: 'Machine learning, computer vision, NLP, and backend architecture',

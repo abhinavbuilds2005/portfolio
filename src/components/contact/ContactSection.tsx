@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Mail, Github, Linkedin, Send, CheckCircle2, AlertTriangle, Loader2 } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
+import { ScrambleText } from '../shared/ScrambleText';
+import { SpotlightCard } from '../shared/SpotlightCard';
 
 export const ContactSection: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -90,7 +92,7 @@ export const ContactSection: React.FC = () => {
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
         <div>
           <div className="font-mono text-xs uppercase tracking-wide text-accent mb-2">
-            Get In Touch
+            <ScrambleText text="Get In Touch" scrambleOnMount={true} />
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">
             Initiate Conversation
@@ -111,7 +113,7 @@ export const ContactSection: React.FC = () => {
           transition={{ duration: 0.45, ease: 'easeOut' }}
           className="lg:col-span-5 space-y-4"
         >
-          <div className="p-6 rounded-lg border border-border-subtle bg-surface space-y-4 card-hover">
+          <SpotlightCard className="p-6 rounded-lg border border-border-subtle bg-surface space-y-4 card-hover">
             <h3 className="text-base font-bold text-text-primary">
               Direct Channels
             </h3>
@@ -163,7 +165,7 @@ export const ContactSection: React.FC = () => {
                 </div>
               </a>
             </div>
-          </div>
+          </SpotlightCard>
 
           <div className="p-4 rounded-lg border border-border-subtle bg-surface text-xs text-text-secondary flex items-center gap-2.5">
             <span className="w-2 h-2 rounded-full bg-live shrink-0 animate-live-pulse" />
@@ -179,7 +181,7 @@ export const ContactSection: React.FC = () => {
           transition={{ duration: 0.45, delay: shouldReduceMotion ? 0 : 0.1, ease: 'easeOut' }}
           className="lg:col-span-7"
         >
-          <div className="p-6 sm:p-8 rounded-lg border border-border-subtle bg-surface card-hover">
+          <SpotlightCard className="p-6 sm:p-8 rounded-lg border border-border-subtle bg-surface card-hover">
             <h3 className="text-lg font-bold text-text-primary mb-1">
               Send a Message
             </h3>
@@ -286,7 +288,7 @@ export const ContactSection: React.FC = () => {
                 )}
               </button>
             </form>
-          </div>
+          </SpotlightCard>
         </motion.div>
 
       </div>
