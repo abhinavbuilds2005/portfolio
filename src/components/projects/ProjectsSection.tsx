@@ -33,7 +33,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   const activeProject = PROJECTS.find((p) => p.id === activeCaseStudyId) || null;
 
   return (
-    <section id="projects" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-border-subtle">
+    <section id="projects" className="scroll-mt-20 py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-border-subtle">
       
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
@@ -210,10 +210,24 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     {project.tagline}
                   </p>
 
-                  {/* One-line outcome */}
-                  <div className="text-xs text-text-primary bg-elevated p-3 rounded border border-border-subtle mb-4">
-                    <span className="font-mono text-live font-semibold mr-1">Outcome:</span>
-                    {project.outcome}
+                  {/* Problem, Approach, Outcome structured block */}
+                  <div className="space-y-2 text-xs rounded-md bg-elevated p-3.5 border border-border-subtle mb-4">
+                    {project.problem && (
+                      <div>
+                        <span className="font-mono text-accent font-semibold mr-1">Problem:</span>
+                        <span className="text-text-secondary line-clamp-2">{project.problem}</span>
+                      </div>
+                    )}
+                    {project.approach && (
+                      <div>
+                        <span className="font-mono text-accent font-semibold mr-1">Approach:</span>
+                        <span className="text-text-secondary line-clamp-2">{project.approach}</span>
+                      </div>
+                    )}
+                    <div>
+                      <span className="font-mono text-live font-semibold mr-1">Outcome:</span>
+                      <span className="text-text-primary font-medium">{project.outcome}</span>
+                    </div>
                   </div>
 
                   {/* Tech chips */}

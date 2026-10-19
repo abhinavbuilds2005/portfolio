@@ -39,6 +39,13 @@ export const ContactSection: React.FC = () => {
       return;
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email.trim())) {
+      setStatus('error');
+      setStatusMessage('Please enter a valid email address.');
+      return;
+    }
+
     setStatus('loading');
 
     try {
@@ -47,9 +54,9 @@ export const ContactSection: React.FC = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          message: formData.message.trim()
         })
       });
 
@@ -64,9 +71,9 @@ export const ContactSection: React.FC = () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             access_key: 'd95cbc2e-a628-4836-b956-a1b038407133',
-            name: formData.name,
-            email: formData.email,
-            message: formData.message,
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            message: formData.message.trim(),
             subject: 'New Message from AI Engineering Portfolio'
           })
         });
@@ -86,7 +93,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-border-subtle">
+    <section id="contact" className="scroll-mt-20 py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-border-subtle">
       
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">

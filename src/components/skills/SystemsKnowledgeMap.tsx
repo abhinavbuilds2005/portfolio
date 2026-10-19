@@ -156,8 +156,8 @@ export const SystemsKnowledgeMap: React.FC<SystemsKnowledgeMapProps> = ({ onOpen
                           }`}
                         />
                         <span className="font-medium">{skill.name}</span>
-                        {skill.level === 'Expert' && (
-                          <span className="text-xs px-1.5 py-0.5 rounded bg-accent/20 text-accent uppercase font-semibold">
+                        {skill.isCore && (
+                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-accent/20 text-accent uppercase font-semibold">
                             core
                           </span>
                         )}
@@ -186,11 +186,11 @@ export const SystemsKnowledgeMap: React.FC<SystemsKnowledgeMapProps> = ({ onOpen
               </div>
 
               {/* Title & Level */}
-              <div className="flex items-center justify-between gap-2 mb-2">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-2">
                 <h3 className="text-xl font-bold text-text-primary">
                   {selectedSkill?.name}
                 </h3>
-                <span className="text-xs font-mono px-2 py-0.5 rounded border border-accent/40 bg-accent/10 text-accent font-semibold">
+                <span className="text-xs font-mono px-2 py-0.5 rounded border border-accent/40 bg-accent/10 text-accent font-medium self-start sm:self-auto">
                   {selectedSkill?.level}
                 </span>
               </div>

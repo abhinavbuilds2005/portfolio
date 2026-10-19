@@ -237,22 +237,34 @@ export const ModelInferenceSandbox: React.FC = () => {
   ];
 
   return (
-    <section id="ai-telemetry" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-border-subtle">
+    <section id="ai-telemetry" className="scroll-mt-20 py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-border-subtle">
       
       {/* Section Header */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div>
           <div className="flex items-center gap-2 mb-2 font-mono text-xs uppercase tracking-wide text-accent">
             <Cpu className="w-4 h-4" />
-            <ScrambleText text="Production Model Telemetry & Diagnostics" scrambleOnMount={true} />
+            <ScrambleText text="Interactive Model Diagnostics & Exploration" scrambleOnMount={true} />
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-text-primary">
-            Interactive ML Systems Sandbox
+            ML Systems Simulation Sandbox
           </h2>
         </div>
         <p className="text-sm text-text-secondary max-w-md">
-          Live model execution testbench. Test realistic payloads, inspect layer-by-layer latency waterfalls, and evaluate asymmetric threshold optimization under class imbalance.
+          Client-side architectural simulation testbench. Test sample inputs, explore layer-by-layer latency profiles, and inspect asymmetric cost thresholds without live GPU server dependencies.
         </p>
+      </div>
+
+      {/* Clear Illustrative Simulation Banner */}
+      <div className="mb-6 p-3 rounded-lg border border-accent/30 bg-accent/5 flex items-center justify-between flex-wrap gap-2 text-xs font-mono">
+        <div className="flex items-center gap-2 text-text-primary">
+          <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+          <span className="font-semibold text-accent">SIMULATED INFERENCE TELEMETRY:</span>
+          <span className="text-text-secondary">All execution graphs and matrix weights run client-side to demonstrate production engineering invariants.</span>
+        </div>
+        <span className="text-text-muted px-2 py-0.5 rounded border border-border-subtle bg-surface text-[11px]">
+          Deterministic Sandbox Model
+        </span>
       </div>
 
       {/* Main Sandbox Card */}
@@ -873,8 +885,8 @@ export const ModelInferenceSandbox: React.FC = () => {
                               isSelectedRow ? 'ring-1 ring-accent' : ''
                             }`}
                             style={{
-                              backgroundColor: `rgba(229, 139, 36, ${opacity})`,
-                              color: opacity > 0.45 ? '#0f0e0d' : '#f5f2eb'
+                              backgroundColor: `rgba(34, 211, 238, ${opacity})`,
+                              color: opacity > 0.45 ? '#0B1020' : '#F1F5F9'
                             }}
                             title={`Query: ${qTok} -> Key: ${kTok} | Weight: ${val.toFixed(2)}`}
                           >

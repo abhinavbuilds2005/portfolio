@@ -9,64 +9,69 @@ export interface SkillItem {
   mathRole?: string;
   tools: string[];
   projects: string[]; // project ids
-  level: 'Expert' | 'Advanced' | 'Proficient';
+  level: string;
+  isCore?: boolean;
   icon?: string;
 }
 
 export const SKILL_CATEGORIES: { id: SkillCategory; label: string; icon: string }[] = [
   { id: 'ALL', label: 'All Domains', icon: 'Layers' },
-  { id: 'FOUNDATIONS', label: 'Foundations', icon: 'Terminal' },
+  { id: 'FOUNDATIONS', label: 'Programming & Fundamentals', icon: 'Terminal' },
   { id: 'ML', label: 'Machine Learning', icon: 'Brain' },
   { id: 'DL_VISION', label: 'Deep Learning & Vision', icon: 'Eye' },
-  { id: 'NLP_GENAI', label: 'NLP & Generative AI', icon: 'Sparkles' },
-  { id: 'SYSTEMS', label: 'Engineering & Backend', icon: 'Server' },
+  { id: 'NLP_GENAI', label: 'Generative AI & NLP', icon: 'Sparkles' },
+  { id: 'SYSTEMS', label: 'Backend & Deployment', icon: 'Server' },
 ];
 
 export const SKILLS_ECOSYSTEM: SkillItem[] = [
-  // --- FOUNDATIONS ---
+  // --- PROGRAMMING & FUNDAMENTALS ---
   {
     id: 'python',
     name: 'Python',
     category: 'FOUNDATIONS',
-    categoryLabel: 'Foundations',
-    desc: 'Core language for tensor computations, scientific computing, PyTorch architectures, and asynchronous microservices.',
+    categoryLabel: 'Programming & Fundamentals',
+    desc: 'Core language for tensor computations, scientific computing, PyTorch architectures, and asynchronous microservices across all 5 projects.',
     mathRole: 'Vectorized linear algebra (NumPy), automated differentiation graphs, and high-performance async event loops.',
     tools: ['NumPy', 'Pandas', 'AsyncIO', 'Multiprocessing', 'Type Hints'],
     projects: ['docushield', 'creditwise', 'smartcart', 'attendpro', 'ats-resume-analyzer'],
-    level: 'Expert'
+    level: 'Primary Language (5 Projects)',
+    isCore: true
   },
   {
     id: 'cpp',
     name: 'C++ (DSA & Memory)',
     category: 'FOUNDATIONS',
-    categoryLabel: 'Foundations',
-    desc: 'Low-level memory management, pointers, dynamic programming, and asymptotic algorithmic complexity reduction verified on LeetCode.',
+    categoryLabel: 'Programming & Fundamentals',
+    desc: 'Low-level memory management, pointers, dynamic programming, and asymptotic algorithmic complexity reduction verified through LeetCode practice.',
     mathRole: 'Cache-locality optimization, asymptotic big-O complexity reduction, custom graph traversal and bitwise algorithms.',
     tools: ['STL', 'Pointers & Memory', 'Graph Algorithms', 'Dynamic Programming', 'C++17/20'],
     projects: ['portfolio-v2'],
-    level: 'Advanced'
+    level: 'Algorithmic DSA (LeetCode Verified)',
+    isCore: true
   },
   {
     id: 'sql',
     name: 'SQL & Schema Design',
     category: 'FOUNDATIONS',
-    categoryLabel: 'Foundations',
+    categoryLabel: 'Programming & Fundamentals',
     desc: 'Relational schema engineering, 3NF normalization, ACID transaction integrity, window functions, and indexing in PostgreSQL.',
     mathRole: 'Relational tuple calculus, B-Tree index traversal cost optimization, and ACID serializability guarantees.',
     tools: ['PostgreSQL', 'Window Functions', 'Query Optimization', 'Foreign Key Cascades', 'Schema Migrations'],
     projects: ['attendpro', 'docushield'],
-    level: 'Advanced'
+    level: 'Relational Modeling (AttendPro & DocuShield)',
+    isCore: false
   },
   {
     id: 'math-stats',
     name: 'Statistics & Linear Algebra',
     category: 'FOUNDATIONS',
-    categoryLabel: 'Foundations',
+    categoryLabel: 'Programming & Fundamentals',
     desc: 'Probability distributions, covariance matrices, vector spaces, eigenvalues/eigenvectors, and loss gradient formulations.',
     mathRole: 'Singular Value Decomposition (SVD), multivariate Gaussian modeling, Bayes theorem, and stochastic gradient descent.',
     tools: ['Probability Theory', 'Eigen-Decomposition', 'Multivariate Calculus', 'Hypothesis Testing', 'Loss Surfaces'],
     projects: ['creditwise', 'smartcart', 'docushield'],
-    level: 'Advanced'
+    level: 'Applied Mathematics & Loss Gradients',
+    isCore: true
   },
 
   // --- MACHINE LEARNING ---
@@ -79,7 +84,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: 'L1/L2 ridge and lasso shrinkage penalty formulation, convex loss function optimization, and stratified cross-validation.',
     tools: ['Logistic Regression', 'Random Forests', 'Pipelines', 'GridSearchCV', 'StandardScaler'],
     projects: ['creditwise', 'smartcart'],
-    level: 'Expert'
+    level: 'Production Estimators (CreditWise & SmartCart)',
+    isCore: true
   },
   {
     id: 'smote',
@@ -90,7 +96,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: 'k-nearest-neighbors Euclidean distance feature-space interpolation: x_new = x_i + λ * (x_zi - x_i), λ ∈ [0, 1].',
     tools: ['Imbalanced-Learn', 'k-NN Interpolation', 'BorderlineSMOTE', 'Resampling Pipelines'],
     projects: ['creditwise'],
-    level: 'Advanced'
+    level: 'Sampling Architecture (CreditWise)',
+    isCore: false
   },
   {
     id: 'pca',
@@ -101,7 +108,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: 'Covariance matrix eigen-decomposition maximizing explained variance ratio while eliminating multicollinear axes.',
     tools: ['Dimensionality Reduction', 'Explained Variance Ratio', 'SVD', 'Sparse Matrix Compression'],
     projects: ['smartcart'],
-    level: 'Advanced'
+    level: 'Dimensionality Reduction (SmartCart)',
+    isCore: false
   },
   {
     id: 'kmeans',
@@ -112,7 +120,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: "Lloyd's algorithm minimizing within-cluster sum of squares (WCSS) distance to dynamic centroid vectors.",
     tools: ['Elbow Heuristic', 'Silhouette Analysis', 'Euclidean Metric', 'Cluster Centroids'],
     projects: ['smartcart'],
-    level: 'Advanced'
+    level: 'Unsupervised Clustering (SmartCart)',
+    isCore: false
   },
   {
     id: 'pr-auc',
@@ -123,7 +132,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: 'Area Under the Precision-Recall Curve (Integral of P(R) dR), calibrated F1 threshold optimization, and confusion matrix auditing.',
     tools: ['Precision-Recall Curves', 'Brier Score', 'Threshold Calibration', 'Confusion Matrices'],
     projects: ['creditwise', 'docushield'],
-    level: 'Expert'
+    level: 'Evaluation Auditing (CreditWise & DocuShield)',
+    isCore: true
   },
 
   // --- DEEP LEARNING & COMPUTER VISION ---
@@ -136,7 +146,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: 'Autograd automatic differentiation, backpropagation graph computation, GPU CUDA tensor acceleration.',
     tools: ['torch.nn', 'Autograd', 'CUDA Tensors', 'DataLoader Pipelines', 'Custom Loss Functions'],
     projects: ['docushield', 'attendpro'],
-    level: 'Advanced'
+    level: 'Deep Learning & Tensors (DocuShield & AttendPro)',
+    isCore: true
   },
   {
     id: 'opencv',
@@ -147,7 +158,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: 'Discrete 2D spatial convolution kernels, Sobel gradient edge operators, and affine perspective homography matrices.',
     tools: ['Morphological Ops', 'Perspective Warp', 'Color Spaces (HSV/LAB)', 'Contour Extraction', 'Canny / Sobel'],
     projects: ['docushield', 'attendpro'],
-    level: 'Expert'
+    level: 'Forensic Image Processing (DocuShield & AttendPro)',
+    isCore: true
   },
   {
     id: 'facenet',
@@ -158,7 +170,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: 'Triplet loss optimization: L = max(0, ||f(a) - f(p)||^2 - ||f(a) - f(n)||^2 + α), mapping identities to hypersphere embeddings.',
     tools: ['128-D Embeddings', 'Cosine Similarity', 'Euclidean Metric', 'Facial Landmarks', 'Anti-Spoofing'],
     projects: ['attendpro'],
-    level: 'Advanced'
+    level: 'Biometric Verification (AttendPro)',
+    isCore: false
   },
   {
     id: 'ela',
@@ -169,7 +182,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: 'Quantization table error variance detection: |I_original - I_recompressed(Q=95)| amplified by scale factor.',
     tools: ['Quantization Error', 'Tamper Heatmaps', 'Resave Differential', 'Splice Detection'],
     projects: ['docushield'],
-    level: 'Advanced'
+    level: 'Tamper Detection (DocuShield Flagship)',
+    isCore: false
   },
   {
     id: 'verhoeff',
@@ -180,7 +194,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: 'Dihedral group D5 permutation matrix multiplication: d(x_n, p(x_n-1, ...)) = 0 over permutation cycle groups.',
     tools: ['Dihedral Group D5', 'Permutation Matrices', 'Aadhaar / UID Validation', 'MRZ Check Digits'],
     projects: ['docushield'],
-    level: 'Advanced'
+    level: 'Algorithmic Checksum (DocuShield Flagship)',
+    isCore: false
   },
 
   // --- NLP & GENERATIVE AI ---
@@ -193,7 +208,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: 'Dense vector projection through multi-head self-attention, generating 384-dimensional cosine similarity alignments.',
     tools: ['all-MiniLM-L6-v2', 'Cosine Distance', 'Rolling Chunking', 'Semantic Retrieval', 'Vector Caching'],
     projects: ['ats-resume-analyzer'],
-    level: 'Expert'
+    level: 'Dense Semantic Embeddings (ATS Resume)',
+    isCore: true
   },
   {
     id: 'spacy',
@@ -204,7 +220,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: 'Transition-based dependency parsing and statistical token classification using pre-trained convolutional embeddings.',
     tools: ['NER Extraction', 'Tokenization', 'Dependency Parsing', 'Stopword Filtering', 'Custom Entity Rulers'],
     projects: ['ats-resume-analyzer'],
-    level: 'Advanced'
+    level: 'NLP Entity Extraction (ATS Resume)',
+    isCore: false
   },
   {
     id: 'easyocr',
@@ -215,7 +232,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: 'CRAFT text detector + CRNN (Convolutional Recurrent Neural Network) with CTC loss decoding sequence predictions.',
     tools: ['CRAFT Detector', 'CRNN Text Recognizer', 'Bounding Boxes', 'Confidence Thresholds', 'Multilingual Support'],
     projects: ['docushield'],
-    level: 'Advanced'
+    level: 'OCR Text & Layout Parsing (DocuShield)',
+    isCore: false
   },
   {
     id: 'groq-llama',
@@ -226,7 +244,8 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     mathRole: 'Rotary position embeddings (RoPE), grouped-query attention (GQA), and temperature-calibrated nucleus sampling.',
     tools: ['Groq LPU Inference', 'Llama 3 70B/8B', 'Structured JSON Output', 'Deterministic Fallbacks', 'Prompt Engineering'],
     projects: ['ats-resume-analyzer'],
-    level: 'Advanced'
+    level: 'Structured LLM Inference with Fallback (ATS)',
+    isCore: false
   },
 
   // --- SYSTEMS & BACKEND ---
@@ -234,44 +253,48 @@ export const SKILLS_ECOSYSTEM: SkillItem[] = [
     id: 'fastapi',
     name: 'FastAPI',
     category: 'SYSTEMS',
-    categoryLabel: 'Engineering & Backend',
+    categoryLabel: 'Backend & Deployment',
     desc: 'Asynchronous Python web framework with Pydantic strict schema validation, OpenAPI auto-docs, and low-latency inference routes.',
     mathRole: 'Non-blocking I/O event loops (uvicorn/uvloop) handling concurrent batch model requests without thread starvation.',
     tools: ['Async Endpoints', 'Pydantic V2', 'Dependency Injection', 'CORS Middleware', 'OpenAPI Specs'],
     projects: ['docushield', 'ats-resume-analyzer'],
-    level: 'Expert'
+    level: 'Async Microservices (DocuShield & ATS)',
+    isCore: true
   },
   {
     id: 'docker',
     name: 'Docker Containerization',
     category: 'SYSTEMS',
-    categoryLabel: 'Engineering & Backend',
+    categoryLabel: 'Backend & Deployment',
     desc: 'Reproducible multi-stage container builds packaging PyTorch runtimes, C++ system libraries, OpenCV dependencies, and OCR binaries.',
     mathRole: 'Kernel namespace isolation, cgroup memory resource limiting, and deterministic multi-stage caching layers.',
     tools: ['Multi-Stage Builds', 'Docker Compose', 'Layer Optimization', 'Alpine / Debian Runtimes'],
     projects: ['docushield'],
-    level: 'Advanced'
+    level: 'Containerization & Compose (DocuShield)',
+    isCore: true
   },
   {
     id: 'postgresql',
     name: 'PostgreSQL',
     category: 'SYSTEMS',
-    categoryLabel: 'Engineering & Backend',
+    categoryLabel: 'Backend & Deployment',
     desc: 'ACID-compliant relational database for transactional user isolation, biometric attendance logs, and audit trails.',
     mathRole: 'Write-Ahead Logging (WAL), Multi-Version Concurrency Control (MVCC), and indexed relational join optimizations.',
     tools: ['ACID Compliance', 'Connection Pooling', 'JSONB Storage', 'Index Tuning', 'Row-Level Security'],
     projects: ['attendpro'],
-    level: 'Advanced'
+    level: 'ACID Persistence (AttendPro)',
+    isCore: false
   },
   {
     id: 'streamlit',
     name: 'Streamlit UI',
     category: 'SYSTEMS',
-    categoryLabel: 'Engineering & Backend',
+    categoryLabel: 'Backend & Deployment',
     desc: 'Interactive reactive dashboards enabling live parameter tuning, feature sliders, and instant model risk estimation.',
     mathRole: 'Reactive state reconciliation triggering forward inference passes upon parameter delta events.',
     tools: ['Session State', 'Custom Components', 'Real-Time Sliders', 'Matplotlib Integration', 'Cached Inference'],
     projects: ['creditwise', 'smartcart'],
-    level: 'Proficient'
+    level: 'Interactive Telemetry Dashboards',
+    isCore: false
   }
 ];

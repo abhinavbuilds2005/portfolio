@@ -51,7 +51,22 @@ export const DocuShieldForensicReveal: React.FC<DocuShieldForensicRevealProps> =
       {/* Before / After Draggable Container */}
       <div
         ref={containerRef}
-        className="relative w-full h-56 sm:h-72 rounded border border-border-subtle overflow-hidden select-none cursor-ew-resize bg-base"
+        role="slider"
+        tabIndex={0}
+        aria-label="Forensic reveal comparison slider"
+        aria-valuenow={Math.round(sliderPosition)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            setSliderPosition((p) => Math.max(0, p - 5));
+          } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            setSliderPosition((p) => Math.min(100, p + 5));
+          }
+        }}
+        className="relative w-full h-56 sm:h-72 rounded border border-border-subtle overflow-hidden select-none cursor-ew-resize bg-base focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         onMouseDown={() => setIsDragging(true)}
         onMouseUp={() => setIsDragging(false)}
         onMouseLeave={() => setIsDragging(false)}

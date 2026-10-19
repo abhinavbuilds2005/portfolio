@@ -14,7 +14,7 @@ export const BuildLogSection: React.FC = () => {
   };
 
   return (
-    <section id="build-log" className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-border-subtle">
+    <section id="build-log" className="scroll-mt-20 py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-border-subtle">
       
       {/* Section Header */}
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
@@ -32,7 +32,7 @@ export const BuildLogSection: React.FC = () => {
       </div>
 
       {/* Build Log Entries Stack (Constrained to optimal reading width) */}
-      <div className="space-y-4 max-w-4xl mx-auto">
+      <div className="space-y-4 max-w-3xl mx-auto">
         {BUILD_LOGS.map((entry, idx) => {
           const isExpanded = expandedLogId === entry.id;
 
@@ -46,9 +46,12 @@ export const BuildLogSection: React.FC = () => {
               className="rounded-lg border border-border-subtle bg-surface overflow-hidden card-hover transition-colors"
             >
               <SpotlightCard>
-                <div
+                <button
+                  type="button"
                   onClick={() => toggleExpand(entry.id)}
-                  className="p-6 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-elevated/60 transition-colors"
+                  aria-expanded={isExpanded}
+                  aria-controls={`entry-content-${entry.id}`}
+                  className="w-full text-left p-6 cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-elevated/60 transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-accent"
                 >
                   <div className="space-y-2 flex-1">
                     <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-text-muted">
@@ -63,7 +66,7 @@ export const BuildLogSection: React.FC = () => {
                       </span>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-bold text-text-primary">
+                    <h3 id={`entry-title-${entry.id}`} className="text-lg sm:text-xl font-bold text-text-primary">
                       {entry.title}
                     </h3>
 
@@ -77,35 +80,30 @@ export const BuildLogSection: React.FC = () => {
                       {entry.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-0.5 rounded font-mono text-xs border border-border-subtle bg-base text-text-secondary hover:text-text-primary transition-colors"
+                          className="px-2.5 py-0.5 rounded font-mono text-xs border border-border-subtle bg-base text-text-secondary transition-colors"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        toggleExpand(entry.id);
-                      }}
-                      className="p-1 text-accent flex items-center gap-1 font-mono text-xs hover:underline cursor-pointer"
-                      aria-label={isExpanded ? "Collapse entry" : "Expand entry"}
-                    >
+                    <div className="p-1 text-accent flex items-center gap-1 font-mono text-xs">
                       <span>{isExpanded ? 'Collapse' : 'Read Note'}</span>
                       {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                    </button>
+                    </div>
                   </div>
-                </div>
+                </button>
 
                 {/* Expanded Note Content */}
                 {isExpanded && (
                   <motion.div
+                    id={`entry-content-${entry.id}`}
+                    role="region"
+                    aria-labelledby={`entry-title-${entry.id}`}
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: shouldReduceMotion ? 0 : 0.25 }}
                     className="p-6 pt-2 border-t border-border-subtle bg-base/50"
                   >
                     <div className="max-w-none text-text-secondary leading-relaxed space-y-3 font-sans text-sm sm:text-base">

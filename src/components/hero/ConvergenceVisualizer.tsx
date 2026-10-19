@@ -134,12 +134,12 @@ export const ConvergenceVisualizer: React.FC = () => {
         <svg viewBox="0 0 320 130" className="w-full h-full overflow-visible">
           <defs>
             <linearGradient id="trainLossGrad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stopColor="#e58b24" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#f59e0b" stopOpacity="1" />
+              <stop offset="0%" stopColor="#22D3EE" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#06B6D4" stopOpacity="1" />
             </linearGradient>
             <linearGradient id="areaFillGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#e58b24" stopOpacity="0.12" />
-              <stop offset="100%" stopColor="#e58b24" stopOpacity="0" />
+              <stop offset="0%" stopColor="#22D3EE" stopOpacity="0.15" />
+              <stop offset="100%" stopColor="#22D3EE" stopOpacity="0" />
             </linearGradient>
           </defs>
 

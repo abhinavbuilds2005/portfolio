@@ -1,30 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 
 export const ScrollProgress: React.FC = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalScroll > 0) {
-        const currentProgress = Math.min(100, Math.max(0, Math.round((window.scrollY / totalScroll) * 100)));
-        setScrollProgress(currentProgress);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
-      {/* Progress Track */}
-      <div className="w-full h-[2px] bg-transparent">
-        <div
-          className="h-full bg-accent transition-all duration-75 ease-out"
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div>
+    <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none h-[2px]">
+      <motion.div
+        className="h-full bg-accent origin-left shadow-[0_0_8px_rgba(34,211,238,0.4)]"
+        style={{ scaleX }}
+      />
     </div>
   );
 };

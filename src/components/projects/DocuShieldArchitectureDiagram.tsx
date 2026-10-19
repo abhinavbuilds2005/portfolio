@@ -26,7 +26,7 @@ export const DocuShieldArchitectureDiagram: React.FC = () => {
               <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                 <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--text-muted)" />
               </marker>
-              <marker id="arrow-saffron" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <marker id="arrow-accent" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                 <path d="M 0 1 L 8 5 L 0 9 z" fill="var(--accent)" />
               </marker>
             </defs>
@@ -40,10 +40,10 @@ export const DocuShieldArchitectureDiagram: React.FC = () => {
             <path d="M 275 110 L 325 110" stroke="var(--text-muted)" strokeWidth="1.5" markerEnd="url(#arrow)" />
             <path d="M 275 110 C 300 110, 300 170, 325 170" stroke="var(--text-muted)" strokeWidth="1.5" markerEnd="url(#arrow)" />
 
-            <path d="M 475 50 C 510 50, 510 110, 545 110" stroke="var(--accent)" strokeWidth="1.5" markerEnd="url(#arrow-saffron)" />
-            <path d="M 475 110 L 545 110" stroke="var(--accent)" strokeWidth="1.5" markerEnd="url(#arrow-saffron)" />
-            <path d="M 475 170 C 510 170, 510 110, 545 110" stroke="var(--accent)" strokeWidth="1.5" markerEnd="url(#arrow-saffron)" />
-            <path d="M 645 110 L 675 110" stroke="var(--accent)" strokeWidth="1.5" markerEnd="url(#arrow-saffron)" />
+            <path d="M 475 50 C 510 50, 510 110, 545 110" stroke="var(--accent)" strokeWidth="1.5" markerEnd="url(#arrow-accent)" />
+            <path d="M 475 110 L 545 110" stroke="var(--accent)" strokeWidth="1.5" markerEnd="url(#arrow-accent)" />
+            <path d="M 475 170 C 510 170, 510 110, 545 110" stroke="var(--accent)" strokeWidth="1.5" markerEnd="url(#arrow-accent)" />
+            <path d="M 645 110 L 675 110" stroke="var(--accent)" strokeWidth="1.5" markerEnd="url(#arrow-accent)" />
 
             {/* NODE 1: Document Ingest */}
             <g transform="translate(15, 75)">

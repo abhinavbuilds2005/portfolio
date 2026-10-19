@@ -20,6 +20,7 @@ export default {
           DEFAULT: 'var(--accent)',
           hover: 'var(--accent-hover)',
           subtle: 'var(--accent-subtle)',
+          secondary: 'var(--accent-secondary)',
         },
         live: {
           DEFAULT: 'var(--status-live)',

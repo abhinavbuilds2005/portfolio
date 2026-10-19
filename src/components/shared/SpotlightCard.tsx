@@ -11,21 +11,20 @@ interface SpotlightCardProps {
 export const SpotlightCard: React.FC<SpotlightCardProps> = ({
   children,
   className = '',
-  spotlightColor = 'rgba(229, 139, 36, 0.1)',
-  borderColor = 'rgba(229, 139, 36, 0.25)',
+  spotlightColor = 'rgba(34, 211, 238, 0.08)',
+  borderColor = 'rgba(34, 211, 238, 0.25)',
 }) => {
   const shouldReduceMotion = useReducedMotion();
   const cardRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (shouldReduceMotion || !cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
-    setPosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    cardRef.current.style.setProperty('--mouse-x', `${x}px`);
+    cardRef.current.style.setProperty('--mouse-y', `${y}px`);
   }, [shouldReduceMotion]);
 
   return (
@@ -42,7 +41,7 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
           className="pointer-events-none absolute -inset-px transition-opacity duration-300 rounded-[inherit]"
           style={{
             opacity: isHovered ? 1 : 0,
-            background: `radial-gradient(550px circle at ${position.x}px ${position.y}px, ${spotlightColor}, transparent 65%)`,
+            background: `radial-gradient(550px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), ${spotlightColor}, transparent 65%)`,
           }}
         />
       )}
@@ -54,8 +53,8 @@ export const SpotlightCard: React.FC<SpotlightCardProps> = ({
           style={{
             opacity: isHovered ? 1 : 0,
             borderColor: 'transparent',
-            maskImage: `radial-gradient(350px circle at ${position.x}px ${position.y}px, black, transparent 70%)`,
-            WebkitMaskImage: `radial-gradient(350px circle at ${position.x}px ${position.y}px, black, transparent 70%)`,
+            maskImage: `radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), black, transparent 70%)`,
+            WebkitMaskImage: `radial-gradient(350px circle at var(--mouse-x, -999px) var(--mouse-y, -999px), black, transparent 70%)`,
             boxShadow: `inset 0 0 0 1px ${borderColor}`,
           }}
         />

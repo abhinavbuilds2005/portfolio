@@ -42,10 +42,28 @@ const DEFAULT_DATA = {
 
 async function fetchGitHubData() {
   let finalData = { ...DEFAULT_DATA };
+
+  // If cached data exists on disk, use it as initial baseline
+  if (fs.existsSync(CACHE_FILE)) {
+    try {
+      const cached = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf-8'));
+      if (cached && typeof cached === 'object' && cached.username) {
+        finalData = { ...finalData, ...cached };
+      }
+    } catch (cacheErr) {
+      // Continue with DEFAULT_DATA
+    }
+  }
+
   try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000);
     const res = await fetch('https://api.github.com/users/abhinavbuilds2005', {
-      headers: { 'User-Agent': 'node-build-script' }
+      headers: { 'User-Agent': 'node-build-script' },
+      signal: controller.signal
     });
+    clearTimeout(timeout);
+
     if (res.ok) {
       const user = await res.json();
       finalData = {
@@ -54,13 +72,15 @@ async function fetchGitHubData() {
         publicRepos: user.public_repos || 6,
         followers: user.followers || 0,
         status: "synced_from_github",
+        lastUpdated: formattedDate,
+        updatedAt: now.toISOString()
       };
       console.log(`[Build] Successfully synced GitHub metadata. Commit: ${gitInfo.commitHash}`);
     } else {
-      console.warn(`[Build] GitHub API responded ${res.status}. Using build-time defaults.`);
+      console.warn(`[Build] GitHub API responded ${res.status}. Using cached/build-time defaults.`);
     }
   } catch (err) {
-    console.warn("[Build] GitHub API unreachable. Using fallback metadata:", err.message);
+    console.warn("[Build] GitHub API unreachable or timed out. Using cached/fallback metadata:", err.message);
   }
 
   writeOutput(finalData);
