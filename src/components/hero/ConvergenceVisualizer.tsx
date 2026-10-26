@@ -89,7 +89,7 @@ export const ConvergenceVisualizer: React.FC = () => {
       <div className="flex items-center justify-between pb-3 border-b border-border-subtle mb-4 relative z-10">
         <div className="flex items-center gap-2">
           <Activity className="w-4 h-4 text-accent animate-pulse" />
-          <span className="font-mono text-xs font-semibold text-text-primary uppercase tracking-wide">
+          <span className="font-mono text-xs font-semibold text-text-primary">
             Model Convergence
           </span>
         </div>
@@ -222,10 +222,10 @@ export const ConvergenceVisualizer: React.FC = () => {
           </div>
         </div>
 
-        {/* Live training status banner inside plot */}
-        <div className="absolute bottom-3 left-10 flex items-center gap-1.5 font-mono text-[10px] text-text-muted bg-surface/80 px-2 py-0.5 rounded border border-border-subtle">
-          <span className={`w-1.5 h-1.5 rounded-full ${isOptimal ? 'bg-live' : 'bg-accent animate-ping'}`} />
-          <span>{isOptimal ? 'Optimal Convergence Achieved' : `Fitting Batch... Epoch ${currentEpoch}/60`}</span>
+        {/* Live training status banner inside plot (Issue 12: 12px min) */}
+        <div className="absolute bottom-3 left-10 flex items-center gap-1.5 font-mono text-xs text-text-secondary bg-surface/90 px-2.5 py-1 rounded border border-border-subtle shadow-sm backdrop-blur-sm">
+          <span className={`w-2 h-2 rounded-full ${isOptimal ? 'bg-live' : 'bg-accent animate-ping'}`} />
+          <span className="text-text-primary">{isOptimal ? 'Optimal Convergence Achieved' : `Fitting Batch... Epoch ${currentEpoch}/60`}</span>
         </div>
       </div>
 

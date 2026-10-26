@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  /* Unified Button System (Issue 1) */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-mono text-xs font-semibold rounded-md transition-all duration-150 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:opacity-50 disabled:cursor-not-allowed select-none;
+  }
+  .btn-sm { @apply px-3 py-1.5 text-xs min-h-[32px]; }
+  .btn-md { @apply px-4 py-2 text-xs sm:text-sm min-h-[38px]; }
+  .btn-lg { @apply px-5 py-2.5 text-sm min-h-[42px]; }
+
+  .btn-primary {
+    @apply btn bg-accent hover:bg-accent-hover text-base shadow-sm active:scale-95;
+  }
+  .btn-secondary {
+    @apply btn border border-border-subtle hover:border-border-strong bg-surface text-text-primary hover:text-accent active:scale-95 shadow-sm;
+  }
+  .btn-subtle {
+    @apply btn border border-border-subtle hover:border-border-strong text-accent active:scale-95;
+    background-color: var(--accent-subtle);
+  }
+  .btn-ghost {
+    @apply btn text-accent hover:underline p-1 min-h-[32px];
+  }
+}
+
 @layer base {
   :root {
     --bg-base: #0B1020;

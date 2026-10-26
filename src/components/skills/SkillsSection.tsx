@@ -127,7 +127,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ onOpenCaseStudy })
           <div className="p-6 rounded-lg border border-border-subtle bg-surface card-hover flex-1">
             <div className="flex items-center gap-2 mb-4 pb-2 border-b border-border-subtle">
               <Award className="w-4 h-4 text-accent" />
-              <h4 className="text-xs font-bold font-mono text-text-primary uppercase tracking-wide">
+              <h4 className="text-xs font-bold font-mono text-text-primary">
                 Verified Certifications
               </h4>
             </div>

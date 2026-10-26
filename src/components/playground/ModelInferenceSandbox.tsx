@@ -278,7 +278,7 @@ export const ModelInferenceSandbox: React.FC = () => {
               onClick={() => setActiveTab('docushield')}
               className={`px-3.5 py-2 rounded-md font-mono text-xs font-semibold transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === 'docushield'
-                  ? 'bg-accent text-base shadow-md font-bold'
+                  ? 'bg-elevated border border-accent/40 text-accent font-bold shadow-sm'
                   : 'text-text-secondary hover:text-text-primary hover:bg-elevated'
               }`}
             >
@@ -290,7 +290,7 @@ export const ModelInferenceSandbox: React.FC = () => {
               onClick={() => setActiveTab('creditwise')}
               className={`px-3.5 py-2 rounded-md font-mono text-xs font-semibold transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === 'creditwise'
-                  ? 'bg-accent text-base shadow-md font-bold'
+                  ? 'bg-elevated border border-accent/40 text-accent font-bold shadow-sm'
                   : 'text-text-secondary hover:text-text-primary hover:bg-elevated'
               }`}
             >
@@ -302,7 +302,7 @@ export const ModelInferenceSandbox: React.FC = () => {
               onClick={() => setActiveTab('attention')}
               className={`px-3.5 py-2 rounded-md font-mono text-xs font-semibold transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === 'attention'
-                  ? 'bg-accent text-base shadow-md font-bold'
+                  ? 'bg-elevated border border-accent/40 text-accent font-bold shadow-sm'
                   : 'text-text-secondary hover:text-text-primary hover:bg-elevated'
               }`}
             >
@@ -311,28 +311,28 @@ export const ModelInferenceSandbox: React.FC = () => {
             </button>
           </div>
 
-          {/* Quick Action Button Contextual to Tab */}
+          {/* Quick Action Button Contextual to Tab (Issue 7: Prominent Run Pass trigger) */}
           <div>
             {activeTab === 'docushield' && (
               <button
                 onClick={handleRunDocuShieldPass}
                 disabled={isInferring}
-                className={`inline-flex items-center gap-2 px-4 py-2 rounded font-mono text-xs font-bold transition-all shadow-sm cursor-pointer ${
+                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-md font-mono text-xs font-bold transition-all shadow-md cursor-pointer ${
                   isInferring
                     ? 'bg-accent/40 text-text-primary cursor-wait'
-                    : 'bg-accent hover:bg-accent-hover text-base hover:scale-105 active:scale-95 shadow-[0_0_12px_rgba(229,139,36,0.35)]'
+                    : 'bg-accent hover:bg-accent-hover text-base hover:scale-105 active:scale-95 shadow-[0_0_16px_rgba(34,211,238,0.4)]'
                 }`}
                 title="Execute forward pass pipeline"
               >
                 {isInferring ? (
                   <>
-                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    <Loader2 className="w-4 h-4 animate-spin" />
                     <span>Executing ({currentStep + 1}/4)...</span>
                   </>
                 ) : (
                   <>
-                    <Play className="w-3.5 h-3.5 fill-current" />
-                    <span>Run Pass</span>
+                    <Play className="w-4 h-4 fill-current" />
+                    <span>Run Inference Pass</span>
                   </>
                 )}
               </button>
@@ -428,28 +428,30 @@ export const ModelInferenceSandbox: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Mode Specific Controls */}
+                {/* Mode Specific Controls (Issues 23 & 25) */}
                 <div className="p-4 rounded-lg bg-base border border-border-subtle space-y-3">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
                     <label className="text-xs font-mono font-medium text-text-primary">
                       Synthesize Tampering Anomaly:
                     </label>
-                    <span className="text-[10px] font-mono text-accent">Auto-evaluates</span>
+                    <span className="text-[11px] font-mono text-accent px-1.5 py-0.5 rounded bg-accent/10 border border-accent/20">
+                      Auto-evaluates
+                    </span>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-3 gap-1.5 p-1 rounded-md bg-surface border border-border-subtle">
                     {[
-                      { id: 'none', label: 'Clean (Authentic)' },
+                      { id: 'none', label: 'Clean' },
                       { id: 'ocr_alteration', label: 'OCR Altered' },
-                      { id: 'metadata_spoof', label: 'Spoofed Header' },
+                      { id: 'metadata_spoof', label: 'Header Spoof' },
                     ].map((opt) => (
                       <button
                         key={opt.id}
                         onClick={() => setDocTamperNoise(opt.id as any)}
-                        className={`p-2 rounded text-xs font-mono border text-center transition-all cursor-pointer ${
+                        className={`py-1.5 px-2 rounded text-xs font-mono transition-all cursor-pointer text-center ${
                           docTamperNoise === opt.id
-                            ? 'border-accent bg-accent/20 text-text-primary font-bold shadow-sm'
-                            : 'border-border-subtle bg-surface text-text-secondary hover:text-text-primary hover:border-border-strong'
+                            ? 'bg-elevated text-accent font-semibold shadow-sm border border-border-subtle'
+                            : 'text-text-muted hover:text-text-primary'
                         }`}
                       >
                         {opt.label}
@@ -458,21 +460,17 @@ export const ModelInferenceSandbox: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Production Guardrails Box */}
-                <div className="p-3.5 rounded-lg border border-border-subtle bg-elevated text-xs font-mono space-y-1.5">
+                {/* Production Guardrails Box (Issue 21: semantic list with proper padding) */}
+                <div className="p-3.5 rounded-lg border border-border-subtle bg-elevated text-xs font-mono space-y-2">
                   <div className="text-accent font-semibold flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5" />
                     <span>PRODUCTION INVARIANTS</span>
                   </div>
-                  <div className="text-text-secondary">
-                    • In-fold Stratified K-Fold CV (Zero Leakage)
-                  </div>
-                  <div className="text-text-secondary">
-                    • Async FastAPIs with Pydantic payload strict validation
-                  </div>
-                  <div className="text-text-secondary">
-                    • ONNX Runtime INT8 Quantized Inference
-                  </div>
+                  <ul className="space-y-1.5 pl-4 list-disc text-text-secondary marker:text-accent">
+                    <li>In-fold Stratified K-Fold CV (Zero Leakage)</li>
+                    <li>Async FastAPIs with Pydantic payload strict validation</li>
+                    <li>ONNX Runtime INT8 Quantized Inference</li>
+                  </ul>
                 </div>
 
               </div>

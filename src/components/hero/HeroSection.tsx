@@ -133,97 +133,105 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenProjects }) => {
             </SpotlightCard>
           </div>
 
-          {/* CTAs with Magnetic Buttons */}
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            <MagneticButton>
-              <a
-                href="#projects"
-                onClick={onOpenProjects}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md text-sm font-medium bg-accent hover:bg-accent-hover text-base transition-all shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <span>Explore Projects</span>
-                <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
-              </a>
-            </MagneticButton>
-
-            <MagneticButton>
-              <a
-                href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium border border-border-subtle hover:border-border-strong bg-surface text-text-primary hover:text-accent transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <FileText className="w-4 h-4 text-text-muted" />
-                <span>View Resume</span>
-                <ExternalLink className="w-3.5 h-3.5 text-text-muted" />
-              </a>
-            </MagneticButton>
-
-            <MagneticButton>
-              <a
-                href="#ai-telemetry"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium border border-accent/40 bg-accent/10 hover:bg-accent/20 text-accent transition-all shadow-sm hover:scale-[1.02] active:scale-[0.98]"
-              >
-                <Cpu className="w-4 h-4 animate-pulse" />
-                <span>ML Sandbox</span>
-              </a>
-            </MagneticButton>
-
-
-
-            <div className="flex items-center gap-1.5 ml-auto sm:ml-0">
+          {/* CTAs with Magnetic Buttons (Issues 6 & 1) */}
+          <div className="space-y-3.5 pt-2">
+            <div className="flex flex-wrap items-center gap-3">
               <MagneticButton>
                 <a
-                  href="https://github.com/abhinavbuilds2005"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-md border border-border-subtle hover:border-border-strong bg-surface text-text-secondary hover:text-text-primary transition-all inline-block hover:scale-105"
-                  title="GitHub: abhinavbuilds2005"
-                  aria-label="GitHub Profile"
+                  href="#projects"
+                  onClick={onOpenProjects}
+                  className="btn-primary btn-md gap-2 shadow-sm hover:shadow-md"
                 >
-                  <Github className="w-4 h-4" />
+                  <span>Explore Projects</span>
+                  <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
                 </a>
               </MagneticButton>
 
               <MagneticButton>
                 <a
-                  href="https://www.linkedin.com/in/abhinav-anand-865926300"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-md border border-border-subtle hover:border-border-strong bg-surface text-text-secondary hover:text-text-primary transition-all inline-block hover:scale-105"
-                  title="LinkedIn Profile"
-                  aria-label="LinkedIn Profile"
+                  href="#ai-telemetry"
+                  className="btn-subtle btn-md gap-2"
                 >
-                  <Linkedin className="w-4 h-4" />
+                  <Cpu className="w-4 h-4 animate-pulse" />
+                  <span>ML Sandbox</span>
                 </a>
               </MagneticButton>
 
               <MagneticButton>
                 <a
-                  href="mailto:abhinavanand2005.cse@gmail.com"
-                  className="p-2.5 rounded-md border border-border-subtle hover:border-border-strong bg-surface text-text-secondary hover:text-text-primary transition-all inline-block hover:scale-105"
-                  title="Email: abhinavanand2005.cse@gmail.com"
-                  aria-label="Send Email"
+                  href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary btn-md gap-2"
                 >
-                  <Mail className="w-4 h-4" />
+                  <FileText className="w-4 h-4 text-text-muted" />
+                  <span>Resume</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-text-muted" />
                 </a>
               </MagneticButton>
             </div>
+
+            {/* Dedicated secondary row for social presence (Issue 6) */}
+            <div className="flex items-center gap-3 text-xs font-mono text-text-muted pt-0.5">
+              <span>Connect:</span>
+              <div className="flex items-center gap-1.5">
+                <MagneticButton>
+                  <a
+                    href="https://github.com/abhinavbuilds2005"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-md border border-border-subtle hover:border-border-strong bg-surface text-text-secondary hover:text-text-primary transition-all inline-block hover:scale-105"
+                    title="GitHub: abhinavbuilds2005"
+                    aria-label="GitHub Profile"
+                  >
+                    <Github className="w-4 h-4" />
+                  </a>
+                </MagneticButton>
+
+                <MagneticButton>
+                  <a
+                    href="https://www.linkedin.com/in/abhinav-anand-865926300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-md border border-border-subtle hover:border-border-strong bg-surface text-text-secondary hover:text-text-primary transition-all inline-block hover:scale-105"
+                    title="LinkedIn Profile"
+                    aria-label="LinkedIn Profile"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+                </MagneticButton>
+
+                <MagneticButton>
+                  <a
+                    href="mailto:abhinavanand2005.cse@gmail.com"
+                    className="p-2 rounded-md border border-border-subtle hover:border-border-strong bg-surface text-text-secondary hover:text-text-primary transition-all inline-block hover:scale-105"
+                    title="Email: abhinavanand2005.cse@gmail.com"
+                    aria-label="Send Email"
+                  >
+                    <Mail className="w-4 h-4" />
+                  </a>
+                </MagneticButton>
+              </div>
+            </div>
           </div>
 
-          {/* Production Engineering Invariants Row for Senior ML Reviewers */}
-          <div className="pt-2 flex flex-wrap items-center gap-2 font-mono text-[11px] text-text-muted">
+          {/* Production Engineering Invariants Row: standard >= 12px text (Issues 10 & 18) */}
+          <div className="pt-2 flex flex-wrap items-center gap-2 font-mono text-xs text-text-muted">
             <span className="text-text-secondary font-medium">Production Invariants:</span>
-            <span className="px-2 py-0.5 rounded bg-surface border border-accent/40 text-accent font-medium">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface border border-border-subtle text-text-primary font-mono text-xs shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
               0% Leakage (In-Fold CV)
             </span>
-            <span className="px-2 py-0.5 rounded bg-surface border border-border-subtle text-text-primary">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface border border-border-subtle text-text-primary font-mono text-xs shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
               ONNX INT8 Quantization
             </span>
-            <span className="px-2 py-0.5 rounded bg-surface border border-border-subtle text-text-primary">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface border border-border-subtle text-text-primary font-mono text-xs shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
               FastAPI Async Pool
             </span>
-            <span className="px-2 py-0.5 rounded bg-surface border border-live/40 text-live font-medium">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface border border-border-subtle text-live font-mono text-xs shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-live" />
               P95 Latency &lt; 45ms
             </span>
           </div>

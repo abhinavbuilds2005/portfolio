@@ -142,6 +142,7 @@ export const SystemsKnowledgeMap: React.FC<SystemsKnowledgeMapProps> = ({ onOpen
                         key={skill.id}
                         type="button"
                         onClick={() => setSelectedSkillId(skill.id)}
+                        aria-label={`${skill.name}${skill.isCore ? ' (Core Skill)' : ''}`}
                         className={`group flex items-center gap-2 px-3 py-2 rounded-md text-xs font-mono transition-all border ${
                           isSelected
                             ? 'bg-accent/15 border-accent text-text-primary shadow-sm'
@@ -157,8 +158,8 @@ export const SystemsKnowledgeMap: React.FC<SystemsKnowledgeMapProps> = ({ onOpen
                         />
                         <span className="font-medium">{skill.name}</span>
                         {skill.isCore && (
-                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-accent/20 text-accent uppercase font-semibold">
-                            core
+                          <span className="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-accent/20 text-accent uppercase font-bold tracking-wider">
+                            Core
                           </span>
                         )}
                       </button>
@@ -256,7 +257,8 @@ export const SystemsKnowledgeMap: React.FC<SystemsKnowledgeMapProps> = ({ onOpen
                           <button
                             type="button"
                             onClick={() => onOpenCaseStudy(p.id)}
-                            className="shrink-0 flex items-center gap-1 text-xs font-mono text-accent hover:underline cursor-pointer"
+                            className="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[32px] rounded-md text-xs font-mono font-medium text-accent border border-accent/40 bg-accent/10 hover:bg-accent hover:text-base transition-all shadow-sm cursor-pointer"
+                            aria-label={`Inspect ${p.title} case study`}
                           >
                             <span>Inspect</span>
                             <ArrowRight className="w-3.5 h-3.5" />

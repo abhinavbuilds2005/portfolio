@@ -210,22 +210,22 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     {project.tagline}
                   </p>
 
-                  {/* Problem, Approach, Outcome structured block */}
-                  <div className="space-y-2 text-xs rounded-md bg-elevated p-3.5 border border-border-subtle mb-4">
+                  {/* Problem, Approach, Outcome structured block (Issue 4: No premature line-clamp truncation) */}
+                  <div className="space-y-2 text-xs rounded-md bg-elevated p-3.5 border border-border-subtle mb-4 leading-relaxed">
                     {project.problem && (
                       <div>
-                        <span className="font-mono text-accent font-semibold mr-1">Problem:</span>
-                        <span className="text-text-secondary line-clamp-2">{project.problem}</span>
+                        <span className="font-mono text-accent font-semibold mr-1.5">Problem:</span>
+                        <span className="text-text-secondary">{project.problem}</span>
                       </div>
                     )}
                     {project.approach && (
                       <div>
-                        <span className="font-mono text-accent font-semibold mr-1">Approach:</span>
-                        <span className="text-text-secondary line-clamp-2">{project.approach}</span>
+                        <span className="font-mono text-accent font-semibold mr-1.5">Approach:</span>
+                        <span className="text-text-secondary">{project.approach}</span>
                       </div>
                     )}
                     <div>
-                      <span className="font-mono text-live font-semibold mr-1">Outcome:</span>
+                      <span className="font-mono text-live font-semibold mr-1.5">Outcome:</span>
                       <span className="text-text-primary font-medium">{project.outcome}</span>
                     </div>
                   </div>
@@ -273,7 +273,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
                 <button
                   onClick={() => onOpenCaseStudy(project.id)}
-                  className="text-xs font-mono text-accent hover:underline cursor-pointer flex items-center gap-1 group"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[32px] rounded text-xs font-mono font-medium text-accent border border-accent/30 bg-accent/5 hover:bg-accent hover:text-base transition-all cursor-pointer group"
+                  aria-label={`Open case study for ${project.title}`}
                 >
                   <span>Case study</span>
                   <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />
@@ -288,9 +289,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
       <div className="pt-8 border-t border-border-subtle">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-text-primary">
+            {/* Section heading uses h2 to establish clear document hierarchy (Issue 20) */}
+            <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
               Additional Deployed Systems
-            </h3>
+            </h2>
             <p className="text-xs sm:text-sm text-text-secondary mt-1">
               Unsupervised clustering algorithms and multimodal biometric attendance platforms.
             </p>
@@ -331,16 +333,26 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   </div>
 
                   <div className="p-5">
-                    <h4 className="text-lg font-bold text-text-primary mb-1.5">
+                    {/* Consistent h3 level for all project card titles (Issue 20) */}
+                    <h3 className="text-lg font-bold text-text-primary mb-1.5">
                       {project.title}
-                    </h4>
+                    </h3>
                     <p className="text-xs text-text-secondary line-clamp-2 leading-relaxed mb-3">
                       {project.tagline}
                     </p>
-                    <p className="text-xs text-text-primary bg-elevated p-2.5 rounded border border-border-subtle mb-3">
-                      <span className="font-mono text-live font-semibold mr-1">Outcome:</span>
-                      {project.outcome}
-                    </p>
+                    {/* Structured Problem & Outcome container (Issue 5) */}
+                    <div className="space-y-1.5 text-xs bg-elevated p-3 rounded border border-border-subtle mb-3 leading-relaxed">
+                      {project.problem && (
+                        <div>
+                          <span className="font-mono text-accent font-semibold mr-1.5">Problem:</span>
+                          <span className="text-text-secondary">{project.problem}</span>
+                        </div>
+                      )}
+                      <div>
+                        <span className="font-mono text-live font-semibold mr-1.5">Outcome:</span>
+                        <span className="text-text-primary font-medium">{project.outcome}</span>
+                      </div>
+                    </div>
                     <div className="flex flex-wrap gap-1.5">
                       {project.tech.slice(0, 4).map((t) => (
                         <span
@@ -382,7 +394,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
                   <button
                     onClick={() => onOpenCaseStudy(project.id)}
-                    className="text-xs font-mono text-accent hover:underline cursor-pointer flex items-center gap-1 group"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[32px] rounded text-xs font-mono font-medium text-accent border border-accent/30 bg-accent/5 hover:bg-accent hover:text-base transition-all cursor-pointer group"
+                    aria-label={`Open case study for ${project.title}`}
                   >
                     <span>Case study</span>
                     <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-1" />

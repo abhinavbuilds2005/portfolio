@@ -120,19 +120,23 @@ export const EmbeddingMap: React.FC<EmbeddingMapProps> = ({ projects, onSelectPr
               aria-label={`Inspect ${proj.title}`}
             >
               <span className="relative flex items-center justify-center">
+                {/* Persistent interactive halo to indicate clickable nodes (Issues 3 & 22) */}
+                <span className="absolute -inset-1 rounded-full bg-accent/20 group-hover:bg-accent/40 animate-pulse pointer-events-none" />
                 <span
-                  className={`w-4 h-4 rounded-full border-2 border-base transition-colors shadow-md ${
+                  className={`w-4 h-4 rounded-full border-2 border-base transition-all shadow-md flex items-center justify-center ${
                     proj.id === 'docushield'
-                      ? 'bg-accent ring-2 ring-accent/30'
+                      ? 'bg-accent ring-2 ring-accent/50'
                       : isHighlighted
-                      ? 'bg-accent'
-                      : 'bg-text-secondary group-hover:bg-accent'
+                      ? 'bg-accent ring-2 ring-accent/40'
+                      : 'bg-surface border-accent/70 group-hover:bg-accent ring-1 ring-accent/30'
                   }`}
-                />
+                >
+                  <span className={`w-1.5 h-1.5 rounded-full ${proj.id === 'docushield' ? 'bg-base' : 'bg-accent group-hover:bg-base'} transition-colors`} />
+                </span>
               </span>
 
-              {/* Minimal inline label */}
-              <span className="hidden sm:block absolute top-5 left-1/2 -translate-x-1/2 font-mono text-xs text-text-muted group-hover:text-text-primary whitespace-nowrap transition-colors">
+              {/* Persistent legible label visible across all viewports (Issue 3) */}
+              <span className="absolute top-5 left-1/2 -translate-x-1/2 font-mono text-[10px] sm:text-xs px-1.5 py-0.5 rounded bg-surface/95 border border-border-subtle text-text-secondary group-hover:text-text-primary group-hover:border-accent whitespace-nowrap transition-colors shadow-sm pointer-events-none">
                 {proj.title}
               </span>
             </motion.button>

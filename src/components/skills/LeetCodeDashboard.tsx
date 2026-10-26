@@ -346,7 +346,10 @@ export const LeetCodeDashboard: React.FC = () => {
                 whileHover={{ x: 4, transition: { duration: 0.15 } }}
                 className="flex items-center justify-between p-2.5 rounded-md border border-border-subtle bg-base hover:border-accent/40 transition-colors group"
               >
-                <span className="font-mono text-xs text-text-primary group-hover:text-accent transition-colors truncate max-w-[170px]">
+                <span
+                  className="font-mono text-xs text-text-primary group-hover:text-accent transition-colors truncate flex-1 min-w-0 pr-3"
+                  title={sub.title}
+                >
                   {sub.title}
                 </span>
                 <div className="flex items-center gap-2 shrink-0">
