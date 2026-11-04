@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Moon, Sun, Command, FileText, ExternalLink, Cpu, Menu, X } from 'lucide-react';
+import { Moon, Sun, Command, FileText, ExternalLink, Cpu, Menu, X, Terminal } from 'lucide-react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
 interface NavbarProps {
@@ -41,6 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { href: '#projects', label: 'Projects' },
     { href: '#ai-telemetry', label: 'ML Sandbox' },
     { href: '#skills', label: 'Skills' },
+    { href: '#terminal', label: 'Terminal' },
     { href: '#build-log', label: 'Build Log' },
     { href: '#contact', label: 'Contact' },
   ];

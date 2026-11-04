@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/layout/Navbar';
 import { ScrollProgress } from './components/layout/ScrollProgress';
 import { HeroSection } from './components/hero/HeroSection';
+import { SkillsMarquee } from './components/skills/SkillsMarquee';
 import { ProjectsSection } from './components/projects/ProjectsSection';
 import { SkillsSection } from './components/skills/SkillsSection';
 import { BuildLogSection } from './components/build-log/BuildLogSection';
@@ -10,6 +11,9 @@ import { Footer } from './components/layout/Footer';
 import { CommandPalette } from './components/shared/CommandPalette';
 import { LabModal } from './components/shared/LabModal';
 import { ModelInferenceSandbox } from './components/playground/ModelInferenceSandbox';
+import { InteractiveTerminal } from './components/terminal/InteractiveTerminal';
+import { AntigravityBackground } from './components/shared/AntigravityBackground';
+import { FloatingDock } from './components/layout/FloatingDock';
 
 export function App() {
   const [isDark, setIsDark] = useState<boolean>(true);
@@ -72,8 +76,11 @@ export function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-base text-text-primary transition-colors duration-200 selection:bg-accent selection:text-base">
+    <div className="min-h-screen bg-base text-text-primary transition-colors duration-200 selection:bg-accent selection:text-base relative">
       
+      {/* Dynamic Ambient Zero-Gravity Particle & Mesh Field */}
+      <AntigravityBackground />
+
       {/* Scroll Progress Epoch Bar */}
       <ScrollProgress />
 
@@ -86,9 +93,12 @@ export function App() {
       />
 
       {/* Main Content Area */}
-      <main id="main-content">
+      <main id="main-content" className="relative z-10">
         {/* Editorial Hero Section */}
         <HeroSection />
+
+        {/* Flowing Skills Stream (Dual-Row GPU-Accelerated Kinetic Marquee) */}
+        <SkillsMarquee />
 
         {/* Projects Section with DocuShield Flagship & Distinct Hierarchy */}
         <ProjectsSection
@@ -103,12 +113,18 @@ export function App() {
         {/* Skills Section with Knowledge Map, Pipeline, Feature Importance & LeetCode */}
         <SkillsSection onOpenCaseStudy={(id) => setActiveCaseStudyId(id)} />
 
+        {/* Interactive Terminal Sandbox */}
+        <InteractiveTerminal />
+
         {/* Technical Build Log */}
         <BuildLogSection />
 
         {/* Contact Section */}
         <ContactSection />
       </main>
+
+      {/* Floating Pill Dock with Copy Email Toast & Navigation Shortcuts */}
+      <FloatingDock />
 
       {/* Minimal Footer */}
       <Footer />

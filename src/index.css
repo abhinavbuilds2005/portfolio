@@ -28,20 +28,20 @@
 
 @layer base {
   :root {
-    --bg-base: #0B1020;
-    --bg-surface: #121A2B;
-    --bg-elevated: #182338;
-    --border-subtle: #26334A;
-    --border-strong: #334460;
-    --text-primary: #F1F5F9;
-    --text-secondary: #A7B4C8;
+    --bg-base: #080B11;
+    --bg-surface: #0F172A;
+    --bg-elevated: #162035;
+    --border-subtle: #1E293B;
+    --border-strong: #334155;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
     --text-muted: #64748B;
-    --accent: #22D3EE;
-    --accent-hover: #06B6D4;
-    --accent-subtle: rgba(34, 211, 238, 0.12);
+    --accent: #06B6D4;
+    --accent-hover: #22D3EE;
+    --accent-subtle: rgba(6, 182, 212, 0.12);
     --accent-secondary: #8B5CF6;
-    --status-live: #34D399;
-    --status-live-subtle: rgba(52, 211, 153, 0.15);
+    --status-live: #10B981;
+    --status-live-subtle: rgba(16, 185, 129, 0.15);
   }
 
   .light {
@@ -199,6 +199,79 @@
   animation: radar-ripple 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 
+/* Infinite Kinetic Marquee Animations (GPU-accelerated translate3d) */
+@keyframes marquee-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 34s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 34s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+/* Edge Fade Gradient Mask for Marquee */
+.mask-marquee {
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+/* Zero-Gravity Mesh Gradient Drift */
+@keyframes mesh-drift {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.04);
+  }
+}
+
+.animate-mesh-drift {
+  animation: mesh-drift 12s ease-in-out infinite;
+}
+
+/* Terminal Scanline Texture */
+.terminal-scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 3px 100%;
+  pointer-events: none;
+}
+
 /* Global reduced-motion support */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -210,4 +283,3 @@
     scroll-behavior: auto !important;
   }
 }
-

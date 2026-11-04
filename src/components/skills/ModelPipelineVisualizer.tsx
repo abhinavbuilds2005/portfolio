@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GitBranch, ArrowRight, Activity } from 'lucide-react';
+import { GitBranch, ArrowRight, Activity, Play, Pause, ChevronRight } from 'lucide-react';
 import { PIPELINE_STAGES, PipelineStage } from '../../data/pipeline';
 
 interface ModelPipelineVisualizerProps {
@@ -9,19 +9,64 @@ interface ModelPipelineVisualizerProps {
 
 export const ModelPipelineVisualizer: React.FC<ModelPipelineVisualizerProps> = () => {
   const [activeStepIdx, setActiveStepIdx] = useState<number>(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
   const currentStage: PipelineStage = PIPELINE_STAGES[activeStepIdx];
+  const timerRef = useRef<number | null>(null);
+
+  // Auto-play stepper cycle (4.5s per stage)
+  useEffect(() => {
+    if (!isAutoPlaying) {
+      if (timerRef.current) clearInterval(timerRef.current);
+      return;
+    }
+
+    timerRef.current = window.setInterval(() => {
+      setActiveStepIdx((prev) => (prev + 1) % PIPELINE_STAGES.length);
+    }, 4500);
+
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [isAutoPlaying]);
+
+  const handleSelectStage = (idx: number) => {
+    setActiveStepIdx(idx);
+    setIsAutoPlaying(false);
+  };
 
   return (
-    <div className="p-6 rounded-lg border border-border-subtle bg-surface shadow-sm">
+    <div className="p-6 rounded-xl border border-border-subtle bg-surface shadow-md">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-3 border-b border-border-subtle">
         <div className="flex items-center gap-2 font-mono text-xs text-accent font-semibold">
           <GitBranch className="w-4 h-4" />
           <span>METHODOLOGY // 7-STAGE INTELLIGENT MODEL LIFECYCLE</span>
         </div>
-        <span className="font-mono text-xs text-text-muted">
-          ENGINEERING ARCHITECTURE & DISCIPLINE
-        </span>
+        
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setIsAutoPlaying((p) => !p)}
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded border border-border-subtle bg-base font-mono text-xs text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
+            title={isAutoPlaying ? "Pause auto-stepper" : "Resume lifecycle animation"}
+          >
+            {isAutoPlaying ? (
+              <>
+                <Pause className="w-3 h-3 text-accent" />
+                <span>Live Flow</span>
+              </>
+            ) : (
+              <>
+                <Play className="w-3 h-3 text-accent" />
+                <span>Play Flow</span>
+              </>
+            )}
+          </button>
+          
+          <span className="font-mono text-xs text-text-muted hidden sm:inline-block">
+            STAGE {currentStage.step}/07
+          </span>
+        </div>
       </div>
 
       <div className="max-w-3xl mb-6">
@@ -33,7 +78,7 @@ export const ModelPipelineVisualizer: React.FC<ModelPipelineVisualizerProps> = (
         </p>
       </div>
 
-      {/* 7 Horizontal Step Buttons */}
+      {/* 7 Horizontal Step Buttons with live active indicator */}
       <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 mb-6">
         {PIPELINE_STAGES.map((st, idx) => {
           const isActive = idx === activeStepIdx;
@@ -41,18 +86,27 @@ export const ModelPipelineVisualizer: React.FC<ModelPipelineVisualizerProps> = (
             <button
               key={st.step}
               type="button"
-              onClick={() => setActiveStepIdx(idx)}
-              className={`p-2.5 rounded-md text-left transition-all border font-mono ${
+              onClick={() => handleSelectStage(idx)}
+              className={`p-2.5 rounded-lg text-left transition-all border font-mono cursor-pointer relative overflow-hidden ${
                 isActive
                   ? 'bg-accent/15 border-accent text-text-primary shadow-sm'
                   : 'bg-base border-border-subtle text-text-secondary hover:border-border-strong hover:text-text-primary'
               }`}
             >
+              {isActive && isAutoPlaying && (
+                <motion.div
+                  className="absolute bottom-0 left-0 h-0.5 bg-accent"
+                  initial={{ width: '0%' }}
+                  animate={{ width: '100%' }}
+                  transition={{ duration: 4.5, ease: 'linear' }}
+                  key={st.step}
+                />
+              )}
               <div className="flex items-center justify-between text-xs mb-1">
                 <span className={isActive ? 'text-accent font-bold' : 'text-text-muted'}>
                   STAGE [{st.step}]
                 </span>
-                {isActive && <div className="w-1.5 h-1.5 rounded-full bg-accent" />}
+                {isActive && <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />}
               </div>
               <div className="text-xs font-semibold truncate">
                 {st.shortTitle}

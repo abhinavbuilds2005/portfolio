@@ -1,10 +1,11 @@
-import React from 'react';
-import { ExternalLink, Github, ArrowRight, ShieldCheck, Cpu, ArrowUpRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { ExternalLink, Github, ArrowRight, ShieldCheck, Cpu, ArrowUpRight, Sliders, Image, Sparkles } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Project } from '../../lib/types';
 import { PROJECTS } from '../../data/projects';
 import { CaseStudyModal } from './CaseStudyModal';
 import { EmbeddingMap } from './EmbeddingMap';
+import { DocuShieldForensicReveal } from './DocuShieldForensicReveal';
 import { SpotlightCard } from '../shared/SpotlightCard';
 import { ScrambleText } from '../shared/ScrambleText';
 
@@ -20,6 +21,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   onCloseCaseStudy,
 }) => {
   const shouldReduceMotion = useReducedMotion();
+  const [docuShieldView, setDocuShieldView] = useState<'screen' | 'forensics'>('forensics');
 
   // Primary flagship: DocuShield
   const docushield = PROJECTS.find((p) => p.id === 'docushield') || PROJECTS[0];
@@ -50,33 +52,91 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         </p>
       </div>
 
-      {/* 1. Large Flagship Card: DocuShield AI */}
-      <div className="mb-10">
+      {/* 1. Large Flagship Card: DocuShield AI with Interactive Forensic Reveal Mode */}
+      <div className="mb-12">
         <motion.div
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.45, ease: 'easeOut' }}
-          className="rounded-lg border border-border-strong bg-surface overflow-hidden card-hover"
+          className="rounded-xl border border-border-strong bg-surface overflow-hidden card-hover shadow-xl"
         >
           <SpotlightCard className="h-full">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 group">
-              {/* Screenshot side (5 cols on lg) */}
-              <div className="lg:col-span-5 relative bg-base border-b lg:border-b-0 lg:border-r border-border-subtle flex items-center justify-center p-4 sm:p-6 overflow-hidden">
-                <img
-                  src={docushield.image}
-                  alt="DocuShield AI Forensic Screening Interface"
-                  className="w-full h-auto max-h-80 object-contain rounded-md border border-border-subtle shadow-md group-hover:scale-[1.02] transition-transform duration-500"
-                  width={560}
-                  height={360}
-                  loading="eager"
-                />
-                <div className="absolute top-4 left-4 flex items-center gap-2 px-2.5 py-1 rounded bg-base/90 backdrop-blur-md border border-border-subtle font-mono text-xs text-live shadow-sm">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-radar absolute inline-flex h-full w-full rounded-full bg-live opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-live" />
+              
+              {/* Media & Interactive Forensic Lab Side (5 cols on lg) */}
+              <div className="lg:col-span-5 relative bg-base border-b lg:border-b-0 lg:border-r border-border-subtle flex flex-col justify-between p-4 sm:p-6 overflow-hidden">
+                
+                {/* View Mode Toggle Pill */}
+                <div className="flex items-center justify-between gap-2 mb-3 z-10">
+                  <div className="flex items-center gap-1.5 p-1 rounded-lg bg-surface border border-border-subtle">
+                    <button
+                      type="button"
+                      onClick={() => setDocuShieldView('screen')}
+                      className={`flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono transition-all cursor-pointer ${
+                        docuShieldView === 'screen'
+                          ? 'bg-accent text-base font-semibold shadow-sm'
+                          : 'text-text-secondary hover:text-text-primary'
+                      }`}
+                    >
+                      <Image className="w-3.5 h-3.5" />
+                      <span>Interface</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setDocuShieldView('forensics')}
+                      className={`flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono transition-all cursor-pointer ${
+                        docuShieldView === 'forensics'
+                          ? 'bg-accent text-base font-semibold shadow-sm'
+                          : 'text-text-secondary hover:text-text-primary'
+                      }`}
+                    >
+                      <Sliders className="w-3.5 h-3.5" />
+                      <span>Forensic ELA Lab</span>
+                    </button>
+                  </div>
+
+                  <span className="font-mono text-[10px] text-text-muted hidden sm:inline-block">
+                    SIH 2026
                   </span>
-                  <span>Verified Live System</span>
+                </div>
+
+                {/* Display Area: Either standard interface or interactive ELA slider */}
+                <div className="my-auto">
+                  {docuShieldView === 'screen' ? (
+                    <div className="relative rounded-lg overflow-hidden border border-border-subtle bg-base p-2">
+                      <img
+                        src={docushield.image}
+                        alt="DocuShield AI Forensic Screening Interface"
+                        className="w-full h-auto max-h-80 object-contain rounded border border-border-subtle shadow-md group-hover:scale-[1.01] transition-transform duration-500"
+                        width={560}
+                        height={360}
+                        loading="eager"
+                      />
+                      <div className="absolute top-4 left-4 flex items-center gap-2 px-2.5 py-1 rounded bg-base/90 backdrop-blur-md border border-border-subtle font-mono text-xs text-live shadow-sm">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-radar absolute inline-flex h-full w-full rounded-full bg-live opacity-75" />
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-live" />
+                        </span>
+                        <span>Verified Live System</span>
+                      </div>
+                    </div>
+                  ) : (
+                    <DocuShieldForensicReveal
+                      originalImage={docushield.image}
+                      heatmapImage={docushield.elaImage || '/project_docushield.jpg'}
+                    />
+                  )}
+                </div>
+
+                {/* Bottom telemetry footer inside media column */}
+                <div className="pt-3 border-t border-border-subtle/60 flex items-center justify-between text-[11px] font-mono text-text-muted">
+                  <span>ICAO 9303 MRZ Engine</span>
+                  <span className="text-live flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-live" />
+                    P95: &lt; 1.84s
+                  </span>
                 </div>
               </div>
 
@@ -90,7 +150,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     <span>•</span>
                     <span>{docushield.categoryLabel}</span>
                     <span>•</span>
-                    <span className="text-text-secondary">SIH 2026</span>
+                    <span className="text-text-secondary">SIH 2026 Finalist</span>
                   </div>
 
                   <h3 className="text-2xl sm:text-3xl font-bold text-text-primary mb-3">
@@ -102,7 +162,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   </p>
 
                   {/* Problem, Approach, Outcome summary points */}
-                  <div className="space-y-2.5 text-xs rounded-md bg-elevated p-4 border border-border-subtle mb-5">
+                  <div className="space-y-2.5 text-xs rounded-lg bg-elevated p-4 border border-border-subtle mb-5">
                     <div>
                       <span className="font-mono text-accent font-semibold mr-1.5">Problem:</span>
                       <span className="text-text-secondary">{docushield.problem}</span>
@@ -155,6 +215,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   </div>
 
                   <button
+                    type="button"
                     onClick={() => onOpenCaseStudy(docushield.id)}
                     className="inline-flex items-center gap-1 text-xs font-mono text-accent hover:underline cursor-pointer group"
                   >
@@ -177,7 +238,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.45, delay: shouldReduceMotion ? 0 : idx * 0.1, ease: 'easeOut' }}
-            className="rounded-lg border border-border-subtle bg-surface flex flex-col justify-between overflow-hidden card-hover"
+            className="rounded-xl border border-border-subtle bg-surface flex flex-col justify-between overflow-hidden card-hover"
           >
             <SpotlightCard className="h-full flex flex-col justify-between">
               <div>
@@ -210,7 +271,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     {project.tagline}
                   </p>
 
-                  {/* Problem, Approach, Outcome structured block (Issue 4: No premature line-clamp truncation) */}
+                  {/* Problem, Approach, Outcome structured block */}
                   <div className="space-y-2 text-xs rounded-md bg-elevated p-3.5 border border-border-subtle mb-4 leading-relaxed">
                     {project.problem && (
                       <div>
@@ -272,6 +333,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                 </div>
 
                 <button
+                  type="button"
                   onClick={() => onOpenCaseStudy(project.id)}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[32px] rounded text-xs font-mono font-medium text-accent border border-accent/30 bg-accent/5 hover:bg-accent hover:text-base transition-all cursor-pointer group"
                   aria-label={`Open case study for ${project.title}`}
@@ -289,7 +351,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
       <div className="pt-8 border-t border-border-subtle">
         <div className="flex items-center justify-between mb-8">
           <div>
-            {/* Section heading uses h2 to establish clear document hierarchy (Issue 20) */}
             <h2 className="text-xl sm:text-2xl font-bold text-text-primary tracking-tight">
               Additional Deployed Systems
             </h2>
@@ -310,7 +371,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.45, delay: shouldReduceMotion ? 0 : idx * 0.1, ease: 'easeOut' }}
-              className="rounded-lg border border-border-subtle bg-surface flex flex-col justify-between overflow-hidden card-hover"
+              className="rounded-xl border border-border-subtle bg-surface flex flex-col justify-between overflow-hidden card-hover"
             >
               <SpotlightCard className="h-full flex flex-col justify-between">
                 <div>
@@ -333,14 +394,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   </div>
 
                   <div className="p-5">
-                    {/* Consistent h3 level for all project card titles (Issue 20) */}
                     <h3 className="text-lg font-bold text-text-primary mb-1.5">
                       {project.title}
                     </h3>
                     <p className="text-xs text-text-secondary line-clamp-2 leading-relaxed mb-3">
                       {project.tagline}
                     </p>
-                    {/* Structured Problem & Outcome container (Issue 5) */}
                     <div className="space-y-1.5 text-xs bg-elevated p-3 rounded border border-border-subtle mb-3 leading-relaxed">
                       {project.problem && (
                         <div>
@@ -393,6 +452,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   </div>
 
                   <button
+                    type="button"
                     onClick={() => onOpenCaseStudy(project.id)}
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 min-h-[32px] rounded text-xs font-mono font-medium text-accent border border-accent/30 bg-accent/5 hover:bg-accent hover:text-base transition-all cursor-pointer group"
                     aria-label={`Open case study for ${project.title}`}
