@@ -212,13 +212,12 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
       case 'certifications':
         outputNode = (
           <div className="space-y-1.5 text-xs text-[#F5F2EB]/90">
-            <p className="text-[#315CFF] font-bold">VERIFIED TECHNICAL ACCREDITATIONS (6 TOTAL):</p>
+            <p className="text-[#315CFF] font-bold">VERIFIED TECHNICAL ACCREDITATIONS (5 TOTAL):</p>
             <p>1. <span className="text-white font-bold">NPTEL & IIT Madras</span> — Introduction to Large Language Models (LLMs) · Roll: NPTEL26CS171MANUAL0000154</p>
             <p>2. <span className="text-white font-bold">LPU & iamneo (NIIT Venture)</span> — Computer Programming in C (150 Hours) · Cert: 23dK7aL4bM5Dj3Dk3BIl</p>
             <p>3. <span className="text-white font-bold">Cognitive Class & IBM</span> — Python 101 for Data Science (PY0101EN) · ID: ebedc993179f41149ed2a7fb0c83b612</p>
-            <p>4. <span className="text-white font-bold">Smart India Hackathon 2026</span> (PS SIH26188 Qualified) · Ministry of Education / AICTE</p>
-            <p>5. <span className="text-white font-bold">HackerRank SQL (Advanced)</span> Certified · 5★ Gold Badge in Relational Modeling</p>
-            <p>6. <span className="text-white font-bold">Infosys Springboard Python</span> Certified · OOP Architecture & Asymptotic Complexity</p>
+            <p>4. <span className="text-white font-bold">HackerRank SQL (Advanced)</span> Certified · ID: 3E7A4B934211</p>
+            <p>5. <span className="text-white font-bold">Infosys Springboard</span> — Introduction to Python · Satheesha B. Nanjappa, SVP</p>
           </div>
         );
         break;

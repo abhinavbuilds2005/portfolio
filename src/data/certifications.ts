@@ -40,14 +40,6 @@ export const CERTIFICATIONS: Certification[] = [
     url: "/certificates/infosys_python_certification.png",
     tag: "OOP Design & Algorithmic Complexity",
     date: "Verified"
-  },
-  {
-    id: "sih-2026",
-    title: "Smart India Hackathon 2026 Qualifier (SIH26188)",
-    platform: "Ministry of Education & AICTE Govt. of India",
-    url: "/certificates/sih_2026_qualification.png",
-    tag: "DocuShield AI & Forensic Screening",
-    date: "Verified"
   }
 ];
 

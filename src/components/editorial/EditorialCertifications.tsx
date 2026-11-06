@@ -106,59 +106,41 @@ const CERTIFICATES: CertificateItem[] = [
     id: 'hackerrank-sql',
     badge: 'GOLD BADGE · 5★',
     badgeColor: '#2563EB',
-    year: 'VERIFIED',
+    year: '2026',
     title: 'HackerRank SQL (Advanced)',
     issuer: 'HackerRank Certified Professional',
-    credentialId: 'HackerRank Certified 5-Star Gold Badge',
-    subtitle: 'Complex Relational Modeling & Query Plan Optimization',
+    credentialId: '3E7A4B934211',
+    subtitle: 'Certificate of Accomplishment · Issued 22 Feb 2026',
     description:
       'Demonstrated mastery of advanced relational database architecture, recursive Common Table Expressions (CTEs), analytical window functions (RANK, DENSE_RANK, LEAD, LAG), query execution plan optimization, and multi-table integrity indexing.',
     metrics: [
       { label: 'PROFICIENCY', value: '5-Star Gold' },
-      { label: 'FOCUS', value: 'Recursive CTEs & Windowing' },
-      { label: 'OPTIMIZATION', value: 'Query Plans & Indexing' },
+      { label: 'ISSUE DATE', value: '22 Feb, 2026' },
+      { label: 'CREDENTIAL ID', value: '3E7A4B934211' },
     ],
     tags: ['SQL', 'PostgreSQL', 'Window Functions', 'Query Optimization', 'Relational Schema'],
-    verifyUrl: 'https://www.hackerrank.com/certificates/',
+    verifyUrl: 'https://www.hackerrank.com/certificates/3E7A4B934211',
     imageUrl: '/certificates/hackerrank_sql_advanced.png',
   },
   {
     id: 'infosys-python',
-    badge: 'PROFESSIONAL',
+    badge: 'INFOSYS SPRINGBOARD',
     badgeColor: '#10B981',
-    year: 'VERIFIED',
-    title: 'Infosys Springboard Python',
-    issuer: 'Infosys Springboard Certification',
-    credentialId: 'Infosys Springboard Accredited',
-    subtitle: 'Object-Oriented Architecture & Algorithmic Systems',
-    description:
-      'Rigorous evaluation on Python language internals, object-oriented software engineering paradigms, memory references, asymptotic runtime complexity analysis, and defensive error-handling architectures.',
-    metrics: [
-      { label: 'DISCIPLINE', value: 'OOP & Internals' },
-      { label: 'COMPLEXITY', value: 'Asymptotic O(N)' },
-      { label: 'STATUS', value: 'Springboard Certified' },
-    ],
-    tags: ['Python', 'OOP Design', 'Data Structures', 'Algorithms', 'Defensive Programming'],
-    imageUrl: '/certificates/infosys_python_certification.png',
-  },
-  {
-    id: 'sih-2026',
-    badge: 'NATIONAL QUALIFIER',
-    badgeColor: '#F0784B',
     year: '2026',
-    title: 'Smart India Hackathon 2026',
-    issuer: 'Ministry of Education & AICTE Innovation Cell, Govt. of India',
-    credentialId: 'Problem Statement: SIH26188',
-    subtitle: 'DocuShield AI — Multimodal Forensic Document Screening System',
+    title: 'Introduction to Python',
+    issuer: 'Infosys Limited · Infosys Springboard',
+    credentialId: 'Issued 26 Jan 2026 · Satheesha B. Nanjappa, SVP',
+    subtitle: 'Course Completion Certificate · Issued 26 Jan 2026',
     description:
-      'Qualified for Smart India Hackathon with DocuShield AI, an automated forensic pipeline detecting document tampering across 5 ID formats using Error Level Analysis (ELA), ORB copy-move homography, ICAO Doc 9303 MRZ parsing, and Verhoeff D5 cryptography.',
+      'Rigorous evaluation on Python language fundamentals, data structures, procedural logic, and algorithmic systems. Verified with QR code verification via Infosys Wingspan portal.',
     metrics: [
-      { label: 'PROBLEM STATEMENT', value: 'SIH26188' },
-      { label: 'AUTOMATED TESTS', value: '90 Tests · 100%' },
-      { label: 'LATENCY BENCHMARK', value: '<42ms Inference' },
+      { label: 'PLATFORM', value: 'Springboard' },
+      { label: 'ISSUE DATE', value: '26 Jan, 2026' },
+      { label: 'VERIFICATION', value: 'Wingspan QR' },
     ],
-    tags: ['Computer Vision', 'Image Forensics', 'Error Level Analysis', 'Verhoeff D5', 'FastAPI'],
-    imageUrl: '/certificates/sih_2026_qualification.png',
+    tags: ['Python', 'Data Structures', 'Algorithms', 'Infosys', 'Springboard'],
+    verifyUrl: 'https://verify.onwingspan.com',
+    imageUrl: '/certificates/infosys_python_certification.png',
   },
 ];
 
@@ -284,8 +266,8 @@ export const EditorialCertifications: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* 5 Secondary Credential Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* 4 Secondary Credential Cards Grid (2x2) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {CERTIFICATES.slice(1).map((cert, idx) => (
           <motion.div
             key={cert.id}
@@ -294,9 +276,7 @@ export const EditorialCertifications: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: idx * 0.1 }}
             onClick={() => setSelectedCert(cert)}
-            className={`bg-[#FAF8F5] border border-[#132532]/15 p-6 flex flex-col justify-between hover:border-[#315CFF] hover:shadow-[4px_4px_0px_#315CFF] transition-all cursor-pointer group ${
-              idx === 4 ? 'md:col-span-2 lg:col-span-2' : ''
-            }`}
+            className="bg-[#FAF8F5] border border-[#132532]/15 p-6 flex flex-col justify-between hover:border-[#315CFF] hover:shadow-[4px_4px_0px_#315CFF] transition-all cursor-pointer group"
           >
             <div>
               {/* Badge & Year */}
