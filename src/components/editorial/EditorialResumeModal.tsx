@@ -92,92 +92,70 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
           </div>
 
           {/* Scrollable Printable Résumé Sheet */}
-          <div className="p-6 sm:p-10 lg:p-12 overflow-y-auto font-sans text-[#132532] space-y-8 bg-white print:p-0">
+          <div className="p-8 sm:p-12 overflow-y-auto font-sans text-[#111827] space-y-6 bg-white print:p-0">
             {/* Header */}
-            <header className="border-b-2 border-[#132532] pb-6">
-              <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-                <div>
-                  <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#132532] font-sans">
-                    ABHINAV ANAND
-                  </h1>
-                  <p className="font-mono text-sm sm:text-base font-bold text-[#315CFF] mt-1">
-                    Software Engineer Intern (Python / Backend) | Applied AI & ML
-                  </p>
-                </div>
-              </div>
+            <header className="text-center border-b-2 border-[#132532] pb-4">
+              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#132532] font-sans">
+                ABHINAV ANAND
+              </h1>
+              <p className="text-sm sm:text-base font-semibold text-[#111827] mt-1">
+                Software Engineer Intern (Python / Backend) | Applied AI & ML
+              </p>
 
-              {/* Contact Metadata Bar */}
-              <div className="flex flex-wrap items-center gap-y-2 gap-x-4 font-mono text-xs text-[#132532]/80 mt-4 pt-3 border-t border-[#132532]/10">
-                <span className="flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-[#F0784B]" />
-                  <span>Jalandhar, Punjab, India</span>
-                </span>
-                <span className="hidden sm:inline text-[#132532]/30">•</span>
-                <span className="flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-[#315CFF]" />
-                  <span>+91 9153051907</span>
-                </span>
-                <span className="hidden sm:inline text-[#132532]/30">•</span>
-                <a
-                  href="mailto:abhinavanand9996@gmail.com"
-                  className="flex items-center gap-1.5 text-[#132532] hover:text-[#315CFF] font-semibold underline underline-offset-2"
-                >
-                  <Mail className="w-3.5 h-3.5 text-[#315CFF]" />
-                  <span>abhinavanand9996@gmail.com</span>
-                </a>
-                <span className="hidden sm:inline text-[#132532]/30">•</span>
-                <a
-                  href="https://github.com/abhinavbuilds2005"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#315CFF] font-semibold underline underline-offset-2"
-                >
-                  GitHub ↗
-                </a>
-                <span className="hidden sm:inline text-[#132532]/30">•</span>
-                <a
-                  href="https://www.linkedin.com/in/abhinav-anand-865926300"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#315CFF] font-semibold underline underline-offset-2"
-                >
-                  LinkedIn ↗
-                </a>
+              {/* Contact Metadata */}
+              <div className="text-xs sm:text-sm text-[#4b5563] mt-2 space-y-1">
+                <div>
+                  Jalandhar, Punjab, India &nbsp;|&nbsp; +91 9153051907 &nbsp;|&nbsp;{' '}
+                  <a href="mailto:abhinavanand9996@gmail.com" className="text-[#132532] font-medium hover:underline">
+                    abhinavanand9996@gmail.com
+                  </a>
+                </div>
+                <div className="space-x-3 text-xs font-semibold">
+                  <a href="https://coderabhinavanand.netlify.app/" className="text-[#315CFF] hover:underline">
+                    Portfolio
+                  </a>
+                  <span>|</span>
+                  <a href="https://github.com/abhinavbuilds2005" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">
+                    GitHub
+                  </a>
+                  <span>|</span>
+                  <a href="https://www.linkedin.com/in/abhinav-anand-865926300" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">
+                    LinkedIn
+                  </a>
+                </div>
               </div>
             </header>
 
             {/* Summary */}
-            <section className="space-y-2">
-              <h2 className="font-mono text-xs uppercase tracking-widest font-extrabold text-[#315CFF] border-b border-[#132532]/15 pb-1 flex items-center gap-1.5">
-                <Briefcase className="w-3.5 h-3.5" />
-                <span>SUMMARY</span>
+            <section className="space-y-1.5">
+              <h2 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#1f4e79] border-b border-[#cbd5e1] pb-1">
+                SUMMARY
               </h2>
-              <p className="text-sm sm:text-base text-[#132532]/90 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#1f2937] leading-relaxed">
                 B.Tech CSE (AI/ML) student building Python backend and applied AI systems with FastAPI, Docker, and end-to-end ML, NLP, and computer-vision pipelines. Built DocuShield, a document-forensics platform with a 90-test automated backend suite, plus two deployed applications, including an AI resume analyzer using Supabase and Groq (Llama 3).
               </p>
             </section>
 
             {/* Technical Projects */}
-            <section className="space-y-6">
-              <h2 className="font-mono text-xs uppercase tracking-widest font-extrabold text-[#315CFF] border-b border-[#132532]/15 pb-1 flex items-center gap-1.5">
-                <Code2 className="w-3.5 h-3.5" />
-                <span>TECHNICAL PROJECTS</span>
+            <section className="space-y-4">
+              <h2 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#1f4e79] border-b border-[#cbd5e1] pb-1">
+                TECHNICAL PROJECTS
               </h2>
 
               {/* Project 1: DocuShield */}
-              <div className="space-y-2">
+              <div className="space-y-1">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                  <div className="font-sans font-bold text-base text-[#132532]">
-                    DocuShield — Fake ID & Document Forensic Screening System
+                  <div className="font-bold text-xs sm:text-sm text-[#111827]">
+                    DocuShield — Fake ID & Document Forensic Screening System &nbsp;|&nbsp; Smart India Hackathon 2026, PS SIH26188
                   </div>
-                  <div className="font-mono text-xs text-[#F0784B] font-semibold">
-                    Smart India Hackathon 2026 · PS SIH26188
-                  </div>
+                  <a href="https://github.com/abhinavbuilds2005/DocuShield" target="_blank" rel="noopener noreferrer" className="text-xs text-[#315CFF] font-semibold hover:underline">
+                    GitHub
+                  </a>
                 </div>
-                <div className="font-mono text-xs text-[#315CFF] font-medium">
+                <div className="text-xs italic text-[#4b5563]">
                   Stack: Python, FastAPI, React (Vite), OpenCV, EasyOCR, Tesseract, Docker
                 </div>
-                <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#132532]/85 space-y-1.5 leading-relaxed">
+                <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#1f2937] space-y-1 leading-relaxed">
                   <li>
                     Built a multi-stage OCR workflow for 5 identity-document types (passport, visa, national ID, driving licence, permit), combining EasyOCR/Tesseract with ICAO MRZ parsing and checksum validation (including Verhoeff for Aadhaar); served it through FastAPI with a decoupled React (Vite) client.
                   </li>
@@ -191,19 +169,21 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
               </div>
 
               {/* Project 2: AI Resume ATS Analyzer */}
-              <div className="space-y-2">
+              <div className="space-y-1">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                  <div className="font-sans font-bold text-base text-[#132532]">
-                    AI Resume ATS Analyzer
+                  <div className="font-bold text-xs sm:text-sm text-[#111827]">
+                    AI Resume ATS Analyzer &nbsp;|&nbsp; Sep 2026
                   </div>
-                  <div className="font-mono text-xs text-[#132532]/60 font-semibold">
-                    Sep 2026 · Live & Open Source
+                  <div className="text-xs space-x-1.5 font-semibold">
+                    <a href="https://resumeatsanalyzer.streamlit.app/" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">Live</a>
+                    <span>|</span>
+                    <a href="https://github.com/abhinavbuilds2005/ai-resume-ats-analyzer" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">GitHub</a>
                   </div>
                 </div>
-                <div className="font-mono text-xs text-[#315CFF] font-medium">
+                <div className="text-xs italic text-[#4b5563]">
                   Stack: Python, FastAPI, Streamlit, spaCy, Sentence Transformers, Groq API (Llama 3), Supabase, Docker
                 </div>
-                <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#132532]/85 space-y-1.5 leading-relaxed">
+                <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#1f2937] space-y-1 leading-relaxed">
                   <li>
                     Built a 100-point resume-scoring engine covering formatting, keyword/skill matching, content quality, and ATS parseability, with a FastAPI backend and Streamlit frontend packaged in Docker.
                   </li>
@@ -217,19 +197,21 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
               </div>
 
               {/* Project 3: CreditWise */}
-              <div className="space-y-2">
+              <div className="space-y-1">
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                  <div className="font-sans font-bold text-base text-[#132532]">
-                    CreditWise — AI Loan Risk Intelligence System
+                  <div className="font-bold text-xs sm:text-sm text-[#111827]">
+                    CreditWise — AI Loan Risk Intelligence System &nbsp;|&nbsp; Mar 2026
                   </div>
-                  <div className="font-mono text-xs text-[#132532]/60 font-semibold">
-                    Mar 2026 · Live & Open Source
+                  <div className="text-xs space-x-1.5 font-semibold">
+                    <a href="https://creditwise-intelligence.streamlit.app/" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">Live</a>
+                    <span>|</span>
+                    <a href="https://github.com/abhinavbuilds2005/CreditWise" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">GitHub</a>
                   </div>
                 </div>
-                <div className="font-mono text-xs text-[#315CFF] font-medium">
+                <div className="text-xs italic text-[#4b5563]">
                   Stack: Python, Scikit-Learn, Pandas, NumPy, Streamlit
                 </div>
-                <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#132532]/85 space-y-1.5 leading-relaxed">
+                <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#1f2937] space-y-1 leading-relaxed">
                   <li>
                     Classified loan applicants into 3 risk tiers (Low/Medium/High), reporting 87.5% accuracy with a Scikit-learn multiclass classifier and Pandas-based feature engineering.
                   </li>
@@ -241,77 +223,60 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
             </section>
 
             {/* Technical Skills */}
-            <section className="space-y-3">
-              <h2 className="font-mono text-xs uppercase tracking-widest font-extrabold text-[#315CFF] border-b border-[#132532]/15 pb-1 flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>TECHNICAL SKILLS</span>
+            <section className="space-y-2">
+              <h2 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#1f4e79] border-b border-[#cbd5e1] pb-1">
+                TECHNICAL SKILLS
               </h2>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
-                <div className="bg-[#FAF8F5] p-3 border border-[#132532]/10 space-y-1">
-                  <span className="text-[#315CFF] font-bold block uppercase text-[11px]">LANGUAGES</span>
-                  <span className="text-[#132532] font-semibold">Python, C++, JavaScript, SQL</span>
+              <div className="grid grid-cols-1 gap-1.5 text-xs sm:text-sm">
+                <div>
+                  <strong className="text-[#111827]">Languages:</strong> <span className="text-[#374151]">Python, C++, JavaScript, SQL</span>
                 </div>
-                <div className="bg-[#FAF8F5] p-3 border border-[#132532]/10 space-y-1">
-                  <span className="text-[#315CFF] font-bold block uppercase text-[11px]">BACKEND & DATABASES</span>
-                  <span className="text-[#132532] font-semibold">FastAPI, REST APIs, PostgreSQL, Supabase (Auth, Postgres)</span>
+                <div>
+                  <strong className="text-[#111827]">Backend & Databases:</strong> <span className="text-[#374151]">FastAPI, REST APIs, PostgreSQL, Supabase (Auth, Postgres)</span>
                 </div>
-                <div className="bg-[#FAF8F5] p-3 border border-[#132532]/10 space-y-1">
-                  <span className="text-[#315CFF] font-bold block uppercase text-[11px]">FRONTEND & APP FRAMEWORKS</span>
-                  <span className="text-[#132532] font-semibold">React (Vite), Streamlit</span>
+                <div>
+                  <strong className="text-[#111827]">Frontend & App Frameworks:</strong> <span className="text-[#374151]">React (Vite), Streamlit</span>
                 </div>
-                <div className="bg-[#FAF8F5] p-3 border border-[#132532]/10 space-y-1">
-                  <span className="text-[#315CFF] font-bold block uppercase text-[11px]">MACHINE LEARNING & NLP</span>
-                  <span className="text-[#132532] font-semibold">Scikit-learn, Pandas, NumPy, spaCy, Sentence Transformers, Groq/Llama 3 APIs, Feature Engineering</span>
+                <div>
+                  <strong className="text-[#111827]">Machine Learning & NLP:</strong> <span className="text-[#374151]">Scikit-learn, Pandas, NumPy, spaCy, Sentence Transformers, Groq/Llama 3 APIs, Feature Engineering</span>
                 </div>
-                <div className="bg-[#FAF8F5] p-3 border border-[#132532]/10 space-y-1">
-                  <span className="text-[#315CFF] font-bold block uppercase text-[11px]">COMPUTER VISION & OCR</span>
-                  <span className="text-[#132532] font-semibold">OpenCV, EasyOCR, Tesseract, ORB + RANSAC, Error Level Analysis, ICAO MRZ Parsing</span>
+                <div>
+                  <strong className="text-[#111827]">Computer Vision & OCR:</strong> <span className="text-[#374151]">OpenCV, EasyOCR, Tesseract, ORB + RANSAC, Error Level Analysis, ICAO MRZ Parsing</span>
                 </div>
-                <div className="bg-[#FAF8F5] p-3 border border-[#132532]/10 space-y-1">
-                  <span className="text-[#315CFF] font-bold block uppercase text-[11px]">TOOLS & DEVOPS</span>
-                  <span className="text-[#132532] font-semibold">Docker, Git, GitHub</span>
+                <div>
+                  <strong className="text-[#111827]">Tools & DevOps:</strong> <span className="text-[#374151]">Docker, Git, GitHub</span>
                 </div>
               </div>
             </section>
 
             {/* Certifications & Hackathons */}
-            <section className="space-y-2">
-              <h2 className="font-mono text-xs uppercase tracking-widest font-extrabold text-[#315CFF] border-b border-[#132532]/15 pb-1 flex items-center gap-1.5">
-                <Award className="w-3.5 h-3.5" />
-                <span>CERTIFICATIONS & HACKATHONS</span>
+            <section className="space-y-1.5">
+              <h2 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#1f4e79] border-b border-[#cbd5e1] pb-1">
+                CERTIFICATIONS & HACKATHONS
               </h2>
-              <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#132532]/85 space-y-1">
-                <li>
-                  <strong>Smart India Hackathon 2026:</strong> Built DocuShield for problem statement SIH26188
-                </li>
-                <li>
-                  <strong>HackerRank:</strong> SQL (Advanced)
-                </li>
-                <li>
-                  <strong>Infosys Springboard:</strong> Python
-                </li>
+              <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#1f2937] space-y-1">
+                <li>Smart India Hackathon 2026 — built DocuShield for problem statement SIH26188</li>
+                <li>HackerRank — SQL (Advanced)</li>
+                <li>Infosys Springboard — Python</li>
               </ul>
             </section>
 
             {/* Education */}
-            <section className="space-y-2">
-              <h2 className="font-mono text-xs uppercase tracking-widest font-extrabold text-[#315CFF] border-b border-[#132532]/15 pb-1 flex items-center gap-1.5">
-                <BookOpen className="w-3.5 h-3.5" />
-                <span>EDUCATION</span>
+            <section className="space-y-1.5">
+              <h2 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#1f4e79] border-b border-[#cbd5e1] pb-1">
+                EDUCATION
               </h2>
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                <div>
-                  <div className="font-sans font-bold text-base text-[#132532]">
-                    Lovely Professional University, Punjab, India
-                  </div>
-                  <div className="text-xs sm:text-sm text-[#132532]/80">
-                    B.Tech, Computer Science (AI/ML)
-                  </div>
+                <div className="font-bold text-xs sm:text-sm text-[#111827]">
+                  Lovely Professional University, Punjab, India
                 </div>
-                <div className="font-mono text-xs text-[#315CFF] font-bold">
+                <div className="text-xs sm:text-sm text-[#4b5563] font-semibold">
                   Aug 2025 – Aug 2029
                 </div>
+              </div>
+              <div className="text-xs sm:text-sm text-[#374151]">
+                B.Tech, Computer Science (AI/ML)
               </div>
             </section>
           </div>
