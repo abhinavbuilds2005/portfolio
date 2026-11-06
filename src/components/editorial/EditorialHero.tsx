@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowDownRight, ExternalLink, Sparkles, RefreshCw } from 'lucide-react';
 import { EditorialOrbitalDisc } from './EditorialOrbitalDisc';
+import { MagneticButton } from './MagneticButton';
 
 interface HeroPhrase {
   tag: string;
@@ -185,7 +186,7 @@ export const EditorialHero: React.FC = () => {
           </button>
         </motion.div>
 
-        {/* CTA Button Group */}
+        {/* CTA Button Group with Magnetic Pull Physics */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -193,24 +194,28 @@ export const EditorialHero: React.FC = () => {
           className="flex flex-wrap items-center gap-4 sm:gap-6 mt-8"
         >
           {/* Primary CTA with Persimmon Drop Shadow */}
-          <a
-            href="#work"
-            className="btn-editorial-primary text-xs sm:text-sm"
-          >
-            <span>EXPLORE SELECTED WORK</span>
-            <ArrowDownRight className="w-4 h-4 text-white" />
-          </a>
+          <MagneticButton strength={0.3}>
+            <a
+              href="#work"
+              className="btn-editorial-primary text-xs sm:text-sm"
+            >
+              <span>EXPLORE SELECTED WORK</span>
+              <ArrowDownRight className="w-4 h-4 text-white" />
+            </a>
+          </MagneticButton>
 
           {/* Secondary Outline CTA */}
-          <a
-            href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-editorial-outline text-xs sm:text-sm"
-          >
-            <span>VIEW RÉSUMÉ</span>
-            <ExternalLink className="w-4 h-4 text-[#132532]" />
-          </a>
+          <MagneticButton strength={0.3}>
+            <a
+              href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-editorial-outline text-xs sm:text-sm"
+            >
+              <span>VIEW RÉSUMÉ</span>
+              <ExternalLink className="w-4 h-4 text-[#132532]" />
+            </a>
+          </MagneticButton>
         </motion.div>
       </div>
 

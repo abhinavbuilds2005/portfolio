@@ -10,6 +10,7 @@ import { EditorialLeetCode } from './components/editorial/EditorialLeetCode';
 import { EditorialContact } from './components/editorial/EditorialContact';
 import { BackToTop } from './components/editorial/BackToTop';
 import { CustomCursor } from './components/editorial/CustomCursor';
+import { ScrollProgressBar } from './components/editorial/ScrollProgressBar';
 import { EditorialTerminalModal } from './components/editorial/EditorialTerminalModal';
 import { EditorialCaseStudyModal } from './components/editorial/EditorialCaseStudyModal';
 import { Project } from './lib/types';
@@ -34,6 +35,9 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-[#F5F2EB] text-[#132532] selection:bg-[#315CFF] selection:text-white font-sans relative">
+      {/* Top Viewport Scroll Progress Bar */}
+      <ScrollProgressBar />
+
       {/* Desktop Custom Smooth Cursor */}
       <CustomCursor />
 

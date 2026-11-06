@@ -1,5 +1,44 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+
+const CountingNumber: React.FC<{ target: number; prefix?: string; pad?: boolean }> = ({
+  target,
+  prefix = '',
+  pad = false,
+}) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-40px' });
+
+  useEffect(() => {
+    if (!isInView) return;
+    let start = Math.max(0, target - 12);
+    if (target > 2000) start = target - 9; // E.g. start at 2020 for 2029
+
+    let current = start;
+    const duration = 1200; // ms
+    const steps = target - start;
+    const stepTime = Math.max(30, Math.floor(duration / (steps || 1)));
+
+    const timer = setInterval(() => {
+      current += 1;
+      setCount(current);
+      if (current >= target) {
+        clearInterval(timer);
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [isInView, target]);
+
+  const display = pad ? String(count).padStart(2, '0') : String(count);
+
+  return (
+    <div ref={ref} className="text-6xl sm:text-7xl font-extrabold text-[#315CFF] tracking-tight font-sans mb-2 tabular-nums">
+      {prefix}{display || (pad ? '01' : target)}
+    </div>
+  );
+};
 
 export const EditorialAbout: React.FC = () => {
   return (
@@ -58,9 +97,7 @@ export const EditorialAbout: React.FC = () => {
       >
         {/* Metric 1 */}
         <div className="py-6 sm:py-0 sm:pr-8">
-          <div className="text-6xl sm:text-7xl font-extrabold text-[#315CFF] tracking-tight font-sans mb-2">
-            05
-          </div>
+          <CountingNumber target={5} pad={true} />
           <div className="font-mono text-xs uppercase tracking-widest text-[#132532]/70 font-semibold">
             PROJECT SYSTEMS
           </div>
@@ -68,9 +105,7 @@ export const EditorialAbout: React.FC = () => {
 
         {/* Metric 2 */}
         <div className="py-6 sm:py-0 sm:px-8">
-          <div className="text-6xl sm:text-7xl font-extrabold text-[#315CFF] tracking-tight font-sans mb-2">
-            2029
-          </div>
+          <CountingNumber target={2029} />
           <div className="font-mono text-xs uppercase tracking-widest text-[#132532]/70 font-semibold">
             GRADUATION YEAR
           </div>
@@ -78,9 +113,16 @@ export const EditorialAbout: React.FC = () => {
 
         {/* Metric 3 */}
         <div className="py-6 sm:py-0 sm:pl-8">
-          <div className="text-6xl sm:text-7xl font-extrabold text-[#315CFF] tracking-tight font-sans mb-2">
-            AI ×
-          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-6xl sm:text-7xl font-extrabold text-[#315CFF] tracking-tight font-sans mb-2 flex items-baseline gap-2"
+          >
+            <span>AI</span>
+            <span className="text-[#F0784B] font-mono text-5xl">×</span>
+          </motion.div>
           <div className="font-mono text-xs uppercase tracking-widest text-[#132532]/70 font-semibold">
             SOFTWARE ENGINEERING
           </div>

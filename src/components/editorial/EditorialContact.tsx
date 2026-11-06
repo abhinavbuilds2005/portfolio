@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Check, Copy, ExternalLink, Github, Linkedin, Code } from 'lucide-react';
+import { MagneticButton } from './MagneticButton';
 
 export const EditorialContact: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -30,35 +31,39 @@ export const EditorialContact: React.FC = () => {
         class imbalance with statistical rigor, or low-latency inference microservices, I'd love to connect.
       </p>
 
-      {/* Action Buttons */}
+      {/* Action Buttons with Magnetic Pull */}
       <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-16">
         {/* Primary Email CTA with Persimmon Offset Shadow */}
-        <a
-          href={`mailto:${email}`}
-          className="btn-editorial-primary text-xs sm:text-sm"
-        >
-          <Mail className="w-4 h-4 text-white" />
-          <span>SEND AN EMAIL</span>
-          <span className="text-xs">↗</span>
-        </a>
+        <MagneticButton strength={0.3}>
+          <a
+            href={`mailto:${email}`}
+            className="btn-editorial-primary text-xs sm:text-sm"
+          >
+            <Mail className="w-4 h-4 text-white" />
+            <span>SEND AN EMAIL</span>
+            <span className="text-xs">↗</span>
+          </a>
+        </MagneticButton>
 
         {/* Copy Email Button */}
-        <button
-          onClick={copyToClipboard}
-          className="btn-editorial-outline text-xs sm:text-sm flex items-center gap-2"
-        >
-          {copied ? (
-            <>
-              <Check className="w-4 h-4 text-emerald-600" />
-              <span className="text-emerald-700">COPIED TO CLIPBOARD</span>
-            </>
-          ) : (
-            <>
-              <Copy className="w-4 h-4 text-[#132532]" />
-              <span>COPY EMAIL ADDRESS</span>
-            </>
-          )}
-        </button>
+        <MagneticButton strength={0.3}>
+          <button
+            onClick={copyToClipboard}
+            className="btn-editorial-outline text-xs sm:text-sm flex items-center gap-2"
+          >
+            {copied ? (
+              <>
+                <Check className="w-4 h-4 text-emerald-600" />
+                <span className="text-emerald-700">COPIED TO CLIPBOARD</span>
+              </>
+            ) : (
+              <>
+                <Copy className="w-4 h-4 text-[#132532]" />
+                <span>COPY EMAIL ADDRESS</span>
+              </>
+            )}
+          </button>
+        </MagneticButton>
       </div>
 
       {/* Social and Profile Directory */}

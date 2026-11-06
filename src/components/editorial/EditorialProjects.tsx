@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Github, Eye, Sliders, CheckCircle2 } from 'lucide-react';
 import { PROJECTS } from '../../data/projects';
 import { Project } from '../../lib/types';
+import { TiltProjectCard } from './TiltProjectCard';
+import { MagneticButton } from './MagneticButton';
 
 interface EditorialProjectsProps {
   onOpenCaseStudy?: (project: Project) => void;
@@ -177,139 +179,61 @@ export const EditorialProjects: React.FC<EditorialProjectsProps> = ({ onOpenCase
             ))}
           </div>
 
-          {/* Links Row */}
-          <div className="flex flex-wrap items-center gap-8 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-[#132532] border-t border-[#132532]/10 pt-6">
-            <a
-              href={docushield.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 underline underline-offset-4 decoration-2 decoration-[#132532] hover:decoration-[#315CFF] hover:text-[#315CFF] transition-colors"
-            >
-              <span>LIVE SYSTEM</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+          {/* Links Row with Magnetic Hover Physics */}
+          <div className="flex flex-wrap items-center gap-6 sm:gap-8 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-[#132532] border-t border-[#132532]/10 pt-6">
+            <MagneticButton strength={0.25}>
+              <a
+                href={docushield.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 underline underline-offset-4 decoration-2 decoration-[#132532] hover:decoration-[#315CFF] hover:text-[#315CFF] transition-colors py-1"
+              >
+                <span>LIVE SYSTEM</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </MagneticButton>
 
-            <a
-              href={docushield.repoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 underline underline-offset-4 decoration-2 decoration-[#132532] hover:decoration-[#315CFF] hover:text-[#315CFF] transition-colors"
-            >
-              <span>SOURCE CODE</span>
-              <Github className="w-3.5 h-3.5" />
-            </a>
+            <MagneticButton strength={0.25}>
+              <a
+                href={docushield.repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 underline underline-offset-4 decoration-2 decoration-[#132532] hover:decoration-[#315CFF] hover:text-[#315CFF] transition-colors py-1"
+              >
+                <span>SOURCE CODE</span>
+                <Github className="w-3.5 h-3.5" />
+              </a>
+            </MagneticButton>
 
             {onOpenCaseStudy && (
-              <button
-                onClick={() => onOpenCaseStudy(docushield)}
-                className="inline-flex items-center gap-1.5 underline underline-offset-4 decoration-2 decoration-[#315CFF] text-[#315CFF] hover:text-[#2047E5] transition-colors cursor-pointer"
-              >
-                <span>ARCHITECTURE BREAKDOWN</span>
-                <span>↘</span>
-              </button>
+              <MagneticButton strength={0.25}>
+                <button
+                  onClick={() => onOpenCaseStudy(docushield)}
+                  className="inline-flex items-center gap-1.5 underline underline-offset-4 decoration-2 decoration-[#315CFF] text-[#315CFF] hover:text-[#2047E5] transition-colors cursor-pointer py-1"
+                >
+                  <span>ARCHITECTURE BREAKDOWN</span>
+                  <span>↘</span>
+                </button>
+              </MagneticButton>
             )}
           </div>
         </div>
       </motion.div>
 
       {/* ========================================================================= */}
-      {/* OTHER 4 PROJECTS IN EDITORIAL CARD GRID                                  */}
+      {/* OTHER 4 PROJECTS IN EDITORIAL CARD GRID (with 3D Tilt & Cursor Spotlight)*/}
       {/* ========================================================================= */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12">
         {otherProjects.map((project, index) => {
           const num = (index + 2).toString().padStart(2, '0');
           return (
-            <motion.div
+            <TiltProjectCard
               key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white border border-[#132532]/15 shadow-sm overflow-hidden flex flex-col justify-between group hover:border-[#132532]/40 transition-colors"
-            >
-              <div>
-                {/* Project Image Frame */}
-                <div className="relative aspect-[16/10] bg-[#FAF8F5] border-b border-[#132532]/10 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {/* Subtle Number Tag */}
-                  <div className="absolute top-3 left-3 bg-[#132532] text-white font-mono text-xs px-2.5 py-1 uppercase font-bold tracking-wider">
-                    {num}
-                  </div>
-                </div>
-
-                {/* Editorial Content */}
-                <div className="p-6 sm:p-8">
-                  {/* Category kicker in Electric Blue */}
-                  <div className="font-mono text-xs uppercase tracking-wider font-semibold text-[#315CFF] mb-2">
-                    {num} — {project.categoryLabel}
-                  </div>
-
-                  {/* Title with dot */}
-                  <h4 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#132532] font-sans mb-3">
-                    {project.title}.
-                  </h4>
-
-                  {/* Description */}
-                  <p className="text-sm sm:text-base text-[#132532] text-opacity-90 leading-relaxed mb-6">
-                    {project.summary}
-                  </p>
-
-                  {/* Tech stack tags */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tech.slice(0, 5).map((t) => (
-                      <span
-                        key={t}
-                        className="px-2.5 py-1 bg-[#FAF8F5] border border-[#132532]/12 text-[11px] font-mono text-[#132532]"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom Action Links */}
-              <div className="px-6 sm:px-8 pb-6 pt-4 border-t border-[#132532]/10 flex items-center justify-between font-mono text-xs font-bold uppercase tracking-wider text-[#132532]">
-                <div className="flex items-center gap-5">
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline underline-offset-4 decoration-2 decoration-[#132532] hover:decoration-[#315CFF] hover:text-[#315CFF] transition-colors inline-flex items-center gap-1"
-                    >
-                      <span>LIVE</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  )}
-
-                  {project.repoUrl && (
-                    <a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline underline-offset-4 decoration-2 decoration-[#132532] hover:decoration-[#315CFF] hover:text-[#315CFF] transition-colors inline-flex items-center gap-1"
-                    >
-                      <span>CODE</span>
-                      <Github className="w-3 h-3" />
-                    </a>
-                  )}
-                </div>
-
-                {onOpenCaseStudy && (
-                  <button
-                    onClick={() => onOpenCaseStudy(project)}
-                    className="text-[#315CFF] hover:text-[#2047E5] underline underline-offset-4 transition-colors cursor-pointer"
-                  >
-                    CASE STUDY ↘
-                  </button>
-                )}
-              </div>
-            </motion.div>
+              project={project}
+              num={num}
+              index={index}
+              onOpenCaseStudy={onOpenCaseStudy}
+            />
           );
         })}
       </div>
