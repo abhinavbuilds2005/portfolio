@@ -22,7 +22,7 @@ export const EditorialNavbar: React.FC<EditorialNavbarProps> = ({ onOpenTerminal
     { label: 'ABOUT', href: '#about' },
     { label: 'SKILLS', href: '#stack' },
     { label: 'LEETCODE', href: '#leetcode' },
-    { label: 'CONTACT', href: '#contact' },
+    { label: 'HIRE ME', href: '#contact', isHireMe: true },
   ];
 
   return (
@@ -56,7 +56,11 @@ export const EditorialNavbar: React.FC<EditorialNavbarProps> = ({ onOpenTerminal
             <a
               key={link.label}
               href={link.href}
-              className="hover:text-[#132532] hover:text-[#315CFF] transition-colors relative py-1"
+              className={
+                link.isHireMe
+                  ? 'bg-[#315CFF] text-white px-3.5 py-1.5 shadow-[2px_2px_0px_#F0784B] hover:bg-[#2047E5] transition-all font-bold hover:translate-x-[1px] hover:translate-y-[1px]'
+                  : 'hover:text-[#132532] hover:text-[#315CFF] transition-colors relative py-1'
+              }
             >
               {link.label}
             </a>
