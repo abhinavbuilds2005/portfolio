@@ -20,7 +20,8 @@ export const EditorialNavbar: React.FC<EditorialNavbarProps> = ({ onOpenTerminal
   const navLinks = [
     { label: 'WORK', href: '#work' },
     { label: 'ABOUT', href: '#about' },
-    { label: 'STACK', href: '#stack' },
+    { label: 'SKILLS', href: '#stack' },
+    { label: 'LEETCODE', href: '#leetcode' },
     { label: 'CONTACT', href: '#contact' },
   ];
 

@@ -6,6 +6,7 @@ import { EditorialMarquee } from './components/editorial/EditorialMarquee';
 import { EditorialProjects } from './components/editorial/EditorialProjects';
 import { EditorialAbout } from './components/editorial/EditorialAbout';
 import { EditorialStack } from './components/editorial/EditorialStack';
+import { EditorialLeetCode } from './components/editorial/EditorialLeetCode';
 import { EditorialContact } from './components/editorial/EditorialContact';
 import { BackToTop } from './components/editorial/BackToTop';
 import { CustomCursor } from './components/editorial/CustomCursor';
@@ -59,7 +60,10 @@ export function App() {
         {/* Section 3: Tools of the Trade / Working Vocabulary */}
         <EditorialStack />
 
-        {/* Section 4: Contact / Let's Build Something Dependable */}
+        {/* Section 4: Problem Solving & LeetCode Telemetry */}
+        <EditorialLeetCode />
+
+        {/* Section 5: Contact / Let's Build Something Dependable */}
         <EditorialContact />
       </main>
 
