@@ -1,48 +1,160 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowDownRight, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowDownRight, ExternalLink, Sparkles, RefreshCw } from 'lucide-react';
+import { EditorialOrbitalDisc } from './EditorialOrbitalDisc';
+
+interface HeroPhrase {
+  tag: string;
+  action: string;
+  result: string;
+  color: string;
+  discipline: string;
+}
+
+const PHRASES: HeroPhrase[] = [
+  { tag: 'AI', action: 'feel', result: 'useful.', color: '#315CFF', discipline: 'APPLIED MACHINE LEARNING' },
+  { tag: 'MODELS', action: 'feel', result: 'dependable.', color: '#315CFF', discipline: 'REPRODUCIBLE INFERENCE' },
+  { tag: 'VISION', action: 'feel', result: 'explainable.', color: '#F0784B', discipline: 'IMAGE FORENSICS & ELA' },
+  { tag: 'SYSTEMS', action: 'feel', result: 'resilient.', color: '#132532', discipline: 'PRODUCTION MLOPS PIPELINES' },
+];
 
 export const EditorialHero: React.FC = () => {
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [isScrambling, setIsScrambling] = useState(false);
+  const [makingWord, setMakingWord] = useState('Making');
+
+  // Rotate headline phrases every 3.6 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setPhraseIndex((prev) => (prev + 1) % PHRASES.length);
+    }, 3600);
+    return () => clearInterval(timer);
+  }, []);
+
+  const currentPhrase = PHRASES[phraseIndex];
+
+  // Interactive scramble effect on hover
+  const triggerScramble = () => {
+    if (isScrambling) return;
+    setIsScrambling(true);
+    const original = 'Making';
+    const glyphs = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789_#@%';
+    let iteration = 0;
+
+    const interval = setInterval(() => {
+      setMakingWord(
+        original
+          .split('')
+          .map((char, idx) => {
+            if (idx < iteration) return original[idx];
+            return glyphs[Math.floor(Math.random() * glyphs.length)];
+          })
+          .join('')
+      );
+      if (iteration >= original.length) {
+        clearInterval(interval);
+        setMakingWord(original);
+        setIsScrambling(false);
+      }
+      iteration += 1 / 2;
+    }, 35);
+  };
+
+  const nextPhrase = () => {
+    setPhraseIndex((prev) => (prev + 1) % PHRASES.length);
+  };
+
   return (
-    <section className="relative min-h-[92vh] pt-32 pb-16 px-6 sm:px-12 flex flex-col justify-between max-w-7xl mx-auto overflow-hidden">
-      {/* Asymmetric Background Architectural Ring Disc (from Reference Image 1) */}
-      <div
-        className="absolute top-12 right-[-60px] sm:right-[-20px] lg:right-[40px] w-[340px] sm:w-[480px] lg:w-[600px] h-[340px] sm:h-[480px] lg:h-[600px] rounded-full pointer-events-none -z-0"
-        style={{
-          background: 'radial-gradient(circle, rgba(235, 230, 218, 0.6) 0%, rgba(245, 242, 235, 0.2) 65%, rgba(245, 242, 235, 0) 70%)',
-          border: '1px solid rgba(19, 37, 50, 0.08)'
-        }}
-      >
-        {/* Inner subtle concentric ring */}
-        <div className="absolute inset-12 sm:inset-16 rounded-full border border-[#132532]/5" />
+    <section className="relative min-h-[92vh] pt-28 sm:pt-32 pb-16 px-6 sm:px-12 flex flex-col justify-between max-w-7xl mx-auto overflow-hidden">
+      {/* ========================================================================= */}
+      {/* ASYMMETRIC INTERACTIVE EDITORIAL RADAR ORBITAL SYSTEM (Right Hero Space)  */}
+      {/* ========================================================================= */}
+      <div className="absolute top-12 right-[-100px] sm:right-[-40px] md:right-0 lg:right-6 xl:right-12 pointer-events-auto z-0 opacity-80 sm:opacity-100 scale-90 sm:scale-100 lg:scale-105 transition-all">
+        <EditorialOrbitalDisc />
       </div>
 
-      {/* Main Content Area */}
-      <div className="relative z-10 max-w-4xl">
-        {/* Kicker tag */}
+      {/* ========================================================================= */}
+      {/* MAIN CONTENT AREA: EDITORIAL HEADLINE & KINETIC TEXT ANIMATION           */}
+      {/* ========================================================================= */}
+      <div className="relative z-10 max-w-3xl lg:max-w-4xl">
+        {/* Kicker tag with Live Discipline Pill */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="font-mono text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#F0784B] mb-6 flex items-center gap-2"
+          className="flex flex-wrap items-center gap-3 mb-6"
         >
-          <span>INDEPENDENT MIND, ENGINEERED SYSTEMS — 2026</span>
+          <span className="font-mono text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#F0784B]">
+            INDEPENDENT MIND, ENGINEERED SYSTEMS — 2026
+          </span>
+          <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-[#132532]/20" />
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={currentPhrase.discipline}
+              initial={{ opacity: 0, x: -6 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 6 }}
+              transition={{ duration: 0.3 }}
+              className="font-mono text-[11px] font-bold tracking-wider text-[#315CFF] uppercase hidden sm:inline-block bg-[#315CFF]/8 px-2 py-0.5 border border-[#315CFF]/15"
+            >
+              {currentPhrase.discipline}
+            </motion.span>
+          </AnimatePresence>
         </motion.div>
 
-        {/* Giant Editorial Headline */}
+        {/* Giant Editorial Kinetic Headline */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-[-0.035em] leading-[0.92] text-[#132532] font-sans"
         >
-          <div className="block">Making</div>
-          <div className="flex items-baseline flex-wrap gap-x-3 sm:gap-x-4">
-            {/* Outlined "AI" */}
-            <span className="text-stroke-ink text-transparent">AI</span>
+          {/* Line 1: Making (Interactive Scramble) */}
+          <div
+            onMouseEnter={triggerScramble}
+            className="block cursor-pointer select-none transition-transform duration-200 hover:translate-x-1"
+            title="Hover to scramble"
+          >
+            {makingWord}
+          </div>
+
+          {/* Line 2: [AI / MODELS / VISION / SYSTEMS] feel */}
+          <div className="flex items-baseline flex-wrap gap-x-3 sm:gap-x-5 py-1">
+            <div className="relative inline-block overflow-hidden align-baseline">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={`tag-${phraseIndex}`}
+                  initial={{ y: 40, opacity: 0, rotateX: -30 }}
+                  animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                  exit={{ y: -40, opacity: 0, rotateX: 30 }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  onClick={nextPhrase}
+                  className="text-stroke-ink text-transparent inline-block cursor-pointer select-none hover:text-[#132532] transition-colors"
+                  title="Click to cycle next term"
+                >
+                  {currentPhrase.tag}
+                </motion.span>
+              </AnimatePresence>
+            </div>
             <span>feel</span>
           </div>
-          <div className="block text-[#315CFF]">useful.</div>
+
+          {/* Line 3: useful. / dependable. / explainable. / resilient. */}
+          <div className="relative block overflow-hidden py-1">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`result-${phraseIndex}`}
+                initial={{ y: 45, opacity: 0, filter: 'blur(6px)' }}
+                animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+                exit={{ y: -45, opacity: 0, filter: 'blur(6px)' }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-block"
+                style={{ color: currentPhrase.color }}
+              >
+                {currentPhrase.result}
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </motion.div>
 
         {/* Mission Statement Subtitle */}
@@ -57,12 +169,28 @@ export const EditorialHero: React.FC = () => {
           things that work.
         </motion.p>
 
+        {/* Interactive Cycle Hint */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="mt-3 flex items-center gap-2 font-mono text-[11px] text-[#132532]/60"
+        >
+          <button
+            onClick={nextPhrase}
+            className="inline-flex items-center gap-1.5 text-[#315CFF] hover:underline cursor-pointer"
+          >
+            <RefreshCw className="w-3 h-3 animate-[spin_8s_linear_infinite]" />
+            <span>Cycle philosophy ({phraseIndex + 1}/{PHRASES.length})</span>
+          </button>
+        </motion.div>
+
         {/* CTA Button Group */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.65 }}
-          className="flex flex-wrap items-center gap-4 sm:gap-6 mt-10"
+          className="flex flex-wrap items-center gap-4 sm:gap-6 mt-8"
         >
           {/* Primary CTA with Persimmon Drop Shadow */}
           <a
@@ -86,7 +214,9 @@ export const EditorialHero: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Meta Profile Bar (Matching Bottom of Image 1) */}
+      {/* ========================================================================= */}
+      {/* META PROFILE BAR (Matching Bottom of Reference Image 1)                   */}
+      {/* ========================================================================= */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -139,4 +269,3 @@ export const EditorialHero: React.FC = () => {
     </section>
   );
 };
-
