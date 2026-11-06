@@ -362,3 +362,4 @@ export const EditorialCertifications: React.FC = () => {
     </section>
   );
 };
+

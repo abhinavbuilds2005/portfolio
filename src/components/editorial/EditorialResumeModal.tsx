@@ -254,19 +254,23 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
                 </div>
                 <div className="bg-[#FAF8F5] p-3 border border-[#132532]/10 space-y-1">
                   <span className="text-[#315CFF] font-bold block uppercase text-[11px]">BACKEND & DATABASES</span>
-                  <span className="text-[#132532] font-semibold">FastAPI, REST APIs, PostgreSQL, Supabase</span>
+                  <span className="text-[#132532] font-semibold">FastAPI, REST APIs, PostgreSQL, Supabase (Auth, Postgres)</span>
+                </div>
+                <div className="bg-[#FAF8F5] p-3 border border-[#132532]/10 space-y-1">
+                  <span className="text-[#315CFF] font-bold block uppercase text-[11px]">FRONTEND & APP FRAMEWORKS</span>
+                  <span className="text-[#132532] font-semibold">React (Vite), Streamlit</span>
                 </div>
                 <div className="bg-[#FAF8F5] p-3 border border-[#132532]/10 space-y-1">
                   <span className="text-[#315CFF] font-bold block uppercase text-[11px]">MACHINE LEARNING & NLP</span>
-                  <span className="text-[#132532] font-semibold">Scikit-learn, Pandas, NumPy, spaCy, Sentence Transformers, Groq Llama 3</span>
+                  <span className="text-[#132532] font-semibold">Scikit-learn, Pandas, NumPy, spaCy, Sentence Transformers, Groq/Llama 3 APIs, Feature Engineering</span>
                 </div>
                 <div className="bg-[#FAF8F5] p-3 border border-[#132532]/10 space-y-1">
                   <span className="text-[#315CFF] font-bold block uppercase text-[11px]">COMPUTER VISION & OCR</span>
-                  <span className="text-[#132532] font-semibold">OpenCV, EasyOCR, Tesseract, ORB + RANSAC, ELA, ICAO MRZ</span>
+                  <span className="text-[#132532] font-semibold">OpenCV, EasyOCR, Tesseract, ORB + RANSAC, Error Level Analysis, ICAO MRZ Parsing</span>
                 </div>
-                <div className="bg-[#FAF8F5] p-3 border border-[#132532]/10 space-y-1 sm:col-span-2">
-                  <span className="text-[#315CFF] font-bold block uppercase text-[11px]">FRONTEND, DEVOPS & TOOLS</span>
-                  <span className="text-[#132532] font-semibold">React (Vite), Streamlit, Docker, Git, GitHub, Linux Shell</span>
+                <div className="bg-[#FAF8F5] p-3 border border-[#132532]/10 space-y-1">
+                  <span className="text-[#315CFF] font-bold block uppercase text-[11px]">TOOLS & DEVOPS</span>
+                  <span className="text-[#132532] font-semibold">Docker, Git, GitHub</span>
                 </div>
               </div>
             </section>
@@ -279,16 +283,13 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
               </h2>
               <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#132532]/85 space-y-1">
                 <li>
-                  <strong>NPTEL & IIT Madras:</strong> Introduction to Large Language Models (LLMs) · Roll: NPTEL26CS171MANUAL0000154 (12-Week Intensive, 4 Credits).
+                  <strong>Smart India Hackathon 2026:</strong> Built DocuShield for problem statement SIH26188
                 </li>
                 <li>
-                  <strong>Smart India Hackathon 2026:</strong> Built DocuShield for Problem Statement SIH26188 (Qualified).
+                  <strong>HackerRank:</strong> SQL (Advanced)
                 </li>
                 <li>
-                  <strong>HackerRank:</strong> SQL (Advanced) Certified (5★ Gold Badge).
-                </li>
-                <li>
-                  <strong>Infosys Springboard:</strong> Python Certified.
+                  <strong>Infosys Springboard:</strong> Python
                 </li>
               </ul>
             </section>
@@ -305,7 +306,7 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
                     Lovely Professional University, Punjab, India
                   </div>
                   <div className="text-xs sm:text-sm text-[#132532]/80">
-                    B.Tech in Computer Science and Engineering (AI/ML Specialization)
+                    B.Tech, Computer Science (AI/ML)
                   </div>
                 </div>
                 <div className="font-mono text-xs text-[#315CFF] font-bold">
