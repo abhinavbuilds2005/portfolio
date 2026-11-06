@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowDownRight, ExternalLink, Sparkles, RefreshCw } from 'lucide-react';
+import { ArrowDownRight, ExternalLink, Sparkles, RefreshCw, Cpu, Zap, Binary } from 'lucide-react';
 import { EditorialOrbitalDisc } from './EditorialOrbitalDisc';
 import { MagneticButton } from './MagneticButton';
 
@@ -13,13 +13,19 @@ interface HeroPhrase {
 }
 
 const PHRASES: HeroPhrase[] = [
-  { tag: 'AI', action: 'feel', result: 'useful.', color: '#315CFF', discipline: 'APPLIED MACHINE LEARNING' },
-  { tag: 'MODELS', action: 'feel', result: 'dependable.', color: '#315CFF', discipline: 'REPRODUCIBLE INFERENCE' },
-  { tag: 'VISION', action: 'feel', result: 'explainable.', color: '#F0784B', discipline: 'IMAGE FORENSICS & ELA' },
-  { tag: 'SYSTEMS', action: 'feel', result: 'resilient.', color: '#132532', discipline: 'PRODUCTION MLOPS PIPELINES' },
+  { tag: 'AI', action: 'feel', result: 'useful.', color: '#315CFF', discipline: 'APPLIED MACHINE LEARNING & STATS' },
+  { tag: 'INFERENCE', action: 'feel', result: '<42ms.', color: '#315CFF', discipline: 'LOW-LATENCY ONNX & FASTAPI' },
+  { tag: 'FORENSICS', action: 'feel', result: 'tamper-evident.', color: '#F0784B', discipline: 'IMAGE FORENSICS & ELA LAB' },
+  { tag: 'PIPELINES', action: 'feel', result: 'deterministic.', color: '#132532', discipline: 'PRODUCTION MLOPS & DOCKER' },
+  { tag: 'MODELS', action: 'feel', result: 'dependable.', color: '#315CFF', discipline: 'REPRODUCIBLE PYTORCH ARCHITECTURES' },
+  { tag: 'SYSTEMS', action: 'feel', result: 'resilient.', color: '#F0784B', discipline: 'VERHOEFF CRYPTOGRAPHY & SIH\'26' },
 ];
 
-export const EditorialHero: React.FC = () => {
+interface EditorialHeroProps {
+  onOpenResume?: () => void;
+}
+
+export const EditorialHero: React.FC<EditorialHeroProps> = ({ onOpenResume }) => {
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [isScrambling, setIsScrambling] = useState(false);
   const [makingWord, setMakingWord] = useState('Making');
@@ -153,31 +159,59 @@ export const EditorialHero: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Mission Statement Subtitle */}
+          {/* Mission Statement Subtitle with High-Density Technical Depth */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
             className="text-base sm:text-lg lg:text-xl text-[#132532] text-opacity-90 font-normal leading-relaxed max-w-xl mt-6 sm:mt-8"
           >
-            I'm Abhinav — a computer science student focused on building practical machine
-            learning systems, computer vision tools, and thoughtful software. Less hype. More
-            things that work.
+            I'm Abhinav — an AI/ML engineering student architecting <strong className="font-semibold text-[#132532]">multimodal computer vision</strong>, <strong className="font-semibold text-[#132532]">forensic tamper detection (ELA)</strong>, and <strong className="font-semibold text-[#132532]">low-latency model inference (&lt;42ms FastAPI + ONNX)</strong>. Focused on deterministic pipelines, cryptographic checksums, and mathematically grounded architectures.
           </motion.p>
+
+          {/* Live Technical Competency Matrix */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-5 font-mono text-xs"
+          >
+            <span className="text-[#F0784B] font-bold text-[10px] tracking-wider uppercase flex items-center gap-1 mr-1">
+              <Cpu className="w-3.5 h-3.5 text-[#315CFF]" />
+              <span>ARSENAL //</span>
+            </span>
+            {[
+              'PyTorch',
+              'FastAPI · <42ms',
+              'OpenCV Forensics',
+              'ONNX Runtime',
+              'Error Level Analysis (ELA)',
+              'Verhoeff D5 Checksum',
+              'Docker',
+              'Scikit-Learn',
+            ].map((term) => (
+              <span
+                key={term}
+                className="bg-[#FAF8F5] border border-[#132532]/15 text-[#132532] px-2.5 py-1 text-[11px] font-medium shadow-[1px_1px_0px_rgba(19,37,50,0.06)] hover:border-[#315CFF] hover:bg-[#315CFF]/5 transition-colors cursor-default"
+              >
+                {term}
+              </span>
+            ))}
+          </motion.div>
 
           {/* Interactive Cycle Hint */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="mt-3 flex items-center gap-2 font-mono text-[11px] text-[#132532]/60"
+            transition={{ delay: 0.8 }}
+            className="mt-4 flex items-center gap-2 font-mono text-[11px] text-[#132532]/60"
           >
             <button
               onClick={nextPhrase}
               className="inline-flex items-center gap-1.5 text-[#315CFF] hover:underline cursor-pointer"
             >
               <RefreshCw className="w-3 h-3 animate-[spin_8s_linear_infinite]" />
-              <span>Cycle philosophy ({phraseIndex + 1}/{PHRASES.length})</span>
+              <span>Cycle architecture ({phraseIndex + 1}/{PHRASES.length})</span>
             </button>
           </motion.div>
 
@@ -201,15 +235,25 @@ export const EditorialHero: React.FC = () => {
 
             {/* Secondary Outline CTA */}
             <MagneticButton strength={0.3}>
-              <a
-                href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-editorial-outline text-xs sm:text-sm"
-              >
-                <span>VIEW RÉSUMÉ</span>
-                <ExternalLink className="w-4 h-4 text-[#132532]" />
-              </a>
+              {onOpenResume ? (
+                <button
+                  onClick={onOpenResume}
+                  className="btn-editorial-outline text-xs sm:text-sm cursor-pointer"
+                >
+                  <span>VIEW RÉSUMÉ</span>
+                  <ExternalLink className="w-4 h-4 text-[#132532]" />
+                </button>
+              ) : (
+                <a
+                  href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-editorial-outline text-xs sm:text-sm"
+                >
+                  <span>VIEW RÉSUMÉ</span>
+                  <ExternalLink className="w-4 h-4 text-[#132532]" />
+                </a>
+              )}
             </MagneticButton>
           </motion.div>
         </div>
@@ -256,19 +300,25 @@ export const EditorialHero: React.FC = () => {
           <div className="text-[#132532]/65 text-xs">
             Lovely Professional University
           </div>
+          <div className="text-[#F0784B] text-[11px] font-mono font-medium pt-0.5">
+            Focus: Multimodal Vision & Low-Latency MLOps
+          </div>
         </div>
 
         {/* Right Column: Based in */}
         <div className="sm:col-span-4 font-mono text-xs sm:text-sm space-y-1">
           <div className="text-[#315CFF] font-semibold tracking-wider uppercase text-[11px] sm:text-xs">
-            Based in
+            Status
           </div>
           <div className="text-[#132532] font-medium">
             Punjab, India · Class of 2029
           </div>
           <div className="text-[#132532]/65 text-xs flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>Available for AI/ML Internships</span>
+            <span>Open for AI/ML Internships (Summer 2026)</span>
+          </div>
+          <div className="text-[#132532]/60 text-[11px] font-mono">
+            Stack: PyTorch · OpenCV · ONNX · FastAPI
           </div>
         </div>
       </motion.div>

@@ -14,11 +14,13 @@ import { CustomCursor } from './components/editorial/CustomCursor';
 import { ScrollProgressBar } from './components/editorial/ScrollProgressBar';
 import { EditorialTerminalModal } from './components/editorial/EditorialTerminalModal';
 import { EditorialCaseStudyModal } from './components/editorial/EditorialCaseStudyModal';
+import { EditorialResumeModal } from './components/editorial/EditorialResumeModal';
 import { Project } from './lib/types';
 
 export function App() {
   const [introFinished, setIntroFinished] = useState(false);
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<Project | null>(null);
 
   // Global keyboard shortcuts
@@ -46,12 +48,15 @@ export function App() {
       <CinematicIntro onComplete={() => setIntroFinished(true)} />
 
       {/* Sticky Editorial Navbar */}
-      <EditorialNavbar onOpenTerminal={() => setIsTerminalOpen(true)} />
+      <EditorialNavbar 
+        onOpenTerminal={() => setIsTerminalOpen(true)} 
+        onOpenResume={() => setIsResumeOpen(true)}
+      />
 
       {/* Main Editorial Content Flow */}
       <main id="main-content" className="relative z-10">
         {/* Section 0: Editorial Hero */}
-        <EditorialHero />
+        <EditorialHero onOpenResume={() => setIsResumeOpen(true)} />
 
         {/* Kinetic Horizontal Marquee Stream */}
         <EditorialMarquee />
@@ -88,6 +93,12 @@ export function App() {
       <EditorialCaseStudyModal
         project={selectedCaseStudy}
         onClose={() => setSelectedCaseStudy(null)}
+      />
+
+      {/* Official Latest Résumé Dossier Modal */}
+      <EditorialResumeModal
+        isOpen={isResumeOpen}
+        onClose={() => setIsResumeOpen(false)}
       />
     </div>
   );

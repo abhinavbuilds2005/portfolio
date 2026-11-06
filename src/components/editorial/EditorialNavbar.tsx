@@ -3,9 +3,10 @@ import { Terminal, FileText, Menu, X } from 'lucide-react';
 
 interface EditorialNavbarProps {
   onOpenTerminal?: () => void;
+  onOpenResume?: () => void;
 }
 
-export const EditorialNavbar: React.FC<EditorialNavbarProps> = ({ onOpenTerminal }) => {
+export const EditorialNavbar: React.FC<EditorialNavbarProps> = ({ onOpenTerminal, onOpenResume }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -79,16 +80,27 @@ export const EditorialNavbar: React.FC<EditorialNavbarProps> = ({ onOpenTerminal
             </button>
           )}
 
-          {/* Direct Resume Link */}
-          <a
-            href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 text-[#F0784B] hover:text-[#DC6437] transition-colors"
-          >
-            <span>RÉSUMÉ</span>
-            <span className="text-[10px]">↗</span>
-          </a>
+          {/* Direct Resume Trigger */}
+          {onOpenResume ? (
+            <button
+              onClick={onOpenResume}
+              className="flex items-center gap-1 text-[#F0784B] hover:text-[#DC6437] transition-colors cursor-pointer"
+              title="View Latest Official Résumé"
+            >
+              <span>RÉSUMÉ</span>
+              <span className="text-[10px]">↗</span>
+            </button>
+          ) : (
+            <a
+              href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-[#F0784B] hover:text-[#DC6437] transition-colors"
+            >
+              <span>RÉSUMÉ</span>
+              <span className="text-[10px]">↗</span>
+            </a>
+          )}
         </nav>
 
         {/* Mobile Hamburger Button */}
@@ -125,15 +137,16 @@ export const EditorialNavbar: React.FC<EditorialNavbarProps> = ({ onOpenTerminal
               {link.label}
             </a>
           ))}
-          <a
-            href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#F0784B] font-bold py-2 flex items-center justify-between"
+          <button
+            onClick={() => {
+              setMobileMenuOpen(false);
+              onOpenResume ? onOpenResume() : window.open('/Abhinav_Anand_Resume_AIML_Specialized.pdf', '_blank');
+            }}
+            className="text-[#F0784B] font-bold py-2 flex items-center justify-between text-left cursor-pointer"
           >
-            <span>DOWNLOAD RÉSUMÉ</span>
+            <span>VIEW LATEST RÉSUMÉ</span>
             <span>↗</span>
-          </a>
+          </button>
         </div>
       )}
     </header>

@@ -5,7 +5,8 @@ import { MagneticButton } from './MagneticButton';
 
 export const EditorialContact: React.FC = () => {
   const [copied, setCopied] = useState(false);
-  const email = 'abhinavanand2005.cse@gmail.com';
+  const email = 'abhinavanand9996@gmail.com';
+  const phone = '+91 9153051907';
 
   // Form State
   const [formData, setFormData] = useState({
@@ -70,7 +71,7 @@ export const EditorialContact: React.FC = () => {
 
       if (res.ok) {
         setFormStatus('success');
-        setStatusMsg('Transmission successful! Your message has been delivered directly to abhinavanand2005.cse@gmail.com.');
+        setStatusMsg(`Transmission successful! Your message has been delivered directly to ${email}.`);
         setFormData({ name: '', email: '', message: '', botcheck: '' });
       } else {
         // 2. Direct fallback to Web3Forms API
@@ -88,7 +89,7 @@ export const EditorialContact: React.FC = () => {
 
         if (web3Res.ok) {
           setFormStatus('success');
-          setStatusMsg('Transmission successful! Your message has been delivered directly to abhinavanand2005.cse@gmail.com.');
+          setStatusMsg(`Transmission successful! Your message has been delivered directly to ${email}.`);
           setFormData({ name: '', email: '', message: '', botcheck: '' });
         } else {
           throw new Error('Fallback failed');
@@ -96,7 +97,7 @@ export const EditorialContact: React.FC = () => {
       }
     } catch (err) {
       setFormStatus('error');
-      setStatusMsg('Direct transmission failed. Please email abhinavanand2005.cse@gmail.com directly.');
+      setStatusMsg(`Direct transmission failed. Please email ${email} directly.`);
     }
   };
 
@@ -180,8 +181,13 @@ export const EditorialContact: React.FC = () => {
               </div>
 
               <div>
-                <span className="text-[#132532]/60 block text-[11px] uppercase">EDUCATION & LOCATION</span>
-                <span className="text-[#132532] font-semibold">B.Tech CSE (AI & ML) · LPU (Class of 2029) · Punjab, India</span>
+                <span className="text-[#132532]/60 block text-[11px] uppercase">DIRECT CONTACT & LOCATION</span>
+                <span className="text-[#132532] font-semibold">{phone} · Jalandhar, Punjab, India</span>
+              </div>
+
+              <div>
+                <span className="text-[#132532]/60 block text-[11px] uppercase">EDUCATION</span>
+                <span className="text-[#132532] font-semibold">B.Tech CSE (AI & ML) · Lovely Professional University (2025 – 2029)</span>
               </div>
 
               <div>
