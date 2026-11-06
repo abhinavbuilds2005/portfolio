@@ -28,7 +28,7 @@ export const EditorialProjects: React.FC<EditorialProjectsProps> = ({ onOpenCase
             Engineered Systems.
           </h2>
         </div>
-        <p className="font-mono text-xs sm:text-sm text-[#132532]/65 max-w-md">
+        <p className="font-mono text-xs sm:text-sm text-[#132532] text-opacity-80 max-w-md">
           Production-grade machine learning pipelines, forensic document screening, and resilient AI architectures with verified statistical benchmarks.
         </p>
       </div>
@@ -159,7 +159,7 @@ export const EditorialProjects: React.FC<EditorialProjectsProps> = ({ onOpenCase
           </h3>
 
           {/* Description */}
-          <p className="text-base sm:text-lg text-[#132532]/80 leading-relaxed max-w-3xl mb-8">
+          <p className="text-base sm:text-lg text-[#132532] text-opacity-90 leading-relaxed max-w-3xl mb-8">
             A multimodal identity-document screening system combining OCR, image forensics,
             checksum validation and evidence fusion to flag suspicious documents with explainable
             signals.
@@ -254,7 +254,7 @@ export const EditorialProjects: React.FC<EditorialProjectsProps> = ({ onOpenCase
                   </h4>
 
                   {/* Description */}
-                  <p className="text-sm sm:text-base text-[#132532]/75 leading-relaxed mb-6">
+                  <p className="text-sm sm:text-base text-[#132532] text-opacity-90 leading-relaxed mb-6">
                     {project.summary}
                   </p>
 

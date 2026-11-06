@@ -50,7 +50,7 @@ export const EditorialHero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="text-lg sm:text-xl text-[#132532]/80 font-normal leading-relaxed max-w-2xl mt-8"
+          className="text-lg sm:text-xl text-[#132532] text-opacity-90 font-normal leading-relaxed max-w-2xl mt-8"
         >
           I'm Abhinav — a computer science student focused on building practical machine
           learning systems, computer vision tools, and thoughtful software. Less hype. More

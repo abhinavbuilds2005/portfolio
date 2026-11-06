@@ -34,7 +34,7 @@ export const EditorialAbout: React.FC = () => {
         </p>
 
         {/* Body Paragraphs */}
-        <div className="text-base sm:text-lg text-[#132532]/80 leading-relaxed space-y-6 pt-4">
+        <div className="text-base sm:text-lg text-[#132532] text-opacity-90 leading-relaxed space-y-6 pt-4">
           <p>
             I'm pursuing a B.Tech in Computer Science and Engineering with a specialization in AI &
             Machine Learning at Lovely Professional University. My work spans predictive modelling,

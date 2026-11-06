@@ -24,7 +24,7 @@ export const EditorialContact: React.FC = () => {
       </h2>
 
       {/* Narrative Subtitle */}
-      <p className="text-base sm:text-lg text-[#132532]/80 leading-relaxed max-w-2xl mb-12">
+      <p className="text-base sm:text-lg text-[#132532] text-opacity-90 leading-relaxed max-w-2xl mb-12">
         I am currently open for AI/ML engineering internships, research collaborations, and production
         systems development. Whether you want to discuss multimodal document forensics, handling
         class imbalance with statistical rigor, or low-latency inference microservices, I'd love to connect.

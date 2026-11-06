@@ -30,7 +30,7 @@ export default {
           hover: '#DC6437',
           subtle: 'rgba(240, 120, 75, 0.1)',
         },
-        base: 'var(--bg-base)',
+        'canvas-base': 'var(--bg-base)',
         surface: 'var(--bg-surface)',
         elevated: 'var(--bg-elevated)',
         'border-subtle': 'var(--border-subtle)',

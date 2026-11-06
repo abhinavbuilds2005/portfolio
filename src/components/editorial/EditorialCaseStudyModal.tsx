@@ -50,7 +50,7 @@ export const EditorialCaseStudyModal: React.FC<EditorialCaseStudyModalProps> = (
               <p className="text-lg sm:text-xl font-semibold text-[#132532] leading-snug">
                 {project.tagline}
               </p>
-              <p className="text-sm sm:text-base text-[#132532]/80 leading-relaxed">
+              <p className="text-sm sm:text-base text-[#132532] text-opacity-90 leading-relaxed">
                 {project.summary}
               </p>
             </div>
