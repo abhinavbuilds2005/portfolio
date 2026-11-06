@@ -48,6 +48,7 @@ export const PROJECTS: Project[] = [
       }
     ],
     results: [
+      { label: "Automated Suite", value: "90 Automated Tests", isSample: false, notes: "100% passing test suite across forensic modules & checksum engines" },
       { label: "Document Classes", value: "5 Verified Categories", isSample: false, notes: "Passports, Visas, Aadhaar, Driving Licences, Travel Permits" },
       { label: "Algorithmic Checksums", value: "100% Coverage", isSample: false, notes: "Strict ICAO 7-3-1 & Verhoeff D5 mathematical check digits" },
       { label: "Forensic Analysis", value: "Multimodal ELA + ORB", isSample: false, notes: "Pixel compression error & copy-move homography" },
@@ -65,9 +66,9 @@ export const PROJECTS: Project[] = [
     ],
     tech: ["Python", "OpenCV", "EasyOCR", "FastAPI", "Docker", "Verhoeff Checksum", "React"],
     metrics: [
-      { label: "Document Classes", value: "5 Verified Types", isSample: false },
+      { label: "Automated Tests", value: "90 Tests · 100% Pass", isSample: false },
+      { label: "Inference Latency", value: "<42ms FastAPI", isSample: false },
       { label: "Checksum Coverage", value: "100% Mathematical", isSample: false },
-      { label: "Forensic Analysis", value: "ELA + ORB", isSample: false },
       { label: "Architecture", value: "5-Level Fusion", isSample: false }
     ],
     pipeline: [

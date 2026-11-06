@@ -49,8 +49,11 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
     'help',
     'projects',
     'skills',
+    'resume',
+    'sih',
+    'certifications',
+    'metrics',
     'tamper-check',
-    'stats',
     'whoami',
     'contact',
     'clear',
@@ -68,12 +71,15 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
           <div className="space-y-1 text-xs">
             <p className="text-[#315CFF] font-bold">AVAILABLE COMMANDS:</p>
             <div className="grid grid-cols-2 gap-2 text-[#F5F2EB]/80 pt-1">
-              <div><span className="text-[#F0784B] font-bold">projects</span> — List all 5 production systems</div>
+              <div><span className="text-[#F0784B] font-bold">projects</span> — List production systems</div>
+              <div><span className="text-[#F0784B] font-bold">resume</span> — Output resume dossier & PDF</div>
+              <div><span className="text-[#F0784B] font-bold">sih</span> — Smart India Hackathon '26 details</div>
+              <div><span className="text-[#F0784B] font-bold">certifications</span> — Verified accreditations</div>
               <div><span className="text-[#F0784B] font-bold">skills</span> — Working vocabulary & stack</div>
+              <div><span className="text-[#F0784B] font-bold">metrics</span> — Production engineering invariants</div>
               <div><span className="text-[#F0784B] font-bold">tamper-check</span> — Run DocuShield ELA test</div>
-              <div><span className="text-[#F0784B] font-bold">stats</span> — Engineering benchmarks</div>
               <div><span className="text-[#F0784B] font-bold">whoami</span> — Profile & credentials</div>
-              <div><span className="text-[#F0784B] font-bold">contact</span> — Email, GitHub, LinkedIn</div>
+              <div><span className="text-[#F0784B] font-bold">contact</span> — Email, phone, GitHub, LinkedIn</div>
               <div><span className="text-[#F0784B] font-bold">clear</span> — Wipe terminal screen</div>
             </div>
           </div>
@@ -94,6 +100,50 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
         );
         break;
 
+      case 'resume':
+        outputNode = (
+          <div className="space-y-1.5 text-xs text-[#F5F2EB]/90">
+            <p className="text-emerald-400 font-bold">RÉSUMÉ DOSSIER // ABHINAV ANAND</p>
+            <p>Role: Software Engineer Intern (Python / Backend) | Applied AI & ML</p>
+            <p>Education: B.Tech CSE (AI/ML) · Lovely Professional University (Aug 2025 - Aug 2029)</p>
+            <p>Location: Jalandhar, Punjab, India · +91 9153051907 · abhinavanand9996@gmail.com</p>
+            <p>Flagship: DocuShield AI (SIH 2026 PS SIH26188, 90 Automated Tests, ELA + ORB, &lt;42ms FastAPI)</p>
+            <div className="pt-1">
+              <a
+                href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
+                download="Abhinav_Anand_Resume.pdf"
+                className="inline-block bg-[#315CFF] text-white px-3 py-1 font-mono text-[11px] font-bold hover:bg-[#2047E5] transition-colors"
+              >
+                DOWNLOAD OFFICIAL RESUME (PDF) ↗
+              </a>
+            </div>
+          </div>
+        );
+        break;
+
+      case 'sih':
+        outputNode = (
+          <div className="space-y-1 text-xs text-[#F5F2EB]/90">
+            <p className="text-[#F0784B] font-bold">SMART INDIA HACKATHON 2026 // NATIONAL QUALIFIER</p>
+            <p>Problem Statement: <span className="text-white font-bold">SIH26188</span></p>
+            <p>Project: <span className="text-white font-bold">DocuShield AI</span> — Automated Forensic Screening System</p>
+            <p>Forensic Modules: Error Level Analysis (95% recompression), ORB Copy-Move homography, ICAO Doc 9303 check digits, Verhoeff D5 dihedral arithmetic.</p>
+            <p>Performance: 90 Automated Tests (100% pass), &lt;42ms FastAPI inference, 5 ID classes supported.</p>
+          </div>
+        );
+        break;
+
+      case 'certifications':
+        outputNode = (
+          <div className="space-y-1.5 text-xs text-[#F5F2EB]/90">
+            <p className="text-[#315CFF] font-bold">VERIFIED TECHNICAL ACCREDITATIONS:</p>
+            <p>1. <span className="text-white font-bold">Smart India Hackathon 2026</span> (PS SIH26188 Qualified) · Ministry of Education / AICTE</p>
+            <p>2. <span className="text-white font-bold">HackerRank SQL (Advanced)</span> Certified · 5★ Gold Badge in Relational Modeling</p>
+            <p>3. <span className="text-white font-bold">Infosys Springboard Python</span> Certified · OOP Architecture & Asymptotic Complexity</p>
+          </div>
+        );
+        break;
+
       case 'skills':
         outputNode = (
           <div className="space-y-1 text-xs text-[#F5F2EB]/85">
@@ -101,6 +151,20 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
             <p>• Python, C++20, PyTorch, OpenCV, Scikit-Learn</p>
             <p>• FastAPI, Docker, SQL / PostgreSQL, Supabase</p>
             <p>• Sentence Transformers, Groq Llama 3, LangChain, React</p>
+          </div>
+        );
+        break;
+
+      case 'metrics':
+      case 'stats':
+        outputNode = (
+          <div className="space-y-1 text-xs text-[#F5F2EB]/85">
+            <p className="text-[#315CFF] font-bold">PRODUCTION INVARIANTS & BENCHMARKS:</p>
+            <p>• DocuShield Inference: &lt;42ms via FastAPI + ONNX Runtime</p>
+            <p>• Test Coverage: 90 Automated Unit & Integration Tests (100% Pass)</p>
+            <p>• ATS Resume Scoring: 100-Point Algorithmic Rubric (spaCy + Sentence Transformers)</p>
+            <p>• CreditWise Loan Classifier: 87.5% Benchmark Accuracy (3-tier risk stratification)</p>
+            <p>• Checksum Coverage: 100% Mathematical Certainty (ICAO Doc 9303 + Verhoeff D5)</p>
           </div>
         );
         break;
@@ -117,25 +181,13 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
         );
         break;
 
-      case 'stats':
-        outputNode = (
-          <div className="space-y-1 text-xs text-[#F5F2EB]/85">
-            <p className="text-[#315CFF] font-bold">PRODUCTION INVARIANTS:</p>
-            <p>• Engineered Systems: 5 Production Implementations</p>
-            <p>• P95 Inference Latency: &lt;45ms via FastAPI</p>
-            <p>• Data Leakage: 0% (Strict In-Fold Cross-Validation)</p>
-            <p>• Checksum Coverage: 100% Mathematical Certainty</p>
-          </div>
-        );
-        break;
-
       case 'whoami':
         outputNode = (
           <div className="space-y-1 text-xs text-[#F5F2EB]/85">
             <p className="text-white font-bold">Abhinav Anand</p>
-            <p>B.Tech CSE — Specialization in AI & Machine Learning</p>
-            <p>Lovely Professional University (Class of 2029)</p>
-            <p>Smart India Hackathon (SIH 2026) National Finalist</p>
+            <p>Role: Software Engineer Intern (Python / Backend) | Applied AI & ML</p>
+            <p>Education: B.Tech CSE (AI/ML) · Lovely Professional University (Aug 2025 - Aug 2029)</p>
+            <p>Smart India Hackathon (SIH 2026) National Finalist (PS SIH26188)</p>
           </div>
         );
         break;
@@ -143,7 +195,9 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
       case 'contact':
         outputNode = (
           <div className="space-y-1 text-xs text-[#F5F2EB]/85">
-            <p>Email: abhinavanand2005.cse@gmail.com</p>
+            <p>Email: <span className="text-white font-bold">abhinavanand9996@gmail.com</span></p>
+            <p>Phone: <span className="text-white font-bold">+91 9153051907</span></p>
+            <p>Location: <span className="text-white font-bold">Jalandhar, Punjab, India</span></p>
             <p>GitHub: github.com/abhinavbuilds2005</p>
             <p>LinkedIn: linkedin.com/in/abhinav-anand-865926300</p>
           </div>

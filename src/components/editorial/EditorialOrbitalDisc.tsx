@@ -14,10 +14,10 @@ export const EditorialOrbitalDisc: React.FC = () => {
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
-  const tiltX = useTransform(smoothY, [-300, 300], [10, -10]);
-  const tiltY = useTransform(smoothX, [-300, 300], [-10, 10]);
-  const shiftX = useTransform(smoothX, [-300, 300], [-15, 15]);
-  const shiftY = useTransform(smoothY, [-300, 300], [-15, 15]);
+  const tiltX = useTransform(smoothY, [-300, 300], [6, -6]);
+  const tiltY = useTransform(smoothX, [-300, 300], [-6, 6]);
+  const shiftX = useTransform(smoothX, [-300, 300], [-6, 6]);
+  const shiftY = useTransform(smoothY, [-300, 300], [-6, 6]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -47,7 +47,7 @@ export const EditorialOrbitalDisc: React.FC = () => {
   ];
 
   return (
-    <div className="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] md:w-[420px] md:h-[420px] lg:w-[440px] lg:h-[440px] xl:w-[480px] xl:h-[480px] flex items-center justify-center select-none pointer-events-auto">
+    <div className="relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[350px] md:h-[350px] lg:w-[360px] lg:h-[360px] xl:w-[420px] xl:h-[420px] flex items-center justify-center select-none pointer-events-auto">
       {/* 3D Tilt Wrapper */}
       <motion.div
         style={{
@@ -167,7 +167,7 @@ export const EditorialOrbitalDisc: React.FC = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.9 }}
-          className="hidden sm:flex absolute top-12 -left-4 bg-[#FAF8F5] border border-[#132532]/15 px-2.5 py-1 font-mono text-[9px] text-[#132532]/80 items-center gap-1.5 shadow-sm"
+          className="hidden sm:flex absolute top-6 left-2 sm:left-4 bg-[#FAF8F5] border border-[#132532]/15 px-2.5 py-1 font-mono text-[9px] text-[#132532]/80 items-center gap-1.5 shadow-sm z-20"
         >
           <span className="font-semibold tracking-wider">PUNJAB, IN · 31.25°N</span>
         </motion.div>

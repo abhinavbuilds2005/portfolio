@@ -76,7 +76,7 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({ onOpenResume }) =>
       {/* ========================================================================= */}
       {/* MAIN HERO GRID: ASYMMETRIC 2-COLUMN LAYOUT (PERFECT BREATHING ROOM)       */}
       {/* ========================================================================= */}
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center my-auto w-full">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 xl:gap-12 items-center my-auto w-full">
         {/* LEFT COLUMN: Editorial Kinetic Headline, Mission & CTA (Cols 1-7) */}
         <div className="lg:col-span-7 xl:col-span-7 max-w-2xl">
           {/* Kicker tag with Live Discipline Pill */}
@@ -109,7 +109,7 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({ onOpenResume }) =>
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-extrabold tracking-[-0.035em] leading-[0.94] text-[#132532] font-sans"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.5rem] xl:text-[4.5rem] 2xl:text-[5.25rem] font-extrabold tracking-[-0.035em] leading-[0.98] text-[#132532] font-sans"
           >
             {/* Line 1: Making (Interactive Scramble) */}
             <div
@@ -120,42 +120,42 @@ export const EditorialHero: React.FC<EditorialHeroProps> = ({ onOpenResume }) =>
               {makingWord}
             </div>
 
-            {/* Line 2: [AI / MODELS / VISION / SYSTEMS] feel */}
-            <div className="flex items-baseline flex-wrap gap-x-3 sm:gap-x-4 py-1">
+            {/* Line 2: Animated Focus Domain [AI / INFERENCE / FORENSICS / PIPELINES / MODELS / SYSTEMS] */}
+            <div className="relative block overflow-hidden py-0.5">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`tag-${phraseIndex}`}
+                  initial={{ y: 35, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -35, opacity: 0 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  onClick={nextPhrase}
+                  className="text-[#315CFF] inline-block cursor-pointer select-none hover:text-[#2047E5] transition-colors"
+                  title="Click to cycle next architecture"
+                >
+                  {currentPhrase.tag}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Line 3: feel [useful. / <42ms. / tamper-evident. / deterministic. / dependable. / resilient.] */}
+            <div className="flex items-baseline flex-wrap gap-x-3 sm:gap-x-4 py-0.5">
+              <span className="text-[#132532]">feel</span>
               <div className="relative inline-block overflow-hidden align-baseline">
                 <AnimatePresence mode="wait">
                   <motion.span
-                    key={`tag-${phraseIndex}`}
-                    initial={{ y: 35, opacity: 0, rotateX: -25 }}
-                    animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                    exit={{ y: -35, opacity: 0, rotateX: 25 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    onClick={nextPhrase}
-                    className="text-stroke-ink text-transparent inline-block cursor-pointer select-none hover:text-[#132532] transition-colors"
-                    title="Click to cycle next term"
+                    key={`result-${phraseIndex}`}
+                    initial={{ y: 35, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -35, opacity: 0 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="inline-block"
+                    style={{ color: currentPhrase.color }}
                   >
-                    {currentPhrase.tag}
+                    {currentPhrase.result}
                   </motion.span>
                 </AnimatePresence>
               </div>
-              <span>feel</span>
-            </div>
-
-            {/* Line 3: useful. / dependable. / explainable. / resilient. */}
-            <div className="relative block overflow-hidden py-1">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`result-${phraseIndex}`}
-                  initial={{ y: 40, opacity: 0, filter: 'blur(6px)' }}
-                  animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-                  exit={{ y: -40, opacity: 0, filter: 'blur(6px)' }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="inline-block"
-                  style={{ color: currentPhrase.color }}
-                >
-                  {currentPhrase.result}
-                </motion.div>
-              </AnimatePresence>
             </div>
           </motion.div>
 
