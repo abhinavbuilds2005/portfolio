@@ -7,6 +7,7 @@ import { EditorialProjects } from './components/editorial/EditorialProjects';
 import { EditorialAbout } from './components/editorial/EditorialAbout';
 import { EditorialJourneyMap } from './components/editorial/EditorialJourneyMap';
 import { EditorialStack } from './components/editorial/EditorialStack';
+import { EditorialCertifications } from './components/editorial/EditorialCertifications';
 import { EditorialLeetCode } from './components/editorial/EditorialLeetCode';
 import { EditorialContact } from './components/editorial/EditorialContact';
 import { BackToTop } from './components/editorial/BackToTop';
@@ -72,6 +73,9 @@ export function App() {
 
         {/* Section 3: Tools of the Trade / Working Vocabulary */}
         <EditorialStack />
+
+        {/* Section 3.5: Verified Accreditations & Technical Credentials */}
+        <EditorialCertifications />
 
         {/* Section 4: Problem Solving & LeetCode Telemetry */}
         <EditorialLeetCode />

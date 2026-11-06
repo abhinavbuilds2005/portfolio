@@ -52,6 +52,7 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
     'resume',
     'sih',
     'certifications',
+    'nptel',
     'metrics',
     'tamper-check',
     'whoami',
@@ -133,13 +134,35 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
         );
         break;
 
+      case 'nptel':
+        outputNode = (
+          <div className="space-y-1.5 text-xs text-[#F5F2EB]/90">
+            <p className="text-[#315CFF] font-bold">NPTEL & IIT MADRAS // LARGE LANGUAGE MODELS (LLMS)</p>
+            <p>Course: <span className="text-white font-bold">Introduction to Large Language Models (LLMs)</span></p>
+            <p>Institution: Indian Institute of Technology Madras · MoE Govt. of India</p>
+            <p>Roll No: <span className="text-white font-bold">NPTEL26CS171MANUAL0000154</span> · Cohort: 11,857 registered</p>
+            <p>Score: 57% Consolidated (Assignments: 23.16/25 | Proctored Exam: 33.75/75) · 4 Academic Credits</p>
+            <div className="pt-1">
+              <a
+                href="/certificates/nptel_llm_certificate.pdf"
+                download="Abhinav_Anand_NPTEL_LLM_Certificate.pdf"
+                className="inline-block bg-[#315CFF] text-white px-3 py-1 font-mono text-[11px] font-bold hover:bg-[#2047E5] transition-colors"
+              >
+                DOWNLOAD OFFICIAL IIT MADRAS PDF ↗
+              </a>
+            </div>
+          </div>
+        );
+        break;
+
       case 'certifications':
         outputNode = (
           <div className="space-y-1.5 text-xs text-[#F5F2EB]/90">
-            <p className="text-[#315CFF] font-bold">VERIFIED TECHNICAL ACCREDITATIONS:</p>
-            <p>1. <span className="text-white font-bold">Smart India Hackathon 2026</span> (PS SIH26188 Qualified) · Ministry of Education / AICTE</p>
-            <p>2. <span className="text-white font-bold">HackerRank SQL (Advanced)</span> Certified · 5★ Gold Badge in Relational Modeling</p>
-            <p>3. <span className="text-white font-bold">Infosys Springboard Python</span> Certified · OOP Architecture & Asymptotic Complexity</p>
+            <p className="text-[#315CFF] font-bold">VERIFIED TECHNICAL ACCREDITATIONS (4 TOTAL):</p>
+            <p>1. <span className="text-white font-bold">NPTEL & IIT Madras</span> — Introduction to Large Language Models (LLMs) · Roll: NPTEL26CS171MANUAL0000154</p>
+            <p>2. <span className="text-white font-bold">Smart India Hackathon 2026</span> (PS SIH26188 Qualified) · Ministry of Education / AICTE</p>
+            <p>3. <span className="text-white font-bold">HackerRank SQL (Advanced)</span> Certified · 5★ Gold Badge in Relational Modeling</p>
+            <p>4. <span className="text-white font-bold">Infosys Springboard Python</span> Certified · OOP Architecture & Asymptotic Complexity</p>
           </div>
         );
         break;

@@ -279,10 +279,13 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
               </h2>
               <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#132532]/85 space-y-1">
                 <li>
+                  <strong>NPTEL & IIT Madras:</strong> Introduction to Large Language Models (LLMs) · Roll: NPTEL26CS171MANUAL0000154 (12-Week Intensive, 4 Credits).
+                </li>
+                <li>
                   <strong>Smart India Hackathon 2026:</strong> Built DocuShield for Problem Statement SIH26188 (Qualified).
                 </li>
                 <li>
-                  <strong>HackerRank:</strong> SQL (Advanced) Certified.
+                  <strong>HackerRank:</strong> SQL (Advanced) Certified (5★ Gold Badge).
                 </li>
                 <li>
                   <strong>Infosys Springboard:</strong> Python Certified.
@@ -333,3 +336,4 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
     </AnimatePresence>
   );
 };
+

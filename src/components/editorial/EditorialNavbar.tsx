@@ -23,6 +23,7 @@ export const EditorialNavbar: React.FC<EditorialNavbarProps> = ({ onOpenTerminal
     { label: 'ABOUT', href: '#about' },
     { label: 'JOURNEY', href: '#journey' },
     { label: 'SKILLS', href: '#stack' },
+    { label: 'CERTIFICATES', href: '#certificates' },
     { label: 'LEETCODE', href: '#leetcode' },
     { label: 'HIRE ME', href: '#contact', isHireMe: true },
   ];
@@ -53,7 +54,7 @@ export const EditorialNavbar: React.FC<EditorialNavbarProps> = ({ onOpenTerminal
         </a>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-8 font-mono text-xs tracking-widest text-[#132532]/75 font-semibold">
+        <nav className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-7 font-mono text-[11px] lg:text-xs tracking-wider lg:tracking-widest text-[#132532]/75 font-semibold">
           {navLinks.map((link) => (
             <a
               key={link.label}
