@@ -155,14 +155,37 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
         );
         break;
 
+      case 'ibm':
+        outputNode = (
+          <div className="space-y-1.5 text-xs text-[#F5F2EB]/90">
+            <p className="text-[#315CFF] font-bold">IBM & COGNITIVE CLASS // PYTHON 101 FOR DATA SCIENCE</p>
+            <p>Course: <span className="text-white font-bold">Python 101 for Data Science (PY0101EN)</span></p>
+            <p>Provider: Cognitive Class · Powered by IBM Developer Skills Network</p>
+            <p>Certificate Hash: <span className="text-white font-bold">ebedc993179f41149ed2a7fb0c83b612</span></p>
+            <p>Status: Passing Grade Verified (Issued June 20, 2026)</p>
+            <div className="pt-1 flex gap-2">
+              <a
+                href="https://courses.cognitiveclass.ai/certificates/ebedc993179f41149ed2a7fb0c83b612"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[#315CFF] text-white px-3 py-1 font-mono text-[11px] font-bold hover:bg-[#2047E5] transition-colors"
+              >
+                VERIFY ON COGNITIVE CLASS ↗
+              </a>
+            </div>
+          </div>
+        );
+        break;
+
       case 'certifications':
         outputNode = (
           <div className="space-y-1.5 text-xs text-[#F5F2EB]/90">
-            <p className="text-[#315CFF] font-bold">VERIFIED TECHNICAL ACCREDITATIONS (4 TOTAL):</p>
+            <p className="text-[#315CFF] font-bold">VERIFIED TECHNICAL ACCREDITATIONS (5 TOTAL):</p>
             <p>1. <span className="text-white font-bold">NPTEL & IIT Madras</span> — Introduction to Large Language Models (LLMs) · Roll: NPTEL26CS171MANUAL0000154</p>
-            <p>2. <span className="text-white font-bold">Smart India Hackathon 2026</span> (PS SIH26188 Qualified) · Ministry of Education / AICTE</p>
-            <p>3. <span className="text-white font-bold">HackerRank SQL (Advanced)</span> Certified · 5★ Gold Badge in Relational Modeling</p>
-            <p>4. <span className="text-white font-bold">Infosys Springboard Python</span> Certified · OOP Architecture & Asymptotic Complexity</p>
+            <p>2. <span className="text-white font-bold">Cognitive Class & IBM</span> — Python 101 for Data Science (PY0101EN) · ID: ebedc993179f41149ed2a7fb0c83b612</p>
+            <p>3. <span className="text-white font-bold">Smart India Hackathon 2026</span> (PS SIH26188 Qualified) · Ministry of Education / AICTE</p>
+            <p>4. <span className="text-white font-bold">HackerRank SQL (Advanced)</span> Certified · 5★ Gold Badge in Relational Modeling</p>
+            <p>5. <span className="text-white font-bold">Infosys Springboard Python</span> Certified · OOP Architecture & Asymptotic Complexity</p>
           </div>
         );
         break;

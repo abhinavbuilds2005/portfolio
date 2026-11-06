@@ -59,6 +59,67 @@ const CERTIFICATES: CertificateItem[] = [
     imageUrl: '/certificates/nptel_llm_certificate.png',
   },
   {
+    id: 'ibm-python',
+    badge: 'IBM & COGNITIVE CLASS',
+    badgeColor: '#0F62FE',
+    year: '2026',
+    title: 'Python 101 for Data Science',
+    issuer: 'Cognitive Class · Powered by IBM Developer Skills Network',
+    credentialId: 'ebedc993179f41149ed2a7fb0c83b612',
+    subtitle: 'Course PY0101EN, provided by IBM (June 20, 2026)',
+    description:
+      'Rigorous computational evaluation in Python programming for Data Science. Certified in data structures (lists, tuples, dictionaries, sets), procedural logic, functions, exception handling, and data processing libraries including Pandas and NumPy.',
+    metrics: [
+      { label: 'COURSE CODE', value: 'PY0101EN' },
+      { label: 'PROVIDER', value: 'IBM Developer Network' },
+      { label: 'VERIFICATION', value: 'Passing Grade' },
+      { label: 'DATE', value: 'June 20, 2026' },
+    ],
+    tags: ['Python', 'Data Science', 'IBM', 'Pandas', 'NumPy', 'Data Analysis'],
+    verifyUrl: 'https://courses.cognitiveclass.ai/certificates/ebedc993179f41149ed2a7fb0c83b612',
+    pdfUrl: '/certificates/ibm_python_data_science.pdf',
+    imageUrl: '/certificates/ibm_python_data_science.png',
+  },
+  {
+    id: 'hackerrank-sql',
+    badge: 'GOLD BADGE · 5★',
+    badgeColor: '#2563EB',
+    year: 'VERIFIED',
+    title: 'HackerRank SQL (Advanced)',
+    issuer: 'HackerRank Certified Professional',
+    credentialId: 'HackerRank Certified 5-Star Gold Badge',
+    subtitle: 'Complex Relational Modeling & Query Plan Optimization',
+    description:
+      'Demonstrated mastery of advanced relational database architecture, recursive Common Table Expressions (CTEs), analytical window functions (RANK, DENSE_RANK, LEAD, LAG), query execution plan optimization, and multi-table integrity indexing.',
+    metrics: [
+      { label: 'PROFICIENCY', value: '5-Star Gold' },
+      { label: 'FOCUS', value: 'Recursive CTEs & Windowing' },
+      { label: 'OPTIMIZATION', value: 'Query Plans & Indexing' },
+    ],
+    tags: ['SQL', 'PostgreSQL', 'Window Functions', 'Query Optimization', 'Relational Schema'],
+    verifyUrl: 'https://www.hackerrank.com/certificates/',
+    imageUrl: '/certificates/hackerrank_sql_advanced.png',
+  },
+  {
+    id: 'infosys-python',
+    badge: 'PROFESSIONAL',
+    badgeColor: '#10B981',
+    year: 'VERIFIED',
+    title: 'Infosys Springboard Python',
+    issuer: 'Infosys Springboard Certification',
+    credentialId: 'Infosys Springboard Accredited',
+    subtitle: 'Object-Oriented Architecture & Algorithmic Systems',
+    description:
+      'Rigorous evaluation on Python language internals, object-oriented software engineering paradigms, memory references, asymptotic runtime complexity analysis, and defensive error-handling architectures.',
+    metrics: [
+      { label: 'DISCIPLINE', value: 'OOP & Internals' },
+      { label: 'COMPLEXITY', value: 'Asymptotic O(N)' },
+      { label: 'STATUS', value: 'Springboard Certified' },
+    ],
+    tags: ['Python', 'OOP Design', 'Data Structures', 'Algorithms', 'Defensive Programming'],
+    imageUrl: '/certificates/infosys_python_certification.png',
+  },
+  {
     id: 'sih-2026',
     badge: 'NATIONAL QUALIFIER',
     badgeColor: '#F0784B',
@@ -75,40 +136,7 @@ const CERTIFICATES: CertificateItem[] = [
       { label: 'LATENCY BENCHMARK', value: '<42ms Inference' },
     ],
     tags: ['Computer Vision', 'Image Forensics', 'Error Level Analysis', 'Verhoeff D5', 'FastAPI'],
-  },
-  {
-    id: 'hackerrank-sql',
-    badge: 'GOLD BADGE · 5★',
-    badgeColor: '#315CFF',
-    year: 'VERIFIED',
-    title: 'HackerRank SQL (Advanced)',
-    issuer: 'HackerRank Certified Professional',
-    subtitle: 'Complex Relational Modeling & Query Plan Optimization',
-    description:
-      'Mastery of advanced relational database architecture, recursive Common Table Expressions (CTEs), analytical window functions (RANK, DENSE_RANK, LEAD, LAG), query execution plan optimization, and multi-table integrity indexing.',
-    metrics: [
-      { label: 'PROFICIENCY', value: '5-Star Gold' },
-      { label: 'FOCUS', value: 'Recursive CTEs & Windowing' },
-      { label: 'OPTIMIZATION', value: 'Query Plans & Indexing' },
-    ],
-    tags: ['SQL', 'PostgreSQL', 'Window Functions', 'Query Optimization', 'Relational Schema'],
-  },
-  {
-    id: 'infosys-python',
-    badge: 'PROFESSIONAL',
-    badgeColor: '#10B981',
-    year: 'VERIFIED',
-    title: 'Infosys Springboard Python',
-    issuer: 'Infosys Springboard',
-    subtitle: 'Object-Oriented Architecture & Algorithmic Systems',
-    description:
-      'Rigorous evaluation on Python language internals, object-oriented software engineering paradigms, memory references, asymptotic runtime complexity analysis, and defensive error-handling architectures.',
-    metrics: [
-      { label: 'DISCIPLINE', value: 'OOP & Internals' },
-      { label: 'COMPLEXITY', value: 'Asymptotic O(N)' },
-      { label: 'STATUS', value: 'Springboard Certified' },
-    ],
-    tags: ['Python', 'OOP Design', 'Data Structures', 'Algorithms', 'Defensive Programming'],
+    imageUrl: '/certificates/sih_2026_qualification.png',
   },
 ];
 
@@ -234,8 +262,8 @@ export const EditorialCertifications: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* 3 Secondary Credential Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* 4 Secondary Credential Cards Grid (2x2 on large screens) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {CERTIFICATES.slice(1).map((cert, idx) => (
           <motion.div
             key={cert.id}
@@ -243,7 +271,8 @@ export const EditorialCertifications: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: idx * 0.1 }}
-            className="bg-[#FAF8F5] border border-[#132532]/15 p-6 flex flex-col justify-between hover:border-[#132532] hover:shadow-[4px_4px_0px_rgba(19,37,50,0.12)] transition-all group"
+            onClick={() => setSelectedCert(cert)}
+            className="bg-[#FAF8F5] border border-[#132532]/15 p-6 flex flex-col justify-between hover:border-[#315CFF] hover:shadow-[4px_4px_0px_#315CFF] transition-all cursor-pointer group"
           >
             <div>
               {/* Badge & Year */}
@@ -275,7 +304,7 @@ export const EditorialCertifications: React.FC = () => {
 
               {/* Metrics */}
               {cert.metrics && (
-                <div className="grid grid-cols-2 gap-2 mb-4 pt-2 border-t border-[#132532]/10 font-mono text-[10px]">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4 pt-2 border-t border-[#132532]/10 font-mono text-[10px]">
                   {cert.metrics.map((m) => (
                     <div key={m.label} className="bg-white border border-[#132532]/10 p-2">
                       <div className="text-[#132532]/50 uppercase text-[9px]">{m.label}</div>
@@ -286,10 +315,19 @@ export const EditorialCertifications: React.FC = () => {
               )}
             </div>
 
-            {/* Bottom Footer Authority & Checkmark */}
-            <div className="pt-4 border-t border-[#132532]/10 flex items-center justify-between font-mono text-[11px]">
-              <span className="text-[#132532]/65 font-medium">{cert.issuer}</span>
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 ml-2" />
+            {/* Bottom Actions: Inspect Button & Authority */}
+            <div className="pt-4 border-t border-[#132532]/10 flex items-center justify-between font-mono text-xs">
+              <span className="text-[#132532]/65 text-[11px] font-medium">{cert.issuer}</span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedCert(cert);
+                }}
+                className="bg-[#132532] text-white hover:bg-[#315CFF] px-3 py-1.5 font-mono text-[11px] font-bold flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm"
+              >
+                <Eye className="w-3.5 h-3.5" />
+                <span>INSPECT</span>
+              </button>
             </div>
           </motion.div>
         ))}
@@ -316,7 +354,7 @@ export const EditorialCertifications: React.FC = () => {
                 </div>
                 <button
                   onClick={() => setSelectedCert(null)}
-                  className="text-white/70 hover:text-white transition-colors cursor-pointer"
+                  className="text-white/70 hover:text-white transition-colors cursor-pointer p-1"
                   aria-label="Close certificate modal"
                 >
                   <X className="w-5 h-5" />
@@ -330,29 +368,43 @@ export const EditorialCertifications: React.FC = () => {
                     <img
                       src={selectedCert.imageUrl}
                       alt={selectedCert.title}
-                      className="w-full h-auto object-contain max-h-[65vh] mx-auto"
+                      className="w-full h-auto object-contain max-h-[60vh] mx-auto"
                     />
                   </div>
                 )}
 
                 <div className="bg-[#FAF8F5] border border-[#132532]/15 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-xs">
                   <div>
-                    <div className="font-bold text-[#132532]">{selectedCert.issuer}</div>
+                    <div className="font-bold text-[#132532] text-sm">{selectedCert.issuer}</div>
                     <div className="text-[#132532]/65 text-[11px] mt-0.5">
-                      Roll No: {selectedCert.credentialId}
+                      {selectedCert.credentialId ? `ID / Roll: ${selectedCert.credentialId}` : 'Verified Competency'}
                     </div>
                   </div>
 
-                  {selectedCert.pdfUrl && (
-                    <a
-                      href={selectedCert.pdfUrl}
-                      download="Abhinav_Anand_Certificate.pdf"
-                      className="btn-editorial-primary text-xs flex items-center gap-2 py-2 px-4 whitespace-nowrap"
-                    >
-                      <Download className="w-4 h-4 text-white" />
-                      <span>DOWNLOAD OFFICIAL PDF</span>
-                    </a>
-                  )}
+                  <div className="flex flex-wrap items-center gap-3">
+                    {selectedCert.verifyUrl && (
+                      <a
+                        href={selectedCert.verifyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white hover:bg-[#FAF8F5] text-[#315CFF] border border-[#315CFF]/30 font-mono text-xs font-bold py-2 px-3.5 flex items-center gap-1.5 transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span>VERIFY ONLINE</span>
+                      </a>
+                    )}
+
+                    {selectedCert.pdfUrl && (
+                      <a
+                        href={selectedCert.pdfUrl}
+                        download="Abhinav_Anand_Certificate.pdf"
+                        className="btn-editorial-primary text-xs flex items-center gap-2 py-2 px-4 whitespace-nowrap"
+                      >
+                        <Download className="w-4 h-4 text-white" />
+                        <span>DOWNLOAD OFFICIAL PDF</span>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -362,4 +414,3 @@ export const EditorialCertifications: React.FC = () => {
     </section>
   );
 };
-
