@@ -2,27 +2,51 @@ import { Certification, CurrentlyLearning } from '../lib/types';
 
 export const CERTIFICATIONS: Certification[] = [
   {
+    id: "nptel-llm",
+    title: "Introduction to Large Language Models (LLMs)",
+    platform: "IIT Madras · NPTEL",
+    url: "/certificates/nptel_llm_certificate.pdf",
+    tag: "Transformers & Attention Mechanisms",
+    date: "Verified"
+  },
+  {
     id: "c-prog",
-    title: "C Programming & Memory Foundations",
-    platform: "LPU Academic Coursework",
-    url: "/c_programming_certificate.pdf",
-    tag: "Pointers & Data Structures",
+    title: "Computer Programming (C Language) · 150 Hours",
+    platform: "Lovely Professional University · iamneo (NIIT Venture)",
+    url: "/certificates/c_programming_certificate.pdf",
+    tag: "Pointers & Memory Architecture",
+    date: "Verified"
+  },
+  {
+    id: "ibm-python",
+    title: "Python 101 for Data Science",
+    platform: "Cognitive Class · IBM Developer Skills Network",
+    url: "/certificates/ibm_python_data_science.pdf",
+    tag: "Scientific Computing & Data Structures",
     date: "Verified"
   },
   {
     id: "sql-cert",
-    title: "Relational Database Modeling & SQL",
-    platform: "Database Certification",
-    url: "/sql.png",
-    tag: "SQL Schema Normalization & Queries",
+    title: "HackerRank SQL (Advanced) · 5★ Gold Badge",
+    platform: "HackerRank Certified Professional",
+    url: "/certificates/hackerrank_sql_advanced.png",
+    tag: "Window Functions & Relational Modeling",
     date: "Verified"
   },
   {
-    id: "python-ml",
-    title: "Python for Data Science & Machine Learning",
-    platform: "Scientific Computing Foundation",
-    url: "/python.png",
-    tag: "NumPy, Pandas & Scikit-Learn",
+    id: "infosys-python",
+    title: "Infosys Springboard Python",
+    platform: "Infosys Springboard Certification",
+    url: "/certificates/infosys_python_certification.png",
+    tag: "OOP Design & Algorithmic Complexity",
+    date: "Verified"
+  },
+  {
+    id: "sih-2026",
+    title: "Smart India Hackathon 2026 Qualifier (SIH26188)",
+    platform: "Ministry of Education & AICTE Govt. of India",
+    url: "/certificates/sih_2026_qualification.png",
+    tag: "DocuShield AI & Forensic Screening",
     date: "Verified"
   }
 ];

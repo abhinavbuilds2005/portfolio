@@ -59,6 +59,28 @@ const CERTIFICATES: CertificateItem[] = [
     imageUrl: '/certificates/nptel_llm_certificate.png',
   },
   {
+    id: 'c-programming',
+    badge: 'LPU & NEO COLAB',
+    badgeColor: '#D97706',
+    year: '2026',
+    title: 'Computer Programming (C Language)',
+    issuer: 'Lovely Professional University & iamneo (An NIIT Venture)',
+    credentialId: '23dK7aL4bM5Dj3Dk3BIl',
+    subtitle: '150-Hour Rigorous Academic Coursework (18-Jan-2026 to 20-May-2026)',
+    description:
+      'Rigorous academic certification in C programming and low-level software engineering with 150 hours coursework duration. Demonstrated strong commitment, consistency, and algorithmic excellence covering memory architecture, pointers, dynamic memory allocation, procedural recursion, and custom data structures.',
+    metrics: [
+      { label: 'COURSE DURATION', value: '150 Hours' },
+      { label: 'TIMEFRAME', value: 'Jan - May 2026' },
+      { label: 'INSTITUTION', value: 'LPU Punjab' },
+      { label: 'CERT NO', value: '23dK7aL4bM5Dj3Dk3BIl' },
+    ],
+    tags: ['C Language', 'Pointers', 'Memory Architecture', 'Data Structures', 'Procedural Logic', 'Algorithms'],
+    verifyUrl: 'https://lpucolab438.examly.io/certificate/U2FsdGVkX1%2B%2FuDSBq1oWD2CCNJq0i3IvFc%2F92Re%2F%2F6I%3D',
+    pdfUrl: '/certificates/c_programming_certificate.pdf',
+    imageUrl: '/certificates/c_programming_certificate.png',
+  },
+  {
     id: 'ibm-python',
     badge: 'IBM & COGNITIVE CLASS',
     badgeColor: '#0F62FE',
@@ -262,8 +284,8 @@ export const EditorialCertifications: React.FC = () => {
         </div>
       </motion.div>
 
-      {/* 4 Secondary Credential Cards Grid (2x2 on large screens) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* 5 Secondary Credential Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {CERTIFICATES.slice(1).map((cert, idx) => (
           <motion.div
             key={cert.id}
@@ -272,7 +294,9 @@ export const EditorialCertifications: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: idx * 0.1 }}
             onClick={() => setSelectedCert(cert)}
-            className="bg-[#FAF8F5] border border-[#132532]/15 p-6 flex flex-col justify-between hover:border-[#315CFF] hover:shadow-[4px_4px_0px_#315CFF] transition-all cursor-pointer group"
+            className={`bg-[#FAF8F5] border border-[#132532]/15 p-6 flex flex-col justify-between hover:border-[#315CFF] hover:shadow-[4px_4px_0px_#315CFF] transition-all cursor-pointer group ${
+              idx === 4 ? 'md:col-span-2 lg:col-span-2' : ''
+            }`}
           >
             <div>
               {/* Badge & Year */}

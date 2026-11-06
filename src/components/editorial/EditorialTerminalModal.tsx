@@ -53,6 +53,8 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
     'sih',
     'certifications',
     'nptel',
+    'c',
+    'ibm',
     'metrics',
     'tamper-check',
     'whoami',
@@ -155,6 +157,36 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
         );
         break;
 
+      case 'c':
+      case 'c-prog':
+        outputNode = (
+          <div className="space-y-1.5 text-xs text-[#F5F2EB]/90">
+            <p className="text-[#315CFF] font-bold">LOVELY PROFESSIONAL UNIVERSITY & IAMNEO // COMPUTER PROGRAMMING (C LANGUAGE)</p>
+            <p>Course: <span className="text-white font-bold">Computer Programming (C Language) · 150 Hours</span></p>
+            <p>Provider: Lovely Professional University & iamneo (An NIIT Venture)</p>
+            <p>Certificate No: <span className="text-white font-bold">23dK7aL4bM5Dj3Dk3BIl</span></p>
+            <p>Duration: Jan 18, 2026 – May 20, 2026 (Issue Date: May 21, 2026)</p>
+            <div className="pt-1 flex gap-2">
+              <a
+                href="https://lpucolab438.examly.io/certificate/U2FsdGVkX1%2B%2FuDSBq1oWD2CCNJq0i3IvFc%2F92Re%2F%2F6I%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[#315CFF] text-white px-3 py-1 font-mono text-[11px] font-bold hover:bg-[#2047E5] transition-colors"
+              >
+                VERIFY ON EXAMLY / NEO COLAB ↗
+              </a>
+              <a
+                href="/certificates/c_programming_certificate.pdf"
+                download="Abhinav_Anand_C_Programming_Certificate.pdf"
+                className="inline-block bg-[#FAF8F5] text-[#132532] px-3 py-1 font-mono text-[11px] font-bold hover:bg-white transition-colors"
+              >
+                DOWNLOAD PDF ↗
+              </a>
+            </div>
+          </div>
+        );
+        break;
+
       case 'ibm':
         outputNode = (
           <div className="space-y-1.5 text-xs text-[#F5F2EB]/90">
@@ -180,12 +212,13 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
       case 'certifications':
         outputNode = (
           <div className="space-y-1.5 text-xs text-[#F5F2EB]/90">
-            <p className="text-[#315CFF] font-bold">VERIFIED TECHNICAL ACCREDITATIONS (5 TOTAL):</p>
+            <p className="text-[#315CFF] font-bold">VERIFIED TECHNICAL ACCREDITATIONS (6 TOTAL):</p>
             <p>1. <span className="text-white font-bold">NPTEL & IIT Madras</span> — Introduction to Large Language Models (LLMs) · Roll: NPTEL26CS171MANUAL0000154</p>
-            <p>2. <span className="text-white font-bold">Cognitive Class & IBM</span> — Python 101 for Data Science (PY0101EN) · ID: ebedc993179f41149ed2a7fb0c83b612</p>
-            <p>3. <span className="text-white font-bold">Smart India Hackathon 2026</span> (PS SIH26188 Qualified) · Ministry of Education / AICTE</p>
-            <p>4. <span className="text-white font-bold">HackerRank SQL (Advanced)</span> Certified · 5★ Gold Badge in Relational Modeling</p>
-            <p>5. <span className="text-white font-bold">Infosys Springboard Python</span> Certified · OOP Architecture & Asymptotic Complexity</p>
+            <p>2. <span className="text-white font-bold">LPU & iamneo (NIIT Venture)</span> — Computer Programming in C (150 Hours) · Cert: 23dK7aL4bM5Dj3Dk3BIl</p>
+            <p>3. <span className="text-white font-bold">Cognitive Class & IBM</span> — Python 101 for Data Science (PY0101EN) · ID: ebedc993179f41149ed2a7fb0c83b612</p>
+            <p>4. <span className="text-white font-bold">Smart India Hackathon 2026</span> (PS SIH26188 Qualified) · Ministry of Education / AICTE</p>
+            <p>5. <span className="text-white font-bold">HackerRank SQL (Advanced)</span> Certified · 5★ Gold Badge in Relational Modeling</p>
+            <p>6. <span className="text-white font-bold">Infosys Springboard Python</span> Certified · OOP Architecture & Asymptotic Complexity</p>
           </div>
         );
         break;
