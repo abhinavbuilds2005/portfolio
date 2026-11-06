@@ -5,6 +5,7 @@ import { EditorialHero } from './components/editorial/EditorialHero';
 import { EditorialMarquee } from './components/editorial/EditorialMarquee';
 import { EditorialProjects } from './components/editorial/EditorialProjects';
 import { EditorialAbout } from './components/editorial/EditorialAbout';
+import { EditorialJourneyMap } from './components/editorial/EditorialJourneyMap';
 import { EditorialStack } from './components/editorial/EditorialStack';
 import { EditorialLeetCode } from './components/editorial/EditorialLeetCode';
 import { EditorialContact } from './components/editorial/EditorialContact';
@@ -60,6 +61,9 @@ export function App() {
 
         {/* Section 2: About / The Person Behind the Builds */}
         <EditorialAbout />
+
+        {/* Section 2.5: Interactive Journey Traversal Map */}
+        <EditorialJourneyMap />
 
         {/* Section 3: Tools of the Trade / Working Vocabulary */}
         <EditorialStack />

@@ -47,7 +47,7 @@ export const EditorialOrbitalDisc: React.FC = () => {
   ];
 
   return (
-    <div className="relative w-[340px] h-[340px] sm:w-[460px] sm:h-[460px] lg:w-[540px] lg:h-[540px] flex items-center justify-center select-none pointer-events-auto">
+    <div className="relative w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] md:w-[420px] md:h-[420px] lg:w-[440px] lg:h-[440px] xl:w-[480px] xl:h-[480px] flex items-center justify-center select-none pointer-events-auto">
       {/* 3D Tilt Wrapper */}
       <motion.div
         style={{
@@ -67,6 +67,17 @@ export const EditorialOrbitalDisc: React.FC = () => {
               'radial-gradient(circle, rgba(235, 230, 218, 0.75) 0%, rgba(245, 242, 235, 0.45) 55%, rgba(245, 242, 235, 0) 72%)',
             border: '1px solid rgba(19, 37, 50, 0.12)',
             boxShadow: '0 20px 50px rgba(19, 37, 50, 0.05)',
+          }}
+        />
+
+        {/* Layer 1B: Continuous Kinetic Radar Sweep Beam */}
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
+          className="absolute inset-4 rounded-full pointer-events-none opacity-40"
+          style={{
+            background:
+              'conic-gradient(from 0deg, rgba(49, 92, 255, 0.3) 0deg, rgba(49, 92, 255, 0.05) 45deg, transparent 90deg)',
           }}
         />
 

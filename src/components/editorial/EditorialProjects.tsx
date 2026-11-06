@@ -87,11 +87,19 @@ export const EditorialProjects: React.FC<EditorialProjectsProps> = ({ onOpenCase
           {/* Interactive Screen Container */}
           <div className="relative w-full aspect-[16/9] max-h-[460px] bg-white border border-[#132532]/10 overflow-hidden select-none">
             {activeTab === 'interface' ? (
-              <img
-                src={docushield.image}
-                alt="DocuShield AI Interface"
-                className="w-full h-full object-cover object-top hover:scale-[1.01] transition-transform duration-500"
-              />
+              <div className="relative w-full h-full overflow-hidden">
+                <img
+                  src={docushield.image}
+                  alt="DocuShield AI Interface"
+                  className="w-full h-full object-cover object-top hover:scale-[1.01] transition-transform duration-500"
+                />
+                {/* Forensic Laser Scanline Animation */}
+                <motion.div
+                  animate={{ y: ['0%', '100%', '0%'] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#315CFF] to-transparent pointer-events-none shadow-[0_0_10px_#315CFF]"
+                />
+              </div>
             ) : (
               /* ELA Forensic Split Scrubber */
               <div className="relative w-full h-full overflow-hidden">

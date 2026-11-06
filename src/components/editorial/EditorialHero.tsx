@@ -66,157 +66,158 @@ export const EditorialHero: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-[92vh] pt-28 sm:pt-32 pb-16 px-6 sm:px-12 flex flex-col justify-between max-w-7xl mx-auto overflow-hidden">
+    <section className="relative min-h-[92vh] pt-28 sm:pt-32 pb-16 px-6 sm:px-12 flex flex-col justify-between max-w-7xl mx-auto">
       {/* ========================================================================= */}
-      {/* ASYMMETRIC INTERACTIVE EDITORIAL RADAR ORBITAL SYSTEM (Right Hero Space)  */}
+      {/* MAIN HERO GRID: ASYMMETRIC 2-COLUMN LAYOUT (PERFECT BREATHING ROOM)       */}
       {/* ========================================================================= */}
-      <div className="absolute top-12 right-[-100px] sm:right-[-40px] md:right-0 lg:right-6 xl:right-12 pointer-events-auto z-0 opacity-80 sm:opacity-100 scale-90 sm:scale-100 lg:scale-105 transition-all">
-        <EditorialOrbitalDisc />
-      </div>
-
-      {/* ========================================================================= */}
-      {/* MAIN CONTENT AREA: EDITORIAL HEADLINE & KINETIC TEXT ANIMATION           */}
-      {/* ========================================================================= */}
-      <div className="relative z-10 max-w-3xl lg:max-w-4xl">
-        {/* Kicker tag with Live Discipline Pill */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap items-center gap-3 mb-6"
-        >
-          <span className="font-mono text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#F0784B]">
-            INDEPENDENT MIND, ENGINEERED SYSTEMS — 2026
-          </span>
-          <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-[#132532]/20" />
-          <AnimatePresence mode="wait">
-            <motion.span
-              key={currentPhrase.discipline}
-              initial={{ opacity: 0, x: -6 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 6 }}
-              transition={{ duration: 0.3 }}
-              className="font-mono text-[11px] font-bold tracking-wider text-[#315CFF] uppercase hidden sm:inline-block bg-[#315CFF]/8 px-2 py-0.5 border border-[#315CFF]/15"
-            >
-              {currentPhrase.discipline}
-            </motion.span>
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Giant Editorial Kinetic Headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold tracking-[-0.035em] leading-[0.92] text-[#132532] font-sans"
-        >
-          {/* Line 1: Making (Interactive Scramble) */}
-          <div
-            onMouseEnter={triggerScramble}
-            className="block cursor-pointer select-none transition-transform duration-200 hover:translate-x-1"
-            title="Hover to scramble"
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center my-auto w-full">
+        {/* LEFT COLUMN: Editorial Kinetic Headline, Mission & CTA (Cols 1-7) */}
+        <div className="lg:col-span-7 xl:col-span-7 max-w-2xl">
+          {/* Kicker tag with Live Discipline Pill */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex flex-wrap items-center gap-3 mb-6"
           >
-            {makingWord}
-          </div>
+            <span className="font-mono text-xs sm:text-sm font-semibold tracking-[0.2em] uppercase text-[#F0784B]">
+              INDEPENDENT MIND, ENGINEERED SYSTEMS — 2026
+            </span>
+            <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-[#132532]/20" />
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={currentPhrase.discipline}
+                initial={{ opacity: 0, x: -6 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 6 }}
+                transition={{ duration: 0.3 }}
+                className="font-mono text-[11px] font-bold tracking-wider text-[#315CFF] uppercase hidden sm:inline-block bg-[#315CFF]/8 px-2 py-0.5 border border-[#315CFF]/15"
+              >
+                {currentPhrase.discipline}
+              </motion.span>
+            </AnimatePresence>
+          </motion.div>
 
-          {/* Line 2: [AI / MODELS / VISION / SYSTEMS] feel */}
-          <div className="flex items-baseline flex-wrap gap-x-3 sm:gap-x-5 py-1">
-            <div className="relative inline-block overflow-hidden align-baseline">
+          {/* Giant Editorial Kinetic Headline */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-extrabold tracking-[-0.035em] leading-[0.94] text-[#132532] font-sans"
+          >
+            {/* Line 1: Making (Interactive Scramble) */}
+            <div
+              onMouseEnter={triggerScramble}
+              className="block cursor-pointer select-none transition-transform duration-200 hover:translate-x-1"
+              title="Hover to scramble"
+            >
+              {makingWord}
+            </div>
+
+            {/* Line 2: [AI / MODELS / VISION / SYSTEMS] feel */}
+            <div className="flex items-baseline flex-wrap gap-x-3 sm:gap-x-4 py-1">
+              <div className="relative inline-block overflow-hidden align-baseline">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={`tag-${phraseIndex}`}
+                    initial={{ y: 35, opacity: 0, rotateX: -25 }}
+                    animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                    exit={{ y: -35, opacity: 0, rotateX: 25 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    onClick={nextPhrase}
+                    className="text-stroke-ink text-transparent inline-block cursor-pointer select-none hover:text-[#132532] transition-colors"
+                    title="Click to cycle next term"
+                  >
+                    {currentPhrase.tag}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+              <span>feel</span>
+            </div>
+
+            {/* Line 3: useful. / dependable. / explainable. / resilient. */}
+            <div className="relative block overflow-hidden py-1">
               <AnimatePresence mode="wait">
-                <motion.span
-                  key={`tag-${phraseIndex}`}
-                  initial={{ y: 40, opacity: 0, rotateX: -30 }}
-                  animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                  exit={{ y: -40, opacity: 0, rotateX: 30 }}
-                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                  onClick={nextPhrase}
-                  className="text-stroke-ink text-transparent inline-block cursor-pointer select-none hover:text-[#132532] transition-colors"
-                  title="Click to cycle next term"
+                <motion.div
+                  key={`result-${phraseIndex}`}
+                  initial={{ y: 40, opacity: 0, filter: 'blur(6px)' }}
+                  animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+                  exit={{ y: -40, opacity: 0, filter: 'blur(6px)' }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-block"
+                  style={{ color: currentPhrase.color }}
                 >
-                  {currentPhrase.tag}
-                </motion.span>
+                  {currentPhrase.result}
+                </motion.div>
               </AnimatePresence>
             </div>
-            <span>feel</span>
-          </div>
+          </motion.div>
 
-          {/* Line 3: useful. / dependable. / explainable. / resilient. */}
-          <div className="relative block overflow-hidden py-1">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`result-${phraseIndex}`}
-                initial={{ y: 45, opacity: 0, filter: 'blur(6px)' }}
-                animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-                exit={{ y: -45, opacity: 0, filter: 'blur(6px)' }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-block"
-                style={{ color: currentPhrase.color }}
-              >
-                {currentPhrase.result}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </motion.div>
-
-        {/* Mission Statement Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="text-lg sm:text-xl text-[#132532] text-opacity-90 font-normal leading-relaxed max-w-2xl mt-8"
-        >
-          I'm Abhinav — a computer science student focused on building practical machine
-          learning systems, computer vision tools, and thoughtful software. Less hype. More
-          things that work.
-        </motion.p>
-
-        {/* Interactive Cycle Hint */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="mt-3 flex items-center gap-2 font-mono text-[11px] text-[#132532]/60"
-        >
-          <button
-            onClick={nextPhrase}
-            className="inline-flex items-center gap-1.5 text-[#315CFF] hover:underline cursor-pointer"
+          {/* Mission Statement Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="text-base sm:text-lg lg:text-xl text-[#132532] text-opacity-90 font-normal leading-relaxed max-w-xl mt-6 sm:mt-8"
           >
-            <RefreshCw className="w-3 h-3 animate-[spin_8s_linear_infinite]" />
-            <span>Cycle philosophy ({phraseIndex + 1}/{PHRASES.length})</span>
-          </button>
-        </motion.div>
+            I'm Abhinav — a computer science student focused on building practical machine
+            learning systems, computer vision tools, and thoughtful software. Less hype. More
+            things that work.
+          </motion.p>
 
-        {/* CTA Button Group with Magnetic Pull Physics */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.65 }}
-          className="flex flex-wrap items-center gap-4 sm:gap-6 mt-8"
-        >
-          {/* Primary CTA with Persimmon Drop Shadow */}
-          <MagneticButton strength={0.3}>
-            <a
-              href="#work"
-              className="btn-editorial-primary text-xs sm:text-sm"
+          {/* Interactive Cycle Hint */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            className="mt-3 flex items-center gap-2 font-mono text-[11px] text-[#132532]/60"
+          >
+            <button
+              onClick={nextPhrase}
+              className="inline-flex items-center gap-1.5 text-[#315CFF] hover:underline cursor-pointer"
             >
-              <span>EXPLORE SELECTED WORK</span>
-              <ArrowDownRight className="w-4 h-4 text-white" />
-            </a>
-          </MagneticButton>
+              <RefreshCw className="w-3 h-3 animate-[spin_8s_linear_infinite]" />
+              <span>Cycle philosophy ({phraseIndex + 1}/{PHRASES.length})</span>
+            </button>
+          </motion.div>
 
-          {/* Secondary Outline CTA */}
-          <MagneticButton strength={0.3}>
-            <a
-              href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-editorial-outline text-xs sm:text-sm"
-            >
-              <span>VIEW RÉSUMÉ</span>
-              <ExternalLink className="w-4 h-4 text-[#132532]" />
-            </a>
-          </MagneticButton>
-        </motion.div>
+          {/* CTA Button Group with Magnetic Pull Physics */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.65 }}
+            className="flex flex-wrap items-center gap-4 sm:gap-6 mt-8"
+          >
+            {/* Primary CTA with Persimmon Drop Shadow */}
+            <MagneticButton strength={0.3}>
+              <a
+                href="#work"
+                className="btn-editorial-primary text-xs sm:text-sm"
+              >
+                <span>EXPLORE SELECTED WORK</span>
+                <ArrowDownRight className="w-4 h-4 text-white" />
+              </a>
+            </MagneticButton>
+
+            {/* Secondary Outline CTA */}
+            <MagneticButton strength={0.3}>
+              <a
+                href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-editorial-outline text-xs sm:text-sm"
+              >
+                <span>VIEW RÉSUMÉ</span>
+                <ExternalLink className="w-4 h-4 text-[#132532]" />
+              </a>
+            </MagneticButton>
+          </motion.div>
+        </div>
+
+        {/* RIGHT COLUMN: Interactive 3D Radar Orbital System (Cols 8-12) */}
+        <div className="lg:col-span-5 xl:col-span-5 flex justify-center lg:justify-end items-center pointer-events-auto py-8 lg:py-0">
+          <EditorialOrbitalDisc />
+        </div>
       </div>
 
       {/* ========================================================================= */}
