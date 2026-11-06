@@ -1,155 +1,82 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar } from './components/layout/Navbar';
-import { ScrollProgress } from './components/layout/ScrollProgress';
-import { HeroSection } from './components/hero/HeroSection';
-import { SkillsMarquee } from './components/skills/SkillsMarquee';
-import { ProjectsSection } from './components/projects/ProjectsSection';
-import { SkillsSection } from './components/skills/SkillsSection';
-import { BuildLogSection } from './components/build-log/BuildLogSection';
-import { ContactSection } from './components/contact/ContactSection';
-import { Footer } from './components/layout/Footer';
-import { CommandPalette } from './components/shared/CommandPalette';
-import { LabModal } from './components/shared/LabModal';
-import { ModelInferenceSandbox } from './components/playground/ModelInferenceSandbox';
-import { InteractiveTerminal } from './components/terminal/InteractiveTerminal';
-import { AntigravityBackground } from './components/shared/AntigravityBackground';
-import { FloatingDock } from './components/layout/FloatingDock';
+import { CinematicIntro } from './components/editorial/CinematicIntro';
+import { EditorialNavbar } from './components/editorial/EditorialNavbar';
+import { EditorialHero } from './components/editorial/EditorialHero';
+import { EditorialMarquee } from './components/editorial/EditorialMarquee';
+import { EditorialProjects } from './components/editorial/EditorialProjects';
+import { EditorialAbout } from './components/editorial/EditorialAbout';
+import { EditorialStack } from './components/editorial/EditorialStack';
+import { EditorialContact } from './components/editorial/EditorialContact';
+import { BackToTop } from './components/editorial/BackToTop';
+import { CustomCursor } from './components/editorial/CustomCursor';
+import { EditorialTerminalModal } from './components/editorial/EditorialTerminalModal';
+import { EditorialCaseStudyModal } from './components/editorial/EditorialCaseStudyModal';
+import { Project } from './lib/types';
 
 export function App() {
-  const [isDark, setIsDark] = useState<boolean>(true);
-  const [isCmdOpen, setIsCmdOpen] = useState<boolean>(false);
-  const [isLabOpen, setIsLabOpen] = useState<boolean>(false);
-  const [activeCaseStudyId, setActiveCaseStudyId] = useState<string | null>(null);
+  const [introFinished, setIntroFinished] = useState(false);
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+  const [selectedCaseStudy, setSelectedCaseStudy] = useState<Project | null>(null);
 
-  // Initialize theme from storage or system preference
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      setIsDark(false);
-      document.documentElement.classList.remove('dark');
-      document.documentElement.classList.add('light');
-    } else if (savedTheme === 'dark') {
-      setIsDark(true);
-      document.documentElement.classList.add('dark');
-      document.documentElement.classList.remove('light');
-    } else {
-      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-      if (prefersLight) {
-        setIsDark(false);
-        document.documentElement.classList.remove('dark');
-        document.documentElement.classList.add('light');
-      } else {
-        setIsDark(true);
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-      }
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    setIsDark((prev) => {
-      const next = !prev;
-      if (next) {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-        localStorage.setItem('theme', 'dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-        document.documentElement.classList.add('light');
-        localStorage.setItem('theme', 'light');
-      }
-      return next;
-    });
-  };
-
-  // Keyboard shortcut listener for Ctrl+K / Cmd+K
+  // Global keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      // Toggle Terminal with Ctrl+` or Ctrl+T or Cmd+K
+      if ((e.ctrlKey || e.metaKey) && (e.key === '`' || e.key.toLowerCase() === 't' || e.key.toLowerCase() === 'k')) {
         e.preventDefault();
-        setIsCmdOpen((prev) => !prev);
+        setIsTerminalOpen((prev) => !prev);
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   return (
-    <div className="min-h-screen bg-base text-text-primary transition-colors duration-200 selection:bg-accent selection:text-base relative">
-      
-      {/* Dynamic Ambient Zero-Gravity Particle & Mesh Field */}
-      <AntigravityBackground />
+    <div className="min-h-screen bg-[#F5F2EB] text-[#132532] selection:bg-[#315CFF] selection:text-white font-sans relative">
+      {/* Desktop Custom Smooth Cursor */}
+      <CustomCursor />
 
-      {/* Scroll Progress Epoch Bar */}
-      <ScrollProgress />
+      {/* Cinematic Intro Animation (Curtain reveal on load) */}
+      <CinematicIntro onComplete={() => setIntroFinished(true)} />
 
-      {/* Top Navbar */}
-      <Navbar
-        isDark={isDark}
-        onToggleTheme={toggleTheme}
-        onOpenCmd={() => setIsCmdOpen(true)}
-        onOpenLab={() => setIsLabOpen(true)}
-      />
+      {/* Sticky Editorial Navbar */}
+      <EditorialNavbar onOpenTerminal={() => setIsTerminalOpen(true)} />
 
-      {/* Main Content Area */}
+      {/* Main Editorial Content Flow */}
       <main id="main-content" className="relative z-10">
-        {/* Editorial Hero Section */}
-        <HeroSection />
+        {/* Section 0: Editorial Hero */}
+        <EditorialHero />
 
-        {/* Flowing Skills Stream (Dual-Row GPU-Accelerated Kinetic Marquee) */}
-        <SkillsMarquee />
+        {/* Kinetic Horizontal Marquee Stream */}
+        <EditorialMarquee />
 
-        {/* Projects Section with DocuShield Flagship & Distinct Hierarchy */}
-        <ProjectsSection
-          activeCaseStudyId={activeCaseStudyId}
-          onOpenCaseStudy={(id) => setActiveCaseStudyId(id)}
-          onCloseCaseStudy={() => setActiveCaseStudyId(null)}
-        />
+        {/* Section 1: Selected Work / Engineered Systems */}
+        <EditorialProjects onOpenCaseStudy={(project) => setSelectedCaseStudy(project)} />
 
-        {/* Interactive Production Model Telemetry & Diagnostics Sandbox */}
-        <ModelInferenceSandbox />
+        {/* Section 2: About / The Person Behind the Builds */}
+        <EditorialAbout />
 
-        {/* Skills Section with Knowledge Map, Pipeline, Feature Importance & LeetCode */}
-        <SkillsSection onOpenCaseStudy={(id) => setActiveCaseStudyId(id)} />
+        {/* Section 3: Tools of the Trade / Working Vocabulary */}
+        <EditorialStack />
 
-        {/* Interactive Terminal Sandbox */}
-        <InteractiveTerminal />
-
-        {/* Technical Build Log */}
-        <BuildLogSection />
-
-        {/* Contact Section */}
-        <ContactSection />
+        {/* Section 4: Contact / Let's Build Something Dependable */}
+        <EditorialContact />
       </main>
 
-      {/* Floating Pill Dock with Copy Email Toast & Navigation Shortcuts */}
-      <FloatingDock />
+      {/* Floating Back to Top Button (Electric Blue square with arrow) */}
+      <BackToTop />
 
-      {/* Minimal Footer */}
-      <Footer />
-
-      {/* Command Palette Modal */}
-      <CommandPalette
-        isOpen={isCmdOpen}
-        onClose={() => setIsCmdOpen(false)}
-        onToggleTheme={toggleTheme}
-        isDark={isDark}
-        onSelectProject={(id) => {
-          setActiveCaseStudyId(id);
-        }}
-        onOpenLab={() => setIsLabOpen(true)}
+      {/* Interactive Runtime Terminal Modal */}
+      <EditorialTerminalModal
+        isOpen={isTerminalOpen}
+        onClose={() => setIsTerminalOpen(false)}
       />
 
-      {/* Interactive ML Lab Modal (Mechanisms, Embeddings, Pipeline & LeetCode) */}
-      <LabModal
-        isOpen={isLabOpen}
-        onClose={() => setIsLabOpen(false)}
-        onSelectProject={(id) => {
-          setActiveCaseStudyId(id);
-        }}
+      {/* Deep Architecture Case Study Modal */}
+      <EditorialCaseStudyModal
+        project={selectedCaseStudy}
+        onClose={() => setSelectedCaseStudy(null)}
       />
-
     </div>
   );
 }
