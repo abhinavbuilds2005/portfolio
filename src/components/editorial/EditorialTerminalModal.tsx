@@ -107,10 +107,10 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
         outputNode = (
           <div className="space-y-1.5 text-xs text-[#F5F2EB]/90">
             <p className="text-emerald-400 font-bold">RÉSUMÉ DOSSIER // ABHINAV ANAND</p>
-            <p>Role: Software Engineer Intern (Python / Backend) | Applied AI & ML</p>
+            <p>Role: AI/ML Intern | Python, NLP, Computer Vision</p>
             <p>Education: B.Tech CSE (AI/ML) · Lovely Professional University (Aug 2025 - Aug 2029)</p>
             <p>Location: Jalandhar, Punjab, India · +91 9153051907 · abhinavanand9996@gmail.com</p>
-            <p>Flagship: DocuShield AI (SIH 2026 PS SIH26188, 90 Automated Tests, ELA + ORB, &lt;42ms FastAPI)</p>
+            <p>Flagship: DocuShield (SIH 2026, 219 tests, 96% accuracy) & AI Resume ATS Analyzer (70% lower MAE fine-tuned all-mpnet-base-v2)</p>
             <div className="pt-1">
               <a
                 href="/Abhinav_Anand_Resume_AIML_Specialized.pdf"

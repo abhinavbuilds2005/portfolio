@@ -99,7 +99,7 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
                 ABHINAV ANAND
               </h1>
               <p className="text-sm sm:text-base font-semibold text-[#111827] mt-1">
-                Software Engineer Intern (Python / Backend) | Applied AI & ML
+                AI/ML Intern | Python, NLP, Computer Vision
               </p>
 
               {/* Contact Metadata */}
@@ -111,16 +111,16 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
                   </a>
                 </div>
                 <div className="space-x-3 text-xs font-semibold">
-                  <a href="https://coderabhinavanand.netlify.app/" className="text-[#315CFF] hover:underline">
-                    Portfolio
+                  <a href="https://coderabhinavanand.netlify.app" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">
+                    coderabhinavanand.netlify.app
                   </a>
                   <span>|</span>
                   <a href="https://github.com/abhinavbuilds2005" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">
-                    GitHub
+                    github.com/abhinavbuilds2005
                   </a>
                   <span>|</span>
                   <a href="https://www.linkedin.com/in/abhinav-anand-865926300" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">
-                    LinkedIn
+                    linkedin.com/in/abhinav-anand-865926300
                   </a>
                 </div>
               </div>
@@ -129,143 +129,17 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
             {/* Summary */}
             <section className="space-y-1.5">
               <h2 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#1f4e79] border-b border-[#cbd5e1] pb-1">
-                SUMMARY
+                Summary
               </h2>
               <p className="text-xs sm:text-sm text-[#1f2937] leading-relaxed">
-                B.Tech CSE (AI/ML) student building Python backend and applied AI systems with FastAPI, Docker, and end-to-end ML, NLP, and computer-vision pipelines. Built DocuShield, a document-forensics platform with a 90-test automated backend suite, plus two deployed applications, including an AI resume analyzer using Supabase and Groq (Llama 3).
+                B.Tech CSE (AI/ML) student building end-to-end machine learning, NLP, and computer-vision systems in Python. Fine-tuned a Sentence Transformer for resume–JD matching (70% lower MAE), built DocuShield, an OCR and YOLO-based document-forensics pipeline for Smart India Hackathon 2026, and shipped a loan-approval classifier. Comfortable taking models from data cleaning to FastAPI services and Docker deployment.
               </p>
-            </section>
-
-            {/* Technical Projects */}
-            <section className="space-y-4">
-              <h2 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#1f4e79] border-b border-[#cbd5e1] pb-1">
-                TECHNICAL PROJECTS
-              </h2>
-
-              {/* Project 1: DocuShield */}
-              <div className="space-y-1">
-                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                  <div className="font-bold text-xs sm:text-sm text-[#111827]">
-                    DocuShield — Fake ID & Document Forensic Screening System &nbsp;|&nbsp; Smart India Hackathon 2026, PS SIH26188
-                  </div>
-                  <a href="https://github.com/abhinavbuilds2005/DocuShield" target="_blank" rel="noopener noreferrer" className="text-xs text-[#315CFF] font-semibold hover:underline">
-                    GitHub
-                  </a>
-                </div>
-                <div className="text-xs italic text-[#4b5563]">
-                  Stack: Python, FastAPI, React (Vite), OpenCV, EasyOCR, Tesseract, Docker
-                </div>
-                <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#1f2937] space-y-1 leading-relaxed">
-                  <li>
-                    Built a multi-stage OCR workflow for 5 identity-document types (passport, visa, national ID, driving licence, permit), combining EasyOCR/Tesseract with ICAO MRZ parsing and checksum validation (including Verhoeff for Aadhaar); served it through FastAPI with a decoupled React (Vite) client.
-                  </li>
-                  <li>
-                    Analyzed potential image tampering using 3 forensic signals—Error Level Analysis, ORB + RANSAC copy-move detection, and EXIF metadata—in a rule-based evidence-fusion engine that produces an explainable authenticity risk score.
-                  </li>
-                  <li>
-                    Added a 90-test automated backend suite covering document verification and tamper-detection workflows.
-                  </li>
-                </ul>
-              </div>
-
-              {/* Project 2: AI Resume ATS Analyzer */}
-              <div className="space-y-1">
-                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                  <div className="font-bold text-xs sm:text-sm text-[#111827]">
-                    AI Resume ATS Analyzer &nbsp;|&nbsp; Sep 2026
-                  </div>
-                  <div className="text-xs space-x-1.5 font-semibold">
-                    <a href="https://resumeatsanalyzer.streamlit.app/" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">Live</a>
-                    <span>|</span>
-                    <a href="https://github.com/abhinavbuilds2005/ai-resume-ats-analyzer" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">GitHub</a>
-                  </div>
-                </div>
-                <div className="text-xs italic text-[#4b5563]">
-                  Stack: Python, FastAPI, Streamlit, spaCy, Sentence Transformers, Groq API (Llama 3), Supabase, Docker
-                </div>
-                <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#1f2937] space-y-1 leading-relaxed">
-                  <li>
-                    Built a 100-point resume-scoring engine covering formatting, keyword/skill matching, content quality, and ATS parseability, with a FastAPI backend and Streamlit frontend packaged in Docker.
-                  </li>
-                  <li>
-                    Built a skill-context validator that compares listed skills with project evidence using spaCy and Sentence Transformer embeddings; added automated personally identifiable information (PII) screening.
-                  </li>
-                  <li>
-                    Integrated the Groq API (Llama 3) to generate resume-improvement suggestions and used Supabase for authentication and persistent analysis history backed by PostgreSQL.
-                  </li>
-                </ul>
-              </div>
-
-              {/* Project 3: CreditWise */}
-              <div className="space-y-1">
-                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-                  <div className="font-bold text-xs sm:text-sm text-[#111827]">
-                    CreditWise — AI Loan Risk Intelligence System &nbsp;|&nbsp; Mar 2026
-                  </div>
-                  <div className="text-xs space-x-1.5 font-semibold">
-                    <a href="https://creditwise-intelligence.streamlit.app/" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">Live</a>
-                    <span>|</span>
-                    <a href="https://github.com/abhinavbuilds2005/CreditWise" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">GitHub</a>
-                  </div>
-                </div>
-                <div className="text-xs italic text-[#4b5563]">
-                  Stack: Python, Scikit-Learn, Pandas, NumPy, Streamlit
-                </div>
-                <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#1f2937] space-y-1 leading-relaxed">
-                  <li>
-                    Classified loan applicants into 3 risk tiers (Low/Medium/High), reporting 87.5% accuracy with a Scikit-learn multiclass classifier and Pandas-based feature engineering.
-                  </li>
-                  <li>
-                    Identified and removed a data-leakage issue from the feature set before release, then deployed the model as a Streamlit app for interactive what-if risk scoring.
-                  </li>
-                </ul>
-              </div>
-            </section>
-
-            {/* Technical Skills */}
-            <section className="space-y-2">
-              <h2 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#1f4e79] border-b border-[#cbd5e1] pb-1">
-                TECHNICAL SKILLS
-              </h2>
-
-              <div className="grid grid-cols-1 gap-1.5 text-xs sm:text-sm">
-                <div>
-                  <strong className="text-[#111827]">Languages:</strong> <span className="text-[#374151]">Python, C++, JavaScript, SQL</span>
-                </div>
-                <div>
-                  <strong className="text-[#111827]">Backend & Databases:</strong> <span className="text-[#374151]">FastAPI, REST APIs, PostgreSQL, Supabase (Auth, Postgres)</span>
-                </div>
-                <div>
-                  <strong className="text-[#111827]">Frontend & App Frameworks:</strong> <span className="text-[#374151]">React (Vite), Streamlit</span>
-                </div>
-                <div>
-                  <strong className="text-[#111827]">Machine Learning & NLP:</strong> <span className="text-[#374151]">Scikit-learn, Pandas, NumPy, spaCy, Sentence Transformers, Groq/Llama 3 APIs, Feature Engineering</span>
-                </div>
-                <div>
-                  <strong className="text-[#111827]">Computer Vision & OCR:</strong> <span className="text-[#374151]">OpenCV, EasyOCR, Tesseract, ORB + RANSAC, Error Level Analysis, ICAO MRZ Parsing</span>
-                </div>
-                <div>
-                  <strong className="text-[#111827]">Tools & DevOps:</strong> <span className="text-[#374151]">Docker, Git, GitHub</span>
-                </div>
-              </div>
-            </section>
-
-            {/* Certifications & Hackathons */}
-            <section className="space-y-1.5">
-              <h2 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#1f4e79] border-b border-[#cbd5e1] pb-1">
-                CERTIFICATIONS & HACKATHONS
-              </h2>
-              <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#1f2937] space-y-1">
-                <li>Smart India Hackathon 2026 — built DocuShield for problem statement SIH26188</li>
-                <li>HackerRank — SQL (Advanced)</li>
-                <li>Infosys Springboard — Python</li>
-              </ul>
             </section>
 
             {/* Education */}
             <section className="space-y-1.5">
               <h2 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#1f4e79] border-b border-[#cbd5e1] pb-1">
-                EDUCATION
+                Education
               </h2>
               <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
                 <div className="font-bold text-xs sm:text-sm text-[#111827]">
@@ -276,8 +150,141 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
                 </div>
               </div>
               <div className="text-xs sm:text-sm text-[#374151]">
-                B.Tech, Computer Science (AI/ML)
+                B.Tech, Computer Science and Engineering (AI/ML)
               </div>
+            </section>
+
+            {/* Projects */}
+            <section className="space-y-4">
+              <h2 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#1f4e79] border-b border-[#cbd5e1] pb-1">
+                Projects
+              </h2>
+
+              {/* Project 1: AI Resume ATS Analyzer */}
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                  <div className="font-bold text-xs sm:text-sm text-[#111827]">
+                    AI Resume ATS Analyzer &nbsp;|&nbsp; Sep 2026
+                  </div>
+                  <div className="text-xs space-x-1.5 font-semibold">
+                    <a href="https://ats-resume-analyzer.onrender.com" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">Live</a>
+                    <span>|</span>
+                    <a href="https://github.com/abhinavbuilds2005/ATS-RESUME-ANALYZER" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">GitHub</a>
+                  </div>
+                </div>
+                <div className="text-xs italic text-[#4b5563]">
+                  Python, FastAPI, spaCy, Sentence Transformers, Groq (Llama 3.1), Supabase, Docker
+                </div>
+                <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#1f2937] space-y-1 leading-relaxed">
+                  <li>
+                    Fine-tuned <span className="font-mono text-[11px] bg-[#f1f5f9] px-1 py-0.5 rounded">all-mpnet-base-v2</span> with cosine-similarity loss on 266 resume–job-description pairs (186/40/40 split), cutting test MAE from 0.156 to 0.047 (70% lower) versus the base model.
+                  </li>
+                  <li>
+                    Built a 100-point ATS scoring engine (formatting, skills, content quality, skill validation, parseability) using spaCy and chunked semantic embeddings, with PII screening and an LLM-feedback layer (Groq) that falls back to rule-based output.
+                  </li>
+                  <li>
+                    Shipped a FastAPI backend with Supabase JWT auth and per-user history, a 75-test pytest suite, and a Dockerized deployment on Render.
+                  </li>
+                </ul>
+              </div>
+
+              {/* Project 2: DocuShield */}
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                  <div className="font-bold text-xs sm:text-sm text-[#111827]">
+                    DocuShield – Fake ID and Document Forensic Screening &nbsp;|&nbsp; Smart India Hackathon 2026
+                  </div>
+                  <div className="text-xs space-x-1.5 font-semibold">
+                    <a href="https://docushield-ai.onrender.com" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">Live</a>
+                    <span>|</span>
+                    <a href="https://github.com/abhinavbuilds2005/DocuShield" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">GitHub</a>
+                  </div>
+                </div>
+                <div className="text-xs italic text-[#4b5563]">
+                  Python, FastAPI, OpenCV, EasyOCR, YOLO (Ultralytics), React, Docker
+                </div>
+                <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#1f2937] space-y-1 leading-relaxed">
+                  <li>
+                    Built an OCR and computer-vision pipeline: document classification, YOLO field detectors for Aadhaar, PAN, and Driving Licence, EasyOCR/Tesseract extraction, and ICAO MRZ and Verhoeff checksum validation.
+                  </li>
+                  <li>
+                    Detected tampering with Error Level Analysis, ORB + RANSAC copy-move detection, and EXIF checks, fused into an explainable risk score.
+                  </li>
+                  <li>
+                    Evaluated on a frozen, SHA-256-verified synthetic test set of 150 documents: 96% 5-class classification accuracy and 0 false positives on 100 clean cards; 21% of hard cases routed to manual review.
+                  </li>
+                  <li>
+                    Backed by a 219-test automated pytest suite covering OCR, MRZ, forensics, validation, and API security.
+                  </li>
+                </ul>
+              </div>
+
+              {/* Project 3: CreditWise */}
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                  <div className="font-bold text-xs sm:text-sm text-[#111827]">
+                    CreditWise – Loan Approval Prediction &nbsp;|&nbsp; Mar 2026
+                  </div>
+                  <div className="text-xs space-x-1.5 font-semibold">
+                    <a href="https://credishield-one.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">Live</a>
+                    <span>|</span>
+                    <a href="https://github.com/abhinavbuilds2005/credit-wise-loan-system" target="_blank" rel="noopener noreferrer" className="text-[#315CFF] hover:underline">GitHub</a>
+                  </div>
+                </div>
+                <div className="text-xs italic text-[#4b5563]">
+                  Python, Scikit-learn, Pandas, NumPy, JavaScript, Chart.js
+                </div>
+                <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#1f2937] space-y-1 leading-relaxed">
+                  <li>
+                    Built a binary loan-approval classifier on a 1,000-record applicant dataset: imputation, one-hot and label encoding, scaling, and squared DTI and credit-score features.
+                  </li>
+                  <li>
+                    Compared several scikit-learn classifiers on a 20% hold-out; the deployed Logistic Regression reaches 86.5% accuracy, 78% precision, 77% recall (F1 0.78).
+                  </li>
+                  <li>
+                    Exported the model and encoders with joblib and ported preprocessing to a client-side JavaScript web app for in-browser predictions.
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            {/* Technical Skills */}
+            <section className="space-y-2">
+              <h2 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#1f4e79] border-b border-[#cbd5e1] pb-1">
+                Technical Skills
+              </h2>
+
+              <div className="grid grid-cols-1 gap-1.5 text-xs sm:text-sm">
+                <div>
+                  <strong className="text-[#111827]">Languages:</strong> <span className="text-[#374151]">Python, C++, SQL, JavaScript</span>
+                </div>
+                <div>
+                  <strong className="text-[#111827]">Machine Learning:</strong> <span className="text-[#374151]">Scikit-learn, PyTorch (via Sentence Transformers fine-tuning, Ultralytics YOLO), Pandas, NumPy, Feature Engineering, Model Evaluation, Matplotlib, Seaborn</span>
+                </div>
+                <div>
+                  <strong className="text-[#111827]">NLP and LLMs:</strong> <span className="text-[#374151]">spaCy, Sentence Transformers (embedding fine-tuning), Groq / Llama 3 API</span>
+                </div>
+                <div>
+                  <strong className="text-[#111827]">Computer Vision:</strong> <span className="text-[#374151]">OpenCV, YOLO, EasyOCR, Tesseract, ORB + RANSAC, Error Level Analysis</span>
+                </div>
+                <div>
+                  <strong className="text-[#111827]">Backend and Data:</strong> <span className="text-[#374151]">FastAPI, REST APIs, PostgreSQL, Supabase, Streamlit, React</span>
+                </div>
+                <div>
+                  <strong className="text-[#111827]">Tools:</strong> <span className="text-[#374151]">Git, GitHub, Docker, Jupyter, pytest</span>
+                </div>
+              </div>
+            </section>
+
+            {/* Certifications */}
+            <section className="space-y-1.5">
+              <h2 className="text-xs sm:text-sm uppercase tracking-wider font-extrabold text-[#1f4e79] border-b border-[#cbd5e1] pb-1">
+                Certifications
+              </h2>
+              <ul className="list-disc list-outside ml-5 text-xs sm:text-sm text-[#1f2937] space-y-1">
+                <li>HackerRank – SQL (Advanced)</li>
+                <li>NPTEL (IIT Madras) – Introduction to Large Language Models (LLMs), 12-week course, Jul–Oct 2026</li>
+              </ul>
             </section>
           </div>
 
