@@ -28,7 +28,7 @@ export function App() {
 
   // Background Theme Studio state
   const [themeId, setThemeId] = useState<string>(() => {
-    return localStorage.getItem('abhinav_portfolio_theme') || 'porcelain-apricot';
+    return localStorage.getItem('abhinav_portfolio_theme') || 'white-blue-pages';
   });
 
   const activeTheme = THEME_OPTIONS.find((t) => t.id === themeId) || THEME_OPTIONS[0];
@@ -56,7 +56,7 @@ export function App() {
     <div className="min-h-screen text-[#132532] transition-colors duration-500 selection:bg-[#315CFF] selection:text-white font-sans relative">
       {/* Dynamic Mixed Background Canvas Layer */}
       <div 
-        className="fixed inset-0 pointer-events-none -z-10 transition-all duration-700 ease-in-out"
+        className={`${activeTheme.isFullDocumentGradient ? 'absolute h-full' : 'fixed'} inset-0 pointer-events-none -z-10 transition-all duration-700 ease-in-out`}
         style={{ background: activeTheme.background }}
       />
       {/* Top Viewport Scroll Progress Bar */}
@@ -76,32 +76,59 @@ export function App() {
 
       {/* Main Editorial Content Flow */}
       <main id="main-content" className="relative z-10">
-        {/* Section 0: Editorial Hero */}
-        <EditorialHero onOpenResume={() => setIsResumeOpen(true)} />
+        {/* Page 1: Editorial Hero & Marquee */}
+        <div 
+          className="transition-all duration-700"
+          style={activeTheme.isAlternating ? { background: activeTheme.page1Bg } : undefined}
+        >
+          <EditorialHero onOpenResume={() => setIsResumeOpen(true)} />
+          <EditorialMarquee />
+        </div>
 
-        {/* Kinetic Horizontal Marquee Stream */}
-        <EditorialMarquee />
+        {/* Page 2: Selected Work / Engineered Systems (Blue Mix) */}
+        <div 
+          className="transition-all duration-700"
+          data-theme={activeTheme.page2Dark ? 'obsidian' : undefined}
+          style={activeTheme.isAlternating ? { background: activeTheme.page2Bg } : undefined}
+        >
+          <EditorialProjects onOpenCaseStudy={(project) => setSelectedCaseStudy(project)} />
+        </div>
 
-        {/* Section 1: Selected Work / Engineered Systems */}
-        <EditorialProjects onOpenCaseStudy={(project) => setSelectedCaseStudy(project)} />
+        {/* Page 3: About / The Person Behind the Builds (White) */}
+        <div 
+          className="transition-all duration-700"
+          style={activeTheme.isAlternating ? { background: activeTheme.page1Bg } : undefined}
+        >
+          <EditorialAbout />
+        </div>
 
-        {/* Section 2: About / The Person Behind the Builds */}
-        <EditorialAbout />
+        {/* Page 4: Interactive Journey Traversal Map & Stack (Blue Mix) */}
+        <div 
+          className="transition-all duration-700"
+          data-theme={activeTheme.page2Dark ? 'obsidian' : undefined}
+          style={activeTheme.isAlternating ? { background: activeTheme.page2Bg } : undefined}
+        >
+          <EditorialJourneyMap />
+          <EditorialStack />
+        </div>
 
-        {/* Section 2.5: Interactive Journey Traversal Map */}
-        <EditorialJourneyMap />
+        {/* Page 5: Verified Accreditations & Technical Credentials + LeetCode (White) */}
+        <div 
+          className="transition-all duration-700"
+          style={activeTheme.isAlternating ? { background: activeTheme.page1Bg } : undefined}
+        >
+          <EditorialCertifications />
+          <EditorialLeetCode />
+        </div>
 
-        {/* Section 3: Tools of the Trade / Working Vocabulary */}
-        <EditorialStack />
-
-        {/* Section 3.5: Verified Accreditations & Technical Credentials */}
-        <EditorialCertifications />
-
-        {/* Section 4: Problem Solving & LeetCode Telemetry */}
-        <EditorialLeetCode />
-
-        {/* Section 5: Contact / Let's Build Something Dependable */}
-        <EditorialContact />
+        {/* Page 6: Contact / Let's Build Something Dependable */}
+        <div 
+          className="transition-all duration-700"
+          data-theme={activeTheme.page2Dark ? 'obsidian' : undefined}
+          style={activeTheme.isAlternating ? { background: activeTheme.pageContactBg || activeTheme.page2Bg } : undefined}
+        >
+          <EditorialContact />
+        </div>
       </main>
 
       {/* Floating Back to Top Button (Electric Blue square with arrow) */}

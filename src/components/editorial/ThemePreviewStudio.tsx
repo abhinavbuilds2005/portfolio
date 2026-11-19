@@ -38,8 +38,8 @@ export const ThemePreviewStudio: React.FC<ThemePreviewStudioProps> = ({
               onClick={() => setIsMinimized(false)}
               className="mx-auto flex items-center gap-2.5 bg-[#132532] text-white px-4 py-2.5 shadow-[4px_4px_0px_#315CFF] border border-[#132532] font-mono text-xs font-bold cursor-pointer hover:bg-[#2047E5] transition-all"
             >
-              <Palette className="w-3.5 h-3.5 text-[#F0784B]" />
-              <span>TEST 2-COLOR MIXES</span>
+              <Palette className="w-3.5 h-3.5 text-[#315CFF]" />
+              <span>TEST WHITE & BLUE MIXES</span>
               <div className="flex items-center -space-x-1">
                 <span className="w-2.5 h-2.5 rounded-full border border-white/60" style={{ backgroundColor: activeTheme.color1Hex }} />
                 <span className="w-2.5 h-2.5 rounded-full border border-white/60" style={{ backgroundColor: activeTheme.color2Hex }} />
@@ -63,13 +63,13 @@ export const ThemePreviewStudio: React.FC<ThemePreviewStudioProps> = ({
                   </span>
                   <div>
                     <div className="font-mono text-xs font-extrabold uppercase tracking-wider text-white flex items-center gap-2">
-                      <span>TWO-COLOR MIX STUDIO // LIVE TEST</span>
-                      <span className="font-mono text-[9px] bg-[#F0784B] text-white px-1.5 py-0.2 font-bold">
-                        DUAL-TONE
+                      <span>WHITE & BLUE MIX STUDIO // LIVE TEST</span>
+                      <span className="font-mono text-[9px] bg-[#315CFF] text-white px-1.5 py-0.2 font-bold">
+                        PAGE 1 WHITE + PAGE 2 BLUE
                       </span>
                     </div>
                     <div className="text-[11px] text-white/75 font-sans hidden sm:block">
-                      Click any 2-color mix below to test the exact gradient blend across your portfolio
+                      Click any White &amp; Blue mix below to test alternating page backgrounds &amp; gradient blends across your portfolio
                     </div>
                   </div>
                 </div>

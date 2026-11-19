@@ -18,7 +18,7 @@ export const EditorialMarquee: React.FC = () => {
     <div
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
-      className="w-full border-y border-[#132532]/10 bg-[#FAF8F5] py-3.5 overflow-hidden select-none cursor-default group"
+      className="w-full border-y border-[#132532]/10 bg-white/40 backdrop-blur-xs py-3.5 overflow-hidden select-none cursor-default group"
       title="Hover to pause stream"
     >
       <div
