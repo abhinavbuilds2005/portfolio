@@ -16,6 +16,7 @@ import { ScrollProgressBar } from './components/editorial/ScrollProgressBar';
 import { EditorialTerminalModal } from './components/editorial/EditorialTerminalModal';
 import { EditorialCaseStudyModal } from './components/editorial/EditorialCaseStudyModal';
 import { EditorialResumeModal } from './components/editorial/EditorialResumeModal';
+import { ThemePreviewStudio, THEME_OPTIONS } from './components/editorial/ThemePreviewStudio';
 import { Project } from './lib/types';
 
 export function App() {
@@ -23,6 +24,19 @@ export function App() {
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<Project | null>(null);
+
+  // Background Theme Studio state
+  const [themeId, setThemeId] = useState<string>(() => {
+    return localStorage.getItem('abhinav_portfolio_theme') || 'warmth';
+  });
+
+  const activeTheme = THEME_OPTIONS.find((t) => t.id === themeId) || THEME_OPTIONS[0];
+
+  useEffect(() => {
+    localStorage.setItem('abhinav_portfolio_theme', themeId);
+    document.documentElement.setAttribute('data-theme', themeId);
+    document.body.style.backgroundColor = activeTheme.baseColor;
+  }, [themeId, activeTheme]);
 
   // Global keyboard shortcuts
   useEffect(() => {
@@ -38,7 +52,12 @@ export function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#F5F2EB] text-[#132532] selection:bg-[#315CFF] selection:text-white font-sans relative">
+    <div className="min-h-screen text-[#132532] transition-colors duration-500 selection:bg-[#315CFF] selection:text-white font-sans relative">
+      {/* Dynamic Mixed Background Canvas Layer */}
+      <div 
+        className="fixed inset-0 pointer-events-none -z-10 transition-all duration-700 ease-in-out"
+        style={{ background: activeTheme.background }}
+      />
       {/* Top Viewport Scroll Progress Bar */}
       <ScrollProgressBar />
 
@@ -103,6 +122,12 @@ export function App() {
       <EditorialResumeModal
         isOpen={isResumeOpen}
         onClose={() => setIsResumeOpen(false)}
+      />
+
+      {/* Interactive Theme Preview Studio for Live Testing */}
+      <ThemePreviewStudio 
+        activeThemeId={themeId} 
+        onSelectTheme={setThemeId} 
       />
     </div>
   );

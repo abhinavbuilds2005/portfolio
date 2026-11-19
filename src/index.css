@@ -154,3 +154,69 @@
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* ========================================================================= */
+/* THEME STUDIO ADAPTIVE RULES FOR DARK PALETTES                            */
+/* ========================================================================= */
+[data-theme="obsidian"],
+[data-theme="carbon"] {
+  color: #F5F2EB !important;
+}
+
+[data-theme="obsidian"] html,
+[data-theme="carbon"] html,
+[data-theme="obsidian"] body,
+[data-theme="carbon"] body {
+  color: #F5F2EB !important;
+}
+
+[data-theme="obsidian"] .text-\[\#132532\],
+[data-theme="carbon"] .text-\[\#132532\] {
+  color: #F5F2EB !important;
+}
+
+[data-theme="obsidian"] .text-\[\#132532\]\/75,
+[data-theme="carbon"] .text-\[\#132532\]\/75,
+[data-theme="obsidian"] .text-\[\#132532\]\/70,
+[data-theme="carbon"] .text-\[\#132532\]\/70,
+[data-theme="obsidian"] .text-\[\#132532\]\/65,
+[data-theme="carbon"] .text-\[\#132532\]\/65,
+[data-theme="obsidian"] .text-\[\#132532\]\/60,
+[data-theme="carbon"] .text-\[\#132532\]\/60,
+[data-theme="obsidian"] .text-\[\#132532\]\/50,
+[data-theme="carbon"] .text-\[\#132532\]\/50 {
+  color: rgba(245, 242, 235, 0.70) !important;
+}
+
+[data-theme="obsidian"] .bg-white,
+[data-theme="carbon"] .bg-white {
+  background-color: rgba(17, 24, 39, 0.90) !important;
+  color: #F5F2EB !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-theme="obsidian"] .bg-\[\#FAF8F5\],
+[data-theme="carbon"] .bg-\[\#FAF8F5\],
+[data-theme="obsidian"] .bg-\[\#F5F2EB\],
+[data-theme="carbon"] .bg-\[\#F5F2EB\] {
+  background-color: rgba(15, 23, 42, 0.90) !important;
+  color: #F5F2EB !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+[data-theme="obsidian"] .border-\[\#132532\]\/15,
+[data-theme="carbon"] .border-\[\#132532\]\/15,
+[data-theme="obsidian"] .border-\[\#132532\]\/10,
+[data-theme="carbon"] .border-\[\#132532\]\/10,
+[data-theme="obsidian"] .border-\[\#132532\]\/20,
+[data-theme="carbon"] .border-\[\#132532\]\/20,
+[data-theme="obsidian"] .border-\[\#132532\]\/25,
+[data-theme="carbon"] .border-\[\#132532\]\/25 {
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+[data-theme="obsidian"] .text-stroke-ink,
+[data-theme="carbon"] .text-stroke-ink {
+  -webkit-text-stroke: 2.5px rgba(245, 242, 235, 0.4) !important;
+}
+
