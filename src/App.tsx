@@ -16,7 +16,8 @@ import { ScrollProgressBar } from './components/editorial/ScrollProgressBar';
 import { EditorialTerminalModal } from './components/editorial/EditorialTerminalModal';
 import { EditorialCaseStudyModal } from './components/editorial/EditorialCaseStudyModal';
 import { EditorialResumeModal } from './components/editorial/EditorialResumeModal';
-import { ThemePreviewStudio, THEME_OPTIONS } from './components/editorial/ThemePreviewStudio';
+import { ThemePreviewStudio } from './components/editorial/ThemePreviewStudio';
+import { THEME_OPTIONS } from './lib/themeOptions';
 import { Project } from './lib/types';
 
 export function App() {
@@ -27,7 +28,7 @@ export function App() {
 
   // Background Theme Studio state
   const [themeId, setThemeId] = useState<string>(() => {
-    return localStorage.getItem('abhinav_portfolio_theme') || 'warmth';
+    return localStorage.getItem('abhinav_portfolio_theme') || 'porcelain-apricot';
   });
 
   const activeTheme = THEME_OPTIONS.find((t) => t.id === themeId) || THEME_OPTIONS[0];
