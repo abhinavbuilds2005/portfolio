@@ -44,6 +44,7 @@ export const MinimalNavbar: React.FC<MinimalNavbarProps> = ({
     { label: 'About', href: '#about', id: 'about' },
     { label: 'Projects', href: '#projects', id: 'projects' },
     { label: 'Skills', href: '#skills', id: 'skills' },
+    { label: 'LeetCode', href: '#leetcode', id: 'leetcode' },
     { label: 'Certificates', href: '#certificates', id: 'certificates' },
     { label: 'Contact', href: '#contact', id: 'contact' },
   ];

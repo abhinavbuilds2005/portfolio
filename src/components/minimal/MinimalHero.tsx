@@ -145,18 +145,32 @@ export const MinimalHero: React.FC<MinimalHeroProps> = ({ onViewProjects }) => {
           {/* Container holding both 3D card and dark dashboard with subtle overlap */}
           <div className="relative w-full max-w-[520px] flex items-center justify-end">
 
-            {/* 1. Refined 3D AA Identity Element (Floating Glass Monogram) */}
+            {/* 1. Refined 3D AA Identity Element (Floating Glass Monogram with Orbital Levitation) */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, rotate: -8 }}
-              animate={{ opacity: 1, scale: 1, rotate: -6 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1, 
+                y: [0, -8, 0],
+                rotate: [-6, -4, -6],
+              }}
+              transition={{ 
+                y: { duration: 5, repeat: Infinity, ease: 'easeInOut' },
+                rotate: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
+                opacity: { duration: 0.8 },
+                scale: { duration: 0.8 }
+              }}
               className="absolute -left-10 sm:-left-16 top-1/2 -translate-y-1/2 z-20 pointer-events-none sm:pointer-events-auto"
             >
-              {/* Purple Orbital Elliptical Ring */}
-              <div className="absolute -inset-8 border border-[#8B5CF6]/35 rounded-[100%] w-56 h-36 -rotate-12 pointer-events-none">
+              {/* Purple Orbital Elliptical Ring revolving in 360 degrees */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                className="absolute -inset-8 border border-[#8B5CF6]/35 rounded-[100%] w-56 h-36 pointer-events-none"
+              >
                 {/* Glowing Orbital Particle Bead */}
-                <span className="absolute top-1/2 -right-1.5 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#8B5CF6] shadow-[0_0_10px_#8B5CF6]" />
-              </div>
+                <span className="absolute top-1/2 -right-1.5 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-[#8B5CF6] shadow-[0_0_12px_#8B5CF6]" />
+              </motion.div>
 
               {/* Stacked Shadow Card (Underneath) */}
               <div className="absolute inset-0 translate-x-3 translate-y-3 bg-white/40 backdrop-blur-md border border-white/60 rounded-3xl -z-10" />

@@ -4,11 +4,16 @@ import { MinimalHero } from './components/minimal/MinimalHero';
 import { TechStrip } from './components/minimal/TechStrip';
 import { FeaturedProjects } from './components/minimal/FeaturedProjects';
 import { AboutSection } from './components/minimal/AboutSection';
-import { SkillsSection } from './components/minimal/SkillsSection';
+import { MinimalJourneyMap } from './components/minimal/MinimalJourneyMap';
+import { MinimalStack } from './components/minimal/MinimalStack';
+import { MinimalLeetCode } from './components/minimal/MinimalLeetCode';
 import { ExperienceSection } from './components/minimal/ExperienceSection';
 import { CertificatesSection } from './components/minimal/CertificatesSection';
 import { ContactSection } from './components/minimal/ContactSection';
 import { MinimalFooter } from './components/minimal/MinimalFooter';
+import { ScrollProgressBar } from './components/editorial/ScrollProgressBar';
+import { CustomCursor } from './components/editorial/CustomCursor';
+import { BackToTop } from './components/editorial/BackToTop';
 import { EditorialCaseStudyModal } from './components/editorial/EditorialCaseStudyModal';
 import { EditorialResumeModal } from './components/editorial/EditorialResumeModal';
 import { EditorialTerminalModal } from './components/editorial/EditorialTerminalModal';
@@ -38,41 +43,56 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-[#FAF9F5] text-[#111827] selection:bg-[#6366F1] selection:text-white font-sans relative antialiased">
+      {/* Top Viewport Scroll Progress Indicator */}
+      <ScrollProgressBar />
+
+      {/* Interactive Smooth Custom Cursor for Desktop */}
+      <CustomCursor />
+
       {/* 1. Header / Navigation */}
       <MinimalNavbar onOpenResume={() => setIsResumeOpen(true)} />
 
       {/* 2. Main Content Flow */}
       <main id="main-content" className="relative z-10">
-        {/* Hero Section */}
+        {/* Section 0: Hero Section */}
         <MinimalHero
           onViewProjects={handleViewProjects}
           onOpenResume={() => setIsResumeOpen(true)}
         />
 
-        {/* Technology Strip */}
+        {/* Section 1: Technology Strip */}
         <TechStrip />
 
-        {/* Featured Projects Section */}
+        {/* Section 2: Featured Projects Section */}
         <FeaturedProjects onOpenCaseStudy={(proj) => setSelectedCaseStudy(proj)} />
 
-        {/* About Me Section */}
+        {/* Section 3: About Me */}
         <AboutSection />
 
-        {/* Technical Skills Section */}
-        <SkillsSection />
+        {/* Section 4: Interactive Traversal Map */}
+        <MinimalJourneyMap />
 
-        {/* Experience & Achievements Section */}
+        {/* Section 5: Technical Ecosystem & Skills (25+ Tools & Architectures) */}
+        <MinimalStack />
+
+        {/* Section 6: LeetCode & Algorithmic Rigor Telemetry */}
+        <MinimalLeetCode />
+
+        {/* Section 7: Experience & Achievements */}
         <ExperienceSection />
 
-        {/* Certificates & Accreditations Section */}
+        {/* Section 8: Certificates & Accreditations (Click to View) */}
         <CertificatesSection />
 
-        {/* Contact Section */}
+        {/* Section 9: Contact */}
         <ContactSection />
       </main>
 
       {/* 3. Footer */}
       <MinimalFooter />
+
+      {/* Floating Back to Top Control */}
+      <BackToTop />
 
       {/* ======================================================================= */}
       {/* INTERACTIVE MODALS & PRESERVED CAPABILITIES                            */}

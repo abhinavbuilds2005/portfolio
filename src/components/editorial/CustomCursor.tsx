@@ -59,7 +59,7 @@ export const CustomCursor: React.FC = () => {
     <>
       {/* Central Solid Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2.5 h-2.5 bg-[#315CFF] rounded-full pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 w-2.5 h-2.5 bg-[#6366F1] rounded-full pointer-events-none z-[9999]"
         style={{
           transform: `translate3d(${pos.x - 5}px, ${pos.y - 5}px, 0)`,
         }}
@@ -67,14 +67,14 @@ export const CustomCursor: React.FC = () => {
 
       {/* Trailing Ring with Magnetic Expansion on Hover */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full border border-[#315CFF] pointer-events-none z-[9998]"
+        className="fixed top-0 left-0 rounded-full border border-[#6366F1] pointer-events-none z-[9998]"
         animate={{
           x: pos.x - (isHovering ? 20 : 12),
           y: pos.y - (isHovering ? 20 : 12),
           width: isHovering ? 40 : 24,
           height: isHovering ? 40 : 24,
-          backgroundColor: isHovering ? 'rgba(49, 92, 255, 0.12)' : 'transparent',
-          borderColor: isHovering ? '#315CFF' : 'rgba(49, 92, 255, 0.45)',
+          backgroundColor: isHovering ? 'rgba(99, 102, 241, 0.14)' : 'transparent',
+          borderColor: isHovering ? '#6366F1' : 'rgba(99, 102, 241, 0.45)',
           scale: isClicking ? 0.85 : 1,
         }}
         transition={{
