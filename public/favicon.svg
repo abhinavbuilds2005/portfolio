@@ -1,5 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#121212" />
-  <rect x="1" y="1" width="30" height="30" rx="5" fill="none" stroke="#2b2a27" stroke-width="1.5" />
-  <text x="16" y="21" font-family="monospace" font-size="13" font-weight="bold" fill="#e58b24" text-anchor="middle">AA</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#4F46E5" />
+    </linearGradient>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.28" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <!-- Squircle Base with Electric Purple Gradient -->
+  <rect width="64" height="64" rx="16" fill="url(#purpleGrad)" />
+  <!-- Subtle Top Specular Curve -->
+  <rect x="1" y="1" width="62" height="31" rx="15" fill="url(#shine)" />
+  <!-- Refined Outer Highlight Border -->
+  <rect x="1.5" y="1.5" width="61" height="61" rx="14.5" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.25" />
+  <!-- AA Bold Typography -->
+  <text x="32" y="44" 
+    font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif" 
+    font-size="29" 
+    font-weight="900" 
+    letter-spacing="-1.5" 
+    fill="#FFFFFF" 
+    text-anchor="middle">AA</text>
 </svg>
