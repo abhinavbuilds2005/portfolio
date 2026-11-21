@@ -109,7 +109,7 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
             <p className="text-emerald-400 font-bold">RÉSUMÉ DOSSIER // ABHINAV ANAND</p>
             <p>Role: AI/ML Intern | Python, NLP, Computer Vision</p>
             <p>Education: B.Tech CSE (AI/ML) · Lovely Professional University (Aug 2025 - Aug 2029)</p>
-            <p>Location: Jalandhar, Punjab, India · +91 9153051907 · abhinavanand9996@gmail.com</p>
+            <p>Location: Jalandhar, Punjab, India · abhinavanand9996@gmail.com</p>
             <p>Flagship: DocuShield (SIH 2026, 219 tests, 96% accuracy) & AI Resume ATS Analyzer (70% lower MAE fine-tuned all-mpnet-base-v2)</p>
             <div className="pt-1">
               <a
@@ -274,7 +274,6 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
         outputNode = (
           <div className="space-y-1 text-xs text-[#F5F2EB]/85">
             <p>Email: <span className="text-white font-bold">abhinavanand9996@gmail.com</span></p>
-            <p>Phone: <span className="text-white font-bold">+91 9153051907</span></p>
             <p>Location: <span className="text-white font-bold">Jalandhar, Punjab, India</span></p>
             <p>GitHub: github.com/abhinavbuilds2005</p>
             <p>LinkedIn: linkedin.com/in/abhinav-anand-865926300</p>

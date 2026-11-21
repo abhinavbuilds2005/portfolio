@@ -20,7 +20,7 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onOpenCaseSt
   return (
     <section id="projects" className="py-20 px-6 sm:px-10 max-w-7xl mx-auto">
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
         <div>
           <span className="font-sans font-bold text-xs tracking-wider uppercase text-[#6366F1] block mb-2">
             — PROJECTS
@@ -42,6 +42,24 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onOpenCaseSt
         </button>
       </div>
 
+      {/* Floating Project Quick Navigation Pills */}
+      <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
+        <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider mr-2 shrink-0">
+          QUICK ACCESS:
+        </span>
+        {PROJECTS.map((proj, idx) => (
+          <button
+            key={proj.id}
+            onClick={() => onOpenCaseStudy(proj)}
+            className="group px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer bg-white border border-[#E5E7EB] hover:border-[#6366F1] hover:text-[#6366F1] hover:-translate-y-0.5 shadow-2xs flex items-center gap-2"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#6366F1]" />
+            <span className="text-[#111827] group-hover:text-[#6366F1]">{proj.title}</span>
+            <span className="text-[10px] text-slate-400 font-mono">0{idx + 1}</span>
+          </button>
+        ))}
+      </div>
+
       {/* ========================================================================= */}
       {/* FEATURED PROJECTS ASYMMETRIC GRID                                         */}
       {/* ========================================================================= */}
@@ -55,7 +73,8 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onOpenCaseSt
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="lg:col-span-7 bg-gradient-to-br from-[#101726] via-[#0F1420] to-[#0A0D15] rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(15,23,42,0.25)] flex flex-col justify-between"
+          whileHover={{ y: -6, transition: { duration: 0.3 } }}
+          className="lg:col-span-7 bg-gradient-to-br from-[#101726] via-[#0F1420] to-[#0A0D15] rounded-3xl p-6 sm:p-8 text-white relative overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(15,23,42,0.25)] hover:shadow-[0_25px_60px_rgba(99,102,241,0.22)] flex flex-col justify-between transition-shadow"
         >
           {/* Subtle Ambient Purple Glow */}
           <div className="absolute -top-24 -right-24 w-80 h-80 bg-[#6366F1]/15 rounded-full blur-3xl pointer-events-none" />
@@ -130,8 +149,22 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onOpenCaseSt
               {/* Outer Neon Glow Frame */}
               <div className="absolute inset-0 border border-[#8B5CF6]/50 rounded-2xl blur-xs pointer-events-none" />
 
-              {/* Tilted Aadhaar Card */}
-              <div className="w-full max-w-[280px] bg-[#FAF8F5] text-slate-800 rounded-xl p-3.5 shadow-2xl border border-white/80 relative transform rotate-y-[-8deg] rotate-x-[4deg] hover:rotate-0 transition-transform duration-500">
+              {/* Floating 3D Tilted Aadhaar Card with Continuous Levitation */}
+              <motion.div
+                animate={{
+                  y: [0, -9, 0],
+                  rotateZ: [-1, 0.8, -1],
+                  rotateY: [-8, -4, -8],
+                  rotateX: [4, 6, 4],
+                }}
+                transition={{
+                  duration: 5.5,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                className="w-full max-w-[280px] bg-[#FAF8F5] text-slate-800 rounded-xl p-3.5 shadow-2xl border border-white/80 relative transform hover:rotate-0 transition-transform duration-500 cursor-pointer"
+                onClick={() => onOpenCaseStudy(docushieldProject)}
+              >
                 {/* Top Indian Tricolor Accent Line */}
                 <div className="h-0.5 w-full bg-gradient-to-r from-[#FF9933] via-slate-300 to-[#128807] mb-2 rounded-full" />
 
@@ -195,7 +228,19 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onOpenCaseSt
                 </div>
 
                 {/* Floating "Verified Authentic Document" Badge */}
-                <div className="absolute -bottom-3 -right-3 bg-[#0B1320]/95 backdrop-blur-md border border-emerald-500/50 text-white px-3 py-1.5 rounded-xl shadow-2xl flex items-center gap-2">
+                <motion.div
+                  animate={{
+                    y: [0, -5, 0],
+                    scale: [1, 1.02, 1],
+                  }}
+                  transition={{
+                    duration: 3.2,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                    delay: 0.5,
+                  }}
+                  className="absolute -bottom-3 -right-3 bg-[#0B1320]/95 backdrop-blur-md border border-emerald-500/50 text-white px-3 py-1.5 rounded-xl shadow-2xl flex items-center gap-2 z-20"
+                >
                   <div className="w-4 h-4 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center shrink-0">
                     <CheckCircle2 className="w-3 h-3 text-emerald-400" />
                   </div>
@@ -203,8 +248,8 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onOpenCaseSt
                     <div className="text-[10px] font-bold text-white leading-tight">Verified</div>
                     <div className="text-[8px] text-slate-300 leading-tight">Authentic Document</div>
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </motion.div>
@@ -220,14 +265,19 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onOpenCaseSt
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-white rounded-2xl p-6 border border-[#E5E7EB] shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-md transition-all flex flex-col justify-between relative overflow-hidden group h-full"
+            whileHover={{ y: -6, transition: { duration: 0.3 } }}
+            className="bg-white rounded-2xl p-6 border border-[#E5E7EB] shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_-10px_rgba(99,102,241,0.18)] hover:border-indigo-200 transition-all flex flex-col justify-between relative overflow-hidden group h-full"
           >
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1">
-                {/* Purple Icon */}
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-[#6366F1] mb-3">
+                {/* Purple Icon with Gentle Hover Float */}
+                <motion.div
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
+                  className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-[#6366F1] mb-3"
+                >
                   <ShoppingCart className="w-5 h-5" />
-                </div>
+                </motion.div>
 
                 {/* Title */}
                 <a
@@ -258,13 +308,33 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onOpenCaseSt
                 </div>
               </div>
 
-              {/* Right Graphic: Purple Bar Chart Illustration */}
-              <div className="w-24 h-24 flex items-end justify-center gap-1.5 pt-4 shrink-0">
-                <div className="w-3.5 h-8 bg-indigo-100 rounded-t" />
-                <div className="w-3.5 h-14 bg-indigo-200 rounded-t" />
-                <div className="w-3.5 h-20 bg-[#6366F1] rounded-t shadow-xs" />
-                <div className="w-3.5 h-11 bg-indigo-300 rounded-t" />
-              </div>
+              {/* Right Graphic: Floating Animated Retail Bar Chart */}
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                className="w-24 h-24 flex items-end justify-center gap-1.5 pt-4 shrink-0"
+              >
+                <motion.div
+                  animate={{ height: ['28px', '38px', '28px'] }}
+                  transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+                  className="w-3.5 bg-indigo-100 rounded-t"
+                />
+                <motion.div
+                  animate={{ height: ['48px', '62px', '48px'] }}
+                  transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut', delay: 0.2 }}
+                  className="w-3.5 bg-indigo-200 rounded-t"
+                />
+                <motion.div
+                  animate={{ height: ['72px', '92px', '72px'] }}
+                  transition={{ duration: 3.6, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
+                  className="w-3.5 bg-[#6366F1] rounded-t shadow-xs"
+                />
+                <motion.div
+                  animate={{ height: ['38px', '50px', '38px'] }}
+                  transition={{ duration: 3.0, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}
+                  className="w-3.5 bg-indigo-300 rounded-t"
+                />
+              </motion.div>
             </div>
           </motion.div>
 
@@ -274,14 +344,19 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onOpenCaseSt
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-2xl p-6 border border-[#E5E7EB] shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-md transition-all flex flex-col justify-between relative overflow-hidden group h-full"
+            whileHover={{ y: -6, transition: { duration: 0.3 } }}
+            className="bg-white rounded-2xl p-6 border border-[#E5E7EB] shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_-10px_rgba(99,102,241,0.18)] hover:border-indigo-200 transition-all flex flex-col justify-between relative overflow-hidden group h-full"
           >
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1">
-                {/* Purple CPU Icon */}
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-[#6366F1] mb-3">
+                {/* Purple CPU Icon with Gentle Hover Float */}
+                <motion.div
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                  className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-[#6366F1] mb-3"
+                >
                   <Cpu className="w-5 h-5" />
-                </div>
+                </motion.div>
 
                 {/* Title */}
                 <a
@@ -312,19 +387,27 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onOpenCaseSt
                 </div>
               </div>
 
-              {/* Right Graphic: Document wireframe with ATS Score 92% badge */}
-              <div className="w-24 shrink-0 flex flex-col items-center justify-center relative pt-2">
+              {/* Right Graphic: Floating Document wireframe with ATS Score 92% badge */}
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+                className="w-24 shrink-0 flex flex-col items-center justify-center relative pt-2"
+              >
                 <div className="w-20 bg-slate-50 border border-slate-200 rounded-lg p-2 shadow-xs space-y-1">
                   <div className="w-6 h-6 rounded-full bg-slate-200 mb-1 mx-auto" />
                   <div className="h-1 bg-slate-200 rounded w-full" />
                   <div className="h-1 bg-slate-200 rounded w-3/4 mx-auto" />
                   <div className="h-1 bg-slate-200 rounded w-5/6 mx-auto" />
                 </div>
-                {/* Purple Score Pill */}
-                <div className="absolute -bottom-1 -right-1 bg-[#6366F1] text-white px-2 py-0.5 rounded-full text-[10px] font-bold shadow-sm whitespace-nowrap">
+                {/* Purple Score Pill with Float Animation */}
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1], y: [0, -3, 0] }}
+                  transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
+                  className="absolute -bottom-1 -right-1 bg-[#6366F1] text-white px-2 py-0.5 rounded-full text-[10px] font-bold shadow-md whitespace-nowrap"
+                >
                   ATS Score 92%
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -340,9 +423,10 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onOpenCaseSt
           className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-black/[0.06]"
         >
           {otherProjects.map((project) => (
-            <div
+            <motion.div
               key={project.id}
-              className="bg-white rounded-2xl p-6 border border-[#E5E7EB] shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+              whileHover={{ y: -6, transition: { duration: 0.25 } }}
+              className="bg-white rounded-2xl p-6 border border-[#E5E7EB] shadow-xs hover:shadow-xl hover:border-indigo-200 transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between mb-2">
@@ -379,7 +463,7 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onOpenCaseSt
                   GitHub ↗
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       )}

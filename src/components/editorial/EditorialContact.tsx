@@ -6,7 +6,6 @@ import { MagneticButton } from './MagneticButton';
 export const EditorialContact: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const email = 'abhinavanand9996@gmail.com';
-  const phone = '+91 9153051907';
 
   // Form State
   const [formData, setFormData] = useState({
@@ -181,8 +180,8 @@ export const EditorialContact: React.FC = () => {
               </div>
 
               <div>
-                <span className="text-[#132532]/60 block text-[11px] uppercase">DIRECT CONTACT & LOCATION</span>
-                <span className="text-[#132532] font-semibold">{phone} · Jalandhar, Punjab, India</span>
+                <span className="text-[#132532]/60 block text-[11px] uppercase">LOCATION</span>
+                <span className="text-[#132532] font-semibold">Jalandhar, Punjab, India</span>
               </div>
 
               <div>

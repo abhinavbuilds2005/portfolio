@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Github, Linkedin, Mail, Twitter, Layers, Rocket, Trophy, Code2 } from 'lucide-react';
 import { DeveloperWaveCanvas } from './DeveloperWaveCanvas';
 import { BackgroundDottedWaves } from './BackgroundDottedWaves';
+import { TypewriterRole } from '../shared/TypewriterRole';
 
 interface MinimalHeroProps {
   onViewProjects?: () => void;
@@ -52,9 +53,21 @@ export const MinimalHero: React.FC<MinimalHeroProps> = ({ onViewProjects }) => {
             <div className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-[#111827] tracking-tight leading-[1.08] mt-1 font-sans">
               Abhinav Anand
             </div>
-            <div className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#1F2937] tracking-tight mt-3 flex items-center">
-              <span>AI/ML Engineer</span>
-              <span className="text-[#6366F1] font-light ml-1 animate-pulse select-none">|</span>
+            <div className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[#1F2937] tracking-tight mt-3 min-h-[44px] flex items-center">
+              <TypewriterRole
+                phrases={[
+                  'AI/ML Engineer',
+                  'Computer Vision & Forensics',
+                  'Deep Learning & PyTorch',
+                  'FastAPI & MLOps Pipelines',
+                  "SIH '26 Innovation Finalist",
+                ]}
+                typingSpeed={65}
+                deletingSpeed={35}
+                pauseDuration={2400}
+                className="text-[#1F2937] font-semibold"
+                cursorClassName="bg-[#6366F1] w-[3px]"
+              />
             </div>
           </motion.div>
 

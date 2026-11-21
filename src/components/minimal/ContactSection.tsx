@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Check, Copy, Send, Loader2, AlertCircle, CheckCircle2, ArrowRight, Github, Linkedin, Phone } from 'lucide-react';
+import { Mail, Check, Copy, Send, Loader2, AlertCircle, CheckCircle2, ArrowRight, Github, Linkedin } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const email = 'abhinavanand9996@gmail.com';
-  const phone = '+91 9153051907';
 
   // Form State
   const [formData, setFormData] = useState({
@@ -162,13 +161,16 @@ export const ContactSection: React.FC = () => {
                 <span className="text-xs text-slate-400 font-mono">/abhinavbuilds2005 ↗</span>
               </a>
 
-              <div className="flex items-center justify-between text-sm text-[#1F2937] p-2 rounded-lg">
+              <a
+                href="mailto:abhinavanand9996@gmail.com"
+                className="flex items-center justify-between text-sm text-[#1F2937] hover:text-[#6366F1] transition-colors p-2 rounded-lg hover:bg-slate-50"
+              >
                 <span className="flex items-center gap-2.5 font-medium">
-                  <Phone className="w-4 h-4 text-emerald-600" />
-                  <span>Phone</span>
+                  <Mail className="w-4 h-4 text-[#6366F1]" />
+                  <span>Direct Email</span>
                 </span>
-                <span className="text-xs text-slate-600 font-mono">{phone}</span>
-              </div>
+                <span className="text-xs text-slate-400 font-mono">abhinavanand9996@gmail.com ↗</span>
+              </a>
             </div>
           </div>
         </div>

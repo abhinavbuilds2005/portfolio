@@ -105,7 +105,7 @@ export const EditorialResumeModal: React.FC<EditorialResumeModalProps> = ({ isOp
               {/* Contact Metadata */}
               <div className="text-xs sm:text-sm text-[#4b5563] mt-2 space-y-1">
                 <div>
-                  Jalandhar, Punjab, India &nbsp;|&nbsp; +91 9153051907 &nbsp;|&nbsp;{' '}
+                  Jalandhar, Punjab, India &nbsp;|&nbsp;{' '}
                   <a href="mailto:abhinavanand9996@gmail.com" className="text-[#132532] font-medium hover:underline">
                     abhinavanand9996@gmail.com
                   </a>
