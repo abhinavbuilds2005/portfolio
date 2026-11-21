@@ -236,78 +236,14 @@ export const MinimalHero: React.FC<MinimalHeroProps> = ({ onViewProjects }) => {
               <div className="absolute inset-0 translate-x-3 translate-y-3 bg-white/40 backdrop-blur-md border border-white/60 rounded-3xl -z-10" />
 
               {/* Main 3D Glass Squircle Card */}
-              <div className="w-36 h-36 sm:w-44 sm:h-44 bg-gradient-to-br from-white/95 via-white/85 to-white/70 backdrop-blur-xl border border-white/90 rounded-3xl shadow-[0_25px_50px_-10px_rgba(0,0,0,0.12)] p-3.5 sm:p-4 flex flex-col items-center justify-between relative overflow-hidden group hover:rotate-0 transition-all duration-500 hover:shadow-[0_25px_60px_-5px_rgba(99,102,241,0.22)]">
+              <div className="w-36 h-36 sm:w-40 sm:h-40 bg-gradient-to-br from-white/95 via-white/80 to-white/65 backdrop-blur-xl border border-white/90 rounded-3xl shadow-[0_25px_50px_-10px_rgba(0,0,0,0.12)] flex items-center justify-center relative overflow-hidden group hover:rotate-0 transition-transform duration-500">
                 {/* Subtle Inner Glass Refraction Highlight */}
                 <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/60 to-transparent pointer-events-none" />
                 
-                {/* Holographic light sweep across the badge on hover */}
-                <div className="absolute -inset-full bg-gradient-to-r from-transparent via-[#6366F1]/15 to-transparent rotate-45 pointer-events-none group-hover:translate-x-full transition-transform duration-1000" />
-
-                {/* Top Micro-Header */}
-                <div className="w-full flex items-center justify-between text-[9px] font-mono text-slate-500 tracking-wider relative z-10">
-                  <span className="flex items-center gap-1 font-semibold text-[#6366F1]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#6366F1] animate-ping" />
-                    AI/ML
-                  </span>
-                  <span className="text-slate-400">#2026</span>
-                </div>
-
-                {/* Center: Interlocking Precision Neural AA Monogram */}
-                <div className="relative my-auto flex items-center justify-center z-10">
-                  <svg className="w-14 h-14 sm:w-16 sm:h-16 drop-shadow-sm" viewBox="0 0 80 80" fill="none">
-                    <defs>
-                      <linearGradient id="aaGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#111827" />
-                        <stop offset="100%" stopColor="#374151" />
-                      </linearGradient>
-                      <linearGradient id="aaGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#6366F1" />
-                        <stop offset="100%" stopColor="#8B5CF6" />
-                      </linearGradient>
-                      <filter id="glowAA" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="2.5" result="blur" />
-                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                      </filter>
-                    </defs>
-
-                    {/* Circuit concentric rings */}
-                    <circle cx="40" cy="40" r="34" stroke="#6366F1" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.3" />
-                    <circle cx="40" cy="40" r="24" stroke="#8B5CF6" strokeWidth="0.6" strokeDasharray="2 2" opacity="0.35" />
-
-                    {/* First 'A' - Primary Dark Slate Geometric Chevron */}
-                    <path
-                      d="M 23 58 L 36 22 L 42 22 L 55 58 M 27 47 L 51 47"
-                      stroke="url(#aaGradient1)"
-                      strokeWidth="4.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-
-                    {/* Second Interlocking 'A' - Electric Indigo Accent Chevron Offset */}
-                    <path
-                      d="M 36 58 L 45 28 L 51 28 L 61 58 M 40 50 L 57 50"
-                      stroke="url(#aaGradient2)"
-                      strokeWidth="3.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="group-hover:stroke-[#4F46E5] transition-colors"
-                    />
-
-                    {/* Central Glowing Neural Synapse Vertex */}
-                    <circle cx="39" cy="24" r="3" fill="#6366F1" filter="url(#glowAA)" />
-                    <circle cx="39" cy="24" r="1.5" fill="#FFFFFF" />
-                  </svg>
-                </div>
-
-                {/* Bottom Micro-Badge */}
-                <div className="w-full text-center border-t border-slate-200/60 pt-1 relative z-10">
-                  <span className="font-mono text-[8px] sm:text-[9px] font-bold tracking-widest text-[#111827] uppercase block">
-                    Abhinav Anand
-                  </span>
-                  <span className="font-mono text-[7px] text-slate-400 tracking-wider uppercase block">
-                    Core Systems
-                  </span>
-                </div>
+                {/* AA Monogram */}
+                <span className="font-sans font-black text-3xl sm:text-4xl text-[#111827] tracking-tight">
+                  AA
+                </span>
               </div>
             </motion.div>
 
