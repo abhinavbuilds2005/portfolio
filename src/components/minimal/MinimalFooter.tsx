@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Github, Linkedin, Mail, Twitter, Instagram } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Mail, Instagram } from 'lucide-react';
 
 export const MinimalFooter: React.FC = () => {
   const scrollToTop = () => {
@@ -38,15 +38,6 @@ export const MinimalFooter: React.FC = () => {
             aria-label="LinkedIn"
           >
             <Linkedin className="w-4 h-4" />
-          </a>
-          <a
-            href="https://x.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#4B5563] hover:text-[#111827] transition-colors"
-            aria-label="X / Twitter"
-          >
-            <Twitter className="w-4 h-4" />
           </a>
           <a
             href="https://www.instagram.com/cse.abhinav/"

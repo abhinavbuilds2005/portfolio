@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Mail, Twitter, Instagram, Layers, Rocket, Trophy, Code2 } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Mail, Instagram, Layers, Rocket, Trophy, Code2 } from 'lucide-react';
 import { DeveloperWaveCanvas } from './DeveloperWaveCanvas';
 import { BackgroundDottedWaves } from './BackgroundDottedWaves';
 import { TypewriterRole } from '../shared/TypewriterRole';
@@ -131,15 +131,6 @@ export const MinimalHero: React.FC<MinimalHeroProps> = ({ onViewProjects }) => {
               aria-label="GitHub"
             >
               <Github className="w-4 h-4" />
-            </a>
-            <a
-              href="https://x.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#4B5563] hover:text-[#111827] transition-colors p-1"
-              aria-label="Twitter / X"
-            >
-              <Twitter className="w-4 h-4" />
             </a>
             <a
               href="https://www.instagram.com/cse.abhinav/"
