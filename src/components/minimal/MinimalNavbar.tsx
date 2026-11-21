@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Download, Menu, X } from 'lucide-react';
+import { MagneticButton } from '../editorial/MagneticButton';
 
 interface MinimalNavbarProps {
   onOpenResume: () => void;
@@ -107,13 +108,15 @@ export const MinimalNavbar: React.FC<MinimalNavbarProps> = ({
 
         {/* Right Action: Resume Button */}
         <div className="hidden sm:flex items-center gap-3">
-          <button
-            onClick={onOpenResume}
-            className="inline-flex items-center gap-2 bg-[#111827] text-white hover:bg-[#1F2937] active:scale-95 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide shadow-sm hover:shadow-md transition-all cursor-pointer"
-          >
-            <span>Resume</span>
-            <Download className="w-3.5 h-3.5" />
-          </button>
+          <MagneticButton strength={0.35}>
+            <button
+              onClick={onOpenResume}
+              className="inline-flex items-center gap-2 bg-[#111827] text-white hover:bg-[#1F2937] active:scale-95 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide shadow-sm hover:shadow-md transition-all cursor-pointer"
+            >
+              <span>Resume</span>
+              <Download className="w-3.5 h-3.5" />
+            </button>
+          </MagneticButton>
         </div>
 
         {/* Mobile Menu Toggle Button */}

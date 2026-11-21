@@ -109,9 +109,10 @@ export const CertificatesSection: React.FC = () => {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.08 }}
+            whileHover={{ y: -6, scale: 1.015 }}
+            transition={{ duration: 0.35, delay: idx * 0.05 }}
             onClick={() => setSelectedCert(cert)}
-            className="bg-white rounded-2xl p-6 border border-[#E5E7EB] shadow-xs hover:shadow-md transition-all flex flex-col justify-between cursor-pointer group hover:-translate-y-1"
+            className="bg-white rounded-2xl p-6 border border-[#E5E7EB] shadow-xs hover:shadow-xl hover:border-indigo-200 transition-all flex flex-col justify-between cursor-pointer group"
           >
             <div>
               <div className="flex items-center justify-between mb-3">

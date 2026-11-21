@@ -73,7 +73,7 @@ export const CustomCursor: React.FC = () => {
           y: pos.y - (isHovering ? 20 : 12),
           width: isHovering ? 40 : 24,
           height: isHovering ? 40 : 24,
-          backgroundColor: isHovering ? 'rgba(99, 102, 241, 0.14)' : 'transparent',
+          backgroundColor: isHovering ? 'rgba(99, 102, 241, 0.14)' : 'rgba(99, 102, 241, 0)',
           borderColor: isHovering ? '#6366F1' : 'rgba(99, 102, 241, 0.45)',
           scale: isClicking ? 0.85 : 1,
         }}

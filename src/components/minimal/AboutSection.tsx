@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, GraduationCap, ShieldCheck, Zap, Sparkles } from 'lucide-react';
+import { AnimatedNumber } from '../shared/AnimatedNumber';
 
 export const AboutSection: React.FC = () => {
   const highlights = [
@@ -87,19 +88,28 @@ export const AboutSection: React.FC = () => {
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-white rounded-2xl p-5 border border-[#E5E7EB] shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+              whileHover={{ y: -4, scale: 1.015 }}
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
+              className="bg-white rounded-2xl p-5 border border-[#E5E7EB] shadow-xs hover:shadow-lg hover:border-indigo-200 transition-all flex flex-col justify-between group cursor-default"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="p-2 bg-indigo-50 rounded-lg">{item.icon}</span>
+                <span className="p-2 bg-indigo-50 text-[#6366F1] group-hover:scale-105 transition-transform rounded-xl border border-indigo-100/60">
+                  {item.icon}
+                </span>
                 <span className="text-[10px] font-mono text-slate-400 font-bold uppercase tracking-wider">
                   VERIFIED
                 </span>
               </div>
 
               <div>
-                <div className="font-sans font-extrabold text-2xl text-[#111827] tracking-tight">
-                  {item.value}
+                <div className="font-sans font-extrabold text-2xl text-[#111827] tracking-tight group-hover:text-[#6366F1] transition-colors">
+                  {item.label === 'Automated Tests' ? (
+                    <AnimatedNumber value={90} suffix="+" />
+                  ) : item.label === 'Inference Latency' ? (
+                    <AnimatedNumber value={42} prefix="<" suffix="ms" />
+                  ) : (
+                    item.value
+                  )}
                 </div>
                 <div className="text-xs font-bold text-[#1F2937] mt-1">
                   {item.label}

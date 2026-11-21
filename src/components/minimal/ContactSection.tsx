@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Check, Copy, Send, Loader2, AlertCircle, CheckCircle2, ArrowRight, Github, Linkedin, Instagram } from 'lucide-react';
+import { MagneticButton } from '../editorial/MagneticButton';
 
 export const ContactSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -267,23 +268,25 @@ export const ContactSection: React.FC = () => {
               </div>
             )}
 
-            <button
-              type="submit"
-              disabled={formStatus === 'loading'}
-              className="inline-flex items-center justify-center gap-2 bg-[#111827] text-white hover:bg-[#1F2937] active:scale-95 px-7 py-3.5 rounded-full text-xs font-semibold tracking-wider uppercase shadow-sm hover:shadow-md transition-all cursor-pointer disabled:opacity-50"
-            >
-              {formStatus === 'loading' ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Transmitting...</span>
-                </>
-              ) : (
-                <>
-                  <Send className="w-4 h-4" />
-                  <span>Send Message</span>
-                </>
-              )}
-            </button>
+            <MagneticButton strength={0.25}>
+              <button
+                type="submit"
+                disabled={formStatus === 'loading'}
+                className="inline-flex items-center justify-center gap-2 bg-[#111827] text-white hover:bg-[#1F2937] active:scale-95 px-7 py-3.5 rounded-full text-xs font-semibold tracking-wider uppercase shadow-sm hover:shadow-md transition-all cursor-pointer disabled:opacity-50"
+              >
+                {formStatus === 'loading' ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Transmitting...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    <span>Send Message</span>
+                  </>
+                )}
+              </button>
+            </MagneticButton>
           </form>
         </div>
       </div>

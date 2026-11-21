@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, RefreshCw, Code2, Trophy, CheckCircle2, Award, Zap, Terminal } from 'lucide-react';
+import { AnimatedNumber } from '../shared/AnimatedNumber';
 
 interface LCSubmission {
   id: string;
@@ -211,7 +212,7 @@ export const MinimalLeetCode: React.FC = () => {
                 Total Solved
               </div>
               <div className="font-sans font-extrabold text-4xl text-[#111827] mt-1">
-                {d.totalSolved}
+                <AnimatedNumber value={d.totalSolved} />
                 <span className="text-xs font-normal text-slate-400 ml-1.5">/ {d.totalQuestions}</span>
               </div>
               <div className="text-xs text-emerald-600 font-semibold flex items-center gap-1 mt-1">

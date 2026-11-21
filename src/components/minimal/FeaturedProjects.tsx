@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { Project } from '../../lib/types';
 import { PROJECTS } from '../../data/projects';
+import { MagneticButton } from '../editorial/MagneticButton';
 
 interface FeaturedProjectsProps {
   onOpenCaseStudy: (project: Project) => void;
@@ -184,23 +185,27 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onOpenCaseSt
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-3 mt-6">
-                <button
-                  onClick={() => onOpenCaseStudy(docushieldProject)}
-                  className="inline-flex items-center gap-2 bg-white text-[#111827] hover:bg-slate-100 active:scale-95 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide shadow-sm transition-all cursor-pointer"
-                >
-                  <span>View Case Study</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                <MagneticButton strength={0.3}>
+                  <button
+                    onClick={() => onOpenCaseStudy(docushieldProject)}
+                    className="inline-flex items-center gap-2 bg-white text-[#111827] hover:bg-slate-100 active:scale-95 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide shadow-sm transition-all cursor-pointer"
+                  >
+                    <span>View Case Study</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </MagneticButton>
 
-                <a
-                  href="https://github.com/abhinavbuilds2005/DocuShield"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 bg-transparent border border-white/20 text-white hover:bg-white/10 active:scale-95 px-4 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all cursor-pointer"
-                >
-                  <Code className="w-3.5 h-3.5" />
-                  <span>Code</span>
-                </a>
+                <MagneticButton strength={0.25}>
+                  <a
+                    href="https://github.com/abhinavbuilds2005/DocuShield"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 bg-transparent border border-white/20 text-white hover:bg-white/10 active:scale-95 px-4 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all cursor-pointer"
+                  >
+                    <Code className="w-3.5 h-3.5" />
+                    <span>Code</span>
+                  </a>
+                </MagneticButton>
               </div>
             </div>
 
