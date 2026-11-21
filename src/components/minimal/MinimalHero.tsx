@@ -57,14 +57,16 @@ export const MinimalHero: React.FC<MinimalHeroProps> = ({ onViewProjects }) => {
               <TypewriterRole
                 phrases={[
                   'AI/ML Engineer',
-                  'Computer Vision & Forensics',
-                  'Deep Learning & PyTorch',
-                  'FastAPI & MLOps Pipelines',
-                  "SIH '26 Innovation Finalist",
+                  'Machine Learning Engineer',
+                  'AI Engineer',
+                  'Computer Vision Engineer',
+                  'Deep Learning Engineer',
+                  'Applied AI Engineer',
+                  'MLOps Engineer',
                 ]}
-                typingSpeed={65}
-                deletingSpeed={35}
-                pauseDuration={2400}
+                typingSpeed={60}
+                deletingSpeed={30}
+                pauseDuration={2200}
                 className="text-[#1F2937] font-semibold"
                 cursorClassName="bg-[#6366F1] w-[3px]"
               />
