@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Check, Copy, Send, Loader2, AlertCircle, CheckCircle2, ArrowRight, Github, Linkedin } from 'lucide-react';
+import { Mail, Check, Copy, Send, Loader2, AlertCircle, CheckCircle2, ArrowRight, Github, Linkedin, Instagram } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
   const [copied, setCopied] = useState(false);
@@ -159,6 +159,19 @@ export const ContactSection: React.FC = () => {
                   <span>GitHub Repositories</span>
                 </span>
                 <span className="text-xs text-slate-400 font-mono">/abhinavbuilds2005 ↗</span>
+              </a>
+
+              <a
+                href="https://www.instagram.com/cse.abhinav/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between text-sm text-[#1F2937] hover:text-[#E1306C] transition-colors p-2 rounded-lg hover:bg-slate-50"
+              >
+                <span className="flex items-center gap-2.5 font-medium">
+                  <Instagram className="w-4 h-4 text-[#E1306C]" />
+                  <span>Instagram</span>
+                </span>
+                <span className="text-xs text-slate-400 font-mono">/cse.abhinav ↗</span>
               </a>
 
               <a

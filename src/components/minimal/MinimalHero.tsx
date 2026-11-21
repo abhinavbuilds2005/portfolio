@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Mail, Twitter, Layers, Rocket, Trophy, Code2 } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Mail, Twitter, Instagram, Layers, Rocket, Trophy, Code2 } from 'lucide-react';
 import { DeveloperWaveCanvas } from './DeveloperWaveCanvas';
 import { BackgroundDottedWaves } from './BackgroundDottedWaves';
 import { TypewriterRole } from '../shared/TypewriterRole';
@@ -140,6 +140,15 @@ export const MinimalHero: React.FC<MinimalHeroProps> = ({ onViewProjects }) => {
               aria-label="Twitter / X"
             >
               <Twitter className="w-4 h-4" />
+            </a>
+            <a
+              href="https://www.instagram.com/cse.abhinav/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#4B5563] hover:text-[#E1306C] transition-colors p-1"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-4 h-4" />
             </a>
             <a
               href="mailto:abhinavanand9996@gmail.com"

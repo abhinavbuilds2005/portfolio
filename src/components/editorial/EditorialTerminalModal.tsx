@@ -277,6 +277,7 @@ export const EditorialTerminalModal: React.FC<EditorialTerminalModalProps> = ({
             <p>Location: <span className="text-white font-bold">Jalandhar, Punjab, India</span></p>
             <p>GitHub: github.com/abhinavbuilds2005</p>
             <p>LinkedIn: linkedin.com/in/abhinav-anand-865926300</p>
+            <p>Instagram: instagram.com/cse.abhinav</p>
           </div>
         );
         break;
