@@ -1,48 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { CinematicIntro } from './components/editorial/CinematicIntro';
-import { EditorialNavbar } from './components/editorial/EditorialNavbar';
-import { EditorialHero } from './components/editorial/EditorialHero';
-import { EditorialMarquee } from './components/editorial/EditorialMarquee';
-import { EditorialProjects } from './components/editorial/EditorialProjects';
-import { EditorialAbout } from './components/editorial/EditorialAbout';
-import { EditorialJourneyMap } from './components/editorial/EditorialJourneyMap';
-import { EditorialStack } from './components/editorial/EditorialStack';
-import { EditorialCertifications } from './components/editorial/EditorialCertifications';
-import { EditorialLeetCode } from './components/editorial/EditorialLeetCode';
-import { EditorialContact } from './components/editorial/EditorialContact';
-import { BackToTop } from './components/editorial/BackToTop';
-import { CustomCursor } from './components/editorial/CustomCursor';
-import { ScrollProgressBar } from './components/editorial/ScrollProgressBar';
-import { EditorialTerminalModal } from './components/editorial/EditorialTerminalModal';
+import { MinimalNavbar } from './components/minimal/MinimalNavbar';
+import { MinimalHero } from './components/minimal/MinimalHero';
+import { TechStrip } from './components/minimal/TechStrip';
+import { FeaturedProjects } from './components/minimal/FeaturedProjects';
+import { AboutSection } from './components/minimal/AboutSection';
+import { SkillsSection } from './components/minimal/SkillsSection';
+import { ExperienceSection } from './components/minimal/ExperienceSection';
+import { CertificatesSection } from './components/minimal/CertificatesSection';
+import { ContactSection } from './components/minimal/ContactSection';
+import { MinimalFooter } from './components/minimal/MinimalFooter';
 import { EditorialCaseStudyModal } from './components/editorial/EditorialCaseStudyModal';
 import { EditorialResumeModal } from './components/editorial/EditorialResumeModal';
-import { ThemePreviewStudio } from './components/editorial/ThemePreviewStudio';
-import { THEME_OPTIONS } from './lib/themeOptions';
+import { EditorialTerminalModal } from './components/editorial/EditorialTerminalModal';
 import { Project } from './lib/types';
 
 export function App() {
-  const [introFinished, setIntroFinished] = useState(false);
-  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<Project | null>(null);
 
-  // Background Theme Studio state
-  const [themeId, setThemeId] = useState<string>(() => {
-    return localStorage.getItem('abhinav_portfolio_theme') || 'white-blue-pages';
-  });
-
-  const activeTheme = THEME_OPTIONS.find((t) => t.id === themeId) || THEME_OPTIONS[0];
-
-  useEffect(() => {
-    localStorage.setItem('abhinav_portfolio_theme', themeId);
-    document.documentElement.setAttribute('data-theme', themeId);
-    document.body.style.backgroundColor = activeTheme.baseColor;
-  }, [themeId, activeTheme]);
-
-  // Global keyboard shortcuts
+  // Global developer keyboard shortcuts (Ctrl+` or Ctrl+T to open terminal)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Toggle Terminal with Ctrl+` or Ctrl+T or Cmd+K
       if ((e.ctrlKey || e.metaKey) && (e.key === '`' || e.key.toLowerCase() === 't' || e.key.toLowerCase() === 'k')) {
         e.preventDefault();
         setIsTerminalOpen((prev) => !prev);
@@ -52,93 +31,52 @@ export function App() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  const handleViewProjects = () => {
+    const el = document.getElementById('projects');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
-    <div className="min-h-screen text-[#132532] transition-colors duration-500 selection:bg-[#315CFF] selection:text-white font-sans relative">
-      {/* Dynamic Mixed Background Canvas Layer */}
-      <div 
-        className={`${activeTheme.isFullDocumentGradient ? 'absolute h-full' : 'fixed'} inset-0 pointer-events-none -z-10 transition-all duration-700 ease-in-out`}
-        style={{ background: activeTheme.background }}
-      />
-      {/* Top Viewport Scroll Progress Bar */}
-      <ScrollProgressBar />
+    <div className="min-h-screen bg-[#FAF9F5] text-[#111827] selection:bg-[#6366F1] selection:text-white font-sans relative antialiased">
+      {/* 1. Header / Navigation */}
+      <MinimalNavbar onOpenResume={() => setIsResumeOpen(true)} />
 
-      {/* Desktop Custom Smooth Cursor */}
-      <CustomCursor />
-
-      {/* Cinematic Intro Animation (Curtain reveal on load) */}
-      <CinematicIntro onComplete={() => setIntroFinished(true)} />
-
-      {/* Sticky Editorial Navbar */}
-      <EditorialNavbar 
-        onOpenTerminal={() => setIsTerminalOpen(true)} 
-        onOpenResume={() => setIsResumeOpen(true)}
-      />
-
-      {/* Main Editorial Content Flow */}
+      {/* 2. Main Content Flow */}
       <main id="main-content" className="relative z-10">
-        {/* Page 1: Editorial Hero & Marquee */}
-        <div 
-          className="transition-all duration-700"
-          style={activeTheme.isAlternating ? { background: activeTheme.page1Bg } : undefined}
-        >
-          <EditorialHero onOpenResume={() => setIsResumeOpen(true)} />
-          <EditorialMarquee />
-        </div>
+        {/* Hero Section */}
+        <MinimalHero
+          onViewProjects={handleViewProjects}
+          onOpenResume={() => setIsResumeOpen(true)}
+        />
 
-        {/* Page 2: Selected Work / Engineered Systems (Blue Mix) */}
-        <div 
-          className="transition-all duration-700"
-          data-theme={activeTheme.page2Dark ? 'obsidian' : undefined}
-          style={activeTheme.isAlternating ? { background: activeTheme.page2Bg } : undefined}
-        >
-          <EditorialProjects onOpenCaseStudy={(project) => setSelectedCaseStudy(project)} />
-        </div>
+        {/* Technology Strip */}
+        <TechStrip />
 
-        {/* Page 3: About / The Person Behind the Builds (White) */}
-        <div 
-          className="transition-all duration-700"
-          style={activeTheme.isAlternating ? { background: activeTheme.page1Bg } : undefined}
-        >
-          <EditorialAbout />
-        </div>
+        {/* Featured Projects Section */}
+        <FeaturedProjects onOpenCaseStudy={(proj) => setSelectedCaseStudy(proj)} />
 
-        {/* Page 4: Interactive Journey Traversal Map & Stack (Blue Mix) */}
-        <div 
-          className="transition-all duration-700"
-          data-theme={activeTheme.page2Dark ? 'obsidian' : undefined}
-          style={activeTheme.isAlternating ? { background: activeTheme.page2Bg } : undefined}
-        >
-          <EditorialJourneyMap />
-          <EditorialStack />
-        </div>
+        {/* About Me Section */}
+        <AboutSection />
 
-        {/* Page 5: Verified Accreditations & Technical Credentials + LeetCode (White) */}
-        <div 
-          className="transition-all duration-700"
-          style={activeTheme.isAlternating ? { background: activeTheme.page1Bg } : undefined}
-        >
-          <EditorialCertifications />
-          <EditorialLeetCode />
-        </div>
+        {/* Technical Skills Section */}
+        <SkillsSection />
 
-        {/* Page 6: Contact / Let's Build Something Dependable */}
-        <div 
-          className="transition-all duration-700"
-          data-theme={activeTheme.page2Dark ? 'obsidian' : undefined}
-          style={activeTheme.isAlternating ? { background: activeTheme.pageContactBg || activeTheme.page2Bg } : undefined}
-        >
-          <EditorialContact />
-        </div>
+        {/* Experience & Achievements Section */}
+        <ExperienceSection />
+
+        {/* Certificates & Accreditations Section */}
+        <CertificatesSection />
+
+        {/* Contact Section */}
+        <ContactSection />
       </main>
 
-      {/* Floating Back to Top Button (Electric Blue square with arrow) */}
-      <BackToTop />
+      {/* 3. Footer */}
+      <MinimalFooter />
 
-      {/* Interactive Runtime Terminal Modal */}
-      <EditorialTerminalModal
-        isOpen={isTerminalOpen}
-        onClose={() => setIsTerminalOpen(false)}
-      />
+      {/* ======================================================================= */}
+      {/* INTERACTIVE MODALS & PRESERVED CAPABILITIES                            */}
+      {/* ======================================================================= */}
 
       {/* Deep Architecture Case Study Modal */}
       <EditorialCaseStudyModal
@@ -152,10 +90,10 @@ export function App() {
         onClose={() => setIsResumeOpen(false)}
       />
 
-      {/* Interactive Theme Preview Studio for Live Testing */}
-      <ThemePreviewStudio 
-        activeThemeId={themeId} 
-        onSelectTheme={setThemeId} 
+      {/* Developer Terminal Modal (Ctrl+` or Ctrl+T) */}
+      <EditorialTerminalModal
+        isOpen={isTerminalOpen}
+        onClose={() => setIsTerminalOpen(false)}
       />
     </div>
   );
