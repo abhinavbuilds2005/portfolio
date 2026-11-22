@@ -49,54 +49,29 @@ export const ContactSection: React.FC = () => {
     setStatus('loading');
 
     try {
-      // Attempt sending via Netlify serverless function (/api/contact)
-      const res = await fetch('/api/contact', {
+      // Direct primary dispatch to FormSubmit
+      const fsRes = await fetch('https://formsubmit.co/ajax/abhinavanand9996@gmail.com', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           name: formData.name.trim(),
           email: formData.email.trim(),
-          message: formData.message.trim()
+          message: formData.message.trim(),
+          _subject: `New Message from AI Engineering Portfolio: ${formData.name.trim()}`,
+          _replyto: formData.email.trim()
         })
       });
 
-      if (res.ok) {
+      if (fsRes.ok) {
         setStatus('success');
         setStatusMessage('Thank you for reaching out! I will respond to your message shortly.');
         setFormData({ name: '', email: '', message: '', botcheck: '' });
       } else {
-        // Fallback to FormSubmit.co
-        const fsRes = await fetch('https://formsubmit.co/ajax/abhinavanand9996@gmail.com', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            name: formData.name.trim(),
-            email: formData.email.trim(),
-            message: formData.message.trim(),
-            _subject: `New Message from AI Engineering Portfolio: ${formData.name.trim()}`
-          })
-        });
-
-        if (fsRes.ok) {
-          setStatus('success');
-          setStatusMessage('Thank you for reaching out! I will respond to your message shortly.');
-          setFormData({ name: '', email: '', message: '', botcheck: '' });
-        } else {
-          throw new Error('Endpoint failure');
-        }
-      }
-
-        if (web3Res.ok) {
-          setStatus('success');
-          setStatusMessage('Thank you for reaching out! I will respond to your message shortly.');
-          setFormData({ name: '', email: '', message: '', botcheck: '' });
-        } else {
-          throw new Error('Endpoint failure');
-        }
+        throw new Error('Endpoint failure');
       }
     } catch (err: any) {
       setStatus('error');
-      setStatusMessage('Message delivery failed. Please send an email directly to abhinavanand2005.cse@gmail.com.');
+      setStatusMessage('Message delivery failed. Please send an email directly to abhinavanand9996@gmail.com.');
     }
   };
 

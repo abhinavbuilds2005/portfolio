@@ -61,60 +61,62 @@ export const ContactSection: React.FC = () => {
 
     let sent = false;
 
-    // 1. Primary Attempt: Send via /api/contact (Serverless Netlify Function / Vite Dev Server)
+    // 1. Primary Direct Dispatch: FormSubmit.co endpoint (delivers directly to abhinavanand9996@gmail.com)
     try {
-      const res = await fetch('/api/contact', {
+      const fsRes = await fetch(`https://formsubmit.co/ajax/${email}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ name, email: emailInput, message }),
+        body: JSON.stringify({
+          name,
+          email: emailInput,
+          message,
+          _subject: `New Transmission from AI Engineering Portfolio: ${name}`,
+          _replyto: emailInput,
+        }),
       });
 
-      if (res.ok) {
+      if (fsRes.ok) {
+        const data = await fsRes.json().catch(() => null);
+        if (data && (data.success === 'true' || data.success === true)) {
+          sent = true;
+        }
+      }
+    } catch {
+      // Continue to backup
+    }
+
+    // 2. Backup & Log: Netlify Forms (stores in Netlify Dashboard as persistent record)
+    try {
+      const netlifyRes = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'contact',
+          name,
+          email: emailInput,
+          message,
+        }).toString(),
+      });
+      if (netlifyRes.ok && !sent) {
         sent = true;
       }
     } catch {
-      // Continue to fallback
+      // Continue
     }
 
-    // 2. Secondary Attempt: Send via Native Netlify Forms (URL-encoded submission)
-    if (!sent) {
+    // 3. Local dev fallback: /api/contact if testing on localhost
+    if (!sent && window.location.hostname === 'localhost') {
       try {
-        const netlifyRes = await fetch('/', {
+        const localRes = await fetch('/api/contact', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams({
-            'form-name': 'contact',
-            name,
-            email: emailInput,
-            message,
-          }).toString(),
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email: emailInput, message }),
         });
-        if (netlifyRes.ok) {
+        if (localRes.ok) {
           sent = true;
         }
       } catch {
-        // Continue to fallback
-      }
-    }
-
-    // 3. Direct Fallback: FormSubmit.co endpoint
-    if (!sent) {
-      try {
-        const fsRes = await fetch(`https://formsubmit.co/ajax/${email}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            name,
-            email: emailInput,
-            message,
-            _subject: `New Transmission from AI Engineering Portfolio: ${name}`,
-          }),
-        });
-        if (fsRes.ok) {
-          sent = true;
-        }
-      } catch {
-        // Fallback failed
+        // Continue
       }
     }
 

@@ -57,41 +57,25 @@ export const EditorialContact: React.FC = () => {
     setStatusMsg('');
 
     try {
-      // 1. Try local Netlify serverless function
-      const res = await fetch('/api/contact', {
+      // Primary direct dispatch to FormSubmit
+      const fsRes = await fetch(`https://formsubmit.co/ajax/${email}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
           name: formData.name.trim(),
           email: formData.email.trim(),
-          message: formData.message.trim()
+          message: formData.message.trim(),
+          _subject: `Recruiter Transmission from Portfolio: ${formData.name.trim()}`,
+          _replyto: formData.email.trim()
         })
       });
 
-      if (res.ok) {
+      if (fsRes.ok) {
         setFormStatus('success');
         setStatusMsg(`Transmission successful! Your message has been delivered directly to ${email}.`);
         setFormData({ name: '', email: '', message: '', botcheck: '' });
       } else {
-        // 2. Direct fallback to FormSubmit.co API
-        const fsRes = await fetch(`https://formsubmit.co/ajax/${email}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            name: formData.name.trim(),
-            email: formData.email.trim(),
-            message: formData.message.trim(),
-            _subject: `Recruiter Transmission from Portfolio: ${formData.name.trim()}`
-          })
-        });
-
-        if (fsRes.ok) {
-          setFormStatus('success');
-          setStatusMsg(`Transmission successful! Your message has been delivered directly to ${email}.`);
-          setFormData({ name: '', email: '', message: '', botcheck: '' });
-        } else {
-          throw new Error('Fallback failed');
-        }
+        throw new Error('Transmission failed');
       }
     } catch (err) {
       setFormStatus('error');
