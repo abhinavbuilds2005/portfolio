@@ -73,20 +73,19 @@ export const EditorialContact: React.FC = () => {
         setStatusMsg(`Transmission successful! Your message has been delivered directly to ${email}.`);
         setFormData({ name: '', email: '', message: '', botcheck: '' });
       } else {
-        // 2. Direct fallback to Web3Forms API
-        const web3Res = await fetch('https://api.web3forms.com/submit', {
+        // 2. Direct fallback to FormSubmit.co API
+        const fsRes = await fetch(`https://formsubmit.co/ajax/${email}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
-            access_key: 'd95cbc2e-a628-4836-b956-a1b038407133',
             name: formData.name.trim(),
             email: formData.email.trim(),
             message: formData.message.trim(),
-            subject: `Recruiter Transmission from Portfolio: ${formData.name.trim()}`
+            _subject: `Recruiter Transmission from Portfolio: ${formData.name.trim()}`
           })
         });
 
-        if (web3Res.ok) {
+        if (fsRes.ok) {
           setFormStatus('success');
           setStatusMsg(`Transmission successful! Your message has been delivered directly to ${email}.`);
           setFormData({ name: '', email: '', message: '', botcheck: '' });

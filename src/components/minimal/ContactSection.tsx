@@ -39,40 +39,94 @@ export const ContactSection: React.FC = () => {
       return;
     }
 
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+    const name = formData.name.trim();
+    const emailInput = formData.email.trim();
+    const message = formData.message.trim();
+
+    if (!name || !emailInput || !message) {
       setFormStatus('error');
       setStatusMsg('Please provide your name, email, and message.');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailInput)) {
+      setFormStatus('error');
+      setStatusMsg('Please enter a valid email address.');
       return;
     }
 
     setFormStatus('loading');
     setStatusMsg('');
 
+    let sent = false;
+
+    // 1. Primary Attempt: Send via /api/contact (Serverless Netlify Function / Vite Dev Server)
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name.trim(),
-          email: formData.email.trim(),
-          message: formData.message.trim(),
-        }),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ name, email: emailInput, message }),
       });
 
       if (res.ok) {
-        setFormStatus('success');
-        setStatusMsg("Thanks! Your message has been received. I'll get back to you shortly.");
-        setFormData({ name: '', email: '', message: '', botcheck: '' });
-      } else {
-        // Fallback mailto
-        window.location.href = `mailto:${email}?subject=Contact%20from%20Portfolio&body=${encodeURIComponent(formData.message)}`;
-        setFormStatus('success');
-        setStatusMsg('Drafting message in your email client...');
+        sent = true;
       }
     } catch {
-      window.location.href = `mailto:${email}?subject=Contact%20from%20Portfolio&body=${encodeURIComponent(formData.message)}`;
+      // Continue to fallback
+    }
+
+    // 2. Secondary Attempt: Send via Native Netlify Forms (URL-encoded submission)
+    if (!sent) {
+      try {
+        const netlifyRes = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({
+            'form-name': 'contact',
+            name,
+            email: emailInput,
+            message,
+          }).toString(),
+        });
+        if (netlifyRes.ok) {
+          sent = true;
+        }
+      } catch {
+        // Continue to fallback
+      }
+    }
+
+    // 3. Direct Fallback: FormSubmit.co endpoint
+    if (!sent) {
+      try {
+        const fsRes = await fetch(`https://formsubmit.co/ajax/${email}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            name,
+            email: emailInput,
+            message,
+            _subject: `New Transmission from AI Engineering Portfolio: ${name}`,
+          }),
+        });
+        if (fsRes.ok) {
+          sent = true;
+        }
+      } catch {
+        // Fallback failed
+      }
+    }
+
+    if (sent) {
       setFormStatus('success');
-      setStatusMsg('Drafting message in your email client...');
+      setStatusMsg("Message delivered directly to Abhinav's inbox! I'll get back to you shortly.");
+      setFormData({ name: '', email: '', message: '', botcheck: '' });
+    } else {
+      setFormStatus('error');
+      setStatusMsg(
+        'Direct dispatch failed to connect. You can email abhinavanand9996@gmail.com directly.'
+      );
     }
   };
 
@@ -209,10 +263,11 @@ export const ContactSection: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-[#374151] mb-1.5 uppercase tracking-wider">
+                <label htmlFor="contact-name" className="block text-xs font-semibold text-[#374151] mb-1.5 uppercase tracking-wider">
                   Your Name
                 </label>
                 <input
+                  id="contact-name"
                   type="text"
                   name="name"
                   value={formData.name}
@@ -223,10 +278,11 @@ export const ContactSection: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-[#374151] mb-1.5 uppercase tracking-wider">
+                <label htmlFor="contact-email" className="block text-xs font-semibold text-[#374151] mb-1.5 uppercase tracking-wider">
                   Email Address
                 </label>
                 <input
+                  id="contact-email"
                   type="email"
                   name="email"
                   value={formData.email}
@@ -238,10 +294,11 @@ export const ContactSection: React.FC = () => {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-[#374151] mb-1.5 uppercase tracking-wider">
+              <label htmlFor="contact-message" className="block text-xs font-semibold text-[#374151] mb-1.5 uppercase tracking-wider">
                 Message / Inquiry
               </label>
               <textarea
+                id="contact-message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
@@ -253,18 +310,28 @@ export const ContactSection: React.FC = () => {
 
             {statusMsg && (
               <div
-                className={`p-3 rounded-xl text-xs font-medium flex items-center gap-2 ${
+                className={`p-3 rounded-xl text-xs font-medium flex items-center justify-between gap-2 ${
                   formStatus === 'success'
                     ? 'bg-emerald-50 text-emerald-800 border border-emerald-200'
                     : 'bg-red-50 text-red-800 border border-red-200'
                 }`}
               >
-                {formStatus === 'success' ? (
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                ) : (
-                  <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+                <div className="flex items-center gap-2">
+                  {formStatus === 'success' ? (
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  ) : (
+                    <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+                  )}
+                  <span>{statusMsg}</span>
+                </div>
+                {formStatus === 'error' && (
+                  <a
+                    href={`mailto:${email}?subject=Contact%20from%20Portfolio&body=${encodeURIComponent(formData.message)}`}
+                    className="font-bold underline text-red-900 shrink-0 hover:text-red-950 ml-2"
+                  >
+                    Draft Email ↗
+                  </a>
                 )}
-                <span>{statusMsg}</span>
               </div>
             )}
 

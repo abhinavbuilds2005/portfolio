@@ -65,18 +65,26 @@ export const ContactSection: React.FC = () => {
         setStatusMessage('Thank you for reaching out! I will respond to your message shortly.');
         setFormData({ name: '', email: '', message: '', botcheck: '' });
       } else {
-        // Fallback to Web3Forms
-        const web3Res = await fetch('https://api.web3forms.com/submit', {
+        // Fallback to FormSubmit.co
+        const fsRes = await fetch('https://formsubmit.co/ajax/abhinavanand9996@gmail.com', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
-            access_key: 'd95cbc2e-a628-4836-b956-a1b038407133',
             name: formData.name.trim(),
             email: formData.email.trim(),
             message: formData.message.trim(),
-            subject: 'New Message from AI Engineering Portfolio'
+            _subject: `New Message from AI Engineering Portfolio: ${formData.name.trim()}`
           })
         });
+
+        if (fsRes.ok) {
+          setStatus('success');
+          setStatusMessage('Thank you for reaching out! I will respond to your message shortly.');
+          setFormData({ name: '', email: '', message: '', botcheck: '' });
+        } else {
+          throw new Error('Endpoint failure');
+        }
+      }
 
         if (web3Res.ok) {
           setStatus('success');

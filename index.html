@@ -71,6 +71,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body class="bg-[#FAF9F5] text-[#111827] antialiased selection:bg-[#6366F1] selection:text-white transition-colors duration-200">
+    <!-- Netlify Forms static detection hook for React SPA -->
+    <form name="contact" data-netlify="true" netlify-honeypot="botcheck" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+      <input type="text" name="botcheck" />
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
